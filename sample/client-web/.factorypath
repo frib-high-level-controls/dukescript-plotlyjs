@@ -1,0 +1,11 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html/1.2.3/net.java.html-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.json/1.2.3/net.java.html.json-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.sound/1.2.3/net.java.html.sound-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/ko4j/1.2.3/ko4j-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apidesign/bck2brwsr/emul/0.16/emul-0.16-rt.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.boot/1.2.3/net.java.html.boot-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apidesign/bck2brwsr/emul/0.16/emul-0.16-bck2brwsr.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apidesign/bck2brwsr/ko-bck2brwsr/0.16/ko-bck2brwsr-0.16-bck2brwsr.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.geo/1.2.3/net.java.html.geo-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
