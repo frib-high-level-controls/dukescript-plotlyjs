@@ -61,30 +61,114 @@ public final class Plotly <T extends Trace>{
         }
     }
     
-    public void restyle() {
-        
-    }
+    /**restyle indices specified in the int array.
+     @param elementId the associated DOM element id
+     @param update a raw JSON string containing the restyle parameters
+     @param indices the indices in the trace array to apply the new style
+    */
+    @JavaScriptBody(args={"elementId","update","indices"}, body = ""
+            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);")
+    public static native void restyle(String elementId, String update, int[] indices);
+
+    /**restyle a single index.
+     @param elementId the associated DOM element id
+     @param update a raw JSON string containing the restyle parameters
+     @param index the index in the trace array to apply the new style
+    */
+    @JavaScriptBody(args={"elementId","update","index"}, body = ""
+            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), index);")
+    public static native void restyle(String elementId, String update, int index);
     
-    public void relayout() {
-        
-    }
+    /**restyle all indices in the trace array.
+     @param elementId the associated DOM element id
+     @param update a raw JSON string containing the restyle parameters
+     @param index the index in the trace array to apply the new style
+    */
+    @JavaScriptBody(args={"elementId","update"}, body = ""
+            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update));")
+    public static native void restyle(String elementId, String update);
     
-    public void addTraces() {
-        
-    }
+   /**Update just the chart layout more nicely than redraw.
+     @param elementId the associated DOM element id
+     @param update a raw JSON string containing the layout parameters
+    */
+    @JavaScriptBody(args={"elementId","update"}, body = ""
+            + "Plotly.relayout(document.getElementById(elementId), JSON.parse(update));")
+    public static native void relayout(String elementId, String update);
     
-    public void deleteTraces() {
-        
-    }
+   /**Add trace(s) to the chart.
+     @param elementId the associated DOM element id
+     @param rawTracesJson a raw JSON string containing the trace parameters
+    */
+    @JavaScriptBody(args={"elementId","rawTracesJson"}, body = ""
+            + "Plotly.addTraces(document.getElementById(elementId),JSON.parse(rawTracesJson));")
+    public static native void addTraces(String elementId, String rawTracesJson);
+   
+   /**Delete one trace.
+    @param elementId the associated DOM element id
+    @param trace the index of the trace to delete
+    */
+    @JavaScriptBody(args={"elementId","trace"}, body = ""
+            + "Plotly.deleteTraces(document.getElementById(elementId), trace);")
+    public static native void deleteTraces(String elementId, int trace);
+
+    /**Delete n traces.
+    @param elementId the associated DOM element id
+    @param traces an array containing the traces to delete.
+    */
+    @JavaScriptBody(args={"elementId","traces"}, body = ""
+            + "Plotly.deleteTraces(document.getElementById(elementId), traces);")
+    public static native void deleteTraces(String elementId, int[] traces);
     
-    public void moveTraces() {
-        
-    }
+    /**Move a specified index to the end of the trace array. Affects the layering and legend of the plot.
+    @param elementId the associated DOM element id
+    @param index the index to bump to the end.
+    */
+    @JavaScriptBody(args = {"elementId", "index"}, body = ""
+            + "Plotly.moveTraces(document.getElementById(elementId), index);")
+    public static native void moveTraces(String elementId, int index);
     
-    public void redraw() {
-        
-    }
+    /**Move multiple indices to the end of the trace array. Affects the layering and legend of the plot.
+    @param elementId the associated DOM element id
+    @param indices the index to bump to the end.
+    */
+    @JavaScriptBody(args = {"elementId", "indices"}, body = ""
+            + "Plotly.moveTraces(document.getElementById(elementId), indices);")
+    public static native void moveTraces(String elementId, int[] indices);
     
+    /**Move a trace to a different specified index. 
+    @param elementId the associated DOM element id
+    @param from the index to move.
+    @param to the index to move <code>from</code> to.
+    */
+    @JavaScriptBody(args = {"elementId", "from", "to"}, body = ""
+            + "Plotly.moveTraces(document.getElementById(elementId), from, to);")
+    public static native void moveTraces(String elementId, int from, int to);
+    
+    /**move traces in an array to different specified indices, respective to the
+    <code>from</code> and <code>to</code> array positions.
+    @param elementId The associated DOM element ID
+    @param from Array to pull from
+    @param to Array of the respective positions
+    */
+    @JavaScriptBody(args = {"elementId", "from", "to"}, body = ""
+            + "Plotly.moveTraces(document.getElementById(elementId),from, to);")
+    public static native void moveTraces(String elementId, int[] from, int [] to);
+    
+    /**Redraw the chart element.
+    @param elementId the associated DOM element
+    */
+    @JavaScriptBody(args = {"elementId"}, body =
+            "Plotly.redraw(document.getElementById(elementId));")
+    public static native void redraw(String elementId);
+    
+    
+    /**Create a new plot.
+    *@param strElementId the associated DOM element to contain the plot
+    *@param strdata A JSON-formatted string containing the trace parameters.
+    *@param strlayout A JSON-formatted string containing the layout parameters.
+    *@return an Object representing the plot's DOM.
+    */
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
             "var layout = JSON.parse(strlayout);\n" +
