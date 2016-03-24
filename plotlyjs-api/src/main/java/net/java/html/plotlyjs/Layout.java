@@ -31,8 +31,21 @@ public class Layout {
     @SuppressWarnings("unused")
     private String title = "";
     
+    private Margin margin;
+    private int width;
+    private int height;
+    private Font font;
+    private Axis xaxis;
+    private Axis yaxis;
+    
     public Layout(String title){
         this.title = title;
     }
+    
+    public void setTitle(String title){
+        this.title = title;
+    }
+    
+    
 
 }
