@@ -30,17 +30,22 @@ public class Layout {
     
     @SuppressWarnings("unused")
     private String title = "";
-    
     private Margin margin;
     private int width;
     private int height;
     private Font font;
-    private Axis xaxis;
-    private Axis yaxis;
+    private Axis x;
+    private Axis y;
     
     
     public Layout(String title){
         this.title = title;
+        this.margin = new Margin.MarginBuilder().build();
+        this.width = 700;
+        this.height = 450;
+        this.font = new Font.FontBuilder().build();
+        this.x = new Axis.AxisBuilder().build();
+        this.y = new Axis.AxisBuilder().build();
     }
     
     public void setTitle(String title){

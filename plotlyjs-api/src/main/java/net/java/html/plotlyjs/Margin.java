@@ -109,7 +109,9 @@ public class Margin {
             int pad = 0;
             int t = 100;
             boolean autoexpand = true;
-
+       
+        public MarginBuilder(){}
+        
         public MarginBuilder b(int b){
             this.b = b;
             return this;

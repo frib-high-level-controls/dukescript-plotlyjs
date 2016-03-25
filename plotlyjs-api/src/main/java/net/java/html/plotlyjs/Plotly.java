@@ -52,8 +52,9 @@ public final class Plotly <T extends Trace>{
     public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
+            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
             String strlayout = Plotly.mapper.writeValueAsString(layout);
+            System.out.println(strlayout);
             jsNewPlot(id,strdata,strlayout);
             return new Plotly<>(id, data, layout);
         } catch (JsonProcessingException e) {
