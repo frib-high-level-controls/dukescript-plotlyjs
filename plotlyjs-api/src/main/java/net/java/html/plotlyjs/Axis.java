@@ -49,58 +49,60 @@ package net.java.html.plotlyjs;
  */
 
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.ArrayList;
 
 /**
  *
  * @author daykin
  */
-
+@JsonInclude(Include.NON_NULL)
 @SuppressWarnings("unused")
-public class Axis {
-        
-        private final String showexponent;
-        private final boolean showticklabels;
-        private final String showticksuffix;
-        private final Font titlefont;
-        private final String linecolor;
-        private final String mirror;
-        private final int nticks;
-        private final int linewidth;
-        private final String autorange;
-        private final String tickprefix;
-        private final int position;
-        private final String tickformat;
-        private final String tickmode;
-        private final String title;
-        private final String ticks;
-        private final String overlaying;
-        private final String rangemode;
-        private final String showtickprefix;
-        private final boolean zeroline;
-        private final ArrayList<Integer> domain;
-        private final String gridcolor;
-        private final String type;
-        private final int zerolinewidth;
-        private final int ticklen;
-        private final String hoverformat;
-        private final String ticksuffix;
-        private final boolean fixedrange;
-        private final boolean showline;
-        private final ArrayList<String> ticktext;
-        private final boolean showgrid;
-        private final int tickvals[]; 
-        private final Font tickfont;
-        private final int tickwidth;
-        private final int tick0;
-        private final int tickangle;
-        private final int gridwidth;
-        private final int dtick ;
-        private final String side;
-        private final String zerolinecolor;
-        private final ArrayList<Integer>range;
-        private final String anchor;
-        private final String exponentformat;
+public class Axis {        
+        private String showexponent;
+        private boolean showticklabels;
+        private String showticksuffix;
+        private Font titlefont;
+        private String linecolor;
+        private Object mirror;
+        private int nticks;
+        private int linewidth;
+        private Object autorange;
+        private String tickprefix;
+        private int position;
+        private String tickformat;
+        private String tickmode;
+        private String title;
+        private String ticks;
+        private String overlaying;
+        private String rangemode;
+        private String showtickprefix;
+        private boolean zeroline;
+        private ArrayList<Number> domain;
+        private String gridcolor;
+        private String type;
+        private int zerolinewidth;
+        private int ticklen;
+        private String hoverformat;
+        private String ticksuffix;
+        private boolean fixedrange;
+        private boolean showline;
+        private ArrayList<String> ticktext;
+        private boolean showgrid;
+        private int tickvals[]; 
+        private Font tickfont;
+        private int tickwidth;
+        private int tick0;
+        private int tickangle = -90;
+        private int gridwidth;
+        private int dtick ;
+        private String side;
+        private String zerolinecolor;
+        private ArrayList<Number>range;
+        private String anchor;
+        private String exponentformat;
     
         
     static final class ShowModes{
@@ -111,16 +113,16 @@ public class Axis {
     }
     
     static final class MirrorModes{
-        public static final String TRUE = "true";
+        public static final Boolean TRUE = true;
         public static final String TICKS = "ticks";
-        public static final String FALSE = "false";
+        public static final Boolean FALSE = false;
         public static final String ALL = "all";
         public static final String ALLTICKS = "allticks";
     }
     
     static final class AutoRangeModes{
-        public static final String TRUE = "true";
-        public static final String FALSE = "false";
+        public static final Boolean TRUE = true;
+        public static final Boolean FALSE = false;
         public static final String REVERSED = "reversed";
     }
     
@@ -200,7 +202,7 @@ public class Axis {
         showgrid = builder.showgrid;
         tickvals = builder.tickvals;
         tickfont = builder.tickfont;
-        tickwidth =builder.tickwidth;
+        tickwidth = builder.tickwidth;
         tick0 = builder.tick0;
         tickangle = builder.tickangle;
         gridwidth = builder.gridwidth;
@@ -213,51 +215,48 @@ public class Axis {
     }
     
     public static class AxisBuilder{
-        String showexponent = ShowModes.ALL;
-        boolean showticklabels = true;
-        String showticksuffix = ShowModes.ALL;
-        Font titlefont = new Font.FontBuilder().build();
+        String showexponent;
+        Boolean showticklabels = true;
+        String showticksuffix;
+        Font titlefont;
         String linecolor;
-        String mirror = MirrorModes.FALSE;
+        Object mirror;
         int nticks = 0;
         int linewidth = 1;
-        String autorange = "true";
-        String tickprefix = "";
+        Object autorange = true;
+        String tickprefix;
         int position = 0;
-        String tickformat = "";
-        String tickmode = "auto";
-        String title = "Axis Title";
-        String ticks = Ticks.OUTSIDE;
-        String overlaying = "free";
-        String rangemode = "normal";
-        String showtickprefix = "all";
+        String tickformat;
+        String tickmode;
+        String title;
+        String ticks;
+        String overlaying;
+        String rangemode;
+        String showtickprefix;
         boolean zeroline = true;
-        ArrayList<Integer> domain = new ArrayList<Integer>(){{
-            add(0);
-            add(10);
-        }};
-        String gridcolor = "#eee";
-        String type = "-";
+        ArrayList<java.lang.Number> domain;
+        String gridcolor;
+        String type;
         int zerolinewidth = 1;
         int ticklen = 5;
-        String hoverformat = "";
-        String ticksuffix = "";
-        boolean fixedrange = false;
+        String hoverformat;
+        String ticksuffix;
+        boolean fixedrange = true;
         boolean showline = true;
-        ArrayList<String> ticktext = new ArrayList<>();
+        ArrayList<String> ticktext;
         boolean showgrid = false;
         int tickvals[]; 
-        Font tickfont = new Font.FontBuilder().build();
+        Font tickfont;
         int tickwidth = 1;
-        int tick0 = 0;
-        int tickangle = -90;
+        int tick0;
+        int tickangle;
         int gridwidth = 1;
         int dtick = 1;
         String side;
-        String zerolinecolor = "#444";
-        ArrayList<Integer>range = new ArrayList<Integer>(){{add(0);add(10);}};
-        String anchor = "free";
-        String exponentformat = ExponentFormats.B;
+        String zerolinecolor;
+        ArrayList<java.lang.Number>range;
+        String anchor;
+        String exponentformat;
         
         public AxisBuilder(){}
 
@@ -286,9 +285,14 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder mirror(String mirror) {
+        public AxisBuilder mirror(Object mirror) {
+            if(mirror instanceof java.lang.String || mirror instanceof java.lang.Boolean){
             this.mirror = mirror;
             return this;
+            }
+            else{
+                throw new IllegalArgumentException("mirror expects a String or boolean (enumerated: true | \"ticks\" | false | \"all\" | \"allticks\" )");
+            }
         }
 
         public AxisBuilder nticks(int nticks) {
@@ -301,7 +305,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder autorange(String autorange) {
+        public AxisBuilder autorange(boolean autorange) {
             this.autorange = autorange;
             return this;
         }
@@ -356,7 +360,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder domain(ArrayList<Integer> domain) {
+        public AxisBuilder domain(ArrayList<Number> domain) {
             this.domain = domain;
             return this;
         }
@@ -456,7 +460,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder range(ArrayList<Integer> range) {
+        public AxisBuilder range(ArrayList<Number> range) {
             this.range = range;
             return this;
         }

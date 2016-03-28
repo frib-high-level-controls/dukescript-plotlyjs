@@ -28,17 +28,24 @@ package net.java.html.plotlyjs;
 
 import java.util.List;
 
-
+@SuppressWarnings("unused")
 public class Scatter extends Trace {
     
-    @SuppressWarnings("unused")
+
     private String type = "scatter";
-    @SuppressWarnings("unused")
     private String mode = "lines";
+    private Layout layout;
 
     public Scatter(List<Number> x, List<Number> y) {
         this.x = x;
         this.y = y;
+        this.layout = new Layout("Chart Title");
+    }
+    
+    public Scatter(List<Number> x, List<Number>y, java.lang.String title){
+        this.x = x;
+        this.y = y;
+        this.layout = new Layout(title);
     }
 
 

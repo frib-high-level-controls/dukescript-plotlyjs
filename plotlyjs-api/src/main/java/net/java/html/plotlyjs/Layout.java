@@ -1,5 +1,8 @@
 package net.java.html.plotlyjs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /*
  * #%L
  * %%
@@ -25,17 +28,17 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
+@JsonInclude(Include.NON_NULL)
 public class Layout {
     
     @SuppressWarnings("unused")
-    private String title = "";
+    private String title;
     private Margin margin;
     private int width;
     private int height;
     private Font font;
-    private Axis x;
-    private Axis y;
+    private Axis xaxis;
+    private Axis yaxis;
     
     
     public Layout(String title){
@@ -44,8 +47,8 @@ public class Layout {
         this.width = 700;
         this.height = 450;
         this.font = new Font.FontBuilder().build();
-        this.x = new Axis.AxisBuilder().build();
-        this.y = new Axis.AxisBuilder().build();
+        this.xaxis = new Axis.AxisBuilder().tickangle(-90).build();
+        this.yaxis = new Axis.AxisBuilder().tickangle(180).build();
     }
     
     public void setTitle(String title){

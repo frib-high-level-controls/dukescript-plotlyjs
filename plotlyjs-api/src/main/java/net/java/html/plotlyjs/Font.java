@@ -78,7 +78,7 @@ public class Font {
     
     public static class FontBuilder{
         String color = "#444";
-        String family = "\"Open Sans\", verdana, arial, sans-serif";
+        String family = "\"Open Sans\", verdana, arial, sans-serif" ;
         int size = 12;
         
         public FontBuilder(){}
