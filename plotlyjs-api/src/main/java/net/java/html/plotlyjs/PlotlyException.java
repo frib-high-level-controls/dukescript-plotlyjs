@@ -2,8 +2,14 @@ package net.java.html.plotlyjs;
 
 /*
  * #%L
+ * This software is Copyright by the Board of Trustees of Michigan State University.
+ * Contact Information:
+ * Facility for Rare Isotope Beams
+ * Michigan State University
+ * East Lansing, MI 48824-1321
+ * http://frib.msu.edu
  * %%
- * Copyright (C) 2015 - 2016 MSU
+ * Copyright (C) 2016 Board of Trustees of Michigan State University
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +30,10 @@ package net.java.html.plotlyjs;
  * THE SOFTWARE.
  * #L%
  */
+
+
+
+
 
 
 public class PlotlyException extends Exception {

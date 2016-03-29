@@ -2,8 +2,14 @@ package net.java.html.plotlyjs;
 
 /*
  * #%L
+ * This software is Copyright by the Board of Trustees of Michigan State University.
+ * Contact Information:
+ * Facility for Rare Isotope Beams
+ * Michigan State University
+ * East Lansing, MI 48824-1321
+ * http://frib.msu.edu
  * %%
- * Copyright (C) 2015 - 2016 MSU
+ * Copyright (C) 2016 Board of Trustees of Michigan State University
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +32,39 @@ package net.java.html.plotlyjs;
  */
 
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+
+
+@JsonInclude(Include.NON_NULL)
 public class Layout {
     
     @SuppressWarnings("unused")
-    private String title = "";
+    private String title;
+    private Margin margin;
+    private int width;
+    private int height;
+    private Font font;
+    private Axis xaxis;
+    private Axis yaxis;
+    
     
     public Layout(String title){
         this.title = title;
+        this.margin = new Margin.MarginBuilder().build();
+        this.width = 700;
+        this.height = 450;
+        this.font = new Font.FontBuilder().build();
+        this.xaxis = new Axis.AxisBuilder().tickangle(-90).build();
+        this.yaxis = new Axis.AxisBuilder().tickangle(180).build();
     }
+    
+    public void setTitle(String title){
+        this.title = title;
+    }
+    
+    
 
 }
