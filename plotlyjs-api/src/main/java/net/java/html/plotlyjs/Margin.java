@@ -1,8 +1,14 @@
 /*
- * #%L
- * %%
- * Copyright (C) 2015 - 2016 MSU
- * %%
+ * The MIT License 
+ *
+ * This software is Copyright by the Board of Trustees of Michigan
+ * State University (c) Copyright 2016.
+ * Contact Information:
+ * Facility for Rare Isotope Beams
+ * Michigan State University
+ * East Lansing, MI 48824-1321
+ * http://frib.msu.edu
+
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
