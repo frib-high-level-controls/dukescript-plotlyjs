@@ -201,9 +201,9 @@
                         <artifactId>license-maven-plugin</artifactId>
                         <version>1.7</version>
                         <configuration>
-                            <inceptionYear>2015</inceptionYear>
-                            <organizationName>MSU</organizationName>
+                            <inceptionYear>2016</inceptionYear>
                             <licenseName>mit</licenseName>
+                            <organizationName>Board of Trustees of Michigan State University</organizationName>
                             <failOnMissingHeader>true</failOnMissingHeader>
                             <descriptionTemplate>src/license/header.txt</descriptionTemplate>
                             <roots>

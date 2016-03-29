@@ -1,14 +1,16 @@
+package net.java.html.plotlyjs;
+
 /*
- * The MIT License 
- *
- * This software is Copyright by the Board of Trustees of Michigan
- * State University (c) Copyright 2016.
+ * #%L
+ * This software is Copyright by the Board of Trustees of Michigan State University.
  * Contact Information:
  * Facility for Rare Isotope Beams
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
-
+ * %%
+ * Copyright (C) 2016 Board of Trustees of Michigan State University
+ * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -28,7 +30,8 @@
  * THE SOFTWARE.
  * #L%
  */
-package net.java.html.plotlyjs;
+
+
 
 /**
  *

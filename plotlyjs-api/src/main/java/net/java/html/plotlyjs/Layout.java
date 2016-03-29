@@ -1,18 +1,15 @@
 package net.java.html.plotlyjs;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 /*
  * #%L
- * %%
- * This software is Copyright by the Board of Trustees of Michigan
- * State University (c) Copyright 2016.
+ * This software is Copyright by the Board of Trustees of Michigan State University.
  * Contact Information:
  * Facility for Rare Isotope Beams
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
+ * %%
+ * Copyright (C) 2016 Board of Trustees of Michigan State University
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +30,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * THE SOFTWARE.
  * #L%
  */
+
+
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+
 
 @JsonInclude(Include.NON_NULL)
 public class Layout {
