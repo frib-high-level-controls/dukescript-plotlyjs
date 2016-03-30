@@ -31,10 +31,6 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-
-
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -71,25 +67,37 @@ public final class Plotly <T extends Trace>{
         }
     }
     /**Restyle the trace array
-     @param updateObj a <code>Data</code> object containing the restyle parameters
-     @param indices the indices in the trace array to apply the new style
+     * @param update a <code>Data</code> object containing the restyle parameters
+     * @param indices the indices in the trace array to apply the new style
+     * @throws PlotlyException
     */ 
-    public void restyle(Data<?> updateObj, int... indices) throws JsonProcessingException{
-        jsRestyle(id,Plotly.mapper.writeValueAsString(updateObj),indices);
+    public void restyle(Data<?> update, int... indices)throws PlotlyException{
+        try{
+        jsRestyle(id,Plotly.mapper.writeValueAsString(update),indices);
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Update just the chart layout more nicely than redraw.
-     @param layoutPojo a <code>Layout</code> object containing the layout parameters
+     @param layout a <code>Layout</code> object containing the layout parameters
     */
-    public void relayout(Layout layoutPojo) throws JsonProcessingException{
-        jsRelayout(id,Plotly.mapper.writeValueAsString(layoutPojo));
+    public void relayout(Layout layout) throws JsonProcessingException{
+        jsRelayout(id,Plotly.mapper.writeValueAsString(layout));
     }
     
     /**Add trace(s) to the chart.
      @param traces an Array of <code>Trace</code>s containing the trace parameters
+     *@throws PlotlyException
     */
-    public void addTraces(Trace[] traces) throws JsonProcessingException{
+    public void addTraces(Trace... traces) throws PlotlyException{
+        try{
         jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Delete n traces.
