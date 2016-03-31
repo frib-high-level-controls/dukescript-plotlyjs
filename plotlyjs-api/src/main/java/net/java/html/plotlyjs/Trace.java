@@ -1,9 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package net.java.html.plotlyjs;
 
 /*
  * #%L
+ * This software is Copyright by the Board of Trustees of Michigan State University.
+ * Contact Information:
+ * Facility for Rare Isotope Beams
+ * Michigan State University
+ * East Lansing, MI 48824-1321
+ * http://frib.msu.edu
  * %%
- * Copyright (C) 2015 - 2016 MSU
+ * Copyright (C) 2016 Board of Trustees of Michigan State University
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +37,9 @@ package net.java.html.plotlyjs;
  */
 
 
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class Trace {
-
-    protected List<Number> x = new ArrayList<Number>();
-    protected List<Number> y = new ArrayList<Number>();
-    
+/**
+ *
+ * @author daykin
+ */
+public interface Trace {
 }

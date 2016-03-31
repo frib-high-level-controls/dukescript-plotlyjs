@@ -2,14 +2,8 @@ package net.java.html.plotlyjs;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
- * Contact Information:
- * Facility for Rare Isotope Beams
- * Michigan State University
- * East Lansing, MI 48824-1321
- * http://frib.msu.edu
  * %%
- * Copyright (C) 2016 Board of Trustees of Michigan State University
+ * Copyright (C) 2015 - 2016 MSU
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,21 +25,14 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
+
+
 import java.util.List;
 
-public class Data <T extends ChartType> {
+public abstract class Value {
 
-    private List<T> traces = new ArrayList<T>();
+    protected List x;
+    protected List y;
     
-    @SafeVarargs
-    public Data(T... traces){
-        this.traces.addAll(Arrays.asList(traces));  
-    }
-    
-    public List<T> getTraces(){
-        return this.traces;
-    }
-
 }

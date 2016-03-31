@@ -42,7 +42,7 @@ import net.java.html.js.JavaScriptResource;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
-public final class Plotly <T extends Trace>{
+public final class Plotly <T extends ChartType>{
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
@@ -94,7 +94,7 @@ public final class Plotly <T extends Trace>{
      @param traces an Array of <code>Trace</code>s containing the trace parameters
      *@throws PlotlyException
     */
-    public void addTraces(Trace... traces) throws PlotlyException{
+    public void addTraces(ChartType... traces) throws PlotlyException{
         try{
         jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
         }
