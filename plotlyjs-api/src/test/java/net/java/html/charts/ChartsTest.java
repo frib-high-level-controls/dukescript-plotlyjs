@@ -35,10 +35,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import javafx.application.Platform;
 import net.java.html.boot.BrowserBuilder;
+import net.java.html.plotlyjs.CartesianTrace;
 import net.java.html.plotlyjs.Data;
 import net.java.html.plotlyjs.Layout;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
+import net.java.html.plotlyjs.Trace;
 
 import org.netbeans.html.boot.spi.Fn;
 import static org.testng.Assert.assertEquals;
@@ -91,7 +93,8 @@ public class ChartsTest implements Runnable {
                 for (int i=0; i<10; i++){
                     y.add(i);
                 }
-                Data data = new Data(new Scatter(x,y));
+                CartesianTrace trace = new CartesianTrace(x,y);
+                Data data = new Data(new Scatter<>(trace));
                 Plotly.newPlot("lineChart", data, new Layout("title"));
 
                 return null;
