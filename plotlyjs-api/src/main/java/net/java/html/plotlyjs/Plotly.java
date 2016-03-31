@@ -67,13 +67,13 @@ public final class Plotly <T extends Trace>{
         }
     }
     /**Restyle the trace array
-     * @param update a <code>Data</code> object containing the restyle parameters
+     * @param data a <code>Data</code> object containing the restyle parameters
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<?> update, int... indices)throws PlotlyException{
+    public void restyle(Data<?> data, int... indices)throws PlotlyException{
         try{
-        jsRestyle(id,Plotly.mapper.writeValueAsString(update),indices);
+        jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
         }
         catch(JsonProcessingException e){
             throw new PlotlyException(e);
@@ -83,8 +83,11 @@ public final class Plotly <T extends Trace>{
     /**Update just the chart layout more nicely than redraw.
      @param layout a <code>Layout</code> object containing the layout parameters
     */
-    public void relayout(Layout layout) throws JsonProcessingException{
-        jsRelayout(id,Plotly.mapper.writeValueAsString(layout));
+    public void relayout(Layout layout) throws PlotlyException{
+        try{jsRelayout(id,Plotly.mapper.writeValueAsString(layout));}
+        catch(Exception e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Add trace(s) to the chart.
