@@ -59,9 +59,6 @@ public final class Plotly <T extends ChartType>{
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
             String strlayout = Plotly.mapper.writeValueAsString(layout);
-            System.out.println(id);
-            System.out.println(strdata);
-            System.out.println(strlayout);
             jsNewPlot(id,strdata,strlayout);
             return new Plotly<>(id, data, layout);
         } catch (JsonProcessingException e) {
