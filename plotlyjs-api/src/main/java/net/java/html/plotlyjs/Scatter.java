@@ -38,14 +38,12 @@ public class Scatter<T extends Value> extends ChartType{
     String mode;
     public Scatter(T data) {
         this.type = "scatter";
-        this.mode = "lines";
         this.x = data.x;
         this.y = data.y;
     }
     
     public Scatter(List x, List y){
         this.type = "scatter";
-        this.mode = "lines";
         this.x = x;
         this.y = y;
     }

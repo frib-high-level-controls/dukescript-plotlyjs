@@ -59,6 +59,9 @@ public final class Plotly <T extends ChartType>{
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
             String strlayout = Plotly.mapper.writeValueAsString(layout);
+            System.out.println(id);
+            System.out.println(strdata);
+            System.out.println(strlayout);
             jsNewPlot(id,strdata,strlayout);
             return new Plotly<>(id, data, layout);
         } catch (JsonProcessingException e) {
@@ -173,12 +176,7 @@ public final class Plotly <T extends ChartType>{
     private static native void jsRedraw(String elementId);
     
     
-    /**Create a new plot.
-    *@param strElementId the associated DOM element to contain the plot
-    *@param strdata A JSON-formatted string containing the trace parameters.
-    *@param strlayout A JSON-formatted string containing the layout parameters.
-    *@return an Object representing the plot's DOM.
-    */
+
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
             "var layout = JSON.parse(strlayout);\n" +

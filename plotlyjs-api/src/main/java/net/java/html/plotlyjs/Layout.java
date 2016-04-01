@@ -49,6 +49,7 @@ public class Layout {
     private Font font;
     private Axis xaxis;
     private Axis yaxis;
+    private boolean autotick;
     
     
     public Layout(String title){
@@ -57,13 +58,24 @@ public class Layout {
         this.width = 700;
         this.height = 450;
         this.font = new Font.FontBuilder().build();
-        this.xaxis = new Axis.AxisBuilder().tickangle(-90).build();
+        this.xaxis = new Axis.AxisBuilder().dtick(10).tickangle(-90).build();
+        this.yaxis = new Axis.AxisBuilder().dtick(10).build();
+        this.autotick = true;
+    }
+    public Layout(String title, int width, int height){
+        this.autotick = true;
+        this.title = title;
+        this.margin = new Margin.MarginBuilder().build();
+        this.width = width;
+        this.height = height;
+        this.font = new Font.FontBuilder().build();
+        this.xaxis = new Axis.AxisBuilder().build();
         this.yaxis = new Axis.AxisBuilder().build();
     }
-    
     public void setTitle(String title){
         this.title = title;
     }
+    
     
     
 
