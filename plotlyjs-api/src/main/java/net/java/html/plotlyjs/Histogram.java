@@ -48,7 +48,6 @@ public class Histogram<T extends Value & Trace> extends ChartType{
         this.type = "histogram";
         this.x = data.x;
         this.y = data.y;
-        this.layout = new Layout("");
     }
     
 }

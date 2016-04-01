@@ -38,7 +38,7 @@ package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -66,7 +66,7 @@ public class Axis {
         private String rangemode;
         private String showtickprefix;
         private boolean zeroline;
-        private ArrayList<Number> domain;
+        private List<Number> domain;
         private String gridcolor;
         private String type;
         private int zerolinewidth;
@@ -75,7 +75,7 @@ public class Axis {
         private String ticksuffix;
         private boolean fixedrange;
         private boolean showline;
-        private ArrayList<String> ticktext;
+        private List<String> ticktext;
         private boolean showgrid;
         private int tickvals[]; 
         private Font tickfont;
@@ -86,7 +86,7 @@ public class Axis {
         private int dtick ;
         private String side;
         private String zerolinecolor;
-        private ArrayList<Number>range;
+        private List<Number>range;
         private String anchor;
         private String exponentformat;
     
@@ -220,7 +220,7 @@ public class Axis {
         String rangemode;
         String showtickprefix;
         boolean zeroline = true;
-        ArrayList<java.lang.Number> domain;
+        List<java.lang.Number> domain;
         String gridcolor;
         String type;
         int zerolinewidth = 1;
@@ -229,7 +229,7 @@ public class Axis {
         String ticksuffix;
         boolean fixedrange = true;
         boolean showline = true;
-        ArrayList<String> ticktext;
+        List<String> ticktext;
         boolean showgrid = false;
         int tickvals[]; 
         Font tickfont;
@@ -240,7 +240,7 @@ public class Axis {
         int dtick = 1;
         String side;
         String zerolinecolor;
-        ArrayList<java.lang.Number>range;
+        List<java.lang.Number>range;
         String anchor;
         String exponentformat;
         
@@ -346,7 +346,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder domain(ArrayList<Number> domain) {
+        public AxisBuilder domain(List<Number> domain) {
             this.domain = domain;
             return this;
         }
@@ -391,7 +391,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder ticktext(ArrayList<String> ticktext) {
+        public AxisBuilder ticktext(List<String> ticktext) {
             this.ticktext = ticktext;
             return this;
         }
@@ -446,7 +446,7 @@ public class Axis {
             return this;
         }
 
-        public AxisBuilder range(ArrayList<Number> range) {
+        public AxisBuilder range(List<Number> range) {
             this.range = range;
             return this;
         }

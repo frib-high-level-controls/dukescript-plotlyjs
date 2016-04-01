@@ -31,10 +31,6 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-
-
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -45,14 +41,12 @@ public class Scatter<T extends Value> extends ChartType{
         this.mode = "lines";
         this.x = data.x;
         this.y = data.y;
-        this.layout = new Layout("");
     }
     
-    public Scatter(ArrayList x, ArrayList y){
+    public Scatter(List x, List y){
         this.type = "scatter";
         this.mode = "lines";
         this.x = x;
         this.y = y;
-        this.layout = new Layout("");
     }
 }
