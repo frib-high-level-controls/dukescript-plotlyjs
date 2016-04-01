@@ -31,10 +31,6 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-
-
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -46,7 +42,7 @@ import net.java.html.js.JavaScriptResource;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
-public final class Plotly <T extends Trace>{
+public final class Plotly <T extends ChartType>{
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
@@ -63,7 +59,6 @@ public final class Plotly <T extends Trace>{
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
             String strlayout = Plotly.mapper.writeValueAsString(layout);
-            System.out.println(strlayout);
             jsNewPlot(id,strdata,strlayout);
             return new Plotly<>(id, data, layout);
         } catch (JsonProcessingException e) {
@@ -71,25 +66,40 @@ public final class Plotly <T extends Trace>{
         }
     }
     /**Restyle the trace array
-     @param updateObj a <code>Data</code> object containing the restyle parameters
-     @param indices the indices in the trace array to apply the new style
+     * @param data a <code>Data</code> object containing the restyle parameters
+     * @param indices the indices in the trace array to apply the new style
+     * @throws PlotlyException
     */ 
-    public void restyle(Data<?> updateObj, int... indices) throws JsonProcessingException{
-        jsRestyle(id,Plotly.mapper.writeValueAsString(updateObj),indices);
+    public void restyle(Data<?> data, int... indices)throws PlotlyException{
+        try{
+        jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Update just the chart layout more nicely than redraw.
-     @param layoutPojo a <code>Layout</code> object containing the layout parameters
+     @param layout a <code>Layout</code> object containing the layout parameters
     */
-    public void relayout(Layout layoutPojo) throws JsonProcessingException{
-        jsRelayout(id,Plotly.mapper.writeValueAsString(layoutPojo));
+    public void relayout(Layout layout) throws PlotlyException{
+        try{jsRelayout(id,Plotly.mapper.writeValueAsString(layout));}
+        catch(Exception e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Add trace(s) to the chart.
      @param traces an Array of <code>Trace</code>s containing the trace parameters
+     *@throws PlotlyException
     */
-    public void addTraces(Trace[] traces) throws JsonProcessingException{
+    public void addTraces(ChartType... traces) throws PlotlyException{
+        try{
         jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
     }
     
     /**Delete n traces.

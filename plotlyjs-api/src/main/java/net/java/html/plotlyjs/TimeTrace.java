@@ -1,3 +1,4 @@
+
 package net.java.html.plotlyjs;
 
 /*
@@ -31,21 +32,16 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
-public class Data <T extends ChartType> {
-
-    private List<T> traces = new ArrayList<T>();
-    
-    @SafeVarargs
-    public Data(T... traces){
-        this.traces.addAll(Arrays.asList(traces));  
+/**
+ *
+ * @author daykin
+ */
+public class TimeTrace extends Value implements Trace{
+    public TimeTrace(List<java.util.Date> x, List<Number> y){
+        this.x = x;
+        this.y = y;
     }
-    
-    public List<T> getTraces(){
-        return this.traces;
-    }
-
 }
