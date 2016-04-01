@@ -49,6 +49,7 @@ import java.util.List;
 public class Axis {        
         private String showexponent;
         private boolean showticklabels;
+        private boolean autotick;
         private String showticksuffix;
         private Font titlefont;
         private String linecolor;
@@ -159,6 +160,7 @@ public class Axis {
         showexponent = builder.showexponent;
         showticklabels = builder.showticklabels;
         showticksuffix = builder.showticksuffix;
+        autotick = builder.autotick;
         titlefont = builder.titlefont;
         linecolor = builder.linecolor;
         mirror = builder.mirror;
@@ -206,6 +208,7 @@ public class Axis {
         String showticksuffix;
         Font titlefont;
         String linecolor;
+        Boolean autotick = true;
         Object mirror;
         int nticks = 0;
         int linewidth = 1;
@@ -270,7 +273,12 @@ public class Axis {
             this.linecolor = linecolor;
             return this;
         }
-
+        
+        public AxisBuilder autotick(Boolean autotick){
+            this.autotick = autotick;
+            return this;
+        }
+        
         public AxisBuilder mirror(Object mirror) {
             if(mirror instanceof java.lang.String || mirror instanceof java.lang.Boolean){
             this.mirror = mirror;
