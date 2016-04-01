@@ -58,7 +58,7 @@ public class Layout {
         this.height = 450;
         this.font = new Font.FontBuilder().build();
         this.xaxis = new Axis.AxisBuilder().tickangle(-90).build();
-        this.yaxis = new Axis.AxisBuilder().tickangle(180).build();
+        this.yaxis = new Axis.AxisBuilder().build();
     }
     
     public void setTitle(String title){

@@ -47,6 +47,5 @@ public abstract class ChartType {
     String type;
     List x;
     List y;
-    Layout layout;
     
 }

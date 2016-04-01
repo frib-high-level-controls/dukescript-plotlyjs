@@ -70,7 +70,7 @@ public final class Plotly <T extends ChartType>{
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<?> data, int... indices)throws PlotlyException{
+    public void restyle(Data<T> data, int... indices)throws PlotlyException{
         try{
         jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
         }
