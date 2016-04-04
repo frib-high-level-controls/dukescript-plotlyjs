@@ -90,12 +90,13 @@ public final class Plotly <T extends ChartType>{
     }
     
     /**Add trace(s) to the chart.
-     @param traces an Array of <code>Trace</code>s containing the trace parameters
+     @param traces an Array of {@link ChartType} traces containing the trace parameters
      *@throws PlotlyException
     */
-    public void addTraces(ChartType... traces) throws PlotlyException{
+    public void addTraces(T... traces) throws PlotlyException{
         try{
         jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
+        this.data.addTraces(traces);
         }
         catch(JsonProcessingException e){
             throw new PlotlyException(e);

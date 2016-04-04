@@ -42,7 +42,7 @@ package net.java.html.plotlyjs;
  * @author daykin
  * @param <T> any implementation of {@link Trace}
  */
-public class Histogram<T extends Value & Trace> extends ChartType{
+public class Histogram<T extends Value> extends ChartType{
     
     public Histogram(T data){
         this.type = "histogram";

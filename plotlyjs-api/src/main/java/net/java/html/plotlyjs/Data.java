@@ -44,6 +44,10 @@ public class Data <T extends ChartType> {
         this.traces.addAll(Arrays.asList(traces));  
     }
     
+    public void addTraces(T... traces){
+        this.traces.addAll(Arrays.asList(traces));
+    }
+    
     public List<T> getTraces(){
         return this.traces;
     }
