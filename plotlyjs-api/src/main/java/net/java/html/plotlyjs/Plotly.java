@@ -42,7 +42,7 @@ import net.java.html.js.JavaScriptResource;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
-public final class Plotly <T extends ChartType>{
+public final class Plotly <T extends Chart>{
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
@@ -54,7 +54,7 @@ public final class Plotly <T extends ChartType>{
         this.data = data;
         this.layout = layout;   
     }
-    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
+    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {//works
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
@@ -70,7 +70,7 @@ public final class Plotly <T extends ChartType>{
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+    public void restyle(Data<T> data, int... indices)throws PlotlyException{ //
         try{
         jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
         }
@@ -90,7 +90,7 @@ public final class Plotly <T extends ChartType>{
     }
     
     /**Add trace(s) to the chart.
-     @param traces an Array of {@link ChartType} traces containing the trace parameters
+     @param traces an Array of {@link Chart} traces containing the trace parameters
      *@throws PlotlyException
     */
     public void addTraces(T... traces) throws PlotlyException{

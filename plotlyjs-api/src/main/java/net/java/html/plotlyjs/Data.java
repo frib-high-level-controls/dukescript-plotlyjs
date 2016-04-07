@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Data <T extends ChartType> {
+public class Data <T extends Chart> {
 
     private List<T> traces = new ArrayList<T>();
     

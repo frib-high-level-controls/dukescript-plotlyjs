@@ -156,7 +156,7 @@ public class Axis {
         public static final String B = "B";
     }
     
-    public Axis(AxisBuilder builder){
+    public Axis(Builder builder){
         showexponent = builder.showexponent;
         showticklabels = builder.showticklabels;
         showticksuffix = builder.showticksuffix;
@@ -202,7 +202,7 @@ public class Axis {
         exponentformat = builder.exponentformat;
     }
     
-    public static class AxisBuilder{
+    public static class Builder{
         String showexponent;
         Boolean showticklabels = true;
         String showticksuffix;
@@ -247,39 +247,39 @@ public class Axis {
         String anchor;
         String exponentformat;
         
-        public AxisBuilder(){}
+        public Builder(){}
 
-        public AxisBuilder showexponent(String showexponent) {
+        public Builder showexponent(String showexponent) {
             this.showexponent = showexponent;
             return this;
         }
 
-        public AxisBuilder showticklabels(boolean showticklabels) {
+        public Builder showticklabels(boolean showticklabels) {
             this.showticklabels = showticklabels;
             return this;
         }
 
-        public AxisBuilder showticksuffix(String showticksuffix) {
+        public Builder showticksuffix(String showticksuffix) {
             this.showticksuffix = showticksuffix;
             return this;
         }
 
-        public AxisBuilder titlefont(Font titlefont) {
+        public Builder titlefont(Font titlefont) {
             this.titlefont = titlefont;
             return this;
         }
 
-        public AxisBuilder linecolor(String linecolor) {
+        public Builder linecolor(String linecolor) {
             this.linecolor = linecolor;
             return this;
         }
         
-        public AxisBuilder autotick(Boolean autotick){
+        public Builder autotick(Boolean autotick){
             this.autotick = autotick;
             return this;
         }
         
-        public AxisBuilder mirror(Object mirror) {
+        public Builder mirror(Object mirror) {
             if(mirror instanceof java.lang.String || mirror instanceof java.lang.Boolean){
             this.mirror = mirror;
             return this;
@@ -289,182 +289,182 @@ public class Axis {
             }
         }
 
-        public AxisBuilder nticks(int nticks) {
+        public Builder nticks(int nticks) {
             this.nticks = nticks;
             return this;
         }
 
-        public AxisBuilder linewidth(int linewidth) {
+        public Builder linewidth(int linewidth) {
             this.linewidth = linewidth;
             return this;
         }
 
-        public AxisBuilder autorange(boolean autorange) {
+        public Builder autorange(boolean autorange) {
             this.autorange = autorange;
             return this;
         }
 
-        public AxisBuilder tickprefix(String tickprefix) {
+        public Builder tickprefix(String tickprefix) {
             this.tickprefix = tickprefix;
             return this;
         }
 
-        public AxisBuilder position(int position) {
+        public Builder position(int position) {
             this.position = position;
             return this;
         }
 
-        public AxisBuilder tickformat(String tickformat) {
+        public Builder tickformat(String tickformat) {
             this.tickformat = tickformat;
             return this;
         }
 
-        public AxisBuilder tickmode(String tickmode) {
+        public Builder tickmode(String tickmode) {
             this.tickmode = tickmode;
             return this;
         }
 
-        public AxisBuilder title(String title) {
+        public Builder title(String title) {
             this.title = title;
             return this;
         }
 
-        public AxisBuilder ticks(String ticks) {
+        public Builder ticks(String ticks) {
             this.ticks = ticks;
             return this;
         }
 
-        public AxisBuilder overlaying(String overlaying) {
+        public Builder overlaying(String overlaying) {
             this.overlaying = overlaying;
             return this;
         }
 
-        public AxisBuilder rangemode(String rangemode) {
+        public Builder rangemode(String rangemode) {
             this.rangemode = rangemode;
             return this;
         }
 
-        public AxisBuilder showtickprefix(String showtickprefix) {
+        public Builder showtickprefix(String showtickprefix) {
             this.showtickprefix = showtickprefix;
             return this;
         }
 
-        public AxisBuilder zeroline(boolean zeroline) {
+        public Builder zeroline(boolean zeroline) {
             this.zeroline = zeroline;
             return this;
         }
 
-        public AxisBuilder domain(List<Number> domain) {
+        public Builder domain(List<Number> domain) {
             this.domain = domain;
             return this;
         }
 
-        public AxisBuilder gridcolor(String gridcolor) {
+        public Builder gridcolor(String gridcolor) {
             this.gridcolor = gridcolor;
             return this;
         }
 
-        public AxisBuilder type(String type) {
+        public Builder type(String type) {
             this.type = type;
             return this;
         }
 
-        public AxisBuilder zerolinewidth(int zerolinewidth) {
+        public Builder zerolinewidth(int zerolinewidth) {
             this.zerolinewidth = zerolinewidth;
             return this;
         }
 
-        public AxisBuilder ticklen(int ticklen) {
+        public Builder ticklen(int ticklen) {
             this.ticklen = ticklen;
             return this;
         }
 
-        public AxisBuilder hoverformat(String hoverformat) {
+        public Builder hoverformat(String hoverformat) {
             this.hoverformat = hoverformat;
             return this;
         }
 
-        public AxisBuilder ticksuffix(String ticksuffix) {
+        public Builder ticksuffix(String ticksuffix) {
             this.ticksuffix = ticksuffix;
             return this;
         }
 
-        public AxisBuilder fixedrange(boolean fixedrange) {
+        public Builder fixedrange(boolean fixedrange) {
             this.fixedrange = fixedrange;
             return this;
         }
 
-        public AxisBuilder showline(boolean showline) {
+        public Builder showline(boolean showline) {
             this.showline = showline;
             return this;
         }
 
-        public AxisBuilder ticktext(List<String> ticktext) {
+        public Builder ticktext(List<String> ticktext) {
             this.ticktext = ticktext;
             return this;
         }
 
-        public AxisBuilder showgrid(boolean showgrid) {
+        public Builder showgrid(boolean showgrid) {
             this.showgrid = showgrid;
             return this;
         }
 
-        public AxisBuilder tickvals(int[] tickvals) {
+        public Builder tickvals(int[] tickvals) {
             this.tickvals = tickvals;
             return this;
         }
 
-        public AxisBuilder tickfont(Font tickfont) {
+        public Builder tickfont(Font tickfont) {
             this.tickfont = tickfont;
             return this;
         }
 
-        public AxisBuilder tickwidth(int tickwidth) {
+        public Builder tickwidth(int tickwidth) {
             this.tickwidth = tickwidth;
             return this;
         }
 
-        public AxisBuilder tick0(int tick0) {
+        public Builder tick0(int tick0) {
             this.tick0 = tick0;
             return this;
         }
 
-        public AxisBuilder tickangle(int tickangle) {
+        public Builder tickangle(int tickangle) {
             this.tickangle = tickangle;
             return this;
         }
 
-        public AxisBuilder gridwidth(int gridwidth) {
+        public Builder gridwidth(int gridwidth) {
             this.gridwidth = gridwidth;
             return this;
         }
 
-        public AxisBuilder dtick(int dtick) {
+        public Builder dtick(int dtick) {
             this.dtick = dtick;
             return this;
         }
 
-        public AxisBuilder side(String side) {
+        public Builder side(String side) {
             this.side = side;
             return this;
         }
 
-        public AxisBuilder zerolinecolor(String zerolinecolor) {
+        public Builder zerolinecolor(String zerolinecolor) {
             this.zerolinecolor = zerolinecolor;
             return this;
         }
 
-        public AxisBuilder range(List<Number> range) {
+        public Builder range(List<Number> range) {
             this.range = range;
             return this;
         }
 
-        public AxisBuilder anchor(String anchor) {
+        public Builder anchor(String anchor) {
             this.anchor = anchor;
             return this;
         }
 
-        public AxisBuilder exponentformat(String exponentformat) {
+        public Builder exponentformat(String exponentformat) {
             this.exponentformat = exponentformat;
             return this;
         }

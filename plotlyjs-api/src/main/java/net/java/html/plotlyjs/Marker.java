@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
+
+import java.util.Map;
 
 /*
  * #%L
@@ -41,7 +38,7 @@ package net.java.html.plotlyjs;
  *
  * @author daykin
  */
-public abstract class BasicMarker {
+public abstract class Marker {
     public static final class Symbols{
         public static final String CIRCLE = "circle";
         public static final String CIRCLE_OPEN = "circle-open";
@@ -187,5 +184,16 @@ public abstract class BasicMarker {
         public static final String LINE_NW_OPEN = "line-nw-open";
     }
     
+    Boolean autocolorscale;
+    Number cmax;
+    Number cmin;
+    Map<Integer,String> colorscale;
+    String color;
+    Boolean reversescale;
+    Boolean cauto;
+    ColorBar colorbar;
+    Line line;
+    String colorsrc;
+    Boolean showscale;
     
 }

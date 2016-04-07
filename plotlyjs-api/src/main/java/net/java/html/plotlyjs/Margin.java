@@ -47,7 +47,7 @@ public class Margin {
     private boolean autoexpand;
     
     
-    public Margin(MarginBuilder builder){
+    public Margin(Builder builder){
         b = builder.b;
         l = builder.l;
         r = builder.r;
@@ -110,7 +110,7 @@ public class Margin {
         return "Margin{" + "b=" + b + ", l=" + l + ", r=" + r + ", pad=" + pad + ", t=" + t + ", autoexpand=" + autoexpand + '}';
     }
     
-    public static class MarginBuilder{
+    public static class Builder{
 
             int b = 80;
             int l = 80;
@@ -119,34 +119,34 @@ public class Margin {
             int t = 100;
             boolean autoexpand = true;
        
-        public MarginBuilder(){}
+        public Builder(){}
         
-        public MarginBuilder b(int b){
+        public Builder b(int b){
             this.b = b;
             return this;
         }
 
-        public MarginBuilder l(int l){
+        public Builder l(int l){
             this.l = l;
             return this;
         }
 
-        public MarginBuilder r(int r){
+        public Builder r(int r){
             this.r = r;
             return this;
         }
 
-        public MarginBuilder pad(int pad){
+        public Builder pad(int pad){
             this.pad = pad;
             return this;
         }
 
-        public MarginBuilder t(int t){
+        public Builder t(int t){
             this.t = t;
             return this;
         }
 
-        public MarginBuilder autoexpand(boolean autoexpand){
+        public Builder autoexpand(boolean autoexpand){
             this.autoexpand = autoexpand;
             return this;
         }

@@ -53,27 +53,48 @@ public class Layout {
     
     public Layout(String title){
         this.title = title;
-        this.margin = new Margin.MarginBuilder().build();
+        this.margin = new Margin.Builder().build();
         this.width = 700;
         this.height = 450;
         this.font = new Font.FontBuilder().build();
-        this.xaxis = new Axis.AxisBuilder().build();
-        this.yaxis = new Axis.AxisBuilder().build();
+        this.xaxis = new Axis.Builder().build();
+        this.yaxis = new Axis.Builder().build();
     }
     public Layout(String title, int width, int height){
         this.title = title;
-        this.margin = new Margin.MarginBuilder().build();
+        this.margin = new Margin.Builder().build();
         this.width = width;
         this.height = height;
         this.font = new Font.FontBuilder().build();
-        this.xaxis = new Axis.AxisBuilder().build();
-        this.yaxis = new Axis.AxisBuilder().build();
+        this.xaxis = new Axis.Builder().build();
+        this.yaxis = new Axis.Builder().build();
     }
     public void setTitle(String title){
         this.title = title;
     }
-    
-    
-    
+
+    public void setMargin(Margin margin) {
+        this.margin = margin;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    public void setXaxis(Axis xaxis) {
+        this.xaxis = xaxis;
+    }
+
+    public void setYaxis(Axis yaxis) {
+        this.yaxis = yaxis;
+    }
 
 }

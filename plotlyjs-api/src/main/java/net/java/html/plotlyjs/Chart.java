@@ -43,7 +43,7 @@ import java.util.List;
  *
  * @author daykin
  */
-public abstract class ChartType {
+public abstract class Chart {
     String type;
     List x;
     List y;
@@ -51,6 +51,25 @@ public abstract class ChartType {
     public static final class Orientations{
         public static final String VERTICAL = "v";
         public static final String HORIZONTAL = "h";
+    }
+    
+    public static final class HoverFlags{
+        public static final String X = "x";
+        public static final String Y = "y";
+        public static final String Z = "Z";
+        public static final String TEXT = "text";
+        public static final String NAME = "name";
+        public static final String ALL = "all";
+        public static final String XY = "x+y";
+        public static final String XZ = "x+z";
+        public static final String XYZ = "x+y+z";
+        public static final String YZ = "x+y+z+";
+    }
+    
+    public static final class Visibility{
+        public static final Boolean TRUE = true;
+        public static final Boolean FALSE = false;
+        public static final String LEGENDONLY = "legendonly";
     }
     
 }

@@ -34,8 +34,10 @@ package net.java.html.plotlyjs;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class Scatter<T extends Value> extends ChartType{
+public class Scatter<T extends Value> extends Chart{
+    
     String mode;
+    
     public Scatter(T data) {
         this.type = "scatter";
         this.x = data.x;

@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
+
+import java.util.List;
 
 /*
  * #%L
@@ -40,9 +37,251 @@ package net.java.html.plotlyjs;
 /**
  *
  * @author daykin
- * @param <T> any implementation of {@link Trace}
+ * @param <T> an implementation of {@link Trace}
  */
-public class Histogram<T extends Value> extends ChartType{
+public class Histogram<T extends Value> extends Chart{
+    public static final class HistFunc{
+        public static final String COUNT = "count";
+        public static final String SUM = "sum";
+        public static final String AVG = "avg";
+        public static final String MIN = "min";
+        public static final String MAX = "max";
+    }
+    
+    public static final class HistNorm{
+        public static final String PERCENT = "percent";
+        public static final String PROBABILITY = "probability";
+        public static final String DENSITY = "density";
+        public static final String PROBABILITY_DENSITY = "probability density";
+    }  
+    
+    private String orientation;
+    private Stream stream;
+    private String text;
+    private String hoverinfo;
+    private Object visible;
+    private Boolean showlegend;
+    private Axis xaxis;
+    private Axis yaxis;
+    private Double opacity;
+    private String legendgroup;
+    private Integer nbinsx;
+    private Integer nbinsy;
+    private String histfunc;
+    private Boolean autobiny;
+    private Boolean autobinx;
+    private String name;
+    private String histnorm;
+    private HistogramMarker marker;
+    private ErrorBar error_x;
+    private ErrorBar error_y;
+    private AxisBin xbins;
+    private AxisBin ybins;
+
+    public static class Builder {
+
+        private String type;
+        private List x;
+        private List y;
+        private String orientation;
+        private Stream stream;
+        private String text;
+        private String hoverinfo;
+        private Object visible;
+        private Boolean showlegend;
+        private Axis xaxis;
+        private Axis yaxis;
+        private Double opacity;
+        private String legendgroup;
+        private Integer nbinsx;
+        private Integer nbinsy;
+        private String histfunc;
+        private Boolean autobiny;
+        private Boolean autobinx;
+        private String name;
+        private String histnorm;
+        private HistogramMarker marker;
+        private ErrorBar error_x;
+        private ErrorBar error_y;
+        private AxisBin xbins;
+        private AxisBin ybins;
+
+        private Builder() {
+        }
+
+        public Builder type(final String value) {
+            this.type = value;
+            return this;
+        }
+
+        public Builder x(final List value) {
+            this.x = value;
+            return this;
+        }
+
+        public Builder y(final List value) {
+            this.y = value;
+            return this;
+        }
+
+        public Builder orientation(final String value) {
+            this.orientation = value;
+            return this;
+        }
+
+        public Builder stream(final Stream value) {
+            this.stream = value;
+            return this;
+        }
+
+        public Builder text(final String value) {
+            this.text = value;
+            return this;
+        }
+
+        public Builder hoverinfo(final String value) {
+            this.hoverinfo = value;
+            return this;
+        }
+
+        public Builder visible(final Object value) {
+            this.visible = value;
+            return this;
+        }
+
+        public Builder showlegend(final Boolean value) {
+            this.showlegend = value;
+            return this;
+        }
+
+        public Builder xaxis(final Axis value) {
+            this.xaxis = value;
+            return this;
+        }
+
+        public Builder yaxis(final Axis value) {
+            this.yaxis = value;
+            return this;
+        }
+
+        public Builder opacity(final Double value) {
+            this.opacity = value;
+            return this;
+        }
+
+        public Builder legendgroup(final String value) {
+            this.legendgroup = value;
+            return this;
+        }
+
+        public Builder nbinsx(final Integer value) {
+            this.nbinsx = value;
+            return this;
+        }
+
+        public Builder nbinsy(final Integer value) {
+            this.nbinsy = value;
+            return this;
+        }
+
+        public Builder histfunc(final String value) {
+            this.histfunc = value;
+            return this;
+        }
+
+        public Builder autobiny(final Boolean value) {
+            this.autobiny = value;
+            return this;
+        }
+
+        public Builder autobinx(final Boolean value) {
+            this.autobinx = value;
+            return this;
+        }
+
+        public Builder name(final String value) {
+            this.name = value;
+            return this;
+        }
+
+        public Builder histnorm(final String value) {
+            this.histnorm = value;
+            return this;
+        }
+
+        public Builder marker(final HistogramMarker value) {
+            this.marker = value;
+            return this;
+        }
+
+        public Builder error_x(final ErrorBar value) {
+            this.error_x = value;
+            return this;
+        }
+
+        public Builder error_y(final ErrorBar value) {
+            this.error_y = value;
+            return this;
+        }
+
+        public Builder xbins(final AxisBin value) {
+            this.xbins = value;
+            return this;
+        }
+
+        public Builder ybins(final AxisBin value) {
+            this.ybins = value;
+            return this;
+        }
+
+        public Histogram build() {
+            return new net.java.html.plotlyjs.Histogram(type, x, y, orientation,
+                    stream, text, hoverinfo, visible, showlegend, xaxis, yaxis, 
+                    opacity, legendgroup, nbinsx, nbinsy, histfunc, autobiny, 
+                    autobinx, name, histnorm, marker, error_x, error_y, xbins, 
+                    ybins);
+        }
+    }
+
+    public static Histogram.Builder builder() {
+        return new Histogram.Builder();
+    }
+
+    private Histogram(final String type, final List x, final List y, 
+            final String orientation, final Stream stream, final String text, 
+            final String hoverinfo, final Object visible, 
+            final Boolean showlegend, final Axis xaxis, final Axis yaxis, 
+            final Double opacity, final String legendgroup, final Integer nbinsx, 
+            final Integer nbinsy, final String histfunc, final Boolean autobiny, 
+            final Boolean autobinx, final String name, final String histnorm, 
+            final HistogramMarker marker, final ErrorBar error_x, 
+            final ErrorBar error_y, final AxisBin xbins, final AxisBin ybins) {
+        this.type = type;
+        this.x = x;
+        this.y = y;
+        this.orientation = orientation;
+        this.stream = stream;
+        this.text = text;
+        this.hoverinfo = hoverinfo;
+        this.visible = visible;
+        this.showlegend = showlegend;
+        this.xaxis = xaxis;
+        this.yaxis = yaxis;
+        this.opacity = opacity;
+        this.legendgroup = legendgroup;
+        this.nbinsx = nbinsx;
+        this.nbinsy = nbinsy;
+        this.histfunc = histfunc;
+        this.autobiny = autobiny;
+        this.autobinx = autobinx;
+        this.name = name;
+        this.histnorm = histnorm;
+        this.marker = marker;
+        this.error_x = error_x;
+        this.error_y = error_y;
+        this.xbins = xbins;
+        this.ybins = ybins;
+    }
     
     public Histogram(T data){
         this.type = "histogram";

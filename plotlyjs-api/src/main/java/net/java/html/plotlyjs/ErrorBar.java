@@ -1,0 +1,169 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package net.java.html.plotlyjs;
+
+/**
+ *
+ * @author daykin
+ */
+public class ErrorBar {
+    private Boolean copy_ystyle;
+    private Integer tracerefminus;
+    private Integer width;
+    private Boolean copy_zstyle;
+    private Integer value;
+    private Integer thickness;
+    private Boolean symmetric;
+    private Boolean visible;
+    private Integer traceref;
+    private Integer valueminus;
+    private Data arrayminus;
+    private Data array;
+    private String type;
+    private String color;
+    
+    public static final class RuleTypes{
+        public static final String PERCENT = "percent";
+        public static final String CONSTANT = "constant";
+        public static final String SQRT = "sqrt";
+        public static final String DATA = "data";
+    }
+
+    public static class Builder {
+
+        private Boolean copy_ystyle;
+        private Integer tracerefminus;
+        private Integer width;
+        private Boolean copy_zstyle;
+        private Integer value = 10;
+        private Integer thickness = 2;
+        private Boolean symmetric;
+        private Boolean visible;
+        private Integer traceref;
+        private Integer valueminus = 10;
+        private Data arrayminus;
+        private Data array;
+        private String type;
+        private String color;
+
+        private Builder() {
+        }
+
+        public Builder copy_ystyle(final Boolean value) {
+            this.copy_ystyle = value;
+            return this;
+        }
+
+        public Builder tracerefminus(final Integer value) {
+            if(value>=0){
+               this.tracerefminus = value;
+            }
+            return this;
+        }
+
+        public Builder width(final Integer value) {
+            if(value>=0){
+            this.width = value;
+            }
+            return this;
+        }
+
+        public Builder copy_zstyle(final Boolean value) {
+            this.copy_zstyle = value;
+            return this;
+        }
+
+        public Builder value(final Integer value) {
+            if(value>=0){
+            this.value = value;
+            }
+            return this;
+        }
+
+        public Builder thickness(final Integer value) {
+            if(value>=0){
+            this.thickness = value;
+            }
+            return this;
+        }
+
+        public Builder symmetric(final Boolean value) {
+            this.symmetric = value;
+            return this;
+        }
+
+        public Builder visible(final Boolean value) {
+            this.visible = value;
+            return this;
+        }
+
+        public Builder traceref(final Integer value) {
+            if(value>=0){
+            this.traceref = value;
+            }
+            return this;
+        }
+
+        public Builder valueminus(final Integer value) {
+            this.valueminus = value;
+            return this;
+        }
+
+        public Builder arrayminus(final Data value) {
+            this.arrayminus = value;
+            return this;
+        }
+
+        public Builder array(final Data value) {
+            this.array = value;
+            return this;
+        }
+
+        public Builder type(final String value) {
+            this.type = value;
+            return this;
+        }
+
+        public Builder color(final String value) {
+            this.color = value;
+            return this;
+        }
+
+        public ErrorBar build() {
+            return new net.java.html.plotlyjs.ErrorBar(copy_ystyle, tracerefminus,
+                    width, copy_zstyle, value, thickness, symmetric, visible, 
+                    traceref, valueminus, arrayminus, array, type, color);
+        }
+    }
+
+    public static ErrorBar.Builder builder() {
+        return new ErrorBar.Builder();
+    }
+
+    private ErrorBar(final Boolean copy_ystyle, final Integer tracerefminus, 
+            final Integer width, final Boolean copy_zstyle, final Integer value,
+            final Integer thickness, final Boolean symmetric, 
+            final Boolean visible, final Integer traceref, 
+            final Integer valueminus, final Data arrayminus, final Data array, 
+            final String type, final String color) {
+        this.copy_ystyle = copy_ystyle;
+        this.tracerefminus = tracerefminus;
+        this.width = width;
+        this.copy_zstyle = copy_zstyle;
+        this.value = value;
+        this.thickness = thickness;
+        this.symmetric = symmetric;
+        this.visible = visible;
+        this.traceref = traceref;
+        this.valueminus = valueminus;
+        this.arrayminus = arrayminus;
+        this.array = array;
+        this.type = type;
+        this.color = color;
+    }
+    
+    
+}
