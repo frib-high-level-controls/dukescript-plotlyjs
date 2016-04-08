@@ -41,7 +41,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
 
 /**
- *
+ * Class representing an axis for use with {@link Layout}s. 
+ * Use {@link Axis.Builder} to construct an axis,
+ * or ignore to use plotly defaults.
  * @author daykin
  */
 @JsonInclude(Include.NON_NULL)

@@ -52,12 +52,12 @@ public final class Plotly <T extends Chart>{
     private Plotly(String id, Data<T> data, Layout layout){
         Plotly.id = id;
         this.data = data;
-        this.layout = layout;   
+        this.layout = layout;
     }
     public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {//works
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
+            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
             String strlayout = Plotly.mapper.writeValueAsString(layout);
             jsNewPlot(id,strdata,strlayout);
             return new Plotly<>(id, data, layout);

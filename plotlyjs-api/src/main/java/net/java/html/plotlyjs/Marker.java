@@ -39,6 +39,12 @@ import java.util.Map;
  * @author daykin
  */
 public abstract class Marker {
+    
+    public static final class SizeModes{
+        public static final String DIAMETER = "diameter";
+        public static final String AREA = "area";
+    }
+    
     public static final class Symbols{
         public static final String CIRCLE = "circle";
         public static final String CIRCLE_OPEN = "circle-open";
@@ -195,5 +201,7 @@ public abstract class Marker {
     Line line;
     String colorsrc;
     Boolean showscale;
+    Number opacity;
+    String opacitySrc;
     
 }

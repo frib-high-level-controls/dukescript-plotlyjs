@@ -1,5 +1,6 @@
 package net.java.html.plotlyjs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 /*
@@ -39,6 +40,7 @@ import java.util.List;
  * @author daykin
  * @param <T> an implementation of {@link Trace}
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram<T extends Value> extends Chart{
     public static final class HistFunc{
         public static final String COUNT = "count";
@@ -63,7 +65,7 @@ public class Histogram<T extends Value> extends Chart{
     private Boolean showlegend;
     private Axis xaxis;
     private Axis yaxis;
-    private Double opacity;
+    private Number opacity;
     private String legendgroup;
     private Integer nbinsx;
     private Integer nbinsy;
@@ -80,7 +82,7 @@ public class Histogram<T extends Value> extends Chart{
 
     public static class Builder {
 
-        private String type;
+        private final String type = "histogram";
         private List x;
         private List y;
         private String orientation;
@@ -91,7 +93,7 @@ public class Histogram<T extends Value> extends Chart{
         private Boolean showlegend;
         private Axis xaxis;
         private Axis yaxis;
-        private Double opacity;
+        private Number opacity;
         private String legendgroup;
         private Integer nbinsx;
         private Integer nbinsy;
@@ -106,12 +108,7 @@ public class Histogram<T extends Value> extends Chart{
         private AxisBin xbins;
         private AxisBin ybins;
 
-        private Builder() {
-        }
-
-        public Builder type(final String value) {
-            this.type = value;
-            return this;
+        public Builder() {
         }
 
         public Builder x(final List value) {
@@ -123,7 +120,14 @@ public class Histogram<T extends Value> extends Chart{
             this.y = value;
             return this;
         }
-
+        
+        public Builder trace(final Value value){
+            this.x = value.x;
+            this.y = value.y;
+            return this;
+        }
+        
+        
         public Builder orientation(final String value) {
             this.orientation = value;
             return this;
@@ -164,7 +168,7 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
-        public Builder opacity(final Double value) {
+        public Builder opacity(final Number value) {
             this.opacity = value;
             return this;
         }
@@ -183,7 +187,6 @@ public class Histogram<T extends Value> extends Chart{
             this.nbinsy = value;
             return this;
         }
-
         public Builder histfunc(final String value) {
             this.histfunc = value;
             return this;
@@ -251,7 +254,7 @@ public class Histogram<T extends Value> extends Chart{
             final String orientation, final Stream stream, final String text, 
             final String hoverinfo, final Object visible, 
             final Boolean showlegend, final Axis xaxis, final Axis yaxis, 
-            final Double opacity, final String legendgroup, final Integer nbinsx, 
+            final Number opacity, final String legendgroup, final Integer nbinsx, 
             final Integer nbinsy, final String histfunc, final Boolean autobiny, 
             final Boolean autobinx, final String name, final String histnorm, 
             final HistogramMarker marker, final ErrorBar error_x, 

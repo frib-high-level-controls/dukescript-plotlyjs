@@ -49,7 +49,9 @@ public class Layout {
     private Font font;
     private Axis xaxis;
     private Axis yaxis;
-    
+    private String barmode;
+
+
     
     public Layout(String title){
         this.title = title;
@@ -96,5 +98,10 @@ public class Layout {
     public void setYaxis(Axis yaxis) {
         this.yaxis = yaxis;
     }
+    
+    public void setBarmode(String barmode) {
+        this.barmode = barmode;
+    }
+    
 
 }

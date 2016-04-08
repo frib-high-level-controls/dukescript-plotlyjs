@@ -50,4 +50,18 @@ public class CartesianTrace extends Value implements Trace{
         this.y = y;
     }
     
+    public CartesianTrace(){
+        
+    }
+
+    public CartesianTrace x(List value) {
+        this.x = value;
+        return this;
+    }
+
+    public CartesianTrace y(List value) {
+        this.y = value;
+        return this;
+    }
+    
 }

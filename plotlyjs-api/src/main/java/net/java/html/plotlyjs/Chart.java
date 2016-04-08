@@ -53,6 +53,27 @@ public abstract class Chart {
         public static final String HORIZONTAL = "h";
     }
     
+    public static final class TextPositions{
+	public static final String TOP_LEFT = "top left";
+	public static final String TOP_CENTER = "top center";
+	public static final String TOP_RIGHT = "top right";
+	public static final String MIDDLE_LEFT = "middle left";
+	public static final String MIDDLE_CENTER = "middle center";
+	public static final String MIDDLE_RIGHT = "middle right";
+	public static final String BOTTOM_LEFT = "bottom left";
+	public static final String BOTTOM_CENTER = "bottom center";
+	public static final String BOTTOM_RIGHT = "bottom right";
+    }
+    
+    public static final class FillModes{
+        public static final String NONE = "none";
+	public static final String TOZEROY = "tozeroy";
+	public static final String TOZEROX = "tozerox";
+	public static final String TONEXTY = "tonexty";
+	public static final String TONEXTX = "tonextx";
+
+    }
+    
     public static final class HoverFlags{
         public static final String X = "x";
         public static final String Y = "y";
@@ -63,7 +84,7 @@ public abstract class Chart {
         public static final String XY = "x+y";
         public static final String XZ = "x+z";
         public static final String XYZ = "x+y+z";
-        public static final String YZ = "x+y+z+";
+        public static final String YZ = "y+z";
     }
     
     public static final class Visibility{
