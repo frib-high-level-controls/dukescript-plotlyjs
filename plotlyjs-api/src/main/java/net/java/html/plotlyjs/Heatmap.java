@@ -6,112 +6,83 @@
 package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
-
-/*
- * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
- * Contact Information:
- * Facility for Rare Isotope Beams
- * Michigan State University
- * East Lansing, MI 48824-1321
- * http://frib.msu.edu
- * %%
- * Copyright (C) 2016 Board of Trustees of Michigan State University
- * %%
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- * #L%
- */
-
+import java.util.Map;
 
 /**
  *
  * @author daykin
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Histogram2d <T extends Value> extends Chart {
-    
+public class Heatmap extends Chart{
     private Number zmax;
+    private String xtype;
     private Stream stream;
     private String zsrc;
-    private String ysrc;
+    private List text;
     private Number zmin;
     private String hoverinfo;
     private String xsrc;
     private Object visible;
-    private Histogram2dMarker Marker;
+    private Number y0;
     private ColorBar colorbar;
     private Boolean showlegend;
-    private AxisBin ybins;
+    private String ytype;
     private Axis xaxis;
+    private String ysrc;
     private Object zsmooth;
+    private Number opacity;
     private String legendgroup;
+    private Boolean transpose;
     private Boolean autocolorscale;
-    private Integer nbinsx;
-    private Integer nbinsy;
-    private String histfunc;
-    private AxisBin xbins;
+    private String textsrc;
+    private Number dx;
+    private Number dy;
     private Boolean showscale;
+    private Number x0;
     private Boolean zauto;
-    private Boolean autobiny;
-    private Boolean autobinx;
     private String name;
-    private List colorscale;
+    private Map colorscale;
+    private Boolean connectgaps;
     private Axis yaxis;
-    private String histnorm;
     private Boolean reversescale;
     private List z;
 
     public static class Builder {
 
-        private final String type = "histogram2d";
+        private final String type = "heatmap";
         private List x;
         private List y;
         private Number zmax;
+        private String xtype;
         private Stream stream;
         private String zsrc;
-        private String ysrc;
+        private List text;
         private Number zmin;
         private String hoverinfo;
         private String xsrc;
         private Object visible;
-        private Histogram2dMarker Marker;
+        private Number y0;
         private ColorBar colorbar;
         private Boolean showlegend;
-        private AxisBin ybins;
+        private String ytype;
         private Axis xaxis;
+        private String ysrc;
         private Object zsmooth;
+        private Number opacity;
         private String legendgroup;
+        private Boolean transpose;
         private Boolean autocolorscale;
-        private Integer nbinsx;
-        private Integer nbinsy;
-        private String histfunc;
-        private AxisBin xbins;
+        private String textsrc;
+        private Number dx;
+        private Number dy;
         private Boolean showscale;
+        private Number x0;
         private Boolean zauto;
-        private Boolean autobiny;
-        private Boolean autobinx;
         private String name;
-        private List colorscale;
+        private Map colorscale;
+        private Boolean connectgaps;
         private Axis yaxis;
-        private String histnorm;
         private Boolean reversescale;
         private List z;
 
@@ -146,6 +117,11 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
+        public Builder xtype(final String value) {
+            this.xtype = value;
+            return this;
+        }
+
         public Builder stream(final Stream value) {
             this.stream = value;
             return this;
@@ -156,8 +132,8 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
-        public Builder ysrc(final String value) {
-            this.ysrc = value;
+        public Builder text(final List value) {
+            this.text = value;
             return this;
         }
 
@@ -181,8 +157,8 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
-        public Builder Marker(final Histogram2dMarker value) {
-            this.Marker = value;
+        public Builder y0(final Number value) {
+            this.y0 = value;
             return this;
         }
 
@@ -196,8 +172,8 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
-        public Builder ybins(final AxisBin value) {
-            this.ybins = value;
+        public Builder ytype(final String value) {
+            this.ytype = value;
             return this;
         }
 
@@ -206,8 +182,18 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
+        public Builder ysrc(final String value) {
+            this.ysrc = value;
+            return this;
+        }
+
         public Builder zsmooth(final Object value) {
             this.zsmooth = value;
+            return this;
+        }
+
+        public Builder opacity(final Number value) {
+            this.opacity = value;
             return this;
         }
 
@@ -216,28 +202,28 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
+        public Builder transpose(final Boolean value) {
+            this.transpose = value;
+            return this;
+        }
+
         public Builder autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
-        public Builder nbinsx(final Integer value) {
-            this.nbinsx = value;
+        public Builder textsrc(final String value) {
+            this.textsrc = value;
             return this;
         }
 
-        public Builder nbinsy(final Integer value) {
-            this.nbinsy = value;
+        public Builder dx(final Number value) {
+            this.dx = value;
             return this;
         }
 
-        public Builder histfunc(final String value) {
-            this.histfunc = value;
-            return this;
-        }
-
-        public Builder xbins(final AxisBin value) {
-            this.xbins = value;
+        public Builder dy(final Number value) {
+            this.dy = value;
             return this;
         }
 
@@ -246,18 +232,13 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
+        public Builder x0(final Number value) {
+            this.x0 = value;
+            return this;
+        }
+
         public Builder zauto(final Boolean value) {
             this.zauto = value;
-            return this;
-        }
-
-        public Builder autobiny(final Boolean value) {
-            this.autobiny = value;
-            return this;
-        }
-
-        public Builder autobinx(final Boolean value) {
-            this.autobinx = value;
             return this;
         }
 
@@ -266,18 +247,18 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
-        public Builder colorscale(final List value) {
+        public Builder colorscale(final Map value) {
             this.colorscale = value;
+            return this;
+        }
+
+        public Builder connectgaps(final Boolean value) {
+            this.connectgaps = value;
             return this;
         }
 
         public Builder yaxis(final Axis value) {
             this.yaxis = value;
-            return this;
-        }
-
-        public Builder histnorm(final String value) {
-            this.histnorm = value;
             return this;
         }
 
@@ -291,47 +272,49 @@ public class Histogram2d <T extends Value> extends Chart {
             return this;
         }
 
-        public Histogram2d build() {
-            return new net.java.html.plotlyjs.Histogram2d(type, x, y, zmax, stream, zsrc, ysrc, zmin, hoverinfo, xsrc, visible, Marker, colorbar, showlegend, ybins, xaxis, zsmooth, legendgroup, autocolorscale, nbinsx, nbinsy, histfunc, xbins, showscale, zauto, autobiny, autobinx, name, colorscale, yaxis, histnorm, reversescale, z);
+        public Heatmap build() {
+            return new net.java.html.plotlyjs.Heatmap(type, x, y, zmax, xtype, stream, zsrc, text, zmin, hoverinfo, xsrc, visible, y0, colorbar, showlegend, ytype, xaxis, ysrc, zsmooth, opacity, legendgroup, transpose, autocolorscale, textsrc, dx, dy, showscale, x0, zauto, name, colorscale, connectgaps, yaxis, reversescale, z);
         }
     }
 
-    public static Histogram2d.Builder builder() {
-        return new Histogram2d.Builder();
+    public static Heatmap.Builder builder() {
+        return new Heatmap.Builder();
     }
 
-    private Histogram2d(final String type, final List x, final List y, final Number zmax, final Stream stream, final String zsrc, final String ysrc, final Number zmin, final String hoverinfo, final String xsrc, final Object visible, final Histogram2dMarker Marker, final ColorBar colorbar, final Boolean showlegend, final AxisBin ybins, final Axis xaxis, final Object zsmooth, final String legendgroup, final Boolean autocolorscale, final Integer nbinsx, final Integer nbinsy, final String histfunc, final AxisBin xbins, final Boolean showscale, final Boolean zauto, final Boolean autobiny, final Boolean autobinx, final String name, final List colorscale, final Axis yaxis, final String histnorm, final Boolean reversescale, final List z) {
+    private Heatmap(final String type, final List x, final List y, final Number zmax, final String xtype, final Stream stream, final String zsrc, final List text, final Number zmin, final String hoverinfo, final String xsrc, final Object visible, final Number y0, final ColorBar colorbar, final Boolean showlegend, final String ytype, final Axis xaxis, final String ysrc, final Object zsmooth, final Number opacity, final String legendgroup, final Boolean transpose, final Boolean autocolorscale, final String textsrc, final Number dx, final Number dy, final Boolean showscale, final Number x0, final Boolean zauto, final String name, final Map colorscale, final Boolean connectgaps, final Axis yaxis, final Boolean reversescale, final List z) {
         this.type = type;
         this.x = x;
         this.y = y;
         this.zmax = zmax;
+        this.xtype = xtype;
         this.stream = stream;
         this.zsrc = zsrc;
-        this.ysrc = ysrc;
+        this.text = text;
         this.zmin = zmin;
         this.hoverinfo = hoverinfo;
         this.xsrc = xsrc;
         this.visible = visible;
-        this.Marker = Marker;
+        this.y0 = y0;
         this.colorbar = colorbar;
         this.showlegend = showlegend;
-        this.ybins = ybins;
+        this.ytype = ytype;
         this.xaxis = xaxis;
+        this.ysrc = ysrc;
         this.zsmooth = zsmooth;
+        this.opacity = opacity;
         this.legendgroup = legendgroup;
+        this.transpose = transpose;
         this.autocolorscale = autocolorscale;
-        this.nbinsx = nbinsx;
-        this.nbinsy = nbinsy;
-        this.histfunc = histfunc;
-        this.xbins = xbins;
+        this.textsrc = textsrc;
+        this.dx = dx;
+        this.dy = dy;
         this.showscale = showscale;
+        this.x0 = x0;
         this.zauto = zauto;
-        this.autobiny = autobiny;
-        this.autobinx = autobinx;
         this.name = name;
         this.colorscale = colorscale;
+        this.connectgaps = connectgaps;
         this.yaxis = yaxis;
-        this.histnorm = histnorm;
         this.reversescale = reversescale;
         this.z = z;
     }

@@ -84,7 +84,7 @@ public class Axis {
         private Font tickfont;
         private int tickwidth;
         private int tick0;
-        private int tickangle = -90;
+        private int tickangle;
         private int gridwidth;
         private int dtick ;
         private String side;
@@ -227,7 +227,7 @@ public class Axis {
         boolean zeroline = true;
         List<java.lang.Number> domain;
         String gridcolor;
-        String type;
+        String type = "-";
         int zerolinewidth = 1;
         int ticklen = 5;
         String hoverformat;

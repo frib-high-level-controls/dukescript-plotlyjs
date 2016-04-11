@@ -42,20 +42,7 @@ import java.util.List;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram<T extends Value> extends Chart{
-    public static final class HistFunc{
-        public static final String COUNT = "count";
-        public static final String SUM = "sum";
-        public static final String AVG = "avg";
-        public static final String MIN = "min";
-        public static final String MAX = "max";
-    }
-    
-    public static final class HistNorm{
-        public static final String PERCENT = "percent";
-        public static final String PROBABILITY = "probability";
-        public static final String DENSITY = "density";
-        public static final String PROBABILITY_DENSITY = "probability density";
-    }  
+
     
     private String orientation;
     private Stream stream;

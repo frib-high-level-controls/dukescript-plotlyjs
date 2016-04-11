@@ -31,9 +31,11 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 @SuppressWarnings("unused")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Scatter<T extends Value> extends Chart{
     
     String mode;
@@ -107,7 +109,7 @@ public class Scatter<T extends Value> extends Chart{
         private Boolean connectgaps;
         private List<Number> r;
 
-        private Builder() {
+        public Builder() {
         }
 
         public Builder type(final String value) {
