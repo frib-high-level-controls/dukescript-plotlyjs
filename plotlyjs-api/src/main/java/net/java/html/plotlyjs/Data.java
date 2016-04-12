@@ -76,6 +76,12 @@ public class Data <T extends Chart> {
         this.traces.set(index, trace);
     }
     
+    public void updateTraces(int[] indices, T[] traces){
+        for(int i = 0; i<indices.length;i++){
+            this.traces.set(i, traces[i]);
+        }
+    }
+    
     public List<T> getTraces(){
         return this.traces;
     }
