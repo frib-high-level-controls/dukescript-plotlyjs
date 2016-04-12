@@ -366,7 +366,7 @@ public class ColorBar {
         }
 
         public ColorBar build() {
-            return new net.java.html.plotlyjs.ColorBar(yanchor, showexponent, showticklabels, lenmode, showticksuffix, titlefont, borderwidth, tickvalssrc, nticks, titleside, outlinecolor, tickprefix, tickformat, tickmode, title, ticks, thickness, bgcolor, outlinewidth, ticktextsrc, bordercolor, xanchor, ticklen, len, ticksuffix, tickcolor, ticktext, xpad, tickvals, tickfont, tickwidth, tick0, tickangle, dtick, ypad, exponentformat, y, x, thicknessmode);
+            return new net.java.html.plotlyjs.ColorBar(this);
         }
     }
 
@@ -374,46 +374,46 @@ public class ColorBar {
         return new ColorBar.Builder();
     }
 
-    private ColorBar(final String yanchor, final String showexponent, final Boolean showticklabels, final String lenmode, final String showticksuffix, final Font titlefont, final Integer borderwidth, final String tickvalssrc, final Integer nticks, final String titleside, final String outlinecolor, final String tickprefix, final String tickformat, final String tickmode, final String title, final String ticks, final Integer thickness, final String bgcolor, final Integer outlinewidth, final String ticktextsrc, final String bordercolor, final String xanchor, final Integer ticklen, final Integer len, final String ticksuffix, final String tickcolor, final List ticktext, final Integer xpad, final List tickvals, final Font tickfont, final Integer tickwidth, final Number tick0, final Integer tickangle, final Integer dtick, final Integer ypad, final String exponentformat, final Double y, final Double x, final String thicknessmode) {
-        this.yanchor = yanchor;
-        this.showexponent = showexponent;
-        this.showticklabels = showticklabels;
-        this.lenmode = lenmode;
-        this.showticksuffix = showticksuffix;
-        this.titlefont = titlefont;
-        this.borderwidth = borderwidth;
-        this.tickvalssrc = tickvalssrc;
-        this.nticks = nticks;
-        this.titleside = titleside;
-        this.outlinecolor = outlinecolor;
-        this.tickprefix = tickprefix;
-        this.tickformat = tickformat;
-        this.tickmode = tickmode;
-        this.title = title;
-        this.ticks = ticks;
-        this.thickness = thickness;
-        this.bgcolor = bgcolor;
-        this.outlinewidth = outlinewidth;
-        this.ticktextsrc = ticktextsrc;
-        this.bordercolor = bordercolor;
-        this.xanchor = xanchor;
-        this.ticklen = ticklen;
-        this.len = len;
-        this.ticksuffix = ticksuffix;
-        this.tickcolor = tickcolor;
-        this.ticktext = ticktext;
-        this.xpad = xpad;
-        this.tickvals = tickvals;
-        this.tickfont = tickfont;
-        this.tickwidth = tickwidth;
-        this.tick0 = tick0;
-        this.tickangle = tickangle;
-        this.dtick = dtick;
-        this.ypad = ypad;
-        this.exponentformat = exponentformat;
-        this.y = y;
-        this.x = x;
-        this.thicknessmode = thicknessmode;
+    private ColorBar(Builder builder) {
+        this.yanchor = builder.yanchor;
+        this.showexponent = builder.showexponent;
+        this.showticklabels = builder.showticklabels;
+        this.lenmode = builder.lenmode;
+        this.showticksuffix = builder.showticksuffix;
+        this.titlefont = builder.titlefont;
+        this.borderwidth = builder.borderwidth;
+        this.tickvalssrc = builder.tickvalssrc;
+        this.nticks = builder.nticks;
+        this.titleside = builder.titleside;
+        this.outlinecolor = builder.outlinecolor;
+        this.tickprefix = builder.tickprefix;
+        this.tickformat = builder.tickformat;
+        this.tickmode = builder.tickmode;
+        this.title = builder.title;
+        this.ticks = builder.ticks;
+        this.thickness = builder.thickness;
+        this.bgcolor = builder.bgcolor;
+        this.outlinewidth = builder.outlinewidth;
+        this.ticktextsrc = builder.ticktextsrc;
+        this.bordercolor = builder.bordercolor;
+        this.xanchor = builder.xanchor;
+        this.ticklen = builder.ticklen;
+        this.len = builder.len;
+        this.ticksuffix = builder.ticksuffix;
+        this.tickcolor = builder.tickcolor;
+        this.ticktext = builder.ticktext;
+        this.xpad = builder.xpad;
+        this.tickvals = builder.tickvals;
+        this.tickfont = builder.tickfont;
+        this.tickwidth = builder.tickwidth;
+        this.tick0 = builder.tick0;
+        this.tickangle = builder.tickangle;
+        this.dtick = builder.dtick;
+        this.ypad = builder.ypad;
+        this.exponentformat = builder.exponentformat;
+        this.y = builder.y;
+        this.x = builder.x;
+        this.thicknessmode = builder.thicknessmode;
     }
     
     

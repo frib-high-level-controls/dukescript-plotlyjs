@@ -44,8 +44,8 @@ public class Layout {
     @SuppressWarnings("unused")
     private String title;
     private Margin margin;
-    private int width;
-    private int height;
+    private Integer width;
+    private Integer height;
     private Font font;
     private Axis xaxis;
     private Axis yaxis;
@@ -79,11 +79,11 @@ public class Layout {
         this.margin = margin;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 

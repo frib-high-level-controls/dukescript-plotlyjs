@@ -225,11 +225,7 @@ public class Histogram<T extends Value> extends Chart{
         }
 
         public Histogram build() {
-            return new net.java.html.plotlyjs.Histogram(type, x, y, orientation,
-                    stream, text, hoverinfo, visible, showlegend, xaxis, yaxis, 
-                    opacity, legendgroup, nbinsx, nbinsy, histfunc, autobiny, 
-                    autobinx, name, histnorm, marker, error_x, error_y, xbins, 
-                    ybins);
+            return new net.java.html.plotlyjs.Histogram(this);
         }
     }
 
@@ -237,40 +233,32 @@ public class Histogram<T extends Value> extends Chart{
         return new Histogram.Builder();
     }
 
-    private Histogram(final String type, final List x, final List y, 
-            final String orientation, final Stream stream, final String text, 
-            final String hoverinfo, final Object visible, 
-            final Boolean showlegend, final Axis xaxis, final Axis yaxis, 
-            final Number opacity, final String legendgroup, final Integer nbinsx, 
-            final Integer nbinsy, final String histfunc, final Boolean autobiny, 
-            final Boolean autobinx, final String name, final String histnorm, 
-            final HistogramMarker marker, final ErrorBar error_x, 
-            final ErrorBar error_y, final AxisBin xbins, final AxisBin ybins) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-        this.orientation = orientation;
-        this.stream = stream;
-        this.text = text;
-        this.hoverinfo = hoverinfo;
-        this.visible = visible;
-        this.showlegend = showlegend;
-        this.xaxis = xaxis;
-        this.yaxis = yaxis;
-        this.opacity = opacity;
-        this.legendgroup = legendgroup;
-        this.nbinsx = nbinsx;
-        this.nbinsy = nbinsy;
-        this.histfunc = histfunc;
-        this.autobiny = autobiny;
-        this.autobinx = autobinx;
-        this.name = name;
-        this.histnorm = histnorm;
-        this.marker = marker;
-        this.error_x = error_x;
-        this.error_y = error_y;
-        this.xbins = xbins;
-        this.ybins = ybins;
+    private Histogram(Builder builder) {
+        this.type = builder.type;
+        this.x = builder.x;
+        this.y = builder.y;
+        this.orientation = builder.orientation;
+        this.stream = builder.stream;
+        this.text = builder.text;
+        this.hoverinfo = builder.hoverinfo;
+        this.visible = builder.visible;
+        this.showlegend = builder.showlegend;
+        this.xaxis = builder.xaxis;
+        this.yaxis = builder.yaxis;
+        this.opacity = builder.opacity;
+        this.legendgroup = builder.legendgroup;
+        this.nbinsx = builder.nbinsx;
+        this.nbinsy = builder.nbinsy;
+        this.histfunc = builder.histfunc;
+        this.autobiny = builder.autobiny;
+        this.autobinx = builder.autobinx;
+        this.name = builder.name;
+        this.histnorm = builder.histnorm;
+        this.marker = builder.marker;
+        this.error_x = builder.error_x;
+        this.error_y = builder.error_y;
+        this.xbins = builder.xbins;
+        this.ybins = builder.ybins;
     }
     
     public Histogram(T data){

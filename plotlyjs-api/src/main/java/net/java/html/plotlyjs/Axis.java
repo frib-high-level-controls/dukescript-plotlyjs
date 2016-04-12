@@ -50,17 +50,17 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class Axis {        
         private String showexponent;
-        private boolean showticklabels;
-        private boolean autotick;
+        private Boolean showticklabels;
+        private Boolean autotick;
         private String showticksuffix;
         private Font titlefont;
         private String linecolor;
         private Object mirror;
-        private int nticks;
-        private int linewidth;
+        private Integer nticks;
+        private Number linewidth;
         private Object autorange;
         private String tickprefix;
-        private int position;
+        private Number position;
         private String tickformat;
         private String tickmode;
         private String title;
@@ -68,25 +68,25 @@ public class Axis {
         private String overlaying;
         private String rangemode;
         private String showtickprefix;
-        private boolean zeroline;
+        private Boolean zeroline;
         private List<Number> domain;
         private String gridcolor;
         private String type;
-        private int zerolinewidth;
-        private int ticklen;
+        private Number zerolinewidth;
+        private Number ticklen;
         private String hoverformat;
         private String ticksuffix;
-        private boolean fixedrange;
-        private boolean showline;
+        private Boolean fixedrange;
+        private Boolean showline;
         private List<String> ticktext;
-        private boolean showgrid;
-        private int tickvals[]; 
+        private Boolean showgrid;
+        private List tickvals; 
         private Font tickfont;
-        private int tickwidth;
-        private int tick0;
-        private int tickangle;
-        private int gridwidth;
-        private int dtick ;
+        private Number tickwidth;
+        private Number tick0;
+        private Number tickangle;
+        private Number gridwidth;
+        private Number dtick ;
         private String side;
         private String zerolinecolor;
         private List<Number>range;
@@ -157,322 +157,325 @@ public class Axis {
         public static final String SI = "SI";
         public static final String B = "B";
     }
-    
-    public Axis(Builder builder){
-        showexponent = builder.showexponent;
-        showticklabels = builder.showticklabels;
-        showticksuffix = builder.showticksuffix;
-        autotick = builder.autotick;
-        titlefont = builder.titlefont;
-        linecolor = builder.linecolor;
-        mirror = builder.mirror;
-        nticks = builder.nticks;
-        linewidth = builder.linewidth;
-        autorange = builder.autorange;
-        tickprefix = builder.tickprefix;
-        position = builder.position;
-        tickformat = builder.tickformat;
-        tickmode = builder.tickmode;
-        title = builder.title;
-        ticks = builder.ticks;
-        overlaying = builder.overlaying;
-        rangemode = builder.rangemode;
-        showtickprefix = builder.showtickprefix;
-        zeroline = builder.zeroline;
-        domain = builder.domain;
-        gridcolor = builder.gridcolor;
-        type = builder.type;
-        zerolinewidth = builder.zerolinewidth;
-        ticklen = builder.ticklen;
-        hoverformat = builder.hoverformat;
-        ticksuffix = builder.ticksuffix;
-        fixedrange = builder.fixedrange;
-        showline = builder.showline;
-        ticktext = builder.ticktext;
-        showgrid = builder.showgrid;
-        tickvals = builder.tickvals;
-        tickfont = builder.tickfont;
-        tickwidth = builder.tickwidth;
-        tick0 = builder.tick0;
-        tickangle = builder.tickangle;
-        gridwidth = builder.gridwidth;
-        dtick = builder.dtick;
-        side = builder.side;
-        zerolinecolor = builder.zerolinecolor;
-        range = builder.range;
-        anchor = builder.anchor;
-        exponentformat = builder.exponentformat;
+
+    public static class Builder {
+
+        private String showexponent;
+        private Boolean showticklabels;
+        private Boolean autotick;
+        private String showticksuffix;
+        private Font titlefont;
+        private String linecolor;
+        private Object mirror;
+        private Integer nticks;
+        private Number linewidth;
+        private Object autorange;
+        private String tickprefix;
+        private Number position;
+        private String tickformat;
+        private String tickmode;
+        private String title;
+        private String ticks;
+        private String overlaying;
+        private String rangemode;
+        private String showtickprefix;
+        private Boolean zeroline;
+        private List<Number> domain;
+        private String gridcolor;
+        private String type;
+        private Number zerolinewidth;
+        private Number ticklen;
+        private String hoverformat;
+        private String ticksuffix;
+        private Boolean fixedrange;
+        private Boolean showline;
+        private List<String> ticktext;
+        private Boolean showgrid;
+        private List tickvals;
+        private Font tickfont;
+        private Number tickwidth;
+        private Number tick0;
+        private Number tickangle;
+        private Number gridwidth;
+        private Number dtick;
+        private String side;
+        private String zerolinecolor;
+        private List<Number> range;
+        private String anchor;
+        private String exponentformat;
+
+        public Builder() {
+        }
+
+        public Builder showexponent(final String value) {
+            this.showexponent = value;
+            return this;
+        }
+
+        public Builder showticklabels(final Boolean value) {
+            this.showticklabels = value;
+            return this;
+        }
+
+        public Builder autotick(final Boolean value) {
+            this.autotick = value;
+            return this;
+        }
+
+        public Builder showticksuffix(final String value) {
+            this.showticksuffix = value;
+            return this;
+        }
+
+        public Builder titlefont(final Font value) {
+            this.titlefont = value;
+            return this;
+        }
+
+        public Builder linecolor(final String value) {
+            this.linecolor = value;
+            return this;
+        }
+
+        public Builder mirror(final Object value) {
+            this.mirror = value;
+            return this;
+        }
+
+        public Builder nticks(final Integer value) {
+            this.nticks = value;
+            return this;
+        }
+
+        public Builder linewidth(final Number value) {
+            this.linewidth = value;
+            return this;
+        }
+
+        public Builder autorange(final Object value) {
+            this.autorange = value;
+            return this;
+        }
+
+        public Builder tickprefix(final String value) {
+            this.tickprefix = value;
+            return this;
+        }
+
+        public Builder position(final Number value) {
+            this.position = value;
+            return this;
+        }
+
+        public Builder tickformat(final String value) {
+            this.tickformat = value;
+            return this;
+        }
+
+        public Builder tickmode(final String value) {
+            this.tickmode = value;
+            return this;
+        }
+
+        public Builder title(final String value) {
+            this.title = value;
+            return this;
+        }
+
+        public Builder ticks(final String value) {
+            this.ticks = value;
+            return this;
+        }
+
+        public Builder overlaying(final String value) {
+            this.overlaying = value;
+            return this;
+        }
+
+        public Builder rangemode(final String value) {
+            this.rangemode = value;
+            return this;
+        }
+
+        public Builder showtickprefix(final String value) {
+            this.showtickprefix = value;
+            return this;
+        }
+
+        public Builder zeroline(final Boolean value) {
+            this.zeroline = value;
+            return this;
+        }
+
+        public Builder domain(final List<Number> value) {
+            this.domain = value;
+            return this;
+        }
+
+        public Builder gridcolor(final String value) {
+            this.gridcolor = value;
+            return this;
+        }
+
+        public Builder type(final String value) {
+            this.type = value;
+            return this;
+        }
+
+        public Builder zerolinewidth(final Number value) {
+            this.zerolinewidth = value;
+            return this;
+        }
+
+        public Builder ticklen(final Number value) {
+            this.ticklen = value;
+            return this;
+        }
+
+        public Builder hoverformat(final String value) {
+            this.hoverformat = value;
+            return this;
+        }
+
+        public Builder ticksuffix(final String value) {
+            this.ticksuffix = value;
+            return this;
+        }
+
+        public Builder fixedrange(final Boolean value) {
+            this.fixedrange = value;
+            return this;
+        }
+
+        public Builder showline(final Boolean value) {
+            this.showline = value;
+            return this;
+        }
+
+        public Builder ticktext(final List<String> value) {
+            this.ticktext = value;
+            return this;
+        }
+
+        public Builder showgrid(final Boolean value) {
+            this.showgrid = value;
+            return this;
+        }
+
+        public Builder tickvals(final List value) {
+            this.tickvals = value;
+            return this;
+        }
+
+        public Builder tickfont(final Font value) {
+            this.tickfont = value;
+            return this;
+        }
+
+        public Builder tickwidth(final Number value) {
+            this.tickwidth = value;
+            return this;
+        }
+
+        public Builder tick0(final Number value) {
+            this.tick0 = value;
+            return this;
+        }
+
+        public Builder tickangle(final Number value) {
+            this.tickangle = value;
+            return this;
+        }
+
+        public Builder gridwidth(final Number value) {
+            this.gridwidth = value;
+            return this;
+        }
+
+        public Builder dtick(final Number value) {
+            this.dtick = value;
+            return this;
+        }
+
+        public Builder side(final String value) {
+            this.side = value;
+            return this;
+        }
+
+        public Builder zerolinecolor(final String value) {
+            this.zerolinecolor = value;
+            return this;
+        }
+
+        public Builder range(final List<Number> value) {
+            this.range = value;
+            return this;
+        }
+
+        public Builder anchor(final String value) {
+            this.anchor = value;
+            return this;
+        }
+
+        public Builder exponentformat(final String value) {
+            this.exponentformat = value;
+            return this;
+        }
+
+        public Axis build() {
+            return new net.java.html.plotlyjs.Axis(this);
+        }
+    }
+
+    public static Axis.Builder builder() {
+        return new Axis.Builder();
+    }
+
+    private Axis(Builder builder) {
+        this.showexponent = builder.showexponent;
+        this.showticklabels = builder.showticklabels;
+        this.autotick = builder.autotick;
+        this.showticksuffix = builder.showticksuffix;
+        this.titlefont = builder.titlefont;
+        this.linecolor = builder.linecolor;
+        this.mirror = builder.mirror;
+        this.nticks = builder.nticks;
+        this.linewidth = builder.linewidth;
+        this.autorange = builder.autorange;
+        this.tickprefix = builder.tickprefix;
+        this.position = builder.position;
+        this.tickformat = builder.tickformat;
+        this.tickmode = builder.tickmode;
+        this.title = builder.title;
+        this.ticks = builder.ticks;
+        this.overlaying = builder.overlaying;
+        this.rangemode = builder.rangemode;
+        this.showtickprefix = builder.showtickprefix;
+        this.zeroline = builder.zeroline;
+        this.domain = builder.domain;
+        this.gridcolor = builder.gridcolor;
+        this.type = builder.type;
+        this.zerolinewidth = builder.zerolinewidth;
+        this.ticklen = builder.ticklen;
+        this.hoverformat = builder.hoverformat;
+        this.ticksuffix = builder.ticksuffix;
+        this.fixedrange = builder.fixedrange;
+        this.showline = builder.showline;
+        this.ticktext = builder.ticktext;
+        this.showgrid = builder.showgrid;
+        this.tickvals = builder.tickvals;
+        this.tickfont = builder.tickfont;
+        this.tickwidth = builder.tickwidth;
+        this.tick0 = builder.tick0;
+        this.tickangle = builder.tickangle;
+        this.gridwidth = builder.gridwidth;
+        this.dtick = builder.dtick;
+        this.side = builder.side;
+        this.zerolinecolor = builder.zerolinecolor;
+        this.range = builder.range;
+        this.anchor = builder.anchor;
+        this.exponentformat = builder.exponentformat;
     }
     
-    public static class Builder{
-        String showexponent;
-        Boolean showticklabels = true;
-        String showticksuffix;
-        Font titlefont;
-        String linecolor;
-        Boolean autotick = true;
-        Object mirror;
-        int nticks = 0;
-        int linewidth = 1;
-        Object autorange = true;
-        String tickprefix;
-        int position = 0;
-        String tickformat;
-        String tickmode;
-        String title;
-        String ticks;
-        String overlaying;
-        String rangemode;
-        String showtickprefix;
-        boolean zeroline = true;
-        List<java.lang.Number> domain;
-        String gridcolor;
-        String type = "-";
-        int zerolinewidth = 1;
-        int ticklen = 5;
-        String hoverformat;
-        String ticksuffix;
-        boolean fixedrange = true;
-        boolean showline = true;
-        List<String> ticktext;
-        boolean showgrid = false;
-        int tickvals[]; 
-        Font tickfont;
-        int tickwidth = 1;
-        int tick0;
-        int tickangle;
-        int gridwidth = 1;
-        int dtick = 1;
-        String side;
-        String zerolinecolor;
-        List<java.lang.Number>range;
-        String anchor;
-        String exponentformat;
-        
-        public Builder(){}
 
-        public Builder showexponent(String showexponent) {
-            this.showexponent = showexponent;
-            return this;
-        }
-
-        public Builder showticklabels(boolean showticklabels) {
-            this.showticklabels = showticklabels;
-            return this;
-        }
-
-        public Builder showticksuffix(String showticksuffix) {
-            this.showticksuffix = showticksuffix;
-            return this;
-        }
-
-        public Builder titlefont(Font titlefont) {
-            this.titlefont = titlefont;
-            return this;
-        }
-
-        public Builder linecolor(String linecolor) {
-            this.linecolor = linecolor;
-            return this;
-        }
-        
-        public Builder autotick(Boolean autotick){
-            this.autotick = autotick;
-            return this;
-        }
-        
-        public Builder mirror(Object mirror) {
-            if(mirror instanceof java.lang.String || mirror instanceof java.lang.Boolean){
-            this.mirror = mirror;
-            return this;
-            }
-            else{
-                throw new IllegalArgumentException("mirror expects a String or boolean (enumerated: true | \"ticks\" | false | \"all\" | \"allticks\" )");
-            }
-        }
-
-        public Builder nticks(int nticks) {
-            this.nticks = nticks;
-            return this;
-        }
-
-        public Builder linewidth(int linewidth) {
-            this.linewidth = linewidth;
-            return this;
-        }
-
-        public Builder autorange(boolean autorange) {
-            this.autorange = autorange;
-            return this;
-        }
-
-        public Builder tickprefix(String tickprefix) {
-            this.tickprefix = tickprefix;
-            return this;
-        }
-
-        public Builder position(int position) {
-            this.position = position;
-            return this;
-        }
-
-        public Builder tickformat(String tickformat) {
-            this.tickformat = tickformat;
-            return this;
-        }
-
-        public Builder tickmode(String tickmode) {
-            this.tickmode = tickmode;
-            return this;
-        }
-
-        public Builder title(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder ticks(String ticks) {
-            this.ticks = ticks;
-            return this;
-        }
-
-        public Builder overlaying(String overlaying) {
-            this.overlaying = overlaying;
-            return this;
-        }
-
-        public Builder rangemode(String rangemode) {
-            this.rangemode = rangemode;
-            return this;
-        }
-
-        public Builder showtickprefix(String showtickprefix) {
-            this.showtickprefix = showtickprefix;
-            return this;
-        }
-
-        public Builder zeroline(boolean zeroline) {
-            this.zeroline = zeroline;
-            return this;
-        }
-
-        public Builder domain(List<Number> domain) {
-            this.domain = domain;
-            return this;
-        }
-
-        public Builder gridcolor(String gridcolor) {
-            this.gridcolor = gridcolor;
-            return this;
-        }
-
-        public Builder type(String type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder zerolinewidth(int zerolinewidth) {
-            this.zerolinewidth = zerolinewidth;
-            return this;
-        }
-
-        public Builder ticklen(int ticklen) {
-            this.ticklen = ticklen;
-            return this;
-        }
-
-        public Builder hoverformat(String hoverformat) {
-            this.hoverformat = hoverformat;
-            return this;
-        }
-
-        public Builder ticksuffix(String ticksuffix) {
-            this.ticksuffix = ticksuffix;
-            return this;
-        }
-
-        public Builder fixedrange(boolean fixedrange) {
-            this.fixedrange = fixedrange;
-            return this;
-        }
-
-        public Builder showline(boolean showline) {
-            this.showline = showline;
-            return this;
-        }
-
-        public Builder ticktext(List<String> ticktext) {
-            this.ticktext = ticktext;
-            return this;
-        }
-
-        public Builder showgrid(boolean showgrid) {
-            this.showgrid = showgrid;
-            return this;
-        }
-
-        public Builder tickvals(int[] tickvals) {
-            this.tickvals = tickvals;
-            return this;
-        }
-
-        public Builder tickfont(Font tickfont) {
-            this.tickfont = tickfont;
-            return this;
-        }
-
-        public Builder tickwidth(int tickwidth) {
-            this.tickwidth = tickwidth;
-            return this;
-        }
-
-        public Builder tick0(int tick0) {
-            this.tick0 = tick0;
-            return this;
-        }
-
-        public Builder tickangle(int tickangle) {
-            this.tickangle = tickangle;
-            return this;
-        }
-
-        public Builder gridwidth(int gridwidth) {
-            this.gridwidth = gridwidth;
-            return this;
-        }
-
-        public Builder dtick(int dtick) {
-            this.dtick = dtick;
-            return this;
-        }
-
-        public Builder side(String side) {
-            this.side = side;
-            return this;
-        }
-
-        public Builder zerolinecolor(String zerolinecolor) {
-            this.zerolinecolor = zerolinecolor;
-            return this;
-        }
-
-        public Builder range(List<Number> range) {
-            this.range = range;
-            return this;
-        }
-
-        public Builder anchor(String anchor) {
-            this.anchor = anchor;
-            return this;
-        }
-
-        public Builder exponentformat(String exponentformat) {
-            this.exponentformat = exponentformat;
-            return this;
-        }
-        
-        public Axis build(){
-            return new Axis(this); 
-        }   
-    } 
 }

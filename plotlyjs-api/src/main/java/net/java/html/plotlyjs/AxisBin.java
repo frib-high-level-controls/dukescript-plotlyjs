@@ -42,9 +42,9 @@ package net.java.html.plotlyjs;
  * @author daykin
  */
 public class AxisBin {
-   private Number start;
-   private Number end;
-   private Number size;
+   private final Number start;
+   private final Number end;
+   private final Number size;
 
     public static class Builder {
 
@@ -71,7 +71,7 @@ public class AxisBin {
         }
 
         public AxisBin build() {
-            return new net.java.html.plotlyjs.AxisBin(start, end, size);
+            return new net.java.html.plotlyjs.AxisBin(this);
         }
     }
 
@@ -79,10 +79,10 @@ public class AxisBin {
         return new AxisBin.Builder();
     }
 
-    private AxisBin(final Number start, final Number end, final Number size) {
-        this.start = start;
-        this.end = end;
-        this.size = size;
+    private AxisBin(Builder builder) {
+        this.start = builder.start;
+        this.end = builder.end;
+        this.size = builder.size;
     }
    
 }

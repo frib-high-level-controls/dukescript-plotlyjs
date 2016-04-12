@@ -135,7 +135,7 @@ public class Line {
         }
 
         public Line build() {
-            return new net.java.html.plotlyjs.Line(colorsrc, autocolorscale, cmin, colorscale, color, reversescale, width, cauto, widthsrc, cmax);
+            return new net.java.html.plotlyjs.Line(this);
         }
     }
 
@@ -143,16 +143,16 @@ public class Line {
         return new Line.Builder();
     }
 
-    private Line(final String colorsrc, final Boolean autocolorscale, final Number cmin, final Map<Integer, String> colorscale, final String color, final Boolean reversescale, final Integer width, final Boolean cauto, final String widthsrc, final Number cmax) {
-        this.colorsrc = colorsrc;
-        this.autocolorscale = autocolorscale;
-        this.cmin = cmin;
-        this.colorscale = colorscale;
-        this.color = color;
-        this.reversescale = reversescale;
-        this.width = width;
-        this.cauto = cauto;
-        this.widthsrc = widthsrc;
-        this.cmax = cmax;
+    private Line(Builder builder) {
+        this.colorsrc = builder.colorsrc;
+        this.autocolorscale = builder.autocolorscale;
+        this.cmin = builder.cmin;
+        this.colorscale = builder.colorscale;
+        this.color = builder.color;
+        this.reversescale = builder.reversescale;
+        this.width = builder.width;
+        this.cauto = builder.cauto;
+        this.widthsrc = builder.widthsrc;
+        this.cmax = builder.cmax;
     }
 }

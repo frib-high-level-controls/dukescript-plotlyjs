@@ -38,38 +38,38 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Scatter<T extends Value> extends Chart{
     
-    String mode;
-    String textposition;
-    Stream stream;
-    String text;
-    String hoverinfo;
-    String xsrc;
-    Object visible;
-    ScatterMarker marker;
-    Number y0;
-    String tsrc;
-    Line line;
-    String fill;
-    Boolean showlegend;
-    ErrorBar error_x;
-    ErrorBar error_y;
-    String textsrc;
-    String rsrc;
-    Axis xaxis;
-    Axis yaxis;
-    String ysrc;
-    List<Number> t;
-    Number opacity;
-    Font textfont;
-    String legendgroup;
-    String textpositionsrc;
-    String fillcolor;
-    Number dx;
-    Number dy;
-    Number x0;
-    String name;
-    Boolean connectgaps;
-    List<Number> r;
+    private String mode;
+    private String textposition;
+    private Stream stream;
+    private String text;
+    private String hoverinfo;
+    private String xsrc;
+    private Object visible;
+    private ScatterMarker marker;
+    private Number y0;
+    private String tsrc;
+    private Line line;
+    private String fill;
+    private Boolean showlegend;
+    private ErrorBar error_x;
+    private ErrorBar error_y;
+    private String textsrc;
+    private String rsrc;
+    private Axis xaxis;
+    private Axis yaxis;
+    private String ysrc;
+    private List<Number> t;
+    private Number opacity;
+    private Font textfont;
+    private String legendgroup;
+    private String textpositionsrc;
+    private String fillcolor;
+    private Number dx;
+    private Number dy;
+    private Number x0;
+    private String name;
+    private Boolean connectgaps;
+    private List<Number> r;
 
     public static class Builder {
 
@@ -294,7 +294,7 @@ public class Scatter<T extends Value> extends Chart{
         }
 
         public Scatter build() {
-            return new net.java.html.plotlyjs.Scatter(type, x, y, mode, textposition, stream, text, hoverinfo, xsrc, visible, marker, y0, tsrc, line, fill, showlegend, error_x, error_y, textsrc, rsrc, xaxis, yaxis, ysrc, t, opacity, textfont, legendgroup, textpositionsrc, fillcolor, dx, dy, x0, name, connectgaps, r);
+            return new net.java.html.plotlyjs.Scatter(this);
         }
     }
 
@@ -302,42 +302,42 @@ public class Scatter<T extends Value> extends Chart{
         return new Scatter.Builder();
     }
 
-    private Scatter(final String type, final List x, final List y, final String mode, final String textposition, final Stream stream, final String text, final String hoverinfo, final String xsrc, final Object visible, final ScatterMarker marker, final Number y0, final String tsrc, final Line line, final String fill, final Boolean showlegend, final ErrorBar error_x, final ErrorBar error_y, final String textsrc, final String rsrc, final Axis xaxis, final Axis yaxis, final String ysrc, final List<Number> t, final Number opacity, final Font textfont, final String legendgroup, final String textpositionsrc, final String fillcolor, final Number dx, final Number dy, final Number x0, final String name, final Boolean connectgaps, final List<Number> r) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-        this.mode = mode;
-        this.textposition = textposition;
-        this.stream = stream;
-        this.text = text;
-        this.hoverinfo = hoverinfo;
-        this.xsrc = xsrc;
-        this.visible = visible;
-        this.marker = marker;
-        this.y0 = y0;
-        this.tsrc = tsrc;
-        this.line = line;
-        this.fill = fill;
-        this.showlegend = showlegend;
-        this.error_x = error_x;
-        this.error_y = error_y;
-        this.textsrc = textsrc;
-        this.rsrc = rsrc;
-        this.xaxis = xaxis;
-        this.yaxis = yaxis;
-        this.ysrc = ysrc;
-        this.t = t;
-        this.opacity = opacity;
-        this.textfont = textfont;
-        this.legendgroup = legendgroup;
-        this.textpositionsrc = textpositionsrc;
-        this.fillcolor = fillcolor;
-        this.dx = dx;
-        this.dy = dy;
-        this.x0 = x0;
-        this.name = name;
-        this.connectgaps = connectgaps;
-        this.r = r;
+    private Scatter(Builder builder) {
+        this.type = builder.type;
+        this.x = builder.x;
+        this.y = builder.y;
+        this.mode = builder.mode;
+        this.textposition = builder.textposition;
+        this.stream = builder.stream;
+        this.text = builder.text;
+        this.hoverinfo = builder.hoverinfo;
+        this.xsrc = builder.xsrc;
+        this.visible = builder.visible;
+        this.marker = builder.marker;
+        this.y0 = builder.y0;
+        this.tsrc = builder.tsrc;
+        this.line = builder.line;
+        this.fill = builder.fill;
+        this.showlegend = builder.showlegend;
+        this.error_x = builder.error_x;
+        this.error_y = builder.error_y;
+        this.textsrc = builder.textsrc;
+        this.rsrc = builder.rsrc;
+        this.xaxis = builder.xaxis;
+        this.yaxis = builder.yaxis;
+        this.ysrc = builder.ysrc;
+        this.t = builder.t;
+        this.opacity = builder.opacity;
+        this.textfont = builder.textfont;
+        this.legendgroup = builder.legendgroup;
+        this.textpositionsrc = builder.textpositionsrc;
+        this.fillcolor = builder.fillcolor;
+        this.dx = builder.dx;
+        this.dy = builder.dy;
+        this.x0 = builder.x0;
+        this.name = builder.name;
+        this.connectgaps = builder.connectgaps;
+        this.r = builder.r;
     }
     
     public Scatter(T data) {

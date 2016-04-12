@@ -66,7 +66,7 @@ public class Histogram2dMarker{
         }
 
         public Histogram2dMarker build() {
-            return new net.java.html.plotlyjs.Histogram2dMarker(color, colorsrc);
+            return new net.java.html.plotlyjs.Histogram2dMarker(this);
         }
 
     }
@@ -75,9 +75,9 @@ public class Histogram2dMarker{
         return new Histogram2dMarker.Builder();
     }
 
-    private Histogram2dMarker(final String color, final String colorsrc) {
-        this.color = color;
-        this.colorsrc = colorsrc;
+    private Histogram2dMarker(Builder builder) {
+        this.color = builder.color;
+        this.colorsrc = builder.colorsrc;
     }
     
 }

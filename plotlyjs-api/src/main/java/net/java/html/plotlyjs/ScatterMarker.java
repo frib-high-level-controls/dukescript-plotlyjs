@@ -47,13 +47,13 @@ import java.util.Map;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ScatterMarker extends Marker{
-    String sizesrc;
-    Number size;
-    Number sizeref;
-    String symbol;
-    String symbolsrc;
-    String sizemode;
-    Number sizemin;
+    private final String sizesrc;
+    private final Number size;
+    private final Number sizeref;
+    private final String symbol;
+    private final String symbolsrc;
+    private final String sizemode;
+    private final Number sizemin;
 
     public static class Builder {
 
@@ -182,7 +182,7 @@ public class ScatterMarker extends Marker{
         }
 
         public ScatterMarker build() {
-            return new net.java.html.plotlyjs.ScatterMarker(autocolorscale, cmax, cmin, colorscale, color, reversescale, cauto, colorbar, line, colorsrc, showscale, opacity, opacitySrc, sizesrc, size, sizeref, symbol, symbolsrc, sizemode, sizemin);
+            return new net.java.html.plotlyjs.ScatterMarker(this);
         }
     }
 
@@ -190,27 +190,27 @@ public class ScatterMarker extends Marker{
         return new ScatterMarker.Builder();
     }
 
-    private ScatterMarker(final Boolean autocolorscale, final Number cmax, final Number cmin, final Map<Integer, String> colorscale, final String color, final Boolean reversescale, final Boolean cauto, final ColorBar colorbar, final Line line, final String colorsrc, final Boolean showscale, final Number opacity, final String opacitySrc, final String sizesrc, final Number size, final Number sizeref, final String symbol, final String symbolsrc, final String sizemode, final Number sizemin) {
-        this.autocolorscale = autocolorscale;
-        this.cmax = cmax;
-        this.cmin = cmin;
-        this.colorscale = colorscale;
-        this.color = color;
-        this.reversescale = reversescale;
-        this.cauto = cauto;
-        this.colorbar = colorbar;
-        this.line = line;
-        this.colorsrc = colorsrc;
-        this.showscale = showscale;
-        this.opacity = opacity;
-        this.opacitySrc = opacitySrc;
-        this.sizesrc = sizesrc;
-        this.size = size;
-        this.sizeref = sizeref;
-        this.symbol = symbol;
-        this.symbolsrc = symbolsrc;
-        this.sizemode = sizemode;
-        this.sizemin = sizemin;
+    private ScatterMarker(Builder builder){
+        this.autocolorscale = builder.autocolorscale;
+        this.cmax = builder.cmax;
+        this.cmin = builder.cmin;
+        this.colorscale = builder.colorscale;
+        this.color = builder.color;
+        this.reversescale = builder.reversescale;
+        this.cauto = builder.cauto;
+        this.colorbar = builder.colorbar;
+        this.line = builder.line;
+        this.colorsrc = builder.colorsrc;
+        this.showscale = builder.showscale;
+        this.opacity = builder.opacity;
+        this.opacitySrc = builder.opacitySrc;
+        this.sizesrc = builder.sizesrc;
+        this.size = builder.size;
+        this.sizeref = builder.sizeref;
+        this.symbol = builder.symbol;
+        this.symbolsrc = builder.symbolsrc;
+        this.sizemode = builder.sizemode;
+        this.sizemin = builder.sizemin;
     }
     
     

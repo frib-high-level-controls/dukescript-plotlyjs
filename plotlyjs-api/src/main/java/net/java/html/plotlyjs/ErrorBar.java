@@ -168,9 +168,7 @@ public class ErrorBar {
         }
 
         public ErrorBar build() {
-            return new net.java.html.plotlyjs.ErrorBar(copy_ystyle, tracerefminus,
-                    width, copy_zstyle, value, thickness, symmetric, visible, 
-                    traceref, valueminus, arrayminus, array, type, color);
+            return new net.java.html.plotlyjs.ErrorBar(this);
         }
     }
 
@@ -178,26 +176,21 @@ public class ErrorBar {
         return new ErrorBar.Builder();
     }
 
-    private ErrorBar(final Boolean copy_ystyle, final Integer tracerefminus, 
-            final Integer width, final Boolean copy_zstyle, final Integer value,
-            final Integer thickness, final Boolean symmetric, 
-            final Boolean visible, final Integer traceref, 
-            final Integer valueminus, final Data arrayminus, final Data array, 
-            final String type, final String color) {
-        this.copy_ystyle = copy_ystyle;
-        this.tracerefminus = tracerefminus;
-        this.width = width;
-        this.copy_zstyle = copy_zstyle;
-        this.value = value;
-        this.thickness = thickness;
-        this.symmetric = symmetric;
-        this.visible = visible;
-        this.traceref = traceref;
-        this.valueminus = valueminus;
-        this.arrayminus = arrayminus;
-        this.array = array;
-        this.type = type;
-        this.color = color;
+    private ErrorBar(Builder builder) {
+        this.copy_ystyle = builder.copy_ystyle;
+        this.tracerefminus = builder.tracerefminus;
+        this.width = builder.width;
+        this.copy_zstyle = builder.copy_zstyle;
+        this.value = builder.value;
+        this.thickness = builder.thickness;
+        this.symmetric = builder.symmetric;
+        this.visible = builder.visible;
+        this.traceref = builder.traceref;
+        this.valueminus = builder.valueminus;
+        this.arrayminus = builder.arrayminus;
+        this.array = builder.array;
+        this.type = builder.type;
+        this.color = builder.color;
     }
     
     

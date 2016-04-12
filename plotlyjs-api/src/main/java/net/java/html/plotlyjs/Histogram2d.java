@@ -292,7 +292,7 @@ public class Histogram2d <T extends Value> extends Chart {
         }
 
         public Histogram2d build() {
-            return new net.java.html.plotlyjs.Histogram2d(type, x, y, zmax, stream, zsrc, ysrc, zmin, hoverinfo, xsrc, visible, Marker, colorbar, showlegend, ybins, xaxis, zsmooth, legendgroup, autocolorscale, nbinsx, nbinsy, histfunc, xbins, showscale, zauto, autobiny, autobinx, name, colorscale, yaxis, histnorm, reversescale, z);
+            return new net.java.html.plotlyjs.Histogram2d(this);
         }
     }
 
@@ -300,40 +300,40 @@ public class Histogram2d <T extends Value> extends Chart {
         return new Histogram2d.Builder();
     }
 
-    private Histogram2d(final String type, final List x, final List y, final Number zmax, final Stream stream, final String zsrc, final String ysrc, final Number zmin, final String hoverinfo, final String xsrc, final Object visible, final Histogram2dMarker Marker, final ColorBar colorbar, final Boolean showlegend, final AxisBin ybins, final Axis xaxis, final Object zsmooth, final String legendgroup, final Boolean autocolorscale, final Integer nbinsx, final Integer nbinsy, final String histfunc, final AxisBin xbins, final Boolean showscale, final Boolean zauto, final Boolean autobiny, final Boolean autobinx, final String name, final List colorscale, final Axis yaxis, final String histnorm, final Boolean reversescale, final List z) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-        this.zmax = zmax;
-        this.stream = stream;
-        this.zsrc = zsrc;
-        this.ysrc = ysrc;
-        this.zmin = zmin;
-        this.hoverinfo = hoverinfo;
-        this.xsrc = xsrc;
-        this.visible = visible;
-        this.Marker = Marker;
-        this.colorbar = colorbar;
-        this.showlegend = showlegend;
-        this.ybins = ybins;
-        this.xaxis = xaxis;
-        this.zsmooth = zsmooth;
-        this.legendgroup = legendgroup;
-        this.autocolorscale = autocolorscale;
-        this.nbinsx = nbinsx;
-        this.nbinsy = nbinsy;
-        this.histfunc = histfunc;
-        this.xbins = xbins;
-        this.showscale = showscale;
-        this.zauto = zauto;
-        this.autobiny = autobiny;
-        this.autobinx = autobinx;
-        this.name = name;
-        this.colorscale = colorscale;
-        this.yaxis = yaxis;
-        this.histnorm = histnorm;
-        this.reversescale = reversescale;
-        this.z = z;
+    private Histogram2d(Builder builder) {
+        this.type = builder.type;
+        this.x = builder.x;
+        this.y = builder.y;
+        this.zmax = builder.zmax;
+        this.stream = builder.stream;
+        this.zsrc = builder.zsrc;
+        this.ysrc = builder.ysrc;
+        this.zmin = builder.zmin;
+        this.hoverinfo = builder.hoverinfo;
+        this.xsrc = builder.xsrc;
+        this.visible = builder.visible;
+        this.Marker = builder.Marker;
+        this.colorbar = builder.colorbar;
+        this.showlegend = builder.showlegend;
+        this.ybins = builder.ybins;
+        this.xaxis = builder.xaxis;
+        this.zsmooth = builder.zsmooth;
+        this.legendgroup = builder.legendgroup;
+        this.autocolorscale = builder.autocolorscale;
+        this.nbinsx = builder.nbinsx;
+        this.nbinsy = builder.nbinsy;
+        this.histfunc = builder.histfunc;
+        this.xbins = builder.xbins;
+        this.showscale = builder.showscale;
+        this.zauto = builder.zauto;
+        this.autobiny = builder.autobiny;
+        this.autobinx = builder.autobinx;
+        this.name = builder.name;
+        this.colorscale = builder.colorscale;
+        this.yaxis = builder.yaxis;
+        this.histnorm = builder.histnorm;
+        this.reversescale = builder.reversescale;
+        this.z = builder.z;
     }
     
     

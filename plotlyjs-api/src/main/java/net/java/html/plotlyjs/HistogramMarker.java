@@ -120,7 +120,7 @@ public class HistogramMarker extends Marker{
         }
 
         public HistogramMarker build() {
-            return new net.java.html.plotlyjs.HistogramMarker(autocolorscale, cmax, cmin, colorscale, color, reversescale, cauto, colorbar, line, colorsrc, showscale);
+            return new net.java.html.plotlyjs.HistogramMarker(this);
         }
     }
 
@@ -128,18 +128,18 @@ public class HistogramMarker extends Marker{
         return new HistogramMarker.Builder();
     }
 
-    private HistogramMarker(final Boolean autocolorscale, final Number cmax, final Number cmin, final Map<Integer, String> colorscale, final String color, final Boolean reversescale, final Boolean cauto, final ColorBar colorbar, final Line line, final String colorsrc, final Boolean showscale) {
-        this.autocolorscale = autocolorscale;
-        this.cmax = cmax;
-        this.cmin = cmin;
-        this.colorscale = colorscale;
-        this.color = color;
-        this.reversescale = reversescale;
-        this.cauto = cauto;
-        this.colorbar = colorbar;
-        this.line = line;
-        this.colorsrc = colorsrc;
-        this.showscale = showscale;
+    private HistogramMarker(Builder builder) {
+        this.autocolorscale = builder.autocolorscale;
+        this.cmax = builder.cmax;
+        this.cmin = builder.cmin;
+        this.colorscale = builder.colorscale;
+        this.color = builder.color;
+        this.reversescale = builder.reversescale;
+        this.cauto = builder.cauto;
+        this.colorbar = builder.colorbar;
+        this.line = builder.line;
+        this.colorsrc = builder.colorsrc;
+        this.showscale = builder.showscale;
     }
     
 }

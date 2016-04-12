@@ -54,7 +54,7 @@ public final class Plotly <T extends Chart>{
         this.data = data;
         this.layout = layout;
     }
-    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {//works
+    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
@@ -70,7 +70,7 @@ public final class Plotly <T extends Chart>{
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<T> data, int... indices)throws PlotlyException{ //
+    public void restyle(Data<T> data, int... indices)throws PlotlyException{
         try{
         jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
         }
@@ -81,6 +81,7 @@ public final class Plotly <T extends Chart>{
     
     /**Update just the chart layout more nicely than redraw.
      @param layout a <code>Layout</code> object containing the layout parameters
+     * @throws net.java.html.plotlyjs.PlotlyException
     */
     public void relayout(Layout layout) throws PlotlyException{
         try{jsRelayout(id,Plotly.mapper.writeValueAsString(layout));}
@@ -95,8 +96,8 @@ public final class Plotly <T extends Chart>{
     */
     public void addTraces(T... traces) throws PlotlyException{
         try{
-        jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
-        this.data.addTraces(traces);
+            this.data.addTraces(traces);
+            jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
         }
         catch(JsonProcessingException e){
             throw new PlotlyException(e);
@@ -107,6 +108,7 @@ public final class Plotly <T extends Chart>{
     @param traces integer indices traces to delete.
     */
     public void deleteTraces(int... traces){
+        this.data.deleteTraces(traces);
         jsDeleteTraces(id, traces);
     }
     
@@ -115,6 +117,7 @@ public final class Plotly <T extends Chart>{
     */
     public void moveTraces(int... traces){
         jsMoveTraces(id,traces);
+        
     }
     
     /**Move traces in an array to different specified indices, respectively.

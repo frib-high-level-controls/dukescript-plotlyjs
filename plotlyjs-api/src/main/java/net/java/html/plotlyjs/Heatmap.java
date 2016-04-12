@@ -273,7 +273,7 @@ public class Heatmap extends Chart{
         }
 
         public Heatmap build() {
-            return new net.java.html.plotlyjs.Heatmap(type, x, y, zmax, xtype, stream, zsrc, text, zmin, hoverinfo, xsrc, visible, y0, colorbar, showlegend, ytype, xaxis, ysrc, zsmooth, opacity, legendgroup, transpose, autocolorscale, textsrc, dx, dy, showscale, x0, zauto, name, colorscale, connectgaps, yaxis, reversescale, z);
+            return new net.java.html.plotlyjs.Heatmap(this);
         }
     }
 
@@ -281,42 +281,42 @@ public class Heatmap extends Chart{
         return new Heatmap.Builder();
     }
 
-    private Heatmap(final String type, final List x, final List y, final Number zmax, final String xtype, final Stream stream, final String zsrc, final List text, final Number zmin, final String hoverinfo, final String xsrc, final Object visible, final Number y0, final ColorBar colorbar, final Boolean showlegend, final String ytype, final Axis xaxis, final String ysrc, final Object zsmooth, final Number opacity, final String legendgroup, final Boolean transpose, final Boolean autocolorscale, final String textsrc, final Number dx, final Number dy, final Boolean showscale, final Number x0, final Boolean zauto, final String name, final Map colorscale, final Boolean connectgaps, final Axis yaxis, final Boolean reversescale, final List z) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-        this.zmax = zmax;
-        this.xtype = xtype;
-        this.stream = stream;
-        this.zsrc = zsrc;
-        this.text = text;
-        this.zmin = zmin;
-        this.hoverinfo = hoverinfo;
-        this.xsrc = xsrc;
-        this.visible = visible;
-        this.y0 = y0;
-        this.colorbar = colorbar;
-        this.showlegend = showlegend;
-        this.ytype = ytype;
-        this.xaxis = xaxis;
-        this.ysrc = ysrc;
-        this.zsmooth = zsmooth;
-        this.opacity = opacity;
-        this.legendgroup = legendgroup;
-        this.transpose = transpose;
-        this.autocolorscale = autocolorscale;
-        this.textsrc = textsrc;
-        this.dx = dx;
-        this.dy = dy;
-        this.showscale = showscale;
-        this.x0 = x0;
-        this.zauto = zauto;
-        this.name = name;
-        this.colorscale = colorscale;
-        this.connectgaps = connectgaps;
-        this.yaxis = yaxis;
-        this.reversescale = reversescale;
-        this.z = z;
+    private Heatmap(Builder builder) {
+        this.type = builder.type;
+        this.x = builder.x;
+        this.y = builder.y;
+        this.zmax = builder.zmax;
+        this.xtype = builder.xtype;
+        this.stream = builder.stream;
+        this.zsrc = builder.zsrc;
+        this.text = builder.text;
+        this.zmin = builder.zmin;
+        this.hoverinfo = builder.hoverinfo;
+        this.xsrc = builder.xsrc;
+        this.visible = builder.visible;
+        this.y0 = builder.y0;
+        this.colorbar = builder.colorbar;
+        this.showlegend = builder.showlegend;
+        this.ytype = builder.ytype;
+        this.xaxis = builder.xaxis;
+        this.ysrc = builder.ysrc;
+        this.zsmooth = builder.zsmooth;
+        this.opacity = builder.opacity;
+        this.legendgroup = builder.legendgroup;
+        this.transpose = builder.transpose;
+        this.autocolorscale = builder.autocolorscale;
+        this.textsrc = builder.textsrc;
+        this.dx = builder.dx;
+        this.dy = builder.dy;
+        this.showscale = builder.showscale;
+        this.x0 = builder.x0;
+        this.zauto = builder.zauto;
+        this.name = builder.name;
+        this.colorscale = builder.colorscale;
+        this.connectgaps = builder.connectgaps;
+        this.yaxis = builder.yaxis;
+        this.reversescale = builder.reversescale;
+        this.z = builder.z;
     }
     
     
