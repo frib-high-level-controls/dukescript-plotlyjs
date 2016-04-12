@@ -128,9 +128,14 @@ public final class Plotly <T extends Chart>{
         jsMoveTraces(id, from, to);
     }
     
-    public void redraw(){
-        jsRedraw(id);
-    }
+    public void redraw() throws PlotlyException{
+        try{
+        jsRedraw(id,Plotly.mapper.writeValueAsString(data.getTraces()));
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
+     }
     
     @JavaScriptBody(args={"elementId","update","indices"}, body = ""
             + "if(indices){"
@@ -172,9 +177,11 @@ public final class Plotly <T extends Chart>{
     /**Redraw the chart element.
     @param elementId the associated DOM element
     */
-    @JavaScriptBody(args = {"elementId"}, body =
-            "Plotly.redraw(document.getElementById(elementId));")
-    private static native void jsRedraw(String elementId);
+    @JavaScriptBody(args = {"elementId", "strdata"}, body = ""
+            +"var graphDiv = document.getElementById(elementId);"
+            +"graphDiv.data = JSON.parse(strdata);"
+            +"Plotly.redraw(graphDiv);")
+    private static native void jsRedraw(String elementId, String strdata);
     
     
 
