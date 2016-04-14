@@ -48,36 +48,36 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram2d <T extends Value> extends Chart {
     
-    private Number zmax;
-    private Stream stream;
-    private String zsrc;
-    private String ysrc;
-    private Number zmin;
-    private String hoverinfo;
-    private String xsrc;
-    private Object visible;
-    private Histogram2dMarker Marker;
-    private ColorBar colorbar;
-    private Boolean showlegend;
-    private AxisBin ybins;
-    private Axis xaxis;
-    private Object zsmooth;
-    private String legendgroup;
-    private Boolean autocolorscale;
-    private Integer nbinsx;
-    private Integer nbinsy;
-    private String histfunc;
-    private AxisBin xbins;
-    private Boolean showscale;
-    private Boolean zauto;
-    private Boolean autobiny;
-    private Boolean autobinx;
-    private String name;
-    private List colorscale;
-    private Axis yaxis;
-    private String histnorm;
-    private Boolean reversescale;
-    private List z;
+    private final Number zmax;
+    private final Stream stream;
+    private final String zsrc;
+    private final String ysrc;
+    private final Number zmin;
+    private final String hoverinfo;
+    private final String xsrc;
+    private final Object visible;
+    private final Histogram2dMarker Marker;
+    private final ColorBar colorbar;
+    private final Boolean showlegend;
+    private final AxisBin ybins;
+    private final Axis xaxis;
+    private final Object zsmooth;
+    private final String legendgroup;
+    private final Boolean autocolorscale;
+    private final Integer nbinsx;
+    private final Integer nbinsy;
+    private final String histfunc;
+    private final AxisBin xbins;
+    private final Boolean showscale;
+    private final Boolean zauto;
+    private final Boolean autobiny;
+    private final Boolean autobinx;
+    private final String name;
+    private final List colorscale;
+    private final Axis yaxis;
+    private final String histnorm;
+    private final Boolean reversescale;
+    private final List z;
 
     public static class Builder {
 

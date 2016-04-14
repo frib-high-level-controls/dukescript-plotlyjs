@@ -45,20 +45,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorBar {
-    private Boolean copy_ystyle;
-    private Integer tracerefminus;
-    private Integer width;
-    private Boolean copy_zstyle;
-    private Integer value;
-    private Integer thickness;
-    private Boolean symmetric;
-    private Boolean visible;
-    private Integer traceref;
-    private Integer valueminus;
-    private Data arrayminus;
-    private Data array;
-    private String type;
-    private String color;
+    private final Boolean copy_ystyle;
+    private final Integer tracerefminus;
+    private final Integer width;
+    private final Boolean copy_zstyle;
+    private final Integer value;
+    private final Integer thickness;
+    private final Boolean symmetric;
+    private final Boolean visible;
+    private final Integer traceref;
+    private final Integer valueminus;
+    private final Data arrayminus;
+    private final Data array;
+    private final String type;
+    private final String color;
     
     public static final class RuleTypes{
         public static final String PERCENT = "percent";

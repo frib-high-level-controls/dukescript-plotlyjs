@@ -54,19 +54,19 @@ public class Line {
 	public static final String VHV = "vhv";
     }
     
-    private String colorsrc;
-    private Boolean autocolorscale;
-    private Number cmin;
-    private Map<Integer,String> colorscale;
-    private String color;
-    private Number smoothing;
-    private String dash;
-    private String shape;
-    private Boolean reversescale;
-    private Integer width;
-    private Boolean cauto;
-    private String widthsrc;
-    private Number cmax;
+    private final String colorsrc;
+    private final Boolean autocolorscale;
+    private final Number cmin;
+    private final Map<Integer,String> colorscale;
+    private final String color;
+    private final Number smoothing;
+    private final String dash;
+    private final String shape;
+    private final Boolean reversescale;
+    private final Integer width;
+    private final Boolean cauto;
+    private final String widthsrc;
+    private final Number cmax;
 
     public static class Builder {
 
@@ -75,6 +75,9 @@ public class Line {
         private Number cmin;
         private Map<Integer,String> colorscale;
         private String color;
+        private Number smoothing;
+        private String dash;
+        private String shape;
         private Boolean reversescale;
         private Integer width;
         private Boolean cauto;
@@ -106,6 +109,21 @@ public class Line {
 
         public Builder color(final String value) {
             this.color = value;
+            return this;
+        }
+
+        public Builder smoothing(final Number value) {
+            this.smoothing = value;
+            return this;
+        }
+
+        public Builder dash(final String value) {
+            this.dash = value;
+            return this;
+        }
+
+        public Builder shape(final String value) {
+            this.shape = value;
             return this;
         }
 
@@ -149,10 +167,15 @@ public class Line {
         this.cmin = builder.cmin;
         this.colorscale = builder.colorscale;
         this.color = builder.color;
+        this.smoothing = builder.smoothing;
+        this.dash = builder.dash;
+        this.shape = builder.shape;
         this.reversescale = builder.reversescale;
         this.width = builder.width;
         this.cauto = builder.cauto;
         this.widthsrc = builder.widthsrc;
         this.cmax = builder.cmax;
     }
+
+    
 }

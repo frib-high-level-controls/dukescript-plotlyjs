@@ -48,19 +48,49 @@ public final class Plotly <T extends Chart>{
     static private String id;
     private Data<T> data;
     private Layout layout;
+    private final Config config;
     
     private Plotly(String id, Data<T> data, Layout layout){
         Plotly.id = id;
         this.data = data;
         this.layout = layout;
+        this.config = new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build();
     }
-    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
+    
+    private Plotly(String id, Data<T> data, Layout layout, Config config){
+        Plotly.id = id;
+        this.data = data;
+        this.layout = layout;
+        this.config = config;
+    }
+    
+    
+    public static Plotly<?>newPlot(String id, Data<?> data, Layout layout, Config config)throws PlotlyException{
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
             String strlayout = Plotly.mapper.writeValueAsString(layout);
             jsNewPlot(id,strdata,strlayout);
-            return new Plotly<>(id, data, layout);
+            System.out.println(strdata);
+            return new Plotly<>(id, data, layout, config);
+        } catch (JsonProcessingException e) {
+            throw new PlotlyException(e);
+        }
+    }
+    
+    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
+        try {
+            Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
+            String strlayout = Plotly.mapper.writeValueAsString(layout);
+            Config defaultConfig = new Config.Builder()
+                    .showLink(false)
+                    .displaylogo(false)
+                    .modeBarButtonsToRemove(new String[]{"sendDataToCloud"})
+                    .build();
+            String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
+            jsNewPlot(id,strdata,strlayout, strconfig);
+            return new Plotly<>(id, data, layout, defaultConfig);
         } catch (JsonProcessingException e) {
             throw new PlotlyException(e);
         }
@@ -137,12 +167,17 @@ public final class Plotly <T extends Chart>{
         }
      }
     
+    public Object eval(String expr){
+        return jsEval(expr);
+    }
+    
+    
     @JavaScriptBody(args={"elementId","update","indices"}, body = ""
             + "if(indices){"
             + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);"
             + "}"
             + "else{"
-            + "(Plotly.restyle(document.getElementById(elementId), JSON.parse(update)));"
+            +   "(Plotly.restyle(document.getElementById(elementId), JSON.parse(update)));"
             + "}")
     private static native void jsRestyle(String elementId, String update, int... indices);
     
@@ -183,15 +218,29 @@ public final class Plotly <T extends Chart>{
             +"Plotly.redraw(graphDiv);")
     private static native void jsRedraw(String elementId, String strdata);
     
+   
+    @JavaScriptBody(args = {"expr"},body = ""
+            + "return eval(expr);")
+    private static native Object jsEval(String expr);
     
-
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
             "var layout = JSON.parse(strlayout);\n" +
             "var elementId = document.getElementById(strElementId);\n" +
-            "Plotly.newPlot(elementId, data, layout);\n" +
+            "Plotly.newPlot(elementId, data, layout, {showLink: false, displaylogo: false, modeBarButtonsToRemove: ['sendDataToCloud']});\n" +
             "return document.getElementById(strElementId);"
     )
     native static Object jsNewPlot(String strElementId, String strdata, String strlayout);
+
+    
+    @JavaScriptBody(args = { "strElementId", "strdata", "strlayout", "strconfig" }, body =
+            "var data = JSON.parse(strdata);\n" +
+            "var layout = JSON.parse(strlayout);\n" +
+            "var elementId = document.getElementById(strElementId);\n"+
+            "var config = JSON.parse(strconfig);" +
+            "Plotly.newPlot(elementId, data, layout, config);\n" +
+            "return document.getElementById(strElementId);"
+    )
+    native static Object jsNewPlot(String strElementId, String strdata, String strlayout, String strconfig);
 
 }

@@ -40,9 +40,9 @@ package net.java.html.plotlyjs;
  */
 public class Font {
       
-    private String color;
-    private String family;
-    private int size;
+    private final String color;
+    private final String family;
+    private final int size;
     
     public Font(FontBuilder builder){
         color = builder.color;
@@ -50,29 +50,6 @@ public class Font {
         size = builder.size;
     }
     
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getFamily() {
-        return family;
-    }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
 
     @Override
     public String toString() {

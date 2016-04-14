@@ -38,38 +38,38 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Scatter<T extends Value> extends Chart{
     
-    private String mode;
-    private String textposition;
-    private Stream stream;
-    private String text;
-    private String hoverinfo;
-    private String xsrc;
-    private Object visible;
-    private ScatterMarker marker;
-    private Number y0;
-    private String tsrc;
-    private Line line;
-    private String fill;
-    private Boolean showlegend;
-    private ErrorBar error_x;
-    private ErrorBar error_y;
-    private String textsrc;
-    private String rsrc;
-    private Axis xaxis;
-    private Axis yaxis;
-    private String ysrc;
-    private List<Number> t;
-    private Number opacity;
-    private Font textfont;
-    private String legendgroup;
-    private String textpositionsrc;
-    private String fillcolor;
-    private Number dx;
-    private Number dy;
-    private Number x0;
-    private String name;
-    private Boolean connectgaps;
-    private List<Number> r;
+    private final String mode;
+    private final String textposition;
+    private final Stream stream;
+    private final String text;
+    private final String hoverinfo;
+    private final String xsrc;
+    private final Object visible;
+    private final ScatterMarker marker;
+    private final Number y0;
+    private final String tsrc;
+    private final Line line;
+    private final String fill;
+    private final Boolean showlegend;
+    private final ErrorBar error_x;
+    private final ErrorBar error_y;
+    private final String textsrc;
+    private final String rsrc;
+    private final Axis xaxis;
+    private final Axis yaxis;
+    private final String ysrc;
+    private final List<Number> t;
+    private final Number opacity;
+    private final Font textfont;
+    private final String legendgroup;
+    private final String textpositionsrc;
+    private final String fillcolor;
+    private final Number dx;
+    private final Number dy;
+    private final Number x0;
+    private final String name;
+    private final Boolean connectgaps;
+    private final List<Number> r;
 
     public static class Builder {
 
@@ -339,16 +339,5 @@ public class Scatter<T extends Value> extends Chart{
         this.connectgaps = builder.connectgaps;
         this.r = builder.r;
     }
-    
-    public Scatter(T data) {
-        this.type = "scatter";
-        this.x = data.x;
-        this.y = data.y;
-    }
-    
-    public Scatter(List x, List y){
-        this.type = "scatter";
-        this.x = x;
-        this.y = y;
-    }
+   
 }

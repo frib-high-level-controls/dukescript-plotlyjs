@@ -44,8 +44,8 @@ import java.util.Map;
  * @author daykin
  */
 public class Histogram2dMarker{
-    private String color;
-    private String colorsrc;
+    private final String color;
+    private final String colorsrc;
 
     public static class Builder {
 

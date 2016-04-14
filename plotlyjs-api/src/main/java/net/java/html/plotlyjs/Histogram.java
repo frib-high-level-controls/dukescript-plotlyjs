@@ -44,32 +44,32 @@ import java.util.List;
 public class Histogram<T extends Value> extends Chart{
 
     
-    private String orientation;
-    private Stream stream;
-    private String text;
-    private String hoverinfo;
-    private Object visible;
-    private Boolean showlegend;
-    private Axis xaxis;
-    private Axis yaxis;
-    private Number opacity;
-    private String legendgroup;
-    private Integer nbinsx;
-    private Integer nbinsy;
-    private String histfunc;
-    private Boolean autobiny;
-    private Boolean autobinx;
-    private String name;
-    private String histnorm;
-    private HistogramMarker marker;
-    private ErrorBar error_x;
-    private ErrorBar error_y;
-    private AxisBin xbins;
-    private AxisBin ybins;
+    private final String orientation;
+    private final Stream stream;
+    private final String text;
+    private final String hoverinfo;
+    private final Object visible;
+    private final Boolean showlegend;
+    private final Axis xaxis;
+    private final Axis yaxis;
+    private final Number opacity;
+    private final String legendgroup;
+    private final Integer nbinsx;
+    private final Integer nbinsy;
+    private final String histfunc;
+    private final Boolean autobiny;
+    private final Boolean autobinx;
+    private final String name;
+    private final String histnorm;
+    private final HistogramMarker marker;
+    private final ErrorBar error_x;
+    private final ErrorBar error_y;
+    private final AxisBin xbins;
+    private final AxisBin ybins;
 
     public static class Builder {
 
-        private final String type = "histogram";
+        private String type = "histogram";
         private List x;
         private List y;
         private String orientation;
@@ -260,11 +260,5 @@ public class Histogram<T extends Value> extends Chart{
         this.xbins = builder.xbins;
         this.ybins = builder.ybins;
     }
-    
-    public Histogram(T data){
-        this.type = "histogram";
-        this.x = data.x;
-        this.y = data.y;
-    }
-    
+
 }
