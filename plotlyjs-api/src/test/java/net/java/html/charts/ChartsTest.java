@@ -309,7 +309,7 @@ public class ChartsTest implements Runnable {
                 testChart.relayout(newLayout);
                 JSObject rawData = (JSObject)testChart.getPlot();
                 String newTitle = (String)rawData.eval("this.layout.title");
-                assertEquals(newTitle,"newTitle");
+                assertEquals(newTitle,"newTitle","title change worked");
                 return null;
             }
         });
