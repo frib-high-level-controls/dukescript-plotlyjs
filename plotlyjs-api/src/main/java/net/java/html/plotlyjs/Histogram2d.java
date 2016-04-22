@@ -6,7 +6,6 @@
 package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
 
 /*
@@ -44,6 +43,7 @@ import java.util.List;
 /**
  *
  * @author daykin
+ * @param <T> a type of Trace
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram2d <T extends Value> extends Chart {

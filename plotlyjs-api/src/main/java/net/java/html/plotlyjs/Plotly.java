@@ -36,9 +36,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.java.html.js.JavaScriptBody;
 import net.java.html.js.JavaScriptResource;
+import netscape.javascript.JSObject;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
@@ -46,8 +50,8 @@ public final class Plotly <T extends Chart>{
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
-    private Data<T> data;
-    private Layout layout;
+    private final Data<T> data;
+    private final Layout layout;
     private final Config config;
     
     private Plotly(String id, Data<T> data, Layout layout){
@@ -63,7 +67,6 @@ public final class Plotly <T extends Chart>{
         this.layout = layout;
         this.config = config;
     }
-    
     
     public static Plotly<?>newPlot(String id, Data<?> data, Layout layout, Config config)throws PlotlyException{
         try {
@@ -100,11 +103,30 @@ public final class Plotly <T extends Chart>{
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+    public void restyle(JsonNode data, int... indices)throws PlotlyException{
         try{
-        jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
+            String update = Plotly.mapper.writeValueAsString(data);
+            jsRestyle(id,update,indices);
         }
         catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
+    }
+    
+    public void restyle(String data, int... indices)throws PlotlyException{
+        try{
+            jsRestyle(id,data,indices);
+        }
+        catch(Exception e){
+            throw new PlotlyException(e);
+        }
+    }
+    
+    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+        try{
+            jsRestyle(id,mapper.writeValueAsString(data),indices);
+        }
+        catch(Exception e){
             throw new PlotlyException(e);
         }
     }
@@ -167,18 +189,12 @@ public final class Plotly <T extends Chart>{
         }
      }
     
-    public Object eval(String expr){
-        return jsEval(expr);
+    public Object getPlot(){
+        return jsGetPlot(id);
     }
     
-    
     @JavaScriptBody(args={"elementId","update","indices"}, body = ""
-            + "if(indices){"
-            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);"
-            + "}"
-            + "else{"
-            +   "(Plotly.restyle(document.getElementById(elementId), JSON.parse(update)));"
-            + "}")
+            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);")
     private static native void jsRestyle(String elementId, String update, int... indices);
     
 
@@ -218,10 +234,6 @@ public final class Plotly <T extends Chart>{
             +"Plotly.redraw(graphDiv);")
     private static native void jsRedraw(String elementId, String strdata);
     
-   
-    @JavaScriptBody(args = {"expr"},body = ""
-            + "return eval(expr);")
-    private static native Object jsEval(String expr);
     
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
@@ -242,5 +254,21 @@ public final class Plotly <T extends Chart>{
             "return document.getElementById(strElementId);"
     )
     native static Object jsNewPlot(String strElementId, String strdata, String strlayout, String strconfig);
-
+   
+    @JavaScriptBody(args = {"strElementId"}, body = ""
+            + "var plot = document.getElementById(strElementId);"
+            + "return plot;")
+    private native static JSObject jsGetPlot(String strElementId);
+    
+    @Override
+    public String toString(){
+        try {
+            return "data: " + mapper.writeValueAsString(this.data) + "\nlayout: "+
+                    mapper.writeValueAsString(this.layout) + "\nconfig: "+
+                    mapper.writeValueAsString(this.config);
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(Plotly.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

@@ -109,7 +109,7 @@ public class Scatter<T extends Value> extends Chart{
         private Boolean connectgaps;
         private List<Number> r;
 
-        public Builder() {
+        private Builder() {
         }
 
         public Builder type(final String value) {

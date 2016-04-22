@@ -51,6 +51,10 @@ public class Layout {
     private final Axis yaxis;
     private final String barmode;    
 
+    public void setBarmode(String overlay) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public static class Builder {
 
         private String title;

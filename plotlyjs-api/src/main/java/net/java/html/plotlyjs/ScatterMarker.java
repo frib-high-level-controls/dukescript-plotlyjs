@@ -77,7 +77,7 @@ public class ScatterMarker extends Marker{
         private String sizemode;
         private Number sizemin;
 
-        private Builder() {
+        public Builder() {
         }
 
         public Builder autocolorscale(final Boolean value) {

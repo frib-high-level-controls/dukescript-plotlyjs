@@ -38,7 +38,7 @@ import java.util.List;
 
 public class Data <T extends Chart> {
 
-    private List<T> traces = new ArrayList<T>();
+    private List<T> traces = new ArrayList<>();
     
     @SafeVarargs
     public Data(T... traces){
