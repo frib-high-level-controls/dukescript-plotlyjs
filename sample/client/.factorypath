@@ -1,9 +1,0 @@
-<factorypath>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html/1.2.3/net.java.html-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.json/1.2.3/net.java.html.json-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.boot/1.2.3/net.java.html.boot-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.sound/1.2.3/net.java.html.sound-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/ko4j/1.2.3/ko4j-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.boot.fx/1.2.3/net.java.html.boot.fx-1.2.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Program Files\Java\jre1.8.0_73\lib\ext\jfxrt.jar" enabled="true" runInBatchMode="false"/>
-</factorypath>
