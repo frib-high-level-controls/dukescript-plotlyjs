@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     
     <name>DukeScript Plotlyjs</name>
-    <groupId>com.dukescript.plotlyjs</groupId>
+    <groupId>edu.msu.frib</groupId>
     <artifactId>pom</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>

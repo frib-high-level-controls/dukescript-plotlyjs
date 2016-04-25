@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>plotlyjs</artifactId>
+    <artifactId>dukescript-plotlyjs</artifactId>
     <packaging>bundle</packaging>
-    <groupId>com.dukescript.api</groupId>
+    <groupId>edu.msu.frib</groupId>
     <version>1.0-SNAPSHOT</version>
-    <name>Charts API for HTML/Java</name>
+    <name>Plotly API for HTML/Java</name>
     <description>
-        This is Java version of chartsjs
-        library for rendering of charts via HTML render. The API is
-        distributed as part of the DukeScript project.
+        Plotly.js wrapped in Java
     </description>
     <properties>
         <net.java.html.version>1.2.3</net.java.html.version>
