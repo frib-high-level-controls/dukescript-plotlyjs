@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     
     <name>DukeScript Plotlyjs</name>
-    <groupId>com.dukescript.plotlyjs</groupId>
+    <groupId>edu.msu.frib</groupId>
     <artifactId>pom</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -59,7 +59,6 @@
     
     <modules>
         <module>plotlyjs-api</module>
-        <module>sample</module>
     </modules>
     
     <distributionManagement>
@@ -88,7 +87,7 @@
     
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.3</version>
@@ -98,7 +97,7 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
