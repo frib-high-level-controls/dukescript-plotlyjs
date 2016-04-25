@@ -39,6 +39,17 @@
             </roles>
             <timezone></timezone>
         </developer>
+        <developer>
+            <id>daykin</id>
+            <name>Evan Daykin</name>
+            <email>evan.daykin@gmail.com</email>
+            <organization></organization>
+            <organizationUrl></organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone></timezone>
+        </developer>
     </developers>
     <scm>
         <connection>scm:git:https://github.com/berryma4/plotlyjs.git/</connection>
@@ -203,9 +214,11 @@
                         <configuration>
                             <inceptionYear>2016</inceptionYear>
                             <licenseName>mit</licenseName>
+ 
                             <organizationName>Board of Trustees of Michigan State University</organizationName>
                             <failOnMissingHeader>true</failOnMissingHeader>
                             <descriptionTemplate>src/license/header.txt</descriptionTemplate>
+                            
                             <roots>
                                 <root>src</root>
                             </roots>
@@ -219,6 +232,9 @@
                                 <phase>process-sources</phase>
                                 <configuration>
                                     <licenseName>mit</licenseName>
+                                    <excludes>
+                                        <exclude>*.js</exclude>
+                                    </excludes>
                                     <roots>
                                         <root>src</root>
                                     </roots>

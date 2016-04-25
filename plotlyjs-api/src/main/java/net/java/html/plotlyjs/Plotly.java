@@ -36,31 +36,64 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.java.html.js.JavaScriptBody;
 import net.java.html.js.JavaScriptResource;
+import netscape.javascript.JSObject;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
-public final class Plotly <T extends ChartType>{
+public final class Plotly <T extends Chart>{
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
-    private Data<T> data;
-    private Layout layout;
+    private final Data<T> data;
+    private final Layout layout;
+    private final Config config;
     
     private Plotly(String id, Data<T> data, Layout layout){
         Plotly.id = id;
         this.data = data;
-        this.layout = layout;   
+        this.layout = layout;
+        this.config = new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build();
     }
+    
+    private Plotly(String id, Data<T> data, Layout layout, Config config){
+        Plotly.id = id;
+        this.data = data;
+        this.layout = layout;
+        this.config = config;
+    }
+    
+    public static Plotly<?>newPlot(String id, Data<?> data, Layout layout, Config config)throws PlotlyException{
+        try {
+            Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
+            String strlayout = Plotly.mapper.writeValueAsString(layout);
+            jsNewPlot(id,strdata,strlayout);
+            System.out.println(strdata);
+            return new Plotly<>(id, data, layout, config);
+        } catch (JsonProcessingException e) {
+            throw new PlotlyException(e);
+        }
+    }
+    
     public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());  
+            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
             String strlayout = Plotly.mapper.writeValueAsString(layout);
-            jsNewPlot(id,strdata,strlayout);
-            return new Plotly<>(id, data, layout);
+            Config defaultConfig = new Config.Builder()
+                    .showLink(false)
+                    .displaylogo(false)
+                    .modeBarButtonsToRemove(new String[]{"sendDataToCloud"})
+                    .build();
+            String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
+            jsNewPlot(id,strdata,strlayout, strconfig);
+            return new Plotly<>(id, data, layout, defaultConfig);
         } catch (JsonProcessingException e) {
             throw new PlotlyException(e);
         }
@@ -70,17 +103,37 @@ public final class Plotly <T extends ChartType>{
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
-    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+    public void restyle(JsonNode data, int... indices)throws PlotlyException{
         try{
-        jsRestyle(id,Plotly.mapper.writeValueAsString(data),indices);
+            String update = Plotly.mapper.writeValueAsString(data);
+            jsRestyle(id,update,indices);
         }
         catch(JsonProcessingException e){
             throw new PlotlyException(e);
         }
     }
     
+    public void restyle(String data, int... indices)throws PlotlyException{
+        try{
+            jsRestyle(id,data,indices);
+        }
+        catch(Exception e){
+            throw new PlotlyException(e);
+        }
+    }
+    
+    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+        try{
+            jsRestyle(id,mapper.writeValueAsString(data),indices);
+        }
+        catch(Exception e){
+            throw new PlotlyException(e);
+        }
+    }
+    
     /**Update just the chart layout more nicely than redraw.
      @param layout a <code>Layout</code> object containing the layout parameters
+     * @throws net.java.html.plotlyjs.PlotlyException
     */
     public void relayout(Layout layout) throws PlotlyException{
         try{jsRelayout(id,Plotly.mapper.writeValueAsString(layout));}
@@ -90,12 +143,13 @@ public final class Plotly <T extends ChartType>{
     }
     
     /**Add trace(s) to the chart.
-     @param traces an Array of <code>Trace</code>s containing the trace parameters
+     @param traces an Array of {@link Chart} traces containing the trace parameters
      *@throws PlotlyException
     */
-    public void addTraces(ChartType... traces) throws PlotlyException{
+    public void addTraces(T... traces) throws PlotlyException{
         try{
-        jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
+            this.data.addTraces(traces);
+            jsAddTraces(id,Plotly.mapper.writeValueAsString(traces));
         }
         catch(JsonProcessingException e){
             throw new PlotlyException(e);
@@ -106,6 +160,7 @@ public final class Plotly <T extends ChartType>{
     @param traces integer indices traces to delete.
     */
     public void deleteTraces(int... traces){
+        this.data.deleteTraces(traces);
         jsDeleteTraces(id, traces);
     }
     
@@ -114,6 +169,7 @@ public final class Plotly <T extends ChartType>{
     */
     public void moveTraces(int... traces){
         jsMoveTraces(id,traces);
+        
     }
     
     /**Move traces in an array to different specified indices, respectively.
@@ -124,17 +180,21 @@ public final class Plotly <T extends ChartType>{
         jsMoveTraces(id, from, to);
     }
     
-    public void redraw(){
-        jsRedraw(id);
+    public void redraw() throws PlotlyException{
+        try{
+        jsRedraw(id,Plotly.mapper.writeValueAsString(data.getTraces()));
+        }
+        catch(JsonProcessingException e){
+            throw new PlotlyException(e);
+        }
+     }
+    
+    public Object getPlot(){
+        return jsGetPlot(id);
     }
     
     @JavaScriptBody(args={"elementId","update","indices"}, body = ""
-            + "if(indices){"
-            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);"
-            + "}"
-            + "else{"
-            + "(Plotly.restyle(document.getElementById(elementId), JSON.parse(update)));"
-            + "}")
+            + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);")
     private static native void jsRestyle(String elementId, String update, int... indices);
     
 
@@ -168,19 +228,47 @@ public final class Plotly <T extends ChartType>{
     /**Redraw the chart element.
     @param elementId the associated DOM element
     */
-    @JavaScriptBody(args = {"elementId"}, body =
-            "Plotly.redraw(document.getElementById(elementId));")
-    private static native void jsRedraw(String elementId);
+    @JavaScriptBody(args = {"elementId", "strdata"}, body = ""
+            +"var graphDiv = document.getElementById(elementId);"
+            +"graphDiv.data = JSON.parse(strdata);"
+            +"Plotly.redraw(graphDiv);")
+    private static native void jsRedraw(String elementId, String strdata);
     
     
-
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
             "var layout = JSON.parse(strlayout);\n" +
             "var elementId = document.getElementById(strElementId);\n" +
-            "Plotly.newPlot(elementId, data, layout);\n" +
+            "Plotly.newPlot(elementId, data, layout, {showLink: false, displaylogo: false, modeBarButtonsToRemove: ['sendDataToCloud']});\n" +
             "return document.getElementById(strElementId);"
     )
     native static Object jsNewPlot(String strElementId, String strdata, String strlayout);
 
+    
+    @JavaScriptBody(args = { "strElementId", "strdata", "strlayout", "strconfig" }, body =
+            "var data = JSON.parse(strdata);\n" +
+            "var layout = JSON.parse(strlayout);\n" +
+            "var elementId = document.getElementById(strElementId);\n"+
+            "var config = JSON.parse(strconfig);" +
+            "Plotly.newPlot(elementId, data, layout, config);\n" +
+            "return document.getElementById(strElementId);"
+    )
+    native static Object jsNewPlot(String strElementId, String strdata, String strlayout, String strconfig);
+   
+    @JavaScriptBody(args = {"strElementId"}, body = ""
+            + "var plot = document.getElementById(strElementId);"
+            + "return plot;")
+    private native static JSObject jsGetPlot(String strElementId);
+    
+    @Override
+    public String toString(){
+        try {
+            return "data: " + mapper.writeValueAsString(this.data) + "\nlayout: "+
+                    mapper.writeValueAsString(this.layout) + "\nconfig: "+
+                    mapper.writeValueAsString(this.config);
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(Plotly.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

@@ -37,31 +37,52 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
-    
-    public CartesianTrace(List<Number> x, List<Number> y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public CartesianTrace(){
-        
+public class AxisBin {
+   private final Number start;
+   private final Number end;
+   private final Number size;
+
+    public static class Builder {
+
+        private Number start;
+        private Number end;
+        private Number size = 1;
+
+        private Builder() {
+        }
+
+        public Builder start(final Number value) {
+            this.start = value;
+            return this;
+        }
+
+        public Builder end(final Number value) {
+            this.end = value;
+            return this;
+        }
+
+        public Builder size(final Number value) {
+            this.size = value;
+            return this;
+        }
+
+        public AxisBin build() {
+            return new net.java.html.plotlyjs.AxisBin(this);
+        }
     }
 
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
+    public static AxisBin.Builder builder() {
+        return new AxisBin.Builder();
     }
 
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
+    private AxisBin(Builder builder) {
+        this.start = builder.start;
+        this.end = builder.end;
+        this.size = builder.size;
     }
-    
+   
 }

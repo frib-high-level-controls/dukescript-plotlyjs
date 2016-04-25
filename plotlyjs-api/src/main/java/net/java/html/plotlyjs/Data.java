@@ -33,15 +33,53 @@ package net.java.html.plotlyjs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class Data <T extends ChartType> {
+public class Data <T extends Chart> {
 
-    private List<T> traces = new ArrayList<T>();
+    private List<T> traces = new ArrayList<>();
     
     @SafeVarargs
     public Data(T... traces){
         this.traces.addAll(Arrays.asList(traces));  
+    }
+    
+    public void addTraces(T... traces){
+        this.traces.addAll(Arrays.asList(traces));
+    }
+    
+    public void deleteTraces(int... traces){
+        for(int trace: traces){
+            this.traces.remove(trace);
+        }
+    }
+
+    public void moveTraces(int... traces){
+        for(int trace: traces){
+            this.traces.add(this.traces.remove(trace));
+        }
+    }
+    
+    public void moveTraces(int[] from, int[] to)throws PlotlyException{
+        if(from.length!=to.length){
+            throw new PlotlyException("arrays must be the same size.");
+        }
+        else{
+            for(int i=0;i<from.length;i++){
+                Collections.swap(this.traces,from[i], to[i]);
+            }
+        }
+    }
+    
+    public void updateTrace(int index, T trace){
+        this.traces.set(index, trace);
+    }
+    
+    public void updateTraces(int[] indices, T[] traces){
+        for(int i = 0; i<indices.length;i++){
+            this.traces.set(i, traces[i]);
+        }
     }
     
     public List<T> getTraces(){

@@ -5,6 +5,8 @@
  */
 package net.java.html.plotlyjs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -37,31 +39,38 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Stream {
+    private String token;
+    private Integer maxpoints;
     
-    public CartesianTrace(List<Number> x, List<Number> y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public CartesianTrace(){
-        
-    }
-
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
-    }
-
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
+    public Stream(String token){
+        this.token = token;
+        this.maxpoints = 50;
     }
     
+    public Stream(String token, Integer maxpoints){
+        this.token=token;
+        this.maxpoints = maxpoints;
+    }
+    
+    public void setToken(String token){
+        this.token = token;
+    }
+    
+    public void setMaxPoints(Integer maxpoints){
+        this.maxpoints = maxpoints;
+    }
+    
+    public String getToken(){
+        return this.token;
+    }
+    
+    public Integer getMaxPoints(){
+        return this.maxpoints;
+    }
 }

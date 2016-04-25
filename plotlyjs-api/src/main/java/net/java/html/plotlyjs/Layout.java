@@ -42,38 +42,92 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Layout {
     
     @SuppressWarnings("unused")
-    private String title;
-    private Margin margin;
-    private int width;
-    private int height;
-    private Font font;
-    private Axis xaxis;
-    private Axis yaxis;
-    
-    
-    public Layout(String title){
-        this.title = title;
-        this.margin = new Margin.MarginBuilder().build();
-        this.width = 700;
-        this.height = 450;
-        this.font = new Font.FontBuilder().build();
-        this.xaxis = new Axis.AxisBuilder().build();
-        this.yaxis = new Axis.AxisBuilder().build();
-    }
-    public Layout(String title, int width, int height){
-        this.title = title;
-        this.margin = new Margin.MarginBuilder().build();
-        this.width = width;
-        this.height = height;
-        this.font = new Font.FontBuilder().build();
-        this.xaxis = new Axis.AxisBuilder().build();
-        this.yaxis = new Axis.AxisBuilder().build();
-    }
-    public void setTitle(String title){
-        this.title = title;
-    }
-    
-    
-    
+    private final String title;
+    private final Margin margin;
+    private final Integer width;
+    private final Integer height;
+    private final Font font;
+    private final Axis xaxis;
+    private final Axis yaxis;
+    private final String barmode;    
 
+    public void setBarmode(String overlay) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static class Builder {
+
+        private String title;
+        private Margin margin;
+        private Integer width;
+        private Integer height;
+        private Font font;
+        private Axis xaxis;
+        private Axis yaxis;
+        private String barmode;
+
+        public Builder() {
+        }
+
+        public Builder title(final String value) {
+            this.title = value;
+            return this;
+        }
+
+        public Builder margin(final Margin value) {
+            this.margin = value;
+            return this;
+        }
+
+        public Builder width(final Integer value) {
+            this.width = value;
+            return this;
+        }
+
+        public Builder height(final Integer value) {
+            this.height = value;
+            return this;
+        }
+
+        public Builder font(final Font value) {
+            this.font = value;
+            return this;
+        }
+
+        public Builder xaxis(final Axis value) {
+            this.xaxis = value;
+            return this;
+        }
+
+        public Builder yaxis(final Axis value) {
+            this.yaxis = value;
+            return this;
+        }
+
+        public Builder barmode(final String value) {
+            this.barmode = value;
+            return this;
+        }
+
+        public Layout build() {
+            return new net.java.html.plotlyjs.Layout(this);
+        }
+    }
+
+    public static Layout.Builder builder() {
+        return new Layout.Builder();
+    }
+
+    private Layout(Builder builder) {
+        this.title = builder.title;
+        this.margin = builder.margin;
+        this.width = builder.width;
+        this.height = builder.height;
+        this.font = builder.font;
+        this.xaxis = builder.xaxis;
+        this.yaxis = builder.yaxis;
+        this.barmode = builder.barmode;
+    }
+    
+    
 }

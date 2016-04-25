@@ -43,25 +43,24 @@ import java.util.List;
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
+public class PolarTrace implements Trace {
     
-    public CartesianTrace(List<Number> x, List<Number> y){
-        this.x = x;
-        this.y = y;
-    }
+    List<Number> r;
+    List<Number> t;
     
-    public CartesianTrace(){
-        
+    PolarTrace(List<Number> r,List<Number> t){
+        this.r = r;
+        this.t = t;
     }
 
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
+    public void setR(List<Number> r) {
+        this.r = r;
     }
 
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
+    public void setT(List<Number> t) {
+        this.t = t;
     }
+    
+    
     
 }

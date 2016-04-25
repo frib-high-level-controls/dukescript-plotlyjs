@@ -37,31 +37,47 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
-    
-    public CartesianTrace(List<Number> x, List<Number> y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public CartesianTrace(){
-        
+public class Histogram2dMarker{
+    private final String color;
+    private final String colorsrc;
+
+    public static class Builder {
+
+        private String color;
+        private String colorsrc;
+
+        private Builder() {
+        }
+
+        public Builder color(final String value) {
+            this.color = value;
+            return this;
+        }
+
+        public Builder colorsrc(final String value) {
+            this.colorsrc = value;
+            return this;
+        }
+
+        public Histogram2dMarker build() {
+            return new net.java.html.plotlyjs.Histogram2dMarker(this);
+        }
+
     }
 
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
+    public static Histogram2dMarker.Builder builder() {
+        return new Histogram2dMarker.Builder();
     }
 
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
+    private Histogram2dMarker(Builder builder) {
+        this.color = builder.color;
+        this.colorsrc = builder.colorsrc;
     }
     
 }

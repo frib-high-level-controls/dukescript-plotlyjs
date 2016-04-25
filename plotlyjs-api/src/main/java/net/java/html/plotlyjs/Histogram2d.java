@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -38,64 +43,92 @@ import java.util.List;
 /**
  *
  * @author daykin
- * @param <T> an implementation of {@link Trace}
+ * @param <T> a type of Trace
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Histogram<T extends Value> extends Chart{
-
+public class Histogram2d <T extends Value> extends Chart {
     
-    private final String orientation;
+    private final Number zmax;
     private final Stream stream;
-    private final String text;
+    private final String zsrc;
+    private final String ysrc;
+    private final Number zmin;
     private final String hoverinfo;
+    private final String xsrc;
     private final Object visible;
+    private final Histogram2dMarker Marker;
+    private final ColorBar colorbar;
     private final Boolean showlegend;
+    private final AxisBin ybins;
     private final Axis xaxis;
-    private final Axis yaxis;
-    private final Number opacity;
+    private final Object zsmooth;
     private final String legendgroup;
+    private final Boolean autocolorscale;
     private final Integer nbinsx;
     private final Integer nbinsy;
     private final String histfunc;
+    private final AxisBin xbins;
+    private final Boolean showscale;
+    private final Boolean zauto;
     private final Boolean autobiny;
     private final Boolean autobinx;
     private final String name;
+    private final List colorscale;
+    private final Axis yaxis;
     private final String histnorm;
-    private final HistogramMarker marker;
-    private final ErrorBar error_x;
-    private final ErrorBar error_y;
-    private final AxisBin xbins;
-    private final AxisBin ybins;
+    private final Boolean reversescale;
+    private final List z;
 
     public static class Builder {
 
-        private String type = "histogram";
+        private final String type = "histogram2d";
         private List x;
         private List y;
-        private String orientation;
+        private Number zmax;
         private Stream stream;
-        private String text;
+        private String zsrc;
+        private String ysrc;
+        private Number zmin;
         private String hoverinfo;
+        private String xsrc;
         private Object visible;
+        private Histogram2dMarker Marker;
+        private ColorBar colorbar;
         private Boolean showlegend;
+        private AxisBin ybins;
         private Axis xaxis;
-        private Axis yaxis;
-        private Number opacity;
+        private Object zsmooth;
         private String legendgroup;
+        private Boolean autocolorscale;
         private Integer nbinsx;
         private Integer nbinsy;
         private String histfunc;
+        private AxisBin xbins;
+        private Boolean showscale;
+        private Boolean zauto;
         private Boolean autobiny;
         private Boolean autobinx;
         private String name;
+        private List colorscale;
+        private Axis yaxis;
         private String histnorm;
-        private HistogramMarker marker;
-        private ErrorBar error_x;
-        private ErrorBar error_y;
-        private AxisBin xbins;
-        private AxisBin ybins;
+        private Boolean reversescale;
+        private List z;
 
         public Builder() {
+        }
+        
+        public Builder data(final XYZTrace value){
+            this.x = value.x;
+            this.y = value.y;
+            this.z = value.z;
+            return this;
+        }
+        
+        public Builder data(final Value value){
+            this.x = value.x;
+            this.y = value.y;
+            return this;
         }
 
         public Builder x(final List value) {
@@ -107,16 +140,9 @@ public class Histogram<T extends Value> extends Chart{
             this.y = value;
             return this;
         }
-        
-        public Builder trace(final Value value){
-            this.x = value.x;
-            this.y = value.y;
-            return this;
-        }
-        
-        
-        public Builder orientation(final String value) {
-            this.orientation = value;
+
+        public Builder zmax(final Number value) {
+            this.zmax = value;
             return this;
         }
 
@@ -125,8 +151,18 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
-        public Builder text(final String value) {
-            this.text = value;
+        public Builder zsrc(final String value) {
+            this.zsrc = value;
+            return this;
+        }
+
+        public Builder ysrc(final String value) {
+            this.ysrc = value;
+            return this;
+        }
+
+        public Builder zmin(final Number value) {
+            this.zmin = value;
             return this;
         }
 
@@ -135,8 +171,23 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
+        public Builder xsrc(final String value) {
+            this.xsrc = value;
+            return this;
+        }
+
         public Builder visible(final Object value) {
             this.visible = value;
+            return this;
+        }
+
+        public Builder Marker(final Histogram2dMarker value) {
+            this.Marker = value;
+            return this;
+        }
+
+        public Builder colorbar(final ColorBar value) {
+            this.colorbar = value;
             return this;
         }
 
@@ -145,23 +196,28 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
+        public Builder ybins(final AxisBin value) {
+            this.ybins = value;
+            return this;
+        }
+
         public Builder xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
-        public Builder yaxis(final Axis value) {
-            this.yaxis = value;
-            return this;
-        }
-
-        public Builder opacity(final Number value) {
-            this.opacity = value;
+        public Builder zsmooth(final Object value) {
+            this.zsmooth = value;
             return this;
         }
 
         public Builder legendgroup(final String value) {
             this.legendgroup = value;
+            return this;
+        }
+
+        public Builder autocolorscale(final Boolean value) {
+            this.autocolorscale = value;
             return this;
         }
 
@@ -174,8 +230,24 @@ public class Histogram<T extends Value> extends Chart{
             this.nbinsy = value;
             return this;
         }
+
         public Builder histfunc(final String value) {
             this.histfunc = value;
+            return this;
+        }
+
+        public Builder xbins(final AxisBin value) {
+            this.xbins = value;
+            return this;
+        }
+
+        public Builder showscale(final Boolean value) {
+            this.showscale = value;
+            return this;
+        }
+
+        public Builder zauto(final Boolean value) {
+            this.zauto = value;
             return this;
         }
 
@@ -194,71 +266,75 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
+        public Builder colorscale(final List value) {
+            this.colorscale = value;
+            return this;
+        }
+
+        public Builder yaxis(final Axis value) {
+            this.yaxis = value;
+            return this;
+        }
+
         public Builder histnorm(final String value) {
             this.histnorm = value;
             return this;
         }
 
-        public Builder marker(final HistogramMarker value) {
-            this.marker = value;
+        public Builder reversescale(final Boolean value) {
+            this.reversescale = value;
             return this;
         }
 
-        public Builder error_x(final ErrorBar value) {
-            this.error_x = value;
+        public Builder z(final List value) {
+            this.z = value;
             return this;
         }
 
-        public Builder error_y(final ErrorBar value) {
-            this.error_y = value;
-            return this;
-        }
-
-        public Builder xbins(final AxisBin value) {
-            this.xbins = value;
-            return this;
-        }
-
-        public Builder ybins(final AxisBin value) {
-            this.ybins = value;
-            return this;
-        }
-
-        public Histogram build() {
-            return new net.java.html.plotlyjs.Histogram(this);
+        public Histogram2d build() {
+            return new net.java.html.plotlyjs.Histogram2d(this);
         }
     }
 
-    public static Histogram.Builder builder() {
-        return new Histogram.Builder();
+    public static Histogram2d.Builder builder() {
+        return new Histogram2d.Builder();
     }
 
-    private Histogram(Builder builder) {
+    private Histogram2d(Builder builder) {
         this.type = builder.type;
         this.x = builder.x;
         this.y = builder.y;
-        this.orientation = builder.orientation;
+        this.zmax = builder.zmax;
         this.stream = builder.stream;
-        this.text = builder.text;
+        this.zsrc = builder.zsrc;
+        this.ysrc = builder.ysrc;
+        this.zmin = builder.zmin;
         this.hoverinfo = builder.hoverinfo;
+        this.xsrc = builder.xsrc;
         this.visible = builder.visible;
+        this.Marker = builder.Marker;
+        this.colorbar = builder.colorbar;
         this.showlegend = builder.showlegend;
+        this.ybins = builder.ybins;
         this.xaxis = builder.xaxis;
-        this.yaxis = builder.yaxis;
-        this.opacity = builder.opacity;
+        this.zsmooth = builder.zsmooth;
         this.legendgroup = builder.legendgroup;
+        this.autocolorscale = builder.autocolorscale;
         this.nbinsx = builder.nbinsx;
         this.nbinsy = builder.nbinsy;
         this.histfunc = builder.histfunc;
+        this.xbins = builder.xbins;
+        this.showscale = builder.showscale;
+        this.zauto = builder.zauto;
         this.autobiny = builder.autobiny;
         this.autobinx = builder.autobinx;
         this.name = builder.name;
+        this.colorscale = builder.colorscale;
+        this.yaxis = builder.yaxis;
         this.histnorm = builder.histnorm;
-        this.marker = builder.marker;
-        this.error_x = builder.error_x;
-        this.error_y = builder.error_y;
-        this.xbins = builder.xbins;
-        this.ybins = builder.ybins;
+        this.reversescale = builder.reversescale;
+        this.z = builder.z;
     }
-
+    
+    
 }
