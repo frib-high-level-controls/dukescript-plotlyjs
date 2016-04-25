@@ -1,5 +1,7 @@
 ---
 language: java
+before_install:
+  - xhost +localhost &
 jdk:
     - oraclejdk8
     - oraclejdk7
