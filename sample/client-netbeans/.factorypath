@@ -1,0 +1,32 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html/1.2.3/net.java.html-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.json/1.2.3/net.java.html.json-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.sound/1.2.3/net.java.html.sound-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/ko4j/1.2.3/ko4j-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.boot/1.2.3/net.java.html.boot-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/html/net.java.html.boot.fx/1.2.3/net.java.html.boot.fx-1.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\Program Files\Java\jre1.8.0_73\lib\ext\jfxrt.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-netbeans-api-htmlui/RELEASE81/org-netbeans-api-htmlui-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html/RELEASE81/net-java-html-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-boot/RELEASE81/net-java-html-boot-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-boot-fx/RELEASE81/net-java-html-boot-fx-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-json/RELEASE81/net-java-html-json-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/org-netbeans-html-ko4j/RELEASE81/org-netbeans-html-ko4j-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-netbeans-libs-javafx/RELEASE81/org-netbeans-libs-javafx-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-modules/RELEASE81/org-openide-modules-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-awt/RELEASE81/org-openide-awt-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-netbeans-api-annotations-common/RELEASE81/org-netbeans-api-annotations-common-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-dialogs/RELEASE81/org-openide-dialogs-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-netbeans-api-progress/RELEASE81/org-netbeans-api-progress-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-netbeans-api-progress-nb/RELEASE81/org-netbeans-api-progress-nb-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-filesystems/RELEASE81/org-openide-filesystems-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-util-ui/RELEASE81/org-openide-util-ui-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-util/RELEASE81/org-openide-util-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-util-lookup/RELEASE81/org-openide-util-lookup-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-windows/RELEASE81/org-openide-windows-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/api/org-openide-nodes/RELEASE81/org-openide-nodes-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/asm-all-5.0.1/RELEASE81/asm-all-5.0.1-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-boot-script/RELEASE81/net-java-html-boot-script-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-geo/RELEASE81/net-java-html-geo-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/netbeans/external/net-java-html-sound/RELEASE81/net-java-html-sound-RELEASE81.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
