@@ -45,7 +45,7 @@ import java.util.List;
  */
 public class CartesianTrace extends Value implements Trace{
     
-    public CartesianTrace(List<Number> x, List<Number> y){
+    public CartesianTrace(List x, List y){
         this.x = x;
         this.y = y;
     }

@@ -41,6 +41,7 @@ import java.util.concurrent.Executors;
 import javafx.application.Platform;
 import net.java.html.boot.BrowserBuilder;
 import net.java.html.plotlyjs.Axis;
+import net.java.html.plotlyjs.Bar;
 import net.java.html.plotlyjs.CartesianTrace;
 import net.java.html.plotlyjs.Data;
 import net.java.html.plotlyjs.Heatmap;
@@ -167,6 +168,38 @@ public class ChartsTest implements Runnable {
 
                 Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
                 chart = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                return null;
+            }
+        });
+    }
+    @Test
+    public void barTest() throws Exception {
+        run(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                ArrayList<String> barX = new ArrayList<String>() {{
+                    add("giraffes");
+                    add("orangutans");
+                    add("monkeys");
+                }};
+                ArrayList<Number> bar0y = new ArrayList<Number>(){{
+                    add(20);
+                    add(14);
+                    add(23);
+                }};
+
+                ArrayList<Number> bar1y = new ArrayList<Number>(){{
+                    add(12);
+                    add(18);
+                    add(29);
+                }};
+
+                Bar bar0 = Bar.builder().x(barX).y(bar0y).name("SF Zoo").build();
+                Bar bar1 = Bar.builder().x(barX).y(bar1y).name("LA Zoo").build();
+
+                net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
+                Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
+                Plotly barSample = Plotly.newPlot("bar", barData, barLayout);
                 return null;
             }
         });
