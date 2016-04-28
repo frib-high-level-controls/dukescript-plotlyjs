@@ -172,6 +172,7 @@ public class ChartsTest implements Runnable {
             }
         });
     }
+    
     @Test
     public void barTest() throws Exception {
         run(new Callable<Void>() {
@@ -199,7 +200,9 @@ public class ChartsTest implements Runnable {
 
                 net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
                 Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
+                
                 Plotly barSample = Plotly.newPlot("bar", barData, barLayout);
+                //System.out.println("built bar chart with " + mapper.writeValueAsString(bar0));
                 return null;
             }
         });
@@ -230,34 +233,7 @@ public class ChartsTest implements Runnable {
             }
         });
     }
-    
-    @Test
-    public void basicHistogram() throws Exception {
-        run(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                List<Number> h0 = new ArrayList<>();
-                List<Number> h1 = new ArrayList<>();
-                Random randGen = new Random();
-                for (int i=0; i<10000; i++){
-                    h0.add(randGen.nextGaussian()*2);
-                    h1.add(randGen.nextGaussian()*2+2);
-                }        
-                HistogramMarker hist0Marker = HistogramMarker.builder().color("blue").build();
-                HistogramMarker hist1Marker = HistogramMarker.builder().color("red").build();
-                Histogram hist0 = Histogram.builder().trace(new CartesianTrace().x(h0)).nbinsx(100).opacity(0.7).marker(hist0Marker).build();
-                Histogram hist1 = Histogram.builder().trace(new CartesianTrace().x(h1)).nbinsx(100).opacity(0.7).marker(hist1Marker).build();
-                net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(hist0,hist1);
-                Layout layout = new Layout.Builder().title("Histogram")
-                    .barmode("overlay")
-                    .width(480).height(400)
-                    .xaxis(new Axis.Builder().dtick(10).nticks(10).build())
-                    .build();
-                chart = Plotly.newPlot("histogram", data, layout);
-                return null;
-            }
-        });
-    }
+
     
     @Test
     public void redrawTest()throws Exception{
@@ -347,7 +323,7 @@ public class ChartsTest implements Runnable {
             }
         });
     }
-    
+   
     @Test
     public void addTracesTest()throws Exception{
         run(new Callable<Void>(){
