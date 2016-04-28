@@ -58,7 +58,7 @@
     
     <modules>
         <module>plotlyjs-api</module>
-        <module>../../NetBeansProjects/PlotlySample</module>
+        <module>PlotlySample</module>
     </modules>
     
     <distributionManagement>
