@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.glass.ui.Window;
 import java.io.Closeable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -42,7 +43,10 @@ import javafx.application.Platform;
 import net.java.html.boot.BrowserBuilder;
 import net.java.html.plotlyjs.Axis;
 import net.java.html.plotlyjs.Bar;
+import net.java.html.plotlyjs.Box;
+import net.java.html.plotlyjs.BoxMarker;
 import net.java.html.plotlyjs.CartesianTrace;
+import net.java.html.plotlyjs.Chart;
 import net.java.html.plotlyjs.Data;
 import net.java.html.plotlyjs.Heatmap;
 import net.java.html.plotlyjs.Histogram;
@@ -203,6 +207,63 @@ public class ChartsTest implements Runnable {
                 
                 Plotly barSample = Plotly.newPlot("bar", barData, barLayout);
                 //System.out.println("built bar chart with " + mapper.writeValueAsString(bar0));
+                return null;
+            }
+        });
+    }
+    
+    @Test
+    public void boxTest() throws Exception {
+        run(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                String[] yArray = {"day 1", "day 1", "day 1", "day 1", "day 1", "day 1", "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"};
+                Double[] kaleX = {0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3};
+                Double[] radishX = {0.6, 0.7, 0.3, 0.6, 0.0, 0.5, 0.7, 0.9, 0.5, 0.8, 0.7, 0.2};
+                Double[] carrotX = {0.1, 0.3, 0.1, 0.9, 0.6, 0.6, 0.9, 1.0, 0.3, 0.6, 0.8, 0.5};
+                List<String> y = Arrays.asList(yArray);
+                List<Double> kalex = Arrays.asList(kaleX);
+                List<Double> radishx = Arrays.asList(radishX);
+                List<Double> carrotx = Arrays.asList(carrotX);
+
+
+                Box trace1 = Box.builder().x(kalex)
+                        .y(y)
+                        .name("kale")
+                        .marker(BoxMarker.builder().color("3D9970").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                Box trace2 = Box.builder()
+                        .x(radishx)
+                        .y(y)
+                        .name("radishes")
+                        .marker(BoxMarker.builder().color("#FF4136").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                Box trace3 = Box.builder()
+                        .x(carrotx)
+                        .y(y)
+                        .name("carrots")
+                        .marker(BoxMarker.builder().color("#FF851B").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                net.java.html.plotlyjs.Data<Box> boxdata = new net.java.html.plotlyjs.Data<>(trace1,trace2,trace3);
+
+                Layout boxlayout = Layout.builder()
+                        .title("Grouped Horizontal Box Plot")
+                        .xaxis(Axis.builder().title("normalized moisture")
+                        .zeroline(false)
+                        .build())
+                        .boxmode("group")
+                        .build();
+
+                Plotly boxPlot = Plotly.newPlot("boxTest", boxdata, boxlayout);
                 return null;
             }
         });

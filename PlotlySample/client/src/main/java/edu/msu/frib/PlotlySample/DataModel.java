@@ -1,13 +1,20 @@
 package edu.msu.frib.PlotlySample;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.java.html.json.Model;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import net.java.html.plotlyjs.Axis;
 import net.java.html.plotlyjs.Bar;
+import net.java.html.plotlyjs.Box;
+import net.java.html.plotlyjs.BoxMarker;
 import net.java.html.plotlyjs.CartesianTrace;
+import net.java.html.plotlyjs.Chart;
 import net.java.html.plotlyjs.Heatmap;
 import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
@@ -82,7 +89,7 @@ final class DataModel {
         TimeTrace timetrace0 = new TimeTrace(tt,ty);
         Scatter timescatter = Scatter.builder().data(timetrace0).build();
         net.java.html.plotlyjs.Data timedata = new net.java.html.plotlyjs.Data(timescatter);
-        Layout timelayout = new Layout.Builder().title("Histogram")
+        Layout timelayout = new Layout.Builder().title("Scatter with time axis")
                 .width(480).height(400)
                 .xaxis(new Axis.Builder().type("date").build())
                 .build();
@@ -143,6 +150,57 @@ final class DataModel {
         net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
         Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
         Plotly barSample = Plotly.newPlot("barSample", barData, barLayout);
+        
+        // Box plot
+        String[] yArray = {"day 1", "day 1", "day 1", "day 1", "day 1", "day 1", "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"};
+        Double[] kaleX = {0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3};
+        Double[] radishX = {0.6, 0.7, 0.3, 0.6, 0.0, 0.5, 0.7, 0.9, 0.5, 0.8, 0.7, 0.2};
+        Double[] carrotX = {0.1, 0.3, 0.1, 0.9, 0.6, 0.6, 0.9, 1.0, 0.3, 0.6, 0.8, 0.5};
+        List<String> y = Arrays.asList(yArray);
+        List<Double> kalex = Arrays.asList(kaleX);
+        List<Double> radishx = Arrays.asList(radishX);
+        List<Double> carrotx = Arrays.asList(carrotX);
+        
+        
+        Box trace1 = Box.builder().x(kalex)
+                .y(y)
+                .name("kale")
+                .marker(BoxMarker.builder().color("3D9970").build())
+                .boxmean(false)
+                .orientation(Chart.Orientations.HORIZONTAL)
+                .build();
+        
+        Box trace2 = Box.builder()
+                .x(radishx)
+                .y(y)
+                .name("radishes")
+                .marker(BoxMarker.builder().color("#FF4136").build())
+                .boxmean(false)
+                .orientation(Chart.Orientations.HORIZONTAL)
+                .build();
+        
+        Box trace3 = Box.builder()
+                .x(carrotx)
+                .y(y)
+                .name("carrots")
+                .marker(BoxMarker.builder().color("#FF851B").build())
+                .boxmean(false)
+                .orientation(Chart.Orientations.HORIZONTAL)
+                .build();
+        
+        net.java.html.plotlyjs.Data<Box> boxdata = new net.java.html.plotlyjs.Data<>(trace1,trace2,trace3);
+        
+        Layout boxlayout = Layout.builder()
+                .title("Grouped Horizontal Box Plot")
+                .xaxis(Axis.builder().title("normalized moisture")
+                .zeroline(false)
+                .build())
+                .boxmode("group")
+                .build();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
+        System.out.println(mapper.writeValueAsString(boxdata));
+        Plotly boxPlot = Plotly.newPlot("box", boxdata, boxlayout);
         
         
     }
