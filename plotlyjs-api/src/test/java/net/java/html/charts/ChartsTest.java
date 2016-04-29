@@ -120,7 +120,8 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                chart = Plotly.newPlot("scatter", data, new Layout.Builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
+                
                 return null;
             }
         });
@@ -144,7 +145,8 @@ public class ChartsTest implements Runnable {
             Histogram2d hist = new Histogram2d.Builder().data(hist2dTrace).nbinsx(50).nbinsy(50).build();
             net.java.html.plotlyjs.Data hist2dData = new net.java.html.plotlyjs.Data(hist);
             Layout h2dLayout = new Layout.Builder().title("2D Histogram").width(480).height(400).build();
-            chart = Plotly.newPlot("histogram2d", hist2dData, h2dLayout);
+            chart = Plotly.newPlot("chart", hist2dData, h2dLayout);
+            
             return null;
             }
         });
@@ -171,7 +173,8 @@ public class ChartsTest implements Runnable {
                 Heatmap heat = new Heatmap.Builder().x(xheat).y(yheat).z(zheat).build();
 
                 Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
-                chart = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                chart = Plotly.newPlot("chart",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                
                 return null;
             }
         });
@@ -205,8 +208,8 @@ public class ChartsTest implements Runnable {
                 net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
                 Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
                 
-                Plotly barSample = Plotly.newPlot("bar", barData, barLayout);
-                //System.out.println("built bar chart with " + mapper.writeValueAsString(bar0));
+                chart = Plotly.newPlot("chart", barData, barLayout);
+                
                 return null;
             }
         });
@@ -263,7 +266,8 @@ public class ChartsTest implements Runnable {
                         .boxmode("group")
                         .build();
 
-                Plotly boxPlot = Plotly.newPlot("boxTest", boxdata, boxlayout);
+                chart = Plotly.newPlot("chart", boxdata, boxlayout);
+                
                 return null;
             }
         });
@@ -288,7 +292,7 @@ public class ChartsTest implements Runnable {
                         .width(480).height(400)
                         .xaxis(Axis.builder().type("date").build())
                         .build();
-                chart = Plotly.newPlot("timeScatter", timedata, timelayout);
+                chart = Plotly.newPlot("chart", timedata, timelayout);
                 
             return null;
             }
@@ -312,15 +316,16 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("redrawTest", data, new Layout.Builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 Scatter replacement = Scatter.builder().data(trace)
                         .marker(new ScatterMarker.Builder().opacity(0.7).build())
                         .build();
                 data.updateTrace(0, replacement);
-                testChart.redraw();
-                JSObject plotdata = (JSObject)testChart.getPlot();
+                chart.redraw();
+                JSObject plotdata = (JSObject)chart.getPlot();
                 double newOpacity = (Double)plotdata.eval("this.data[0].marker.opacity");
                 assertEquals(newOpacity, 0.7); //make sure we have the right redraw data
+                
                 return null;
             }
         });
@@ -341,18 +346,19 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("restyleTest", data, new Layout.Builder().title("chart").build());
+                net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(sctr);
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 ScatterMarker restyle = ScatterMarker.builder().opacity(0.5).build();    
                 Scatter replacement = Scatter.builder().data(trace)
                             .marker(restyle)
                             .build();
                 data.updateTrace(0, replacement);
                 String strUpdate = mapper.writeValueAsString(restyle);
-                testChart.restyle(strUpdate,0);
-                JSObject plotdata = (JSObject)testChart.getPlot();
+                chart.restyle(strUpdate,0);
+                JSObject plotdata = (JSObject)chart.getPlot();
                 double newOpacity = (Double)plotdata.eval("this.data[0].opacity");
                 assertEquals(newOpacity, 0.5); //make sure we have the right restyle data
+                
                 return null;
             }
         });
@@ -374,12 +380,13 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("relayoutTest", data, Layout.builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, Layout.builder().title("chart").build());
                 Layout newLayout = Layout.builder().title("newTitle").build();
-                testChart.relayout(newLayout);
-                JSObject rawData = (JSObject)testChart.getPlot();
+                chart.relayout(newLayout);
+                JSObject rawData = (JSObject)chart.getPlot();
                 String newTitle = (String)rawData.eval("this.layout.title");
-                assertEquals(newTitle,"newTitle","title change worked");
+                assertEquals(newTitle,"newTitle","title change");
+                
                 return null;
             }
         });
@@ -406,11 +413,12 @@ public class ChartsTest implements Runnable {
                         new net.java.html.plotlyjs.Data<>(Scatter.builder()
                                 .data(scatterTrace0)
                                 .build());
-                Plotly scatter = Plotly.newPlot("addTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.addTraces(Scatter.builder().data(scatterTrace1).build());
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.addTraces(Scatter.builder().data(scatterTrace1).build());
+                JSObject rawData = (JSObject)chart.getPlot();
                 int numTraces = (Integer)rawData.eval("this.data.length");
                 assertEquals(numTraces, 2);
+                
                 return null;
             }
         });
@@ -438,11 +446,12 @@ public class ChartsTest implements Runnable {
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());
-                Plotly scatter = Plotly.newPlot("moveTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.moveTraces(0);
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.moveTraces(0);
+                JSObject rawData = (JSObject)chart.getPlot();
                 int zeroth = (Integer)rawData.eval("this.data[0].y[0]");
                 assertEquals(zeroth,10);
+                
                 return null;
             }
         });
@@ -470,12 +479,13 @@ public class ChartsTest implements Runnable {
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());
-                Plotly scatter = Plotly.newPlot("deleteTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.deleteTraces(0);
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.deleteTraces(0);
+                JSObject rawData = (JSObject)chart.getPlot();
                 int length = (Integer)rawData.eval("this.data.length");
                 assertEquals(length,1);
                 assertEquals(scatterData.getTraces().size(),1);
+                
                 return null;
             }
         });
@@ -489,6 +499,7 @@ public class ChartsTest implements Runnable {
                 @Override
                 public Void call() throws Exception {
                     chart = null;
+                    
                     return null;
                 }
             });
