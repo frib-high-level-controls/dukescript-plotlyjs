@@ -15,11 +15,14 @@ import net.java.html.plotlyjs.Box;
 import net.java.html.plotlyjs.BoxMarker;
 import net.java.html.plotlyjs.CartesianTrace;
 import net.java.html.plotlyjs.Chart;
+import net.java.html.plotlyjs.Contour;
 import net.java.html.plotlyjs.Heatmap;
 import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
 import net.java.html.plotlyjs.HistogramMarker;
 import net.java.html.plotlyjs.Layout;
+import net.java.html.plotlyjs.Listeners;
+import net.java.html.plotlyjs.Pie;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
 import net.java.html.plotlyjs.TimeTrace;
@@ -31,6 +34,7 @@ final class DataModel {
     /**
      * Called when the page is ready.
      */
+    
     static void onPageLoad() throws Exception {
         ui = new Data();
         ui.applyBindings();
@@ -45,6 +49,7 @@ final class DataModel {
             scatter0y.add(Math.sin(i));
             scatter1y.add(-1*Math.sin(i));
         }
+        
         CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
         CartesianTrace scatterTrace1 = new CartesianTrace(scatter1x,scatter1y);
         net.java.html.plotlyjs.Data scatterData = 
@@ -53,7 +58,9 @@ final class DataModel {
                         Scatter.builder()
                                 .data(scatterTrace1)
                                 .build());
+        Listeners testlistener = new Listeners();
         Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter").width(480).height(400).build());
+        //scatter.addClickListener(testlistener);
         scatter.moveTraces(0);
         scatter.redraw();
         
@@ -89,7 +96,7 @@ final class DataModel {
         TimeTrace timetrace0 = new TimeTrace(tt,ty);
         Scatter timescatter = Scatter.builder().data(timetrace0).build();
         net.java.html.plotlyjs.Data timedata = new net.java.html.plotlyjs.Data(timescatter);
-        Layout timelayout = new Layout.Builder().title("Scatter with time axis")
+        Layout timelayout = new Layout.Builder().title("Time series")
                 .width(480).height(400)
                 .xaxis(new Axis.Builder().type("date").build())
                 .build();
@@ -199,9 +206,68 @@ final class DataModel {
                 .build();
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
-        System.out.println(mapper.writeValueAsString(boxdata));
         Plotly boxPlot = Plotly.newPlot("box", boxdata, boxlayout);
         
+        ArrayList<Integer> values = new ArrayList<Integer>(){{
+            add(19);
+            add(26);
+            add(55);
+        }};
+        ArrayList<String> labels = new ArrayList<String>(){{
+                add("Residential");
+                add("Commercial");
+                add("Utility");
+        }};
+        Pie pie = Pie.builder().values(values).labels(labels).build();
+        net.java.html.plotlyjs.Data<Pie> pieData = new net.java.html.plotlyjs.Data<>(pie);
+        Layout pieLayout = Layout.builder().title("Pie Chart").height(400).width(500).build();
+        Plotly pieChart = Plotly.newPlot("pie", pieData, pieLayout);
         
+        //contour
+        List <List> contourZ = new ArrayList<>();
+        ArrayList<Double> cz1 = new ArrayList(){{
+            add(10);
+            add(10.625);
+            add(12.5);
+            add(15.625);
+            add(20);
+        }};
+        ArrayList<Double> cz2 = new ArrayList(){{
+            add(5.625);
+            add(6.25);
+            add(8.125);
+            add(11.25);
+            add(15.625);
+        }};
+        ArrayList<Double> cz3 = new ArrayList(){{
+            add(2.5);
+            add(3.125);
+            add(5);
+            add(8.125);
+            add(12.5);
+        }};
+        ArrayList<Double> cz4 = new ArrayList(){{
+            add(0.625);
+            add(1.25);
+            add(3.125);
+            add(6.25);
+            add(10.625);
+        }};
+        ArrayList<Double> cz5 = new ArrayList(){{
+            add(0);
+            add(0.625);
+            add(2.5);
+            add(5.625);
+            add(10);
+        }};
+        
+        contourZ.add(cz1);
+        contourZ.add(cz2);
+        contourZ.add(cz3);
+        contourZ.add(cz4);
+        contourZ.add(cz5);
+        Contour contour = Contour.builder().z(contourZ).build();
+        net.java.html.plotlyjs.Data<Contour> contourData = new net.java.html.plotlyjs.Data(contour);
+        Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
     }
 }

@@ -39,10 +39,10 @@ import java.util.List;
  *
  * @author daykin
  * @param <T> an implementation of {@link Trace}
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram<T extends Value> extends Chart{
-
     
     private final String orientation;
     private final Stream stream;

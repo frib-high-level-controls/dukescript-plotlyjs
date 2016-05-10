@@ -41,9 +41,16 @@ import java.util.List;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Bar extends Chart{
+    /*
+        Y magnitude direction-horizontal or vertical
+    */
     private final String orientation;
     private final Stream stream;
     private final String text;
+    /*
+        On hover, what info to show; if
+        Unspecified, the chart will show all data at that point.
+    */
     private final String hoverinfo;
     private final Object xsrc;
     private final Object visible;

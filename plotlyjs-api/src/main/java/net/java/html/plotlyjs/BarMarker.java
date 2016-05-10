@@ -51,6 +51,10 @@ public class BarMarker extends Marker{
         private Map<Integer,String> colorscale;
         private String color;
         private Boolean reversescale;
+        /*
+            Unspecified marker.color will cause this to not have any effect.
+            Plot will be colored according to computed color domain
+        */
         private Boolean cauto;
         private ColorBar colorbar;
         private Line line;

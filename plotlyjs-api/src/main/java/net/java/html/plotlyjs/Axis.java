@@ -55,9 +55,9 @@ public class Axis {
         private final String showticksuffix;
         private final Font titlefont;
         private final String linecolor;
-        private Object mirror;
+        private final Object mirror;
         private final Integer nticks;
-        private Number linewidth;
+        private final Number linewidth;
         private final Object autorange;
         private final String tickprefix;
         private final Number position;
@@ -93,7 +93,9 @@ public class Axis {
         private final String anchor;
         private final String exponentformat;
     
-        
+    /*
+        Number of exponents to show
+    */    
     static final class ShowModes{
         public static final String ALL = "all";
         public static final String FIRST = "first";
@@ -101,6 +103,9 @@ public class Axis {
         public static final String NONE = "none";
     }
     
+    /*
+        Enumerate options for mirroring to other side of chart
+    */
     static final class MirrorModes{
         public static final Boolean TRUE = true;
         public static final String TICKS = "ticks";
@@ -109,24 +114,38 @@ public class Axis {
         public static final String ALLTICKS = "allticks";
     }
     
+    /*
+        Very easy way to set the range of an axis
+    */
     static final class AutoRangeModes{
         public static final Boolean TRUE = true;
         public static final Boolean FALSE = false;
         public static final String REVERSED = "reversed";
     }
     
+    /*
+        Enumerate whether ticks are automatic, linear, or set according to a
+        Respective array(in turn)
+    */
     static final class TickModes{
         public static final String AUTO = "auto";
         public static final String LINEAR = "linear";
         public static final String ARRAY = "array";
     }
     
+    /*
+        Get whether or not ticks are to be drawn, and if so, where relative to axis lines
+    */
     static final class Ticks{
         public static final String OUTSIDE = "outside";
         public static final String INSIDE = "inside";
         public static final String NONE = "";
     }
     
+    /*
+        Out to extrema of input data, force extend to zero, or force
+        Non-negative
+    */
     static final class RangeMode{
         public static final String NORMAL = "normal";
         public static final String TOZERO = "tozero";
@@ -134,6 +153,9 @@ public class Axis {
         
     }
     
+    /*
+        No type specified/dash -> infer scale from data, or force linear/log/date/category scaling  
+    */
     static final class Types{
         public static final String INFER = "-";
         public static final String LINEAR = "linear";
@@ -142,6 +164,9 @@ public class Axis {
         public static final String CATEGORY = "category";
     }
     
+    /*
+        All sides as defined in js documentation; used for borders, positioning, etc.
+    */
     static final class Sides {
         public static final String TOP = "top";
         public static final String BOTTOM = "bottom";

@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
+ * This software is Copyright by the Board of Trustees of Michigan
+ * State University (c) Copyright 2016.
  * Contact Information:
- * Facility for Rare Isotope Beams
+ * Facility for Rare Isotope Beam
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
@@ -44,52 +37,50 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  *
  * @author daykin
  */
-@JsonInclude(Include.NON_NULL)
-/*
-    Give custom ranges for histogram ranges, will be interpolated if unspecified
-*/
-public class AxisBin {
-   private final Number start;
-   private final Number end;
-   private final Number size;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PieMarker {
+    public final List colors;
+    public final Line line;
+    public final Object colorssrc;
 
     public static class Builder {
 
-        private Number start;
-        private Number end;
-        private Number size;
+        private List colors;
+        private Line line;
+        private Object colorssrc;
 
         private Builder() {
         }
 
-        public Builder start(final Number value) {
-            this.start = value;
+        public Builder colors(final List value) {
+            this.colors = value;
             return this;
         }
 
-        public Builder end(final Number value) {
-            this.end = value;
+        public Builder line(final Line value) {
+            this.line = value;
             return this;
         }
 
-        public Builder size(final Number value) {
-            this.size = value;
+        public Builder colorssrc(final Object value) {
+            this.colorssrc = value;
             return this;
         }
 
-        public AxisBin build() {
-            return new net.java.html.plotlyjs.AxisBin(this);
+        public PieMarker build() {
+            return new net.java.html.plotlyjs.PieMarker(this);
         }
     }
 
-    public static AxisBin.Builder builder() {
-        return new AxisBin.Builder();
+    public static PieMarker.Builder builder() {
+        return new PieMarker.Builder();
     }
 
-    private AxisBin(Builder builder) {
-        this.start = builder.start;
-        this.end = builder.end;
-        this.size = builder.size;
+    private PieMarker(Builder builder) {
+        this.colors = builder.colors;
+        this.line = builder.line;
+        this.colorssrc = builder.colorssrc;
     }
-   
 }

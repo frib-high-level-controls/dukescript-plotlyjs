@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import javafx.application.Platform;
@@ -49,9 +50,7 @@ import net.java.html.plotlyjs.CartesianTrace;
 import net.java.html.plotlyjs.Chart;
 import net.java.html.plotlyjs.Data;
 import net.java.html.plotlyjs.Heatmap;
-import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
-import net.java.html.plotlyjs.HistogramMarker;
 import net.java.html.plotlyjs.Layout;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
@@ -190,6 +189,7 @@ public class ChartsTest implements Runnable {
                     add("orangutans");
                     add("monkeys");
                 }};
+                
                 ArrayList<Number> bar0y = new ArrayList<Number>(){{
                     add(20);
                     add(14);
@@ -336,11 +336,11 @@ public class ChartsTest implements Runnable {
         run(new Callable<Void>(){
             @Override
             public Void call() throws Exception{
-                List<Number> x = new ArrayList<>();
+                List<Number> x = new CopyOnWriteArrayList<>();
                 for (int i=0; i<10; i++){
                     x.add(i);
                 }
-                List<Number> y = new ArrayList<>();
+                List<Number> y = new CopyOnWriteArrayList<>();
                 for (int i=0; i<10; i++){
                     y.add(i);
                 }
