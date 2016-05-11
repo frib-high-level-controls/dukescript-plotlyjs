@@ -15,17 +15,21 @@ import net.java.html.plotlyjs.Box;
 import net.java.html.plotlyjs.BoxMarker;
 import net.java.html.plotlyjs.CartesianTrace;
 import net.java.html.plotlyjs.Chart;
+import net.java.html.plotlyjs.ChartListener;
+import net.java.html.plotlyjs.ClickEvent;
 import net.java.html.plotlyjs.Contour;
 import net.java.html.plotlyjs.Heatmap;
 import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
 import net.java.html.plotlyjs.HistogramMarker;
+import net.java.html.plotlyjs.HoverEvent;
 import net.java.html.plotlyjs.Layout;
-import net.java.html.plotlyjs.Listeners;
 import net.java.html.plotlyjs.Pie;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
 import net.java.html.plotlyjs.TimeTrace;
+import net.java.html.plotlyjs.ZoomEvent;
+import netscape.javascript.JSObject;
 
 @Model(className = "Data", targetId="", properties = {
 })
@@ -36,31 +40,26 @@ final class DataModel {
      */
     
     static void onPageLoad() throws Exception {
+
         ui = new Data();
         ui.applyBindings();
 
         List<Number> scatter0x = new ArrayList<>();
-        List<Number> scatter1x = new ArrayList<>();
         List<Number> scatter0y = new ArrayList<>();
-        List<Number> scatter1y = new ArrayList<>();
+
         for(double i = 0;i<4*Math.PI;i+=.05){
             scatter0x.add(i);
-            scatter1x.add(i);
             scatter0y.add(Math.sin(i));
-            scatter1y.add(-1*Math.sin(i));
         }
         
         CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
-        CartesianTrace scatterTrace1 = new CartesianTrace(scatter1x,scatter1y);
+
         net.java.html.plotlyjs.Data scatterData = 
                 new net.java.html.plotlyjs.Data<>(Scatter.builder()
-                        .data(scatterTrace0).build(),
-                        Scatter.builder()
-                                .data(scatterTrace1)
-                                .build());
-        Listeners testlistener = new Listeners();
-        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter").width(480).height(400).build());
-        //scatter.addClickListener(testlistener);
+                        .data(scatterTrace0).build());
+        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
+        ExampleListener exList = new ExampleListener(scatter);
+        scatter.addClickListener(exList);
         scatter.moveTraces(0);
         scatter.redraw();
         
@@ -269,5 +268,39 @@ final class DataModel {
         Contour contour = Contour.builder().z(contourZ).build();
         net.java.html.plotlyjs.Data<Contour> contourData = new net.java.html.plotlyjs.Data(contour);
         Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
+
+    }
+    
+    private static class ExampleListener implements ChartListener{
+        private final Plotly <? extends Chart> chart;
+        
+        public ExampleListener(Plotly <? extends Chart> chart){
+            this.chart = chart;
+        }
+
+        @Override
+        public void plotly_click(ClickEvent ev) {
+              JSObject plotObj = (JSObject)ev.info;
+              Object plotdata = ((JSObject)plotObj).eval("this.points");
+              Object pt = ((JSObject)plotdata).getSlot(0);
+              StringBuilder sb = new StringBuilder();
+              System.out.println(sb.append("Nearest point to cursor: (")
+              .append(((JSObject)pt).eval("this.x.toPrecision(2)"))
+                      .append(", ")
+                      .append(((JSObject)pt).eval("this.y.toPrecision(2)"))
+                      .append(")")
+              .toString());    
+        }
+
+        @Override
+        public void plotly_hover(HoverEvent ev) {
+            System.out.println("something got hovered!");
+        }
+
+        @Override
+        public void plotly_zoom(ZoomEvent ev) {
+            System.out.println("something got zoomed!");
+        }
+        
     }
 }

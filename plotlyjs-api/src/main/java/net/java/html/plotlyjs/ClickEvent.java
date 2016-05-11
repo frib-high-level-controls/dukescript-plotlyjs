@@ -1,5 +1,7 @@
 package net.java.html.plotlyjs;
 
+import netscape.javascript.JSObject;
+
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan
@@ -39,8 +41,9 @@ package net.java.html.plotlyjs;
  */
 public final class ClickEvent extends ChartEvent{
 
-    public ClickEvent(Plotly source, Object shift, Object ctrl, Object[] info) {
+    public ClickEvent(Plotly source, Object shift, Object ctrl, Object info) {
         super(source, shift, ctrl, info);
+        //other click related stuff
     }
     
     public String getLabel(){

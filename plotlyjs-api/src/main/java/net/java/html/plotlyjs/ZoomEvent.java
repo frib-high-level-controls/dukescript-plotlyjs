@@ -1,5 +1,7 @@
 package net.java.html.plotlyjs;
 
+import netscape.javascript.JSObject;
+
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -38,7 +40,7 @@ package net.java.html.plotlyjs;
  */
 public class ZoomEvent extends ChartEvent {
 
-    public ZoomEvent(Plotly source, Object shift, Object ctrl, Object[] info) {
+    public ZoomEvent(Plotly source, Object shift, Object ctrl, JSObject info) {
         super(source, shift, ctrl, info);
     }
     

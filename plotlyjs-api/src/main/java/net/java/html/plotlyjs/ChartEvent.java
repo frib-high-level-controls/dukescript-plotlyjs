@@ -40,11 +40,11 @@ package net.java.html.plotlyjs;
 import java.util.EventObject;
 
 public abstract class ChartEvent extends EventObject {
-    protected final Boolean ctrl;
-    protected final Boolean shift;
-    protected final Object[] info;
+    public final Boolean ctrl;
+    public final Boolean shift;
+    public final Object info;
     
-    ChartEvent(Plotly source, Object shift, Object ctrl, Object[] info){
+    ChartEvent(Plotly source, Object shift, Object ctrl, Object info){
         super(source);
         this.ctrl = Boolean.TRUE.equals(ctrl);
         this.shift = Boolean.TRUE.equals(shift);
