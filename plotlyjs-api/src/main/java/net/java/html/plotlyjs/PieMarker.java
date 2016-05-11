@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
+ * This software is Copyright by the Board of Trustees of Michigan
+ * State University (c) Copyright 2016.
  * Contact Information:
- * Facility for Rare Isotope Beams
+ * Facility for Rare Isotope Beam
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
@@ -37,31 +33,54 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
-    
-    public CartesianTrace(List x, List y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public CartesianTrace(){
-        
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PieMarker {
+    public final List colors;
+    public final Line line;
+    public final Object colorssrc;
+
+    public static class Builder {
+
+        private List colors;
+        private Line line;
+        private Object colorssrc;
+
+        private Builder() {
+        }
+
+        public Builder colors(final List value) {
+            this.colors = value;
+            return this;
+        }
+
+        public Builder line(final Line value) {
+            this.line = value;
+            return this;
+        }
+
+        public Builder colorssrc(final Object value) {
+            this.colorssrc = value;
+            return this;
+        }
+
+        public PieMarker build() {
+            return new net.java.html.plotlyjs.PieMarker(this);
+        }
     }
 
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
+    public static PieMarker.Builder builder() {
+        return new PieMarker.Builder();
     }
 
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
+    private PieMarker(Builder builder) {
+        this.colors = builder.colors;
+        this.line = builder.line;
+        this.colorssrc = builder.colorssrc;
     }
-    
 }

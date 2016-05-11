@@ -40,6 +40,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 import net.java.html.js.JavaScriptBody;
 import net.java.html.js.JavaScriptResource;
 import netscape.javascript.JSObject;
@@ -53,12 +54,15 @@ public final class Plotly <T extends Chart>{
     private final Data<T> data;
     private final Layout layout;
     private final Config config;
+    private ArrayList<ChartListener> clickListeners = new ArrayList<>();
+    private ArrayList<ChartListener> hoverListeners = new ArrayList<>();
+    private ArrayList<ChartListener> zoomListeners = new ArrayList<>();
+    private Boolean clickListenersEnabled = false;
+    private Boolean hoverListenersEnabled = false;
+    private Boolean zoomListenersEnabled = false;
     
     private Plotly(String id, Data<T> data, Layout layout){
-        Plotly.id = id;
-        this.data = data;
-        this.layout = layout;
-        this.config = new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build();
+        this(id,data,layout,new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build());
     }
     
     private Plotly(String id, Data<T> data, Layout layout, Config config){
@@ -66,6 +70,7 @@ public final class Plotly <T extends Chart>{
         this.data = data;
         this.layout = layout;
         this.config = config;
+        
     }
     
     public static Plotly<?>newPlot(String id, Data<?> data, Layout layout, Config config)throws PlotlyException{
@@ -76,6 +81,7 @@ public final class Plotly <T extends Chart>{
             jsNewPlot(id,strdata,strlayout);
             System.out.println(strdata);
             return new Plotly<>(id, data, layout, config);
+            
         } catch (JsonProcessingException e) {
             throw new PlotlyException(e);
         }
@@ -98,6 +104,70 @@ public final class Plotly <T extends Chart>{
             throw new PlotlyException(e);
         }
     }
+    
+    public void addClickListener(ChartListener l){
+        this.clickListeners.add(l);
+        if(!(this.hasClickListenersEnabled())){
+           this.clickListenersEnabled = true;
+            jsEnableClickEvents(id, this);
+        }
+    }
+    
+    public void addHoverListener(ChartListener l){
+        this.hoverListeners.add(l);
+        if(!(hasHoverListenersEnabled())){
+            this.hoverListenersEnabled = true;
+            jsEnableHoverEvents(id,this);
+        }
+    }
+    
+    public void addZoomListener(ChartListener l){
+        this.zoomListeners.add(l);
+        if(!(hasZoomListenersEnabled())){
+            this.zoomListenersEnabled = true;
+            jsEnableZoomEvents(id, this);
+        }
+    }
+
+    public void removeClickListener(ChartListener l){
+        this.clickListeners.remove(l);
+    }
+    
+    public void removeHoverListener(ChartListener l){
+        this.hoverListeners.remove(l);
+    }
+    
+    public void removeZoomListener(ChartListener l){
+        this.zoomListeners.remove(l);
+    }
+    
+    public void notifyClickListeners(JSObject jsobj){
+        ClickEvent event = new ClickEvent(this,false,false,jsobj);
+        for (ChartListener l: clickListeners){
+            l.plotly_click(event);
+        }
+    }
+    
+    public void notifyHoverListeners(JSObject obj){
+        throw new UnsupportedOperationException();
+    }
+    
+    public void notifyZoomListeners(JSObject obj){
+        throw new UnsupportedOperationException();
+    }
+    
+    private Boolean hasClickListenersEnabled(){
+        return this.clickListenersEnabled;
+    }
+    
+    private Boolean hasHoverListenersEnabled(){
+        return this.hoverListeners.size()>1;
+    }
+    
+    private Boolean hasZoomListenersEnabled(){
+        return this.zoomListeners.size()>1;
+    }
+    
     /**Restyle the trace array
      * @param data a <code>Data</code> object containing the restyle parameters
      * @param indices the indices in the trace array to apply the new style
@@ -193,6 +263,10 @@ public final class Plotly <T extends Chart>{
         return jsGetPlot(id);
     }
     
+    public String getId(){
+        return id;
+    }
+    
     @JavaScriptBody(args={"elementId","update","indices"}, body = ""
             + "Plotly.restyle(document.getElementById(elementId), JSON.parse(update), indices);")
     private static native void jsRestyle(String elementId, String update, int... indices);
@@ -259,6 +333,27 @@ public final class Plotly <T extends Chart>{
             + "var plot = document.getElementById(strElementId);"
             + "return plot;")
     private native static JSObject jsGetPlot(String strElementId);
+    
+    @JavaScriptBody(args = {"strElementId", "instance"},javacall=true, body = ""+
+            "var plot = document.getElementById(strElementId);"
+            + "plot.on('plotly_click', function(plot){"
+            + "instance.@net.java.html.plotlyjs.Plotly::notifyClickListeners(Lnetscape/javascript/JSObject;)(plot);"
+            + "});")
+    private native static void jsEnableClickEvents(String strElementId, Plotly instance);
+    
+    @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
+            "var plot = document.getElementById(strElementId);"
+            + "plot.on('plotly_hover', function(plot){"
+            + "instance.@net.java.html.plotlyjs.Plotly::notifyHoverListeners(Lnetscape/javascript/JSObject;)(plot);"
+            + "});")
+    private native static void jsEnableHoverEvents(String strElementId, Plotly instance);
+    
+    @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
+            "var plot = document.getElementById(strElementId);"
+            + "plot.on('plotly_hover', function(plot){"
+            + "instance.@net.java.html.plotlyjs.Plotly::notifyZoomListeners(Lnetscape/javascript/JSObject;)(plot);"
+            + "});")
+    private native static void jsEnableZoomEvents(String strElementId, Plotly instance);
     
     @Override
     public String toString(){

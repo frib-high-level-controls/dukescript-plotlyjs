@@ -50,10 +50,7 @@ public class Layout {
     private final Axis xaxis;
     private final Axis yaxis;
     private final String barmode;    
-
-    public void setBarmode(String overlay) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private final String boxmode;
 
     public static class Builder {
 
@@ -65,6 +62,7 @@ public class Layout {
         private Axis xaxis;
         private Axis yaxis;
         private String barmode;
+        private String boxmode;
 
         public Builder() {
         }
@@ -108,6 +106,11 @@ public class Layout {
             this.barmode = value;
             return this;
         }
+        
+        public Builder boxmode(final String boxmode){
+            this.boxmode = boxmode;
+            return this;
+        }
 
         public Layout build() {
             return new net.java.html.plotlyjs.Layout(this);
@@ -126,6 +129,7 @@ public class Layout {
         this.font = builder.font;
         this.xaxis = builder.xaxis;
         this.yaxis = builder.yaxis;
+        this.boxmode = builder.boxmode;
         this.barmode = builder.barmode;
     }
     
