@@ -32,21 +32,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.glass.ui.Window;
 import java.io.Closeable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import javafx.application.Platform;
 import net.java.html.boot.BrowserBuilder;
 import net.java.html.plotlyjs.Axis;
+import net.java.html.plotlyjs.Bar;
+import net.java.html.plotlyjs.Box;
+import net.java.html.plotlyjs.BoxMarker;
 import net.java.html.plotlyjs.CartesianTrace;
+import net.java.html.plotlyjs.Chart;
 import net.java.html.plotlyjs.Data;
 import net.java.html.plotlyjs.Heatmap;
-import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
-import net.java.html.plotlyjs.HistogramMarker;
 import net.java.html.plotlyjs.Layout;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
@@ -115,7 +119,8 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                chart = Plotly.newPlot("scatter", data, new Layout.Builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
+                
                 return null;
             }
         });
@@ -139,7 +144,8 @@ public class ChartsTest implements Runnable {
             Histogram2d hist = new Histogram2d.Builder().data(hist2dTrace).nbinsx(50).nbinsy(50).build();
             net.java.html.plotlyjs.Data hist2dData = new net.java.html.plotlyjs.Data(hist);
             Layout h2dLayout = new Layout.Builder().title("2D Histogram").width(480).height(400).build();
-            chart = Plotly.newPlot("histogram2d", hist2dData, h2dLayout);
+            chart = Plotly.newPlot("chart", hist2dData, h2dLayout);
+            
             return null;
             }
         });
@@ -166,7 +172,102 @@ public class ChartsTest implements Runnable {
                 Heatmap heat = new Heatmap.Builder().x(xheat).y(yheat).z(zheat).build();
 
                 Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
-                chart = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                chart = Plotly.newPlot("chart",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                
+                return null;
+            }
+        });
+    }
+    
+    @Test
+    public void barTest() throws Exception {
+        run(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                ArrayList<String> barX = new ArrayList<String>() {{
+                    add("giraffes");
+                    add("orangutans");
+                    add("monkeys");
+                }};
+                
+                ArrayList<Number> bar0y = new ArrayList<Number>(){{
+                    add(20);
+                    add(14);
+                    add(23);
+                }};
+
+                ArrayList<Number> bar1y = new ArrayList<Number>(){{
+                    add(12);
+                    add(18);
+                    add(29);
+                }};
+
+                Bar bar0 = Bar.builder().x(barX).y(bar0y).name("SF Zoo").build();
+                Bar bar1 = Bar.builder().x(barX).y(bar1y).name("LA Zoo").build();
+
+                net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
+                Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
+                
+                chart = Plotly.newPlot("chart", barData, barLayout);
+                
+                return null;
+            }
+        });
+    }
+    
+    @Test
+    public void boxTest() throws Exception {
+        run(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                String[] yArray = {"day 1", "day 1", "day 1", "day 1", "day 1", "day 1", "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"};
+                Double[] kaleX = {0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3};
+                Double[] radishX = {0.6, 0.7, 0.3, 0.6, 0.0, 0.5, 0.7, 0.9, 0.5, 0.8, 0.7, 0.2};
+                Double[] carrotX = {0.1, 0.3, 0.1, 0.9, 0.6, 0.6, 0.9, 1.0, 0.3, 0.6, 0.8, 0.5};
+                List<String> y = Arrays.asList(yArray);
+                List<Double> kalex = Arrays.asList(kaleX);
+                List<Double> radishx = Arrays.asList(radishX);
+                List<Double> carrotx = Arrays.asList(carrotX);
+
+
+                Box trace1 = Box.builder().x(kalex)
+                        .y(y)
+                        .name("kale")
+                        .marker(BoxMarker.builder().color("3D9970").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                Box trace2 = Box.builder()
+                        .x(radishx)
+                        .y(y)
+                        .name("radishes")
+                        .marker(BoxMarker.builder().color("#FF4136").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                Box trace3 = Box.builder()
+                        .x(carrotx)
+                        .y(y)
+                        .name("carrots")
+                        .marker(BoxMarker.builder().color("#FF851B").build())
+                        .boxmean(false)
+                        .orientation(Chart.Orientations.HORIZONTAL)
+                        .build();
+
+                net.java.html.plotlyjs.Data<Box> boxdata = new net.java.html.plotlyjs.Data<>(trace1,trace2,trace3);
+
+                Layout boxlayout = Layout.builder()
+                        .title("Grouped Horizontal Box Plot")
+                        .xaxis(Axis.builder().title("normalized moisture")
+                        .zeroline(false)
+                        .build())
+                        .boxmode("group")
+                        .build();
+
+                chart = Plotly.newPlot("chart", boxdata, boxlayout);
+                
                 return null;
             }
         });
@@ -191,40 +292,13 @@ public class ChartsTest implements Runnable {
                         .width(480).height(400)
                         .xaxis(Axis.builder().type("date").build())
                         .build();
-                chart = Plotly.newPlot("timeScatter", timedata, timelayout);
+                chart = Plotly.newPlot("chart", timedata, timelayout);
                 
             return null;
             }
         });
     }
-    
-    @Test
-    public void basicHistogram() throws Exception {
-        run(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                List<Number> h0 = new ArrayList<>();
-                List<Number> h1 = new ArrayList<>();
-                Random randGen = new Random();
-                for (int i=0; i<10000; i++){
-                    h0.add(randGen.nextGaussian()*2);
-                    h1.add(randGen.nextGaussian()*2+2);
-                }        
-                HistogramMarker hist0Marker = HistogramMarker.builder().color("blue").build();
-                HistogramMarker hist1Marker = HistogramMarker.builder().color("red").build();
-                Histogram hist0 = Histogram.builder().trace(new CartesianTrace().x(h0)).nbinsx(100).opacity(0.7).marker(hist0Marker).build();
-                Histogram hist1 = Histogram.builder().trace(new CartesianTrace().x(h1)).nbinsx(100).opacity(0.7).marker(hist1Marker).build();
-                net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(hist0,hist1);
-                Layout layout = new Layout.Builder().title("Histogram")
-                    .barmode("overlay")
-                    .width(480).height(400)
-                    .xaxis(new Axis.Builder().dtick(10).nticks(10).build())
-                    .build();
-                chart = Plotly.newPlot("histogram", data, layout);
-                return null;
-            }
-        });
-    }
+
     
     @Test
     public void redrawTest()throws Exception{
@@ -242,15 +316,16 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("redrawTest", data, new Layout.Builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 Scatter replacement = Scatter.builder().data(trace)
                         .marker(new ScatterMarker.Builder().opacity(0.7).build())
                         .build();
                 data.updateTrace(0, replacement);
-                testChart.redraw();
-                JSObject plotdata = (JSObject)testChart.getPlot();
+                chart.redraw();
+                JSObject plotdata = (JSObject)chart.getPlot();
                 double newOpacity = (Double)plotdata.eval("this.data[0].marker.opacity");
                 assertEquals(newOpacity, 0.7); //make sure we have the right redraw data
+                
                 return null;
             }
         });
@@ -261,28 +336,29 @@ public class ChartsTest implements Runnable {
         run(new Callable<Void>(){
             @Override
             public Void call() throws Exception{
-                List<Number> x = new ArrayList<>();
+                List<Number> x = new CopyOnWriteArrayList<>();
                 for (int i=0; i<10; i++){
                     x.add(i);
                 }
-                List<Number> y = new ArrayList<>();
+                List<Number> y = new CopyOnWriteArrayList<>();
                 for (int i=0; i<10; i++){
                     y.add(i);
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("restyleTest", data, new Layout.Builder().title("chart").build());
+                net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(sctr);
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 ScatterMarker restyle = ScatterMarker.builder().opacity(0.5).build();    
                 Scatter replacement = Scatter.builder().data(trace)
                             .marker(restyle)
                             .build();
                 data.updateTrace(0, replacement);
                 String strUpdate = mapper.writeValueAsString(restyle);
-                testChart.restyle(strUpdate,0);
-                JSObject plotdata = (JSObject)testChart.getPlot();
+                chart.restyle(strUpdate,0);
+                JSObject plotdata = (JSObject)chart.getPlot();
                 double newOpacity = (Double)plotdata.eval("this.data[0].opacity");
                 assertEquals(newOpacity, 0.5); //make sure we have the right restyle data
+                
                 return null;
             }
         });
@@ -304,17 +380,18 @@ public class ChartsTest implements Runnable {
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
                 Data data = new Data(sctr);
-                Plotly testChart = Plotly.newPlot("relayoutTest", data, Layout.builder().title("chart").build());
+                chart = Plotly.newPlot("chart", data, Layout.builder().title("chart").build());
                 Layout newLayout = Layout.builder().title("newTitle").build();
-                testChart.relayout(newLayout);
-                JSObject rawData = (JSObject)testChart.getPlot();
+                chart.relayout(newLayout);
+                JSObject rawData = (JSObject)chart.getPlot();
                 String newTitle = (String)rawData.eval("this.layout.title");
-                assertEquals(newTitle,"newTitle","title change worked");
+                assertEquals(newTitle,"newTitle","title change");
+                
                 return null;
             }
         });
     }
-    
+   
     @Test
     public void addTracesTest()throws Exception{
         run(new Callable<Void>(){
@@ -336,11 +413,12 @@ public class ChartsTest implements Runnable {
                         new net.java.html.plotlyjs.Data<>(Scatter.builder()
                                 .data(scatterTrace0)
                                 .build());
-                Plotly scatter = Plotly.newPlot("addTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.addTraces(Scatter.builder().data(scatterTrace1).build());
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.addTraces(Scatter.builder().data(scatterTrace1).build());
+                JSObject rawData = (JSObject)chart.getPlot();
                 int numTraces = (Integer)rawData.eval("this.data.length");
                 assertEquals(numTraces, 2);
+                
                 return null;
             }
         });
@@ -368,11 +446,12 @@ public class ChartsTest implements Runnable {
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());
-                Plotly scatter = Plotly.newPlot("moveTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.moveTraces(0);
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.moveTraces(0);
+                JSObject rawData = (JSObject)chart.getPlot();
                 int zeroth = (Integer)rawData.eval("this.data[0].y[0]");
                 assertEquals(zeroth,10);
+                
                 return null;
             }
         });
@@ -400,12 +479,13 @@ public class ChartsTest implements Runnable {
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());
-                Plotly scatter = Plotly.newPlot("deleteTracesTest", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
-                scatter.deleteTraces(0);
-                JSObject rawData = (JSObject)scatter.getPlot();
+                chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
+                chart.deleteTraces(0);
+                JSObject rawData = (JSObject)chart.getPlot();
                 int length = (Integer)rawData.eval("this.data.length");
                 assertEquals(length,1);
                 assertEquals(scatterData.getTraces().size(),1);
+                
                 return null;
             }
         });
@@ -419,6 +499,7 @@ public class ChartsTest implements Runnable {
                 @Override
                 public Void call() throws Exception {
                     chart = null;
+                    
                     return null;
                 }
             });

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
+ * This software is Copyright by the Board of Trustees of Michigan
+ * State University (c) Copyright 2016.
  * Contact Information:
- * Facility for Rare Isotope Beams
+ * Facility for Rare Isotope Beam
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
@@ -44,31 +40,46 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  *
  * @author daykin
  */
+
 @JsonInclude(Include.NON_NULL)
-/*
-    Give custom ranges for histogram ranges, will be interpolated if unspecified
-*/
-public class AxisBin {
-   private final Number start;
-   private final Number end;
-   private final Number size;
+public class BoxMarker{
+    
+    private final Number opacity;
+    private final String outliercolor;
+    private final String symbol;
+    private final Line line;
+    private final String color;
+    private final Number size;
 
     public static class Builder {
 
-        private Number start;
-        private Number end;
+        private Number opacity;
+        private String outliercolor;
+        private String symbol;
+        private String color;
+        private Line line;
         private Number size;
 
         private Builder() {
         }
 
-        public Builder start(final Number value) {
-            this.start = value;
+        public Builder opacity(final Number value) {
+            this.opacity = value;
             return this;
         }
 
-        public Builder end(final Number value) {
-            this.end = value;
+        public Builder outliercolor(final String value) {
+            this.outliercolor = value;
+            return this;
+        }
+
+        public Builder symbol(final String value) {
+            this.symbol = value;
+            return this;
+        }
+
+        public Builder line(final Line value) {
+            this.line = value;
             return this;
         }
 
@@ -76,20 +87,29 @@ public class AxisBin {
             this.size = value;
             return this;
         }
+        
+        public Builder color(final String color){
+            this.color = color;
+            return this;
+        }
 
-        public AxisBin build() {
-            return new net.java.html.plotlyjs.AxisBin(this);
+        public BoxMarker build() {
+            return new net.java.html.plotlyjs.BoxMarker(this);
         }
     }
 
-    public static AxisBin.Builder builder() {
-        return new AxisBin.Builder();
+    public static BoxMarker.Builder builder() {
+        return new BoxMarker.Builder();
     }
 
-    private AxisBin(Builder builder) {
-        this.start = builder.start;
-        this.end = builder.end;
+    private BoxMarker(Builder builder) {
+        this.opacity = builder.opacity;
+        this.outliercolor = builder.outliercolor;
+        this.symbol = builder.symbol;
+        this.color = builder.color;
+        this.line = builder.line;
         this.size = builder.size;
     }
-   
+    
+    
 }

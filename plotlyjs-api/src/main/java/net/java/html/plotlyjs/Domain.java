@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan State University.
+ * This software is Copyright by the Board of Trustees of Michigan
+ * State University (c) Copyright 2016.
  * Contact Information:
- * Facility for Rare Isotope Beams
+ * Facility for Rare Isotope Beam
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
@@ -37,31 +33,21 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.List;
+@JsonInclude(Include.NON_NULL)
+public class Domain {
+    public final List x;
+    public final List y;
     
-    public CartesianTrace(List x, List y){
+    Domain(List x, List y){
         this.x = x;
         this.y = y;
     }
-    
-    public CartesianTrace(){
-        
-    }
-
-    public CartesianTrace x(List value) {
-        this.x = value;
-        return this;
-    }
-
-    public CartesianTrace y(List value) {
-        this.y = value;
-        return this;
-    }
-    
 }

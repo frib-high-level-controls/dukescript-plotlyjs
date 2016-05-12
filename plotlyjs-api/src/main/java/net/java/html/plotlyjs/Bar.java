@@ -1,8 +1,5 @@
 package net.java.html.plotlyjs;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.List;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -35,68 +32,78 @@ import java.util.List;
  */
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+
 /**
  *
  * @author daykin
- * @param <T> an implementation of {@link Trace}
- * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Histogram<T extends Value> extends Chart{
-    
+public class Bar extends Chart{
+    /*
+        Y magnitude direction-horizontal or vertical
+    */
     private final String orientation;
     private final Stream stream;
     private final String text;
+    /*
+        On hover, what info to show; if
+        Unspecified, the chart will show all data at that point.
+    */
     private final String hoverinfo;
+    private final Object xsrc;
     private final Object visible;
+    private final BarMarker marker;
+    private final Number y0;
+    private final Object tsrc;
     private final Boolean showlegend;
-    private final Axis xaxis;
-    private final Axis yaxis;
-    private final Number opacity;
-    private final String legendgroup;
-    private final Integer nbinsx;
-    private final Integer nbinsy;
-    private final String histfunc;
-    private final Boolean autobiny;
-    private final Boolean autobinx;
-    private final String name;
-    private final String histnorm;
-    private final HistogramMarker marker;
     private final ErrorBar error_x;
     private final ErrorBar error_y;
-    private final AxisBin xbins;
-    private final AxisBin ybins;
+    private final Object rsrc;
+    private final Axis xaxis;
+    private final Axis yaxis;
+    private final Object ysrc;
+    private final Number opacity;
+    private final String legendgroup;
+    private final Object textsrc;
+    private final Number dx;
+    private final Number dy;
+    private final Number x0;
+    private final String name;
 
     public static class Builder {
 
-        private String type = "histogram";
+        private final String type = "bar";
         private List x;
         private List y;
-        private String orientation;
+        private String orientation = Chart.Orientations.VERTICAL;
         private Stream stream;
         private String text;
-        private String hoverinfo;
-        private Object visible;
-        private Boolean showlegend;
-        private Axis xaxis;
-        private Axis yaxis;
-        private Number opacity;
-        private String legendgroup;
-        private Integer nbinsx;
-        private Integer nbinsy;
-        private String histfunc;
-        private Boolean autobiny;
-        private Boolean autobinx;
-        private String name;
-        private String histnorm;
-        private HistogramMarker marker;
+        private String hoverinfo = Chart.HoverFlags.ALL;
+        private Object xsrc;
+        private Object visible = true;
+        private BarMarker marker;
+        private Number y0;
+        private Object tsrc;
+        private Boolean showlegend = true;
         private ErrorBar error_x;
         private ErrorBar error_y;
-        private AxisBin xbins;
-        private AxisBin ybins;
+        private Object rsrc;
+        private Axis xaxis;
+        private Axis yaxis;
+        private Object ysrc;
+        private Number opacity;
+        private String legendgroup;
+        private Object textsrc;
+        private Number dx;
+        private Number dy;
+        private Number x0;
+        private String name;
 
-        public Builder() {
+        private Builder() {
         }
+
 
         public Builder x(final List value) {
             this.x = value;
@@ -107,14 +114,7 @@ public class Histogram<T extends Value> extends Chart{
             this.y = value;
             return this;
         }
-        
-        public Builder trace(final Value value){
-            this.x = value.x;
-            this.y = value.y;
-            return this;
-        }
-        
-        
+
         public Builder orientation(final String value) {
             this.orientation = value;
             return this;
@@ -135,72 +135,33 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
+        public Builder xsrc(final Object value) {
+            this.xsrc = value;
+            return this;
+        }
+
         public Builder visible(final Object value) {
             this.visible = value;
             return this;
         }
 
+        public Builder marker(final BarMarker value) {
+            this.marker = value;
+            return this;
+        }
+
+        public Builder y0(final Number value) {
+            this.y0 = value;
+            return this;
+        }
+
+        public Builder tsrc(final Object value) {
+            this.tsrc = value;
+            return this;
+        }
+
         public Builder showlegend(final Boolean value) {
             this.showlegend = value;
-            return this;
-        }
-
-        public Builder xaxis(final Axis value) {
-            this.xaxis = value;
-            return this;
-        }
-
-        public Builder yaxis(final Axis value) {
-            this.yaxis = value;
-            return this;
-        }
-
-        public Builder opacity(final Number value) {
-            this.opacity = value;
-            return this;
-        }
-
-        public Builder legendgroup(final String value) {
-            this.legendgroup = value;
-            return this;
-        }
-
-        public Builder nbinsx(final Integer value) {
-            this.nbinsx = value;
-            return this;
-        }
-
-        public Builder nbinsy(final Integer value) {
-            this.nbinsy = value;
-            return this;
-        }
-        public Builder histfunc(final String value) {
-            this.histfunc = value;
-            return this;
-        }
-
-        public Builder autobiny(final Boolean value) {
-            this.autobiny = value;
-            return this;
-        }
-
-        public Builder autobinx(final Boolean value) {
-            this.autobinx = value;
-            return this;
-        }
-
-        public Builder name(final String value) {
-            this.name = value;
-            return this;
-        }
-
-        public Builder histnorm(final String value) {
-            this.histnorm = value;
-            return this;
-        }
-
-        public Builder marker(final HistogramMarker value) {
-            this.marker = value;
             return this;
         }
 
@@ -214,26 +175,71 @@ public class Histogram<T extends Value> extends Chart{
             return this;
         }
 
-        public Builder xbins(final AxisBin value) {
-            this.xbins = value;
+        public Builder rsrc(final Object value) {
+            this.rsrc = value;
             return this;
         }
 
-        public Builder ybins(final AxisBin value) {
-            this.ybins = value;
+        public Builder xaxis(final Axis value) {
+            this.xaxis = value;
             return this;
         }
 
-        public Histogram build() {
-            return new net.java.html.plotlyjs.Histogram(this);
+        public Builder yaxis(final Axis value) {
+            this.yaxis = value;
+            return this;
+        }
+
+        public Builder ysrc(final Object value) {
+            this.ysrc = value;
+            return this;
+        }
+
+        public Builder opacity(final Number value) {
+            this.opacity = value;
+            return this;
+        }
+
+        public Builder legendgroup(final String value) {
+            this.legendgroup = value;
+            return this;
+        }
+
+        public Builder textsrc(final Object value) {
+            this.textsrc = value;
+            return this;
+        }
+
+        public Builder dx(final Number value) {
+            this.dx = value;
+            return this;
+        }
+
+        public Builder dy(final Number value) {
+            this.dy = value;
+            return this;
+        }
+
+        public Builder x0(final Number value) {
+            this.x0 = value;
+            return this;
+        }
+
+        public Builder name(final String value) {
+            this.name = value;
+            return this;
+        }
+
+        public Bar build() {
+            return new net.java.html.plotlyjs.Bar(this);
         }
     }
 
-    public static Histogram.Builder builder() {
-        return new Histogram.Builder();
+    public static Bar.Builder builder() {
+        return new Bar.Builder();
     }
 
-    private Histogram(Builder builder) {
+    private Bar(Builder builder) {
         this.type = builder.type;
         this.x = builder.x;
         this.y = builder.y;
@@ -241,24 +247,25 @@ public class Histogram<T extends Value> extends Chart{
         this.stream = builder.stream;
         this.text = builder.text;
         this.hoverinfo = builder.hoverinfo;
+        this.xsrc = builder.xsrc;
         this.visible = builder.visible;
-        this.showlegend = builder.showlegend;
-        this.xaxis = builder.xaxis;
-        this.yaxis = builder.yaxis;
-        this.opacity = builder.opacity;
-        this.legendgroup = builder.legendgroup;
-        this.nbinsx = builder.nbinsx;
-        this.nbinsy = builder.nbinsy;
-        this.histfunc = builder.histfunc;
-        this.autobiny = builder.autobiny;
-        this.autobinx = builder.autobinx;
-        this.name = builder.name;
-        this.histnorm = builder.histnorm;
         this.marker = builder.marker;
+        this.y0 = builder.y0;
+        this.tsrc = builder.tsrc;
+        this.showlegend = builder.showlegend;
         this.error_x = builder.error_x;
         this.error_y = builder.error_y;
-        this.xbins = builder.xbins;
-        this.ybins = builder.ybins;
+        this.rsrc = builder.rsrc;
+        this.xaxis = builder.xaxis;
+        this.yaxis = builder.yaxis;
+        this.ysrc = builder.ysrc;
+        this.opacity = builder.opacity;
+        this.legendgroup = builder.legendgroup;
+        this.textsrc = builder.textsrc;
+        this.dx = builder.dx;
+        this.dy = builder.dy;
+        this.x0 = builder.x0;
+        this.name = builder.name;
     }
-
+    
 }
