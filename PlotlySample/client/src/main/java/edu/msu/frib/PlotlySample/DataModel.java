@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import net.java.html.js.JavaScriptBody;
+import net.java.html.js.JavaScriptResource;
+import net.java.html.json.Property;
 import net.java.html.plotlyjs.Axis;
 import net.java.html.plotlyjs.Bar;
 import net.java.html.plotlyjs.Box;
@@ -18,6 +21,7 @@ import net.java.html.plotlyjs.Chart;
 import net.java.html.plotlyjs.ChartListener;
 import net.java.html.plotlyjs.ClickEvent;
 import net.java.html.plotlyjs.Contour;
+
 import net.java.html.plotlyjs.Heatmap;
 import net.java.html.plotlyjs.Histogram;
 import net.java.html.plotlyjs.Histogram2d;
@@ -28,20 +32,24 @@ import net.java.html.plotlyjs.Pie;
 import net.java.html.plotlyjs.Plotly;
 import net.java.html.plotlyjs.Scatter;
 import net.java.html.plotlyjs.TimeTrace;
+import net.java.html.plotlyjs.UnhoverEvent;
 import net.java.html.plotlyjs.ZoomEvent;
 import netscape.javascript.JSObject;
 
-@Model(className = "Data", targetId="", properties = {
+
+
+@Model(className = "Point", targetId="", properties = {
+    @Property(name = "x", type = double.class),
+    @Property(name = "y", type = double.class)
 })
 final class DataModel {
-    private static Data ui;
+    private static Point ui;
     /**
      * Called when the page is ready.
      */
     
     static void onPageLoad() throws Exception {
-
-        ui = new Data();
+        ui = new Point(0, 0);
         ui.applyBindings();
 
         List<Number> scatter0x = new ArrayList<>();
@@ -54,8 +62,8 @@ final class DataModel {
         
         CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
 
-        net.java.html.plotlyjs.Data scatterData = 
-                new net.java.html.plotlyjs.Data<>(Scatter.builder()
+        net.java.html.plotlyjs.PlotlyData scatterData = 
+                new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                         .data(scatterTrace0).build());
         Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
         ExampleListener exList = new ExampleListener(scatter);
@@ -75,15 +83,20 @@ final class DataModel {
         HistogramMarker hist1Marker = HistogramMarker.builder().color("red").build();
         Histogram hist0 = new Histogram.Builder().trace(new CartesianTrace().x(h0)).nbinsx(100).opacity(0.7).marker(hist0Marker).build();
         Histogram hist1 = new Histogram.Builder().trace(new CartesianTrace().x(h1)).nbinsx(100).opacity(0.7).marker(hist1Marker).build();
-        net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(hist0,hist1);
-        Layout layout = new Layout.Builder().title("Histogram")
+        net.java.html.plotlyjs.PlotlyData data = new net.java.html.plotlyjs.PlotlyData(hist0,hist1);
+        Layout layout = new Layout.Builder().title("Histogram with hover events")
                 .barmode("overlay")
                 .width(480).height(400)
+                .hovermode("closest")
                 .xaxis(new Axis.Builder().dtick(10).nticks(10).build())
                 .build();
-        Plotly lineChart = Plotly.newPlot("histogram", data, layout);
+        Plotly hst = Plotly.newPlot("histogram", data, layout);
+        ExampleListener hoverListener = new ExampleListener(hst);
+        hst.addHoverListener(hoverListener);
+        hst.addUnhoverListener(hoverListener);
         data.updateTrace(1, hist1);
-        lineChart.redraw();
+        hst.redraw();
+        
         
         List<Number> ty = new ArrayList<>();
         List<Date> tt = new ArrayList<>();
@@ -94,7 +107,7 @@ final class DataModel {
         }
         TimeTrace timetrace0 = new TimeTrace(tt,ty);
         Scatter timescatter = Scatter.builder().data(timetrace0).build();
-        net.java.html.plotlyjs.Data timedata = new net.java.html.plotlyjs.Data(timescatter);
+        net.java.html.plotlyjs.PlotlyData timedata = new net.java.html.plotlyjs.PlotlyData(timescatter);
         Layout timelayout = new Layout.Builder().title("Time series")
                 .width(480).height(400)
                 .xaxis(new Axis.Builder().type("date").build())
@@ -112,7 +125,7 @@ final class DataModel {
         
         CartesianTrace hist2dTrace = new CartesianTrace(x2d,y2d);
         Histogram2d hist = new Histogram2d.Builder().data(hist2dTrace).nbinsx(50).nbinsy(50).build();
-        net.java.html.plotlyjs.Data hist2dData = new net.java.html.plotlyjs.Data(hist);
+        net.java.html.plotlyjs.PlotlyData hist2dData = new net.java.html.plotlyjs.PlotlyData(hist);
         Layout h2dLayout = new Layout.Builder().title("2D Histogram").width(480).height(400).build();
         Plotly hist2d = Plotly.newPlot("histogram2d", hist2dData, h2dLayout);
         
@@ -131,7 +144,7 @@ final class DataModel {
         Heatmap heat = new Heatmap.Builder().x(xheat).y(yheat).z(zheat).build();
         
         Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
-        Plotly heatmap = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+        Plotly heatmap = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.PlotlyData(heat), heatmapLayout);
         
         ArrayList<String> barX = new ArrayList<String>() {{
             add("giraffes");
@@ -153,7 +166,7 @@ final class DataModel {
         Bar bar0 = Bar.builder().x(barX).y(bar0y).name("SF Zoo").build();
         Bar bar1 = Bar.builder().x(barX).y(bar1y).name("LA Zoo").build();
         
-        net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
+        net.java.html.plotlyjs.PlotlyData barData = new net.java.html.plotlyjs.PlotlyData(bar0,bar1);
         Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
         Plotly barSample = Plotly.newPlot("barSample", barData, barLayout);
         
@@ -194,7 +207,7 @@ final class DataModel {
                 .orientation(Chart.Orientations.HORIZONTAL)
                 .build();
         
-        net.java.html.plotlyjs.Data<Box> boxdata = new net.java.html.plotlyjs.Data<>(trace1,trace2,trace3);
+        net.java.html.plotlyjs.PlotlyData<Box> boxdata = new net.java.html.plotlyjs.PlotlyData<>(trace1,trace2,trace3);
         
         Layout boxlayout = Layout.builder()
                 .title("Grouped Horizontal Box Plot")
@@ -218,7 +231,7 @@ final class DataModel {
                 add("Utility");
         }};
         Pie pie = Pie.builder().values(values).labels(labels).build();
-        net.java.html.plotlyjs.Data<Pie> pieData = new net.java.html.plotlyjs.Data<>(pie);
+        net.java.html.plotlyjs.PlotlyData<Pie> pieData = new net.java.html.plotlyjs.PlotlyData<>(pie);
         Layout pieLayout = Layout.builder().title("Pie Chart").height(400).width(500).build();
         Plotly pieChart = Plotly.newPlot("pie", pieData, pieLayout);
         
@@ -266,14 +279,12 @@ final class DataModel {
         contourZ.add(cz4);
         contourZ.add(cz5);
         Contour contour = Contour.builder().z(contourZ).build();
-        net.java.html.plotlyjs.Data<Contour> contourData = new net.java.html.plotlyjs.Data(contour);
+        net.java.html.plotlyjs.PlotlyData<Contour> contourData = new net.java.html.plotlyjs.PlotlyData(contour);
         Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
 
     }
-    
     private static class ExampleListener implements ChartListener{
         private final Plotly <? extends Chart> chart;
-        
         public ExampleListener(Plotly <? extends Chart> chart){
             this.chart = chart;
         }
@@ -284,23 +295,38 @@ final class DataModel {
               Object plotdata = ((JSObject)plotObj).eval("this.points");
               Object pt = ((JSObject)plotdata).getSlot(0);
               StringBuilder sb = new StringBuilder();
-              System.out.println(sb.append("Nearest point to cursor: (")
+              sb.append("Nearest point to cursor: (")
               .append(((JSObject)pt).eval("this.x.toPrecision(2)"))
                       .append(", ")
                       .append(((JSObject)pt).eval("this.y.toPrecision(2)"))
-                      .append(")")
-              .toString());    
+                      .append(")");
+              sb = (ev.shift)?sb.append(", Shift pressed"):sb.append(", Shift not pressed");
+              sb = (ev.ctrl)?sb.append(", Ctrl pressed"):sb.append(", Ctrl not pressed");
+              System.out.println(sb.toString());
         }
 
         @Override
         public void plotly_hover(HoverEvent ev) {
-            System.out.println("something got hovered!");
+            JSObject plotObj = (JSObject)ev.info;
+                Object plotdata = ((JSObject)plotObj).eval("this.points");
+                Object pt = ((JSObject)plotdata).getSlot(0);
+                double x = new Double((String)((JSObject)pt).eval("this.x.toPrecision(3)"));
+                double y = new Double((String)((JSObject)pt).eval("this.y.toPrecision(3)"));
+                ui.setX(x);
+                ui.setY(y);
+                      
         }
 
         @Override
         public void plotly_zoom(ZoomEvent ev) {
-            System.out.println("something got zoomed!");
+            System.out.println("zoom!");
         }
+        
+        @Override
+        public void plotly_unhover(UnhoverEvent ev){
+            System.out.println("Something got unhovered!");
+        }
+        
         
     }
 }

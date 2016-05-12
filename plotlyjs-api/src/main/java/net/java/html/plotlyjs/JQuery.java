@@ -2,10 +2,9 @@ package net.java.html.plotlyjs;
 
 /*
  * #%L
- * This software is Copyright by the Board of Trustees of Michigan
- * State University (c) Copyright 2016.
+ * This software is Copyright by the Board of Trustees of Michigan State University.
  * Contact Information:
- * Facility for Rare Isotope Beam
+ * Facility for Rare Isotope Beams
  * Michigan State University
  * East Lansing, MI 48824-1321
  * http://frib.msu.edu
@@ -33,14 +32,15 @@ package net.java.html.plotlyjs;
  */
 
 
+import net.java.html.js.JavaScriptBody;
+import net.java.html.js.JavaScriptResource;
+
 /**
  *
  * @author daykin
  */
-import java.util.EventListener;
-public interface ChartListener extends EventListener {
-    public void plotly_click(ClickEvent ev);
-    public void plotly_hover(HoverEvent ev);
-    public void plotly_zoom(ZoomEvent ev);
-    public void plotly_unhover(UnhoverEvent ev);
+@JavaScriptResource("jquery-1.12.0.min.js")
+public class JQuery {
+    @JavaScriptBody(args = {}, body = "")
+    public static native void init();
 }

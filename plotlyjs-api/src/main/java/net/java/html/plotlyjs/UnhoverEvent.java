@@ -37,10 +37,10 @@ package net.java.html.plotlyjs;
  *
  * @author daykin
  */
-import java.util.EventListener;
-public interface ChartListener extends EventListener {
-    public void plotly_click(ClickEvent ev);
-    public void plotly_hover(HoverEvent ev);
-    public void plotly_zoom(ZoomEvent ev);
-    public void plotly_unhover(UnhoverEvent ev);
+public class UnhoverEvent extends ChartEvent{
+
+    public UnhoverEvent(Plotly source, Object shift, Object ctrl, Object info) {
+        super(source, shift, ctrl, info);
+    }
+    
 }

@@ -51,6 +51,7 @@ public class Layout {
     private final Axis yaxis;
     private final String barmode;    
     private final String boxmode;
+    private final Object hovermode;
 
     public static class Builder {
 
@@ -63,6 +64,7 @@ public class Layout {
         private Axis yaxis;
         private String barmode;
         private String boxmode;
+        private Object hovermode;
 
         public Builder() {
         }
@@ -111,7 +113,12 @@ public class Layout {
             this.boxmode = boxmode;
             return this;
         }
-
+        
+        public Builder hovermode(final Object hovermode){
+            this.hovermode = (hovermode instanceof java.lang.String || hovermode instanceof java.lang.Boolean)?hovermode:false;
+            return this;
+        }
+        
         public Layout build() {
             return new net.java.html.plotlyjs.Layout(this);
         }
@@ -131,6 +138,7 @@ public class Layout {
         this.yaxis = builder.yaxis;
         this.boxmode = builder.boxmode;
         this.barmode = builder.barmode;
+        this.hovermode = builder.hovermode;
     }
     
     

@@ -1,6 +1,6 @@
 package net.java.html.plotlyjs;
 
-/*
+/* 
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
  * Contact Information:
@@ -48,24 +48,30 @@ import netscape.javascript.JSObject;
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
 public final class Plotly <T extends Chart>{
+
     static private ObjectMapper mapper = new ObjectMapper();
     static private JavaType type;
     static private String id;
-    private final Data<T> data;
+    private final PlotlyData<T> data;
     private final Layout layout;
     private final Config config;
     private ArrayList<ChartListener> clickListeners = new ArrayList<>();
     private ArrayList<ChartListener> hoverListeners = new ArrayList<>();
     private ArrayList<ChartListener> zoomListeners = new ArrayList<>();
+    private ArrayList<ChartListener> unhoverListeners = new ArrayList<>();
     private Boolean clickListenersEnabled = false;
     private Boolean hoverListenersEnabled = false;
     private Boolean zoomListenersEnabled = false;
+    private Boolean keyListenersEnabled = false;
+    private Boolean shift = false;
+    private Boolean ctrl = false;
     
-    private Plotly(String id, Data<T> data, Layout layout){
+    private Plotly(String id, PlotlyData<T> data, Layout layout){
         this(id,data,layout,new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build());
     }
     
-    private Plotly(String id, Data<T> data, Layout layout, Config config){
+    private Plotly(String id, PlotlyData<T> data, Layout layout, Config config){
+        JQuery.init();
         Plotly.id = id;
         this.data = data;
         this.layout = layout;
@@ -73,13 +79,15 @@ public final class Plotly <T extends Chart>{
         
     }
     
-    public static Plotly<?>newPlot(String id, Data<?> data, Layout layout, Config config)throws PlotlyException{
+    public static Plotly<?>newPlot(String id, PlotlyData<?> data, Layout layout, Config config)throws PlotlyException{
         try {
+            ;
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
             String strlayout = Plotly.mapper.writeValueAsString(layout);
             jsNewPlot(id,strdata,strlayout);
             System.out.println(strdata);
+            JQuery.init();
             return new Plotly<>(id, data, layout, config);
             
         } catch (JsonProcessingException e) {
@@ -87,7 +95,7 @@ public final class Plotly <T extends Chart>{
         }
     }
     
-    public static Plotly<?> newPlot(String id, Data<?> data, Layout layout) throws PlotlyException {
+    public static Plotly<?> newPlot(String id, PlotlyData<?> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
@@ -99,10 +107,18 @@ public final class Plotly <T extends Chart>{
                     .build();
             String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
             jsNewPlot(id,strdata,strlayout, strconfig);
-            return new Plotly<>(id, data, layout, defaultConfig);
+            
+            Plotly plt =  new Plotly<>(id, data, layout, defaultConfig);
+            
+            plt.addKeyListeners();
+            return plt;
         } catch (JsonProcessingException e) {
             throw new PlotlyException(e);
         }
+    }
+    
+    private void addKeyListeners(){
+        jsAddKeyListeners(this);
     }
     
     public void addClickListener(ChartListener l){
@@ -113,6 +129,11 @@ public final class Plotly <T extends Chart>{
         }
     }
     
+    public void keyEvent(boolean shift, boolean ctrl){
+        this.shift = shift;
+        this.ctrl = ctrl;
+    }
+    
     public void addHoverListener(ChartListener l){
         this.hoverListeners.add(l);
         if(!(hasHoverListenersEnabled())){
@@ -121,9 +142,17 @@ public final class Plotly <T extends Chart>{
         }
     }
     
+    public void addUnhoverListener(ChartListener l){
+        this.unhoverListeners.add(l);
+        if(!(this.hasHoverListenersEnabled())){
+            this.hoverListenersEnabled = true;
+            jsEnableUnHoverEvents(id,this);
+        }
+    }
+    
     public void addZoomListener(ChartListener l){
         this.zoomListeners.add(l);
-        if(!(hasZoomListenersEnabled())){
+        if(!(this.hasZoomListenersEnabled())){
             this.zoomListenersEnabled = true;
             jsEnableZoomEvents(id, this);
         }
@@ -141,19 +170,32 @@ public final class Plotly <T extends Chart>{
         this.zoomListeners.remove(l);
     }
     
-    public void notifyClickListeners(JSObject jsobj){
-        ClickEvent event = new ClickEvent(this,false,false,jsobj);
+    public void notifyClickListeners(JSObject obj){
+        ClickEvent event = new ClickEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: clickListeners){
             l.plotly_click(event);
         }
     }
     
     public void notifyHoverListeners(JSObject obj){
-        throw new UnsupportedOperationException();
+        HoverEvent event = new HoverEvent(this,false,false,obj);
+        for (ChartListener l: hoverListeners){
+            l.plotly_hover(event);
+        }
+    }
+    
+    public void notifyUnhoverListeners(JSObject obj){
+        UnhoverEvent event = new UnhoverEvent (this, false,false, obj);
+        for (ChartListener l: unhoverListeners){
+            l.plotly_unhover(event);
+        }
     }
     
     public void notifyZoomListeners(JSObject obj){
-        throw new UnsupportedOperationException();
+        ZoomEvent event = new ZoomEvent (this, false, false, obj);
+        for(ChartListener l: zoomListeners){
+            l.plotly_zoom(event);
+        }
     }
     
     private Boolean hasClickListenersEnabled(){
@@ -161,15 +203,19 @@ public final class Plotly <T extends Chart>{
     }
     
     private Boolean hasHoverListenersEnabled(){
-        return this.hoverListeners.size()>1;
+        return this.hoverListenersEnabled;
     }
     
     private Boolean hasZoomListenersEnabled(){
-        return this.zoomListeners.size()>1;
+        return this.hoverListenersEnabled;
+    }
+    
+    private Boolean hasKeyListenersEnabled(){
+        return docKeyListenersEnabled();
     }
     
     /**Restyle the trace array
-     * @param data a <code>Data</code> object containing the restyle parameters
+     * @param data a <code>PlotlyData</code> object containing the restyle parameters
      * @param indices the indices in the trace array to apply the new style
      * @throws PlotlyException
     */ 
@@ -192,7 +238,7 @@ public final class Plotly <T extends Chart>{
         }
     }
     
-    public void restyle(Data<T> data, int... indices)throws PlotlyException{
+    public void restyle(PlotlyData<T> data, int... indices)throws PlotlyException{
         try{
             jsRestyle(id,mapper.writeValueAsString(data),indices);
         }
@@ -334,6 +380,33 @@ public final class Plotly <T extends Chart>{
             + "return plot;")
     private native static JSObject jsGetPlot(String strElementId);
     
+    @JavaScriptBody(args = {}, body = ""
+            + "$return($._data($(document).get(0), 'events').length>0)")
+    private native static boolean docKeyListenersEnabled();
+    
+    @JavaScriptBody(args = {"instance"}, javacall = true, body = ""
+            + "var ctrl = false;"
+            + "var shift = false;"
+            + "$(document).keydown(function(e){"
+            + "ctrl = (e.ctrlKey)?true:false;"
+            + "shift = (e.shiftKey)?true:false;"
+            + "instance.@net.java.html.plotlyjs.Plotly::keyEvent(ZZ)(shift,ctrl);"
+            + "});"
+            + "$(document).keyup(function(e){"
+            + "ctrl = (e.ctrlKey)?true:false;"
+            + "shift = (e.shiftKey)?true:false;"
+            + "instance.@net.java.html.plotlyjs.Plotly::keyEvent(ZZ)(shift,ctrl);"
+            + " }"
+            + ");")
+    private native static void jsAddKeyListeners(Plotly instance);
+    
+    @JavaScriptBody(args = {}, javacall = true, body = ""
+            + "var ctrl = false;"
+            + "var shift = false;"
+            + "$(document).off('keydown');"
+            + "$(document).off('keyup');")
+    private native static void jsRemoveKeyListeners();
+    
     @JavaScriptBody(args = {"strElementId", "instance"},javacall=true, body = ""+
             "var plot = document.getElementById(strElementId);"
             + "plot.on('plotly_click', function(plot){"
@@ -350,7 +423,14 @@ public final class Plotly <T extends Chart>{
     
     @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
             "var plot = document.getElementById(strElementId);"
-            + "plot.on('plotly_hover', function(plot){"
+            +"plot.on('plotly_unhover', function(plot){"
+            + "instance.@net.java.html.plotlyjs.Plotly::notifyUnhoverListeners(Lnetscape/javascript/JSObject;)(plot);"
+            + "});")
+    public static native void jsEnableUnHoverEvents(String strElementId, Plotly instance);
+            
+    @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
+            "var plot = document.getElementById(strElementId);"
+            + "plot.on('plotly_relayout', function(plot){"
             + "instance.@net.java.html.plotlyjs.Plotly::notifyZoomListeners(Lnetscape/javascript/JSObject;)(plot);"
             + "});")
     private native static void jsEnableZoomEvents(String strElementId, Plotly instance);
