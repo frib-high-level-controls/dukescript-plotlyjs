@@ -40,18 +40,24 @@ public class Listeners implements ChartListener {
 
     @Override
     public void plotly_click(ClickEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assert false;
     }
 
     @Override
     public void plotly_hover(HoverEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assert false;
     }
 
     @Override
     public void plotly_zoom(ZoomEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assert false;
     }
+
+    @Override
+    public void plotly_unhover(UnhoverEvent ev) {
+        assert false;
+    }
+    
     
     
     

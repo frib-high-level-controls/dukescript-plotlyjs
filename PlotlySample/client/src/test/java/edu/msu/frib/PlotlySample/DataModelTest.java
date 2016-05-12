@@ -5,6 +5,6 @@ import org.testng.annotations.Test;
 
 public class DataModelTest {
     @Test public void testUIModelWithoutUI() {
-        Data model = new Data();
+        Point model = new Point();
     }
 }

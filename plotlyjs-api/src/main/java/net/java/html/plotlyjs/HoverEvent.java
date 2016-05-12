@@ -36,6 +36,15 @@ package net.java.html.plotlyjs;
  *
  * @author daykin
  */
-public class HoverEvent {
+public class HoverEvent extends ChartEvent{
+    
+    public HoverEvent(Plotly source, Object shift, Object ctrl, Object info) {
+        super(source, shift, ctrl, info);
+        //other click related stuff
+    }
+    
+    public String getLabel(){
+        return ((Plotly)source).getId();
+    }
     
 }

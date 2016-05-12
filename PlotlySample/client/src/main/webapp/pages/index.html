@@ -3,11 +3,15 @@
     <head>
         <title>Charts test</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type='text/javascript' src ="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
     </head>
+    
     <body>
+        <script type='text/javascript' src ="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
         <div id="scatter" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
         <div id="timeScatter" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-        <div id="histogram" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <div id="histogram" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div><br>
+        <p>x: <span data-bind="text: x"></span>, y: <span data-bind="text: y"></span></p>
         <div id="histogram2d" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
         <div id="heatmap" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
         <div id="barSample" style ="width: 480px;height:400px;"> </div>
