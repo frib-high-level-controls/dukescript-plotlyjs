@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import net.java.html.js.JavaScriptBody;
-import net.java.html.js.JavaScriptResource;
 import net.java.html.json.Property;
 import net.java.html.plotlyjs.Axis;
 import net.java.html.plotlyjs.Bar;
