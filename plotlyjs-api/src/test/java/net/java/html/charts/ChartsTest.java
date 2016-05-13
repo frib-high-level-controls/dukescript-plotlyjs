@@ -42,20 +42,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import javafx.application.Platform;
 import net.java.html.boot.BrowserBuilder;
-import net.java.html.plotlyjs.Axis;
-import net.java.html.plotlyjs.Bar;
-import net.java.html.plotlyjs.Box;
-import net.java.html.plotlyjs.BoxMarker;
-import net.java.html.plotlyjs.CartesianTrace;
-import net.java.html.plotlyjs.Chart;
-import net.java.html.plotlyjs.Data;
-import net.java.html.plotlyjs.Heatmap;
-import net.java.html.plotlyjs.Histogram2d;
-import net.java.html.plotlyjs.Layout;
-import net.java.html.plotlyjs.Plotly;
-import net.java.html.plotlyjs.Scatter;
-import net.java.html.plotlyjs.ScatterMarker;
-import net.java.html.plotlyjs.TimeTrace;
+import net.java.html.plotlyjs.*;
 import netscape.javascript.JSObject;
 
 import org.netbeans.html.boot.spi.Fn;
@@ -66,7 +53,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@SuppressWarnings("restriction")
+
+
 public class ChartsTest implements Runnable {
     private Plotly chart;
     private Fn.Presenter presenter;
@@ -118,7 +106,7 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                Data data = new Data(sctr);
+                PlotlyData data = new PlotlyData(sctr);
                 chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 
                 return null;
@@ -142,7 +130,7 @@ public class ChartsTest implements Runnable {
 
             CartesianTrace hist2dTrace = new CartesianTrace(x2d,y2d);
             Histogram2d hist = new Histogram2d.Builder().data(hist2dTrace).nbinsx(50).nbinsy(50).build();
-            net.java.html.plotlyjs.Data hist2dData = new net.java.html.plotlyjs.Data(hist);
+            net.java.html.plotlyjs.PlotlyData hist2dData = new net.java.html.plotlyjs.PlotlyData(hist);
             Layout h2dLayout = new Layout.Builder().title("2D Histogram").width(480).height(400).build();
             chart = Plotly.newPlot("chart", hist2dData, h2dLayout);
             
@@ -172,7 +160,7 @@ public class ChartsTest implements Runnable {
                 Heatmap heat = new Heatmap.Builder().x(xheat).y(yheat).z(zheat).build();
 
                 Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
-                chart = Plotly.newPlot("chart",new net.java.html.plotlyjs.Data(heat), heatmapLayout);
+                chart = Plotly.newPlot("chart",new net.java.html.plotlyjs.PlotlyData(heat), heatmapLayout);
                 
                 return null;
             }
@@ -205,7 +193,7 @@ public class ChartsTest implements Runnable {
                 Bar bar0 = Bar.builder().x(barX).y(bar0y).name("SF Zoo").build();
                 Bar bar1 = Bar.builder().x(barX).y(bar1y).name("LA Zoo").build();
 
-                net.java.html.plotlyjs.Data barData = new net.java.html.plotlyjs.Data(bar0,bar1);
+                net.java.html.plotlyjs.PlotlyData barData = new net.java.html.plotlyjs.PlotlyData(bar0,bar1);
                 Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
                 
                 chart = Plotly.newPlot("chart", barData, barLayout);
@@ -256,7 +244,7 @@ public class ChartsTest implements Runnable {
                         .orientation(Chart.Orientations.HORIZONTAL)
                         .build();
 
-                net.java.html.plotlyjs.Data<Box> boxdata = new net.java.html.plotlyjs.Data<>(trace1,trace2,trace3);
+                net.java.html.plotlyjs.PlotlyData<Box> boxdata = new net.java.html.plotlyjs.PlotlyData<>(trace1,trace2,trace3);
 
                 Layout boxlayout = Layout.builder()
                         .title("Grouped Horizontal Box Plot")
@@ -287,7 +275,7 @@ public class ChartsTest implements Runnable {
                 }
                 TimeTrace timetrace0 = new TimeTrace(tt,ty);
                 Scatter timescatter = Scatter.builder().data(timetrace0).build();
-                net.java.html.plotlyjs.Data timedata = new net.java.html.plotlyjs.Data(timescatter);
+                net.java.html.plotlyjs.PlotlyData timedata = new net.java.html.plotlyjs.PlotlyData(timescatter);
                 Layout timelayout = Layout.builder().title("Histogram")
                         .width(480).height(400)
                         .xaxis(Axis.builder().type("date").build())
@@ -315,7 +303,7 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                Data data = new Data(sctr);
+                PlotlyData data = new PlotlyData(sctr);
                 chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 Scatter replacement = Scatter.builder().data(trace)
                         .marker(new ScatterMarker.Builder().opacity(0.7).build())
@@ -346,7 +334,7 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                net.java.html.plotlyjs.Data data = new net.java.html.plotlyjs.Data(sctr);
+                net.java.html.plotlyjs.PlotlyData data = new net.java.html.plotlyjs.PlotlyData(sctr);
                 chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
                 ScatterMarker restyle = ScatterMarker.builder().opacity(0.5).build();    
                 Scatter replacement = Scatter.builder().data(trace)
@@ -379,7 +367,7 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace trace = new CartesianTrace(x,y);
                 Scatter sctr = Scatter.builder().data(trace).build();
-                Data data = new Data(sctr);
+                PlotlyData data = new PlotlyData(sctr);
                 chart = Plotly.newPlot("chart", data, Layout.builder().title("chart").build());
                 Layout newLayout = Layout.builder().title("newTitle").build();
                 chart.relayout(newLayout);
@@ -409,8 +397,8 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
                 CartesianTrace scatterTrace1 = new CartesianTrace(scatter1x,scatter1y);
-                net.java.html.plotlyjs.Data scatterData = 
-                        new net.java.html.plotlyjs.Data<>(Scatter.builder()
+                net.java.html.plotlyjs.PlotlyData scatterData = 
+                        new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                                 .data(scatterTrace0)
                                 .build());
                 chart = Plotly.newPlot("chart", scatterData, Layout.builder().title("Scatter").width(480).height(400).build());
@@ -441,8 +429,8 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
                 CartesianTrace scatterTrace1 = new CartesianTrace(scatter1x,scatter1y);
-                net.java.html.plotlyjs.Data scatterData = 
-                        new net.java.html.plotlyjs.Data<>(Scatter.builder()
+                net.java.html.plotlyjs.PlotlyData scatterData = 
+                        new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());
@@ -474,8 +462,8 @@ public class ChartsTest implements Runnable {
                 }
                 CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
                 CartesianTrace scatterTrace1 = new CartesianTrace(scatter1x,scatter1y);
-                net.java.html.plotlyjs.Data scatterData = 
-                        new net.java.html.plotlyjs.Data<>(Scatter.builder()
+                net.java.html.plotlyjs.PlotlyData scatterData = 
+                        new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                                 .data(scatterTrace0)
                                 .build(),
                         Scatter.builder().data(scatterTrace1).build());

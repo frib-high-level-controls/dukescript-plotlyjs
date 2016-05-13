@@ -55,8 +55,8 @@ public class ErrorBar {
     private final Boolean visible;
     private final Integer traceref;
     private final Integer valueminus;
-    private final Data arrayminus;
-    private final Data array;
+    private final PlotlyData arrayminus;
+    private final PlotlyData array;
     private final String type;
     private final String color;
     
@@ -79,8 +79,8 @@ public class ErrorBar {
         private Boolean visible;
         private Integer traceref;
         private Integer valueminus = 10;
-        private Data arrayminus;
-        private Data array;
+        private PlotlyData arrayminus;
+        private PlotlyData array;
         private String type;
         private String color;
 
@@ -147,12 +147,12 @@ public class ErrorBar {
             return this;
         }
 
-        public Builder arrayminus(final Data value) {
+        public Builder arrayminus(final PlotlyData value) {
             this.arrayminus = value;
             return this;
         }
 
-        public Builder array(final Data value) {
+        public Builder array(final PlotlyData value) {
             this.array = value;
             return this;
         }

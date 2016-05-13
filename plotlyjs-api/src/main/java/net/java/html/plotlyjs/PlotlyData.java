@@ -36,12 +36,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Data <T extends Chart> {
+public class PlotlyData <T extends Chart> {
 
     private List<T> traces = new ArrayList<>();
     
     @SafeVarargs
-    public Data(T... traces){
+    public PlotlyData(T... traces){
         this.traces.addAll(Arrays.asList(traces));  
     }
     
