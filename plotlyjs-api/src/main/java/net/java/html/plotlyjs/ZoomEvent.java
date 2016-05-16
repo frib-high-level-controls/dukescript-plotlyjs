@@ -44,4 +44,8 @@ public class ZoomEvent extends ChartEvent {
         super(source, shift, ctrl, info);
     }
     
+    public String getLabel(){
+        return ((Plotly)source).getId();
+    }
+    
 }

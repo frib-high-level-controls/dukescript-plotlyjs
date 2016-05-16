@@ -111,6 +111,8 @@ final class DataModel {
                 .xaxis(new Axis.Builder().type("date").build())
                 .build();
         Plotly timeChart = Plotly.newPlot("timeScatter", timedata, timelayout);
+        ExampleListener zoomlist = new ExampleListener(timeChart);
+        timeChart.addZoomListener(zoomlist);
         
         //2d histogram
         List<Number> x2d = new ArrayList<>();
@@ -215,8 +217,9 @@ final class DataModel {
                 .boxmode("group")
                 .build();
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
         Plotly boxPlot = Plotly.newPlot("box", boxdata, boxlayout);
+        mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
+        
         
         ArrayList<Integer> values = new ArrayList<Integer>(){{
             add(19);
@@ -318,6 +321,18 @@ final class DataModel {
         @Override
         public void plotly_zoom(ZoomEvent ev) {
             System.out.println("zoom!");
+            Date begin = new Date();
+            Date end = new Date();
+            
+            JSObject plotdata = (JSObject)ev.info;
+            begin.setTime(Long.getLong((String)plotdata.eval("this['xaxis.range[0]']")));
+            end.setTime(Long.getLong((String)plotdata.eval("this['xaxis.range[1]']")));
+            StringBuilder sb = new StringBuilder();
+            sb.append("now showing data from ")
+                    .append(begin.toString())
+                    .append(" to ")
+                    .append(end.toString());
+            System.out.println(sb.toString());
         }
         
         @Override

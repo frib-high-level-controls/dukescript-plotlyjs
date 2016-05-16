@@ -5,3 +5,5 @@
 /sample/client-netbeans/target/
 /sample/client-android/target/
 /sample/client-ios/target/
+**/*.log
+*.log
