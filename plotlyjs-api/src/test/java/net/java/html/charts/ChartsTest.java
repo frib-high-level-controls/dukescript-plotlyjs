@@ -114,6 +114,30 @@ public class ChartsTest implements Runnable {
         });
 
     }
+    
+        @Test
+    public void flippedAxes() throws Exception {
+        run(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                
+                List<Number> x = new ArrayList<>();
+                for (int i=0; i<10; i++){
+                    x.add(i);
+                }
+                List<Number> y = new ArrayList<>();
+                for (int i=0; i<10; i++){
+                    y.add(i);
+                }
+                Scatter sctr = Scatter.builder().y(y).x(x).build();
+                PlotlyData data = new PlotlyData(sctr);
+                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
+                
+                return null;
+            }
+        });
+
+    }
 
     @Test
     public void basicHistogram2d() throws Exception {
@@ -262,7 +286,7 @@ public class ChartsTest implements Runnable {
     }
     
     @Test
-    public void basicTimechart() throws Exception {
+    public void basicTimeSeries() throws Exception {
         run(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -276,7 +300,7 @@ public class ChartsTest implements Runnable {
                 TimeTrace timetrace0 = new TimeTrace(tt,ty);
                 Scatter timescatter = Scatter.builder().data(timetrace0).build();
                 net.java.html.plotlyjs.PlotlyData timedata = new net.java.html.plotlyjs.PlotlyData(timescatter);
-                Layout timelayout = Layout.builder().title("Histogram")
+                Layout timelayout = Layout.builder().title("Time series")
                         .width(480).height(400)
                         .xaxis(Axis.builder().type("date").build())
                         .build();
@@ -286,7 +310,116 @@ public class ChartsTest implements Runnable {
             }
         });
     }
+    
+    @Test
+    public void contourTest()throws Exception{
+        run(new Callable<Void>(){
+            @Override
+            public Void call() throws Exception{
+                List <List> contourZ = new ArrayList<>();
+                ArrayList<Double> cz1 = new ArrayList(){{
+                    add(10);
+                    add(10.625);
+                    add(12.5);
+                    add(15.625);
+                    add(20);
+                }};
+                ArrayList<Double> cz2 = new ArrayList(){{
+                    add(5.625);
+                    add(6.25);
+                    add(8.125);
+                    add(11.25);
+                    add(15.625);
+                }};
+                ArrayList<Double> cz3 = new ArrayList(){{
+                    add(2.5);
+                    add(3.125);
+                    add(5);
+                    add(8.125);
+                    add(12.5);
+                }};
+                ArrayList<Double> cz4 = new ArrayList(){{
+                    add(0.625);
+                    add(1.25);
+                    add(3.125);
+                    add(6.25);
+                    add(10.625);
+                }};
+                ArrayList<Double> cz5 = new ArrayList(){{
+                    add(0);
+                    add(0.625);
+                    add(2.5);
+                    add(5.625);
+                    add(10);
+                }};
 
+                contourZ.add(cz1);
+                contourZ.add(cz2);
+                contourZ.add(cz3);
+                contourZ.add(cz4);
+                contourZ.add(cz5);
+                Contour contour = Contour.builder().z(contourZ).build();
+                net.java.html.plotlyjs.PlotlyData<Contour> contourData = new net.java.html.plotlyjs.PlotlyData(contour);
+                chart = Plotly.newPlot("chart", contourData, Layout.builder().title("Contour plot").build());                
+                return null;
+            }
+        });
+    }
+    
+    //Make sure nonsense data types don't cause a crash
+    @Test
+    public void wrongTypeTest()throws Exception{
+        run(new Callable<Void>(){
+            @Override
+            public Void call() throws Exception{
+                List <List> contourZ = new ArrayList<>();
+                ArrayList<String> cz1 = new ArrayList(){{
+                    add("never");
+                    add("gonna");
+                    add("give");
+                    add("you");
+                    add("up");
+                }};
+                ArrayList<Double> cz2 = new ArrayList(){{
+                    add(5.625);
+                    add(6.25);
+                    add(8.125);
+                    add(11.25);
+                    add(15.625);
+                }};
+                ArrayList<Double> cz3 = new ArrayList(){{
+                    add(2.5);
+                    add(3.125);
+                    add(5);
+                    add(8.125);
+                    add(12.5);
+                }};
+                ArrayList<Double> cz4 = new ArrayList(){{
+                    add(0.625);
+                    add(1.25);
+                    add(3.125);
+                    add(6.25);
+                    add(10.625);
+                }};
+                ArrayList<Double> cz5 = new ArrayList(){{
+                    add(0);
+                    add(0.625);
+                    add(2.5);
+                    add(5.625);
+                    add(10);
+                }};
+                contourZ.add(cz1);
+                contourZ.add(cz2);
+                contourZ.add(cz3);
+                contourZ.add(cz4);
+                contourZ.add(cz5);
+                Contour contour = Contour.builder().z(contourZ).build();
+                net.java.html.plotlyjs.PlotlyData<Contour> contourData = new net.java.html.plotlyjs.PlotlyData(contour);
+                chart = Plotly.newPlot("chart", contourData, Layout.builder().title("Contour plot").build());                
+                return null;
+            }
+        });
+    }    
     
     @Test
     public void redrawTest()throws Exception{

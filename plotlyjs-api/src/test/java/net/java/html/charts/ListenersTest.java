@@ -27,46 +27,75 @@ package net.java.html.charts;
  */
 
 import java.util.List;
-import static org.testng.Assert.assertEquals;
+import java.util.concurrent.CopyOnWriteArrayList;
+import net.java.html.js.JavaScriptBody;
+import net.java.html.plotlyjs.CartesianTrace;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import net.java.html.plotlyjs.ChartListener;
+import net.java.html.plotlyjs.ClickEvent;
+import net.java.html.plotlyjs.HoverEvent;
+import net.java.html.plotlyjs.Layout;
+import net.java.html.plotlyjs.Plotly;
+import net.java.html.plotlyjs.PlotlyException;
+import net.java.html.plotlyjs.Scatter;
+import net.java.html.plotlyjs.UnhoverEvent;
+import net.java.html.plotlyjs.ZoomEvent;
+import netscape.javascript.JSObject;
 
 public class ListenersTest {
-//    private ChartListener current;
-//    private L l1;
-//    private L l2;
-//    private L l3;
+    
+    public static class L implements ChartListener{
+        
+        @Override
+        public void plotly_click(ClickEvent ev) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-    public ListenersTest() {
+        @Override
+        public void plotly_hover(HoverEvent ev) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void plotly_zoom(ZoomEvent ev) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void plotly_unhover(UnhoverEvent ev) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+
+    private L click;
+    private L hover;
+    private L zoom;
+    private L unhover;
+    private Plotly plot;
+
+    public ListenersTest() throws PlotlyException {
+        List<Number> x = new CopyOnWriteArrayList<>();
+                for (int i=0; i<10; i++){
+                    x.add(i);
+                }
+                List<Number> y = new CopyOnWriteArrayList<>();
+                for (int i=0; i<10; i++){
+                    y.add(i);
+                }
+                CartesianTrace trace = new CartesianTrace(x,y);
+                Scatter sctr = Scatter.builder().data(trace).build();
+                net.java.html.plotlyjs.PlotlyData data = new net.java.html.plotlyjs.PlotlyData(sctr);
+                plot = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build()); 
     }
 
     @BeforeMethod
     public void addFewItems() {
-//        current = null;
-//        l1 = new L("l1");
-//        assertEquals(Listeners.all(current).size(), 0, "Nothing");
-//        current = Listeners.add(current, l1);
-//        assertEquals(Listeners.all(current).size(), 1, "One item");
-//        l2 = new L("l2");
-//        current = Listeners.add(current, l2);
-//        assertEquals(Listeners.all(current).size(), 2, "Two items");
-//        l3 = new L("l3");
-//        current = Listeners.add(current, l3);
-//        assertEquals(Listeners.all(current).size(), 3, "Three items");
-//
-//        current = Listeners.add(current, l1);
-//        assertEquals(Listeners.all(current).size(), 3, "Not added for the second time");
-//        current = Listeners.add(current, l3);
-//        assertEquals(Listeners.all(current).size(), 3, "Not added for the second time");
-//        current = Listeners.add(current, l2);
-//        assertEquals(Listeners.all(current).size(), 3, "Not added for the second time");
-//
-//        current = Listeners.add(current, l2);
-//        assertEquals(Listeners.all(current).size(), 3, "Not added for the second time");
-//
-//        current = Listeners.add(current, null);
-//        assertEquals(Listeners.all(current).size(), 3, "Null can't be added");
+        plot.addClickListener(click);
+        plot.addHoverListener(hover);
+        plot.addZoomListener(zoom);
+        plot.addUnhoverListener(unhover);
     }
 
     @Test
@@ -123,6 +152,11 @@ public class ListenersTest {
 //        assertEquals(arr.get(0), l2);
     }
 
+    @Test(expectedExceptions = PlotlyException.class)
+    public void testRemoveOutOfRange() throws PlotlyException{
+        plot.removeClickListener(12345);
+    }
+    
     @Test
     public void testRemoveAll() {
 //        current = Listeners.remove(current, l1);
@@ -155,4 +189,8 @@ public class ListenersTest {
 //
 //
 //    }
+    
+    @JavaScriptBody(args = {"context"},body = ""
+            + "")
+    public static native void generateClickEvent(JSObject context);
 }
