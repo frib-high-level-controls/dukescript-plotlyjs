@@ -67,7 +67,10 @@ public final class Plotly <T extends Chart>{
     private Boolean ctrl = false;
     
     private Plotly(String id, PlotlyData<T> data, Layout layout){
-        this(id,data,layout,new Config.Builder().showLink(false).displaylogo(false).modeBarButtonsToRemove(new String[]{"sendDataToCloud"}).build());
+        this(id,data,layout,new Config.Builder().showLink(false)
+                .displaylogo(false)
+                .modeBarButtonsToRemove(new String[]{"sendDataToCloud"})
+                .build());
     }
     
     private Plotly(String id, PlotlyData<T> data, Layout layout, Config config){
@@ -81,15 +84,17 @@ public final class Plotly <T extends Chart>{
     
     public static Plotly<?>newPlot(String id, PlotlyData<?> data, Layout layout, Config config)throws PlotlyException{
         try {
-            ;
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
             String strlayout = Plotly.mapper.writeValueAsString(layout);
-            jsNewPlot(id,strdata,strlayout);
-            System.out.println(strdata);
             JQuery.init();
-            return new Plotly<>(id, data, layout, config);
-            
+            if(Plotly.jsElementExists(id)){
+                jsNewPlot(id,strdata,strlayout);
+                return new Plotly<>(id, data, layout, config);
+            }
+            else{
+                throw new PlotlyException("the specified DOM element does not exist.");
+            }
         } catch (JsonProcessingException e) {
             throw new PlotlyException(e);
         }
@@ -106,7 +111,7 @@ public final class Plotly <T extends Chart>{
                     .modeBarButtonsToRemove(new String[]{"sendDataToCloud"})
                     .build();
             String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
-            jsNewPlot(id,strdata,strlayout, strconfig);
+            jsNewPlot(id,strdata,strlayout,strconfig);
             
             Plotly plt =  new Plotly<>(id, data, layout, defaultConfig);
             
@@ -170,6 +175,42 @@ public final class Plotly <T extends Chart>{
         this.zoomListeners.remove(l);
     }
     
+    public void removeUnhoverListener(ChartListener l){
+        this.unhoverListeners.remove(l);
+    }
+    
+    public void removeClickListener(int index) throws PlotlyException{
+        try{
+            this.clickListeners.remove(index);
+        }
+        catch(NullPointerException e){
+            throw new PlotlyException("click listener index out of range.",e);
+        }
+    }
+    
+    public void removeHoverListener(int index) throws PlotlyException{
+        try{
+            this.hoverListeners.remove(index);
+        }
+        catch(NullPointerException e){
+            throw new PlotlyException("hover listener index out of range.",e);
+        }
+    }
+    
+    public void removeZoomListener(int index) throws PlotlyException{
+        try{
+            this.zoomListeners.remove(index);
+        }
+        catch(NullPointerException e){
+            throw new PlotlyException("zoom listener index out of range.",e);
+        }
+    }
+    
+    public void removeUnhoverListener(int index){
+        this.unhoverListeners.remove(index);
+    }
+    
+    
     public void notifyClickListeners(JSObject obj){
         ClickEvent event = new ClickEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: clickListeners){
@@ -178,21 +219,21 @@ public final class Plotly <T extends Chart>{
     }
     
     public void notifyHoverListeners(JSObject obj){
-        HoverEvent event = new HoverEvent(this,false,false,obj);
+        HoverEvent event = new HoverEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: hoverListeners){
             l.plotly_hover(event);
         }
     }
     
     public void notifyUnhoverListeners(JSObject obj){
-        UnhoverEvent event = new UnhoverEvent (this, false,false, obj);
+        UnhoverEvent event = new UnhoverEvent (this, this.shift,this.ctrl, obj);
         for (ChartListener l: unhoverListeners){
             l.plotly_unhover(event);
         }
     }
     
     public void notifyZoomListeners(JSObject obj){
-        ZoomEvent event = new ZoomEvent (this, false, false, obj);
+        ZoomEvent event = new ZoomEvent (this, this.shift, this.ctrl, obj);
         for(ChartListener l: zoomListeners){
             l.plotly_zoom(event);
         }
@@ -209,11 +250,7 @@ public final class Plotly <T extends Chart>{
     private Boolean hasZoomListenersEnabled(){
         return this.hoverListenersEnabled;
     }
-    
-    private Boolean hasKeyListenersEnabled(){
-        return docKeyListenersEnabled();
-    }
-    
+
     /**Restyle the trace array
      * @param data a <code>PlotlyData</code> object containing the restyle parameters
      * @param indices the indices in the trace array to apply the new style
@@ -339,6 +376,10 @@ public final class Plotly <T extends Chart>{
             + "Plotly.moveTraces(document.getElementById(elementId), indices);")
     private static native void jsMoveTraces(String elementId, int... indices);
     
+    @JavaScriptBody(args = {"elementId"}, body = ""
+            + "return(document.getElementById(elementId)!=undefined);"
+            )
+    public static native Boolean jsElementExists(String elementId);
     
 
     @JavaScriptBody(args = {"elementId", "from", "to"}, body = ""
