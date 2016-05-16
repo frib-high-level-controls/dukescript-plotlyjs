@@ -77,25 +77,25 @@ public class ListenersTest {
 
     public ListenersTest() throws PlotlyException {
         List<Number> x = new CopyOnWriteArrayList<>();
-                for (int i=0; i<10; i++){
-                    x.add(i);
-                }
-                List<Number> y = new CopyOnWriteArrayList<>();
-                for (int i=0; i<10; i++){
-                    y.add(i);
-                }
-                CartesianTrace trace = new CartesianTrace(x,y);
-                Scatter sctr = Scatter.builder().data(trace).build();
-                net.java.html.plotlyjs.PlotlyData data = new net.java.html.plotlyjs.PlotlyData(sctr);
-                plot = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build()); 
+//                for (int i=0; i<10; i++){
+//                    x.add(i);
+//                }
+//                List<Number> y = new CopyOnWriteArrayList<>();
+//                for (int i=0; i<10; i++){
+//                    y.add(i);
+//                }
+//                CartesianTrace trace = new CartesianTrace(x,y);
+//                Scatter sctr = Scatter.builder().data(trace).build();
+//                net.java.html.plotlyjs.PlotlyData data = new net.java.html.plotlyjs.PlotlyData(sctr);
+//                plot = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build()); 
     }
 
     @BeforeMethod
     public void addFewItems() {
-        plot.addClickListener(click);
-        plot.addHoverListener(hover);
-        plot.addZoomListener(zoom);
-        plot.addUnhoverListener(unhover);
+//        plot.addClickListener(click);
+//        plot.addHoverListener(hover);
+//        plot.addZoomListener(zoom);
+//        plot.addUnhoverListener(unhover);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class ListenersTest {
 
     @Test(expectedExceptions = PlotlyException.class)
     public void testRemoveOutOfRange() throws PlotlyException{
-        plot.removeClickListener(12345);
+        //plot.removeClickListener(12345);
     }
     
     @Test
@@ -190,7 +190,7 @@ public class ListenersTest {
 //
 //    }
     
-    @JavaScriptBody(args = {"context"},body = ""
-            + "")
-    public static native void generateClickEvent(JSObject context);
+//    @JavaScriptBody(args = {"context"},body = ""
+//            + "")
+//    public static native void generateClickEvent(JSObject context);
 }
