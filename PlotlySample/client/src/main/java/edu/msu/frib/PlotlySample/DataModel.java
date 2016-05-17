@@ -320,21 +320,26 @@ final class DataModel {
 
         @Override
         public void plotly_zoom(ZoomEvent ev) {
-            System.out.println("zoom!");
-            Date begin = new Date();
-            Date end = new Date();
             
             JSObject plotdata = (JSObject)ev.info;
-            begin.setTime(Long.getLong((String)plotdata.eval("this['xaxis.range[0]']")));
-            end.setTime(Long.getLong((String)plotdata.eval("this['xaxis.range[1]']")));
+            if(plotdata.eval("this['xaxis.autorange']") instanceof Boolean){
+            System.out.println("Range returned to default scale.");
+            }
+            else{
+            Date begin = new Date();
+            Date end = new Date();
+            begin.setTime(((Double)plotdata.eval("this['xaxis.range[0]']")).longValue());
+            end.setTime(((Double)plotdata.eval("this['xaxis.range[1]']")).longValue());
             StringBuilder sb = new StringBuilder();
-            sb.append("now showing data from ")
+            sb.append("Showing data from ")
                     .append(begin.toString())
                     .append(" to ")
-                    .append(end.toString());
+                    .append(end.toString())
+                    .append(".");
             System.out.println(sb.toString());
+            }
         }
-        
+
         @Override
         public void plotly_unhover(UnhoverEvent ev){
             System.out.println("Something got unhovered!");

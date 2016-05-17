@@ -7,3 +7,4 @@
 /sample/client-ios/target/
 **/*.log
 *.log
+/PlotlySample/client/target/

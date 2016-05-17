@@ -151,11 +151,11 @@ public class ListenersTest {
 //        assertEquals(arr.size(), 1, "just one");
 //        assertEquals(arr.get(0), l2);
     }
-
-    @Test(expectedExceptions = PlotlyException.class)
-    public void testRemoveOutOfRange() throws PlotlyException{
-        //plot.removeClickListener(12345);
-    }
+//
+//    @Test(expectedExceptions = PlotlyException.class)
+//    public void testRemoveOutOfRange() throws PlotlyException{
+//        plot.removeClickListener(12345);
+//    }
     
     @Test
     public void testRemoveAll() {

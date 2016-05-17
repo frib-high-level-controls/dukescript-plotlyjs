@@ -472,8 +472,7 @@ public final class Plotly <T extends Chart>{
     @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
             "var plot = document.getElementById(strElementId);"
             + "plot.on('plotly_relayout', function(eventdata){"
-            + "instance.@net.java.html.plotlyjs.Plotly::notifyZoomListeners(Lnetscape/javascript/JSObject;)(plot);"
-            + "console.log(JSON.stringify(eventdata));"
+            + "instance.@net.java.html.plotlyjs.Plotly::notifyZoomListeners(Lnetscape/javascript/JSObject;)(eventdata);"
             + "});")
     private native static void jsEnableZoomEvents(String strElementId, Plotly instance);
     
