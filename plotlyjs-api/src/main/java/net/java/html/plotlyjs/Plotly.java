@@ -85,41 +85,42 @@ public final class Plotly <T extends Chart>{
     public static Plotly<?>newPlot(String id, PlotlyData<?> data, Layout layout, Config config)throws PlotlyException{
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
-            String strlayout = Plotly.mapper.writeValueAsString(layout);
+            //String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
+            //String strlayout = Plotly.mapper.writeValueAsString(layout);
             JQuery.init();
             if(Plotly.jsElementExists(id)){
-                jsNewPlot(id,strdata,strlayout);
+                //jsNewPlot(id,strdata,strlayout);
                 return new Plotly<>(id, data, layout, config);
             }
             else{
                 throw new PlotlyException("the specified DOM element does not exist.");
             }
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             throw new PlotlyException(e);
         }
     }
     
     public static Plotly<?> newPlot(String id, PlotlyData<?> data, Layout layout) throws PlotlyException {
-        try {
-            Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
-            String strlayout = Plotly.mapper.writeValueAsString(layout);
+        //try {
+            //Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+            //String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
+            //String strlayout = Plotly.mapper.writeValueAsString(layout);
             Config defaultConfig = new Config.Builder()
                     .showLink(false)
                     .displaylogo(false)
                     .modeBarButtonsToRemove(new String[]{"sendDataToCloud"})
                     .build();
-            String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
-            jsNewPlot(id,strdata,strlayout,strconfig);
+            //String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
+            //jsNewPlot(id,strdata,strlayout,strconfig);
             
             Plotly plt =  new Plotly<>(id, data, layout, defaultConfig);
             
             plt.addKeyListeners();
             return plt;
-        } catch (JsonProcessingException e) {
-            throw new PlotlyException(e);
-        }
+        //} 
+        //catch (JsonProcessingException e) {
+          //  throw new PlotlyException(e);
+        //}
     }
     
     private void addKeyListeners(){

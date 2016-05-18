@@ -65,7 +65,7 @@ final class DataModel {
         net.java.html.plotlyjs.PlotlyData scatterData = 
                 new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                         .data(scatterTrace0).build());
-        //Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
+        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
 //        ExampleListener exList = new ExampleListener(scatter);
 //        scatter.addClickListener(exList);
 //        scatter.moveTraces(0);
