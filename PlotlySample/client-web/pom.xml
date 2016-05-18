@@ -24,7 +24,7 @@
 &lt;script type="text/javascript" src="bck2brwsr.js"&gt;&lt;/script&gt;
 &lt;script&gt;
     var vm = bck2brwsr('mainclass.js');
-    var c = vm.loadClass('com.dukescript.charts.sample.BrowserMain');
+    var c = vm.loadClass('edu.msu.frib.PlotlySample.BrowserMain');
     c.invoke('main');
 &lt;/script&gt;
 &lt;!-- end of initialization </browser.bootstrap>

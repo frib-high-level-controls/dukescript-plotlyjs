@@ -285,23 +285,23 @@ final class DataModel {
         net.java.html.plotlyjs.PlotlyData<Contour> contourData = new net.java.html.plotlyjs.PlotlyData(contour);
         Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
         
-        ArrayList<Double> s3dx = new ArrayList<>();
-        ArrayList<Double> s3dy = new ArrayList<>();
-        ArrayList<Double> s3dz = new ArrayList<>();
-        for(int i=0; i<10;i++){
-            s3dx.add(randGen.nextGaussian());
-            s3dy.add(randGen.nextGaussian());
-            s3dz.add(randGen.nextGaussian());
-        }
-        Scatter3d s3d = Scatter3d.builder()
-                .x(s3dx)
-                .y(s3dy)
-                .z(s3dz)
-                .build();
-        PlotlyData s3dData = new PlotlyData(s3d);
-        Layout s3dLayout = Layout.builder().build();
-        System.out.println(mapper.writeValueAsString(s3dData));
-        Plotly s3dPlot = Plotly.newPlot("scatter3d", s3dData, s3dLayout);
+//        ArrayList<Double> s3dx = new ArrayList<>();
+//        ArrayList<Double> s3dy = new ArrayList<>();
+//        ArrayList<Double> s3dz = new ArrayList<>();
+//        for(int i=0; i<10;i++){
+//            s3dx.add(randGen.nextGaussian());
+//            s3dy.add(randGen.nextGaussian());
+//            s3dz.add(randGen.nextGaussian());
+//        }
+//        Scatter3d s3d = Scatter3d.builder()
+//                .x(s3dx)
+//                .y(s3dy)
+//                .z(s3dz)
+//                .build();
+//        PlotlyData s3dData = new PlotlyData(s3d);
+//        Layout s3dLayout = Layout.builder().build();
+//        System.out.println(mapper.writeValueAsString(s3dData));
+//        Plotly s3dPlot = Plotly.newPlot("scatter3d", s3dData, s3dLayout);
 
     }
     private static class ExampleListener implements ChartListener{

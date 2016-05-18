@@ -1,4 +1,4 @@
-package edu.msu.frib.ChartTest.js;
+package edu.msu.frib.PlotlySample.js;
 
 import net.java.html.js.JavaScriptBody;
 

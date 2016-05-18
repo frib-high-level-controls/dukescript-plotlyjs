@@ -14,8 +14,8 @@
             <id>berryma4</id>
             <name>Eric Berryman</name>
             <email>eric.berryman@gmail.com</email>
-            <organization></organization>
-            <organizationUrl></organizationUrl>
+            <organization/>
+            <organizationUrl/>
             <roles>
                 <role>Project-Administrator</role>
                 <role>Developer</role>
@@ -58,8 +58,8 @@
     
     <modules>
         <module>plotlyjs-api</module>
-        <module>PlotlySample</module>
-    </modules>
+    <module>PlotlySample</module>
+  </modules>
     
     <distributionManagement>
         <snapshotRepository>

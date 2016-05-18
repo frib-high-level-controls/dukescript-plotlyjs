@@ -9,3 +9,7 @@
 *.log
 /PlotlySample/client/target/
 /PlotlySample/client-web/target/
+/PlotlySample-old/client-web/target/
+/PlotlySample-old/client/target/
+/PlotlySample-old - Copy/client/target/
+/PlotlySample/js/target/
