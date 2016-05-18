@@ -65,11 +65,11 @@ final class DataModel {
         net.java.html.plotlyjs.PlotlyData scatterData = 
                 new net.java.html.plotlyjs.PlotlyData<>(Scatter.builder()
                         .data(scatterTrace0).build());
-        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
-        ExampleListener exList = new ExampleListener(scatter);
-        scatter.addClickListener(exList);
-        scatter.moveTraces(0);
-        scatter.redraw();
+        //Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
+//        ExampleListener exList = new ExampleListener(scatter);
+//        scatter.addClickListener(exList);
+//        scatter.moveTraces(0);
+//        scatter.redraw();
         
         
         List<Number> h0 = new ArrayList<>();
@@ -90,12 +90,12 @@ final class DataModel {
                 .hovermode("closest")
                 .xaxis(new Axis.Builder().dtick(10).nticks(10).build())
                 .build();
-        Plotly hst = Plotly.newPlot("histogram", data, layout);
-        ExampleListener hoverListener = new ExampleListener(hst);
-        hst.addHoverListener(hoverListener);
-        hst.addUnhoverListener(hoverListener);
-        data.updateTrace(1, hist1);
-        hst.redraw();
+////        Plotly hst = Plotly.newPlot("histogram", data, layout);
+////        ExampleListener hoverListener = new ExampleListener(hst);
+////        hst.addHoverListener(hoverListener);
+////        hst.addUnhoverListener(hoverListener);
+////        data.updateTrace(1, hist1);
+////        hst.redraw();
         
         
         List<Number> ty = new ArrayList<>();
@@ -112,9 +112,9 @@ final class DataModel {
                 .width(480).height(400)
                 .xaxis(new Axis.Builder().type("date").build())
                 .build();
-        Plotly timeChart = Plotly.newPlot("timeScatter", timedata, timelayout);
-        ExampleListener zoomlist = new ExampleListener(timeChart);
-        timeChart.addZoomListener(zoomlist);
+////        Plotly timeChart = Plotly.newPlot("timeScatter", timedata, timelayout);
+////        ExampleListener zoomlist = new ExampleListener(timeChart);
+////        timeChart.addZoomListener(zoomlist);
         
         //2d histogram
         List<Number> x2d = new ArrayList<>();
@@ -129,7 +129,7 @@ final class DataModel {
         Histogram2d hist = new Histogram2d.Builder().data(hist2dTrace).nbinsx(50).nbinsy(50).build();
         net.java.html.plotlyjs.PlotlyData hist2dData = new net.java.html.plotlyjs.PlotlyData(hist);
         Layout h2dLayout = new Layout.Builder().title("2D Histogram").width(480).height(400).build();
-        Plotly hist2d = Plotly.newPlot("histogram2d", hist2dData, h2dLayout);
+//        Plotly hist2d = Plotly.newPlot("histogram2d", hist2dData, h2dLayout);
         
         
         List<ArrayList<Double>> zheat = new ArrayList<>();
@@ -146,7 +146,7 @@ final class DataModel {
         Heatmap heat = new Heatmap.Builder().x(xheat).y(yheat).z(zheat).build();
         
         Layout heatmapLayout = new Layout.Builder().width(480).title("heatmap").height(400).build();
-        Plotly heatmap = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.PlotlyData(heat), heatmapLayout);
+////        Plotly heatmap = Plotly.newPlot("heatmap",new net.java.html.plotlyjs.PlotlyData(heat), heatmapLayout);
         
         ArrayList<String> barX = new ArrayList<String>() {{
             add("giraffes");
@@ -168,11 +168,11 @@ final class DataModel {
         Bar bar0 = Bar.builder().x(barX).y(bar0y).name("SF Zoo").build();
         Bar bar1 = Bar.builder().x(barX).y(bar1y).name("LA Zoo").build();
         
-        net.java.html.plotlyjs.PlotlyData barData = new net.java.html.plotlyjs.PlotlyData(bar0,bar1);
+       net.java.html.plotlyjs.PlotlyData barData = new net.java.html.plotlyjs.PlotlyData(bar0,bar1);
         Layout barLayout = Layout.builder().title("Bar").barmode("group").build();
-        Plotly barSample = Plotly.newPlot("barSample", barData, barLayout);
-        
-        // Box plot
+////        Plotly barSample = Plotly.newPlot("barSample", barData, barLayout);
+//        
+//        // Box plot
         String[] yArray = {"day 1", "day 1", "day 1", "day 1", "day 1", "day 1", "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"};
         Double[] kaleX = {0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3};
         Double[] radishX = {0.6, 0.7, 0.3, 0.6, 0.0, 0.5, 0.7, 0.9, 0.5, 0.8, 0.7, 0.2};
@@ -208,7 +208,7 @@ final class DataModel {
                 .boxmean(false)
                 .orientation(Chart.Orientations.HORIZONTAL)
                 .build();
-        
+       
         net.java.html.plotlyjs.PlotlyData<Box> boxdata = new net.java.html.plotlyjs.PlotlyData<>(trace1,trace2,trace3);
         
         Layout boxlayout = Layout.builder()
@@ -218,9 +218,7 @@ final class DataModel {
                 .build())
                 .boxmode("group")
                 .build();
-        ObjectMapper mapper = new ObjectMapper();
-        Plotly boxPlot = Plotly.newPlot("box", boxdata, boxlayout);
-        mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
+//        Plotly boxPlot = Plotly.newPlot("box", boxdata, boxlayout);
         
         
         ArrayList<Integer> values = new ArrayList<Integer>(){{
@@ -236,7 +234,7 @@ final class DataModel {
         Pie pie = Pie.builder().values(values).labels(labels).build();
         net.java.html.plotlyjs.PlotlyData<Pie> pieData = new net.java.html.plotlyjs.PlotlyData<>(pie);
         Layout pieLayout = Layout.builder().title("Pie Chart").height(400).width(500).build();
-        Plotly pieChart = Plotly.newPlot("pie", pieData, pieLayout);
+//        Plotly pieChart = Plotly.newPlot("pie", pieData, pieLayout);
         
         //contour
         List <List> contourZ = new ArrayList<>();
@@ -283,25 +281,25 @@ final class DataModel {
         contourZ.add(cz5);
         Contour contour = Contour.builder().z(contourZ).build();
         net.java.html.plotlyjs.PlotlyData<Contour> contourData = new net.java.html.plotlyjs.PlotlyData(contour);
-        Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
-        
-//        ArrayList<Double> s3dx = new ArrayList<>();
-//        ArrayList<Double> s3dy = new ArrayList<>();
-//        ArrayList<Double> s3dz = new ArrayList<>();
-//        for(int i=0; i<10;i++){
-//            s3dx.add(randGen.nextGaussian());
-//            s3dy.add(randGen.nextGaussian());
-//            s3dz.add(randGen.nextGaussian());
-//        }
-//        Scatter3d s3d = Scatter3d.builder()
-//                .x(s3dx)
-//                .y(s3dy)
-//                .z(s3dz)
-//                .build();
-//        PlotlyData s3dData = new PlotlyData(s3d);
-//        Layout s3dLayout = Layout.builder().build();
-//        System.out.println(mapper.writeValueAsString(s3dData));
-//        Plotly s3dPlot = Plotly.newPlot("scatter3d", s3dData, s3dLayout);
+////        Plotly cplot = Plotly.newPlot("contour", contourData, Layout.builder().title("Contour plot").build());
+//        
+////        ArrayList<Double> s3dx = new ArrayList<>();
+////        ArrayList<Double> s3dy = new ArrayList<>();
+////        ArrayList<Double> s3dz = new ArrayList<>();
+////        for(int i=0; i<10;i++){
+////            s3dx.add(randGen.nextGaussian());
+////            s3dy.add(randGen.nextGaussian());
+////            s3dz.add(randGen.nextGaussian());
+////        }
+////        Scatter3d s3d = Scatter3d.builder()
+////                .x(s3dx)
+////                .y(s3dy)
+////                .z(s3dz)
+////                .build();
+////        PlotlyData s3dData = new PlotlyData(s3d);
+////        Layout s3dLayout = Layout.builder().build();
+////        System.out.println(mapper.writeValueAsString(s3dData));
+////        Plotly s3dPlot = Plotly.newPlot("scatter3d", s3dData, s3dLayout);
 
     }
     private static class ExampleListener implements ChartListener{

@@ -65,7 +65,7 @@
                         <manifest>
                             <mainClass>${project.mainclass}</mainClass>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathPrefix>/</classpathPrefix>
                             <useUniqueVersions>false</useUniqueVersions>
                         </manifest>
                     </archive>
@@ -87,7 +87,7 @@
                     <obfuscation>${bck2brwsr.obfuscationlevel}</obfuscation>
                     <directory>${project.build.directory}/${project.build.finalName}-bck2brwsr/public_html/</directory>
                     <startpage>index.html</startpage>
-                    <classPathPrefix>lib</classPathPrefix>
+                    <classPathPrefix>/</classPathPrefix>
                     <mainJavaScript>${project.build.directory}/mainclass.js</mainJavaScript>
                     <exports>
                         <export>${project.mainclass}</export>

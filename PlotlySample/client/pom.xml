@@ -55,7 +55,7 @@
                       <manifest>
                           <mainClass>${project.mainclass}</mainClass>
                           <addClasspath>true</addClasspath>
-                          <classpathPrefix>lib/</classpathPrefix>
+                          <classpathPrefix>/</classpathPrefix>
                           <useUniqueVersions>false</useUniqueVersions>
                       </manifest>
                   </archive>
