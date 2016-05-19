@@ -48,7 +48,7 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Heatmap<T extends Trace> extends Charts{
 
-    public Heatmap(Builder<?> builder) {
+    public Heatmap(Builder<?,T> builder) {
         super(builder);
     }
     

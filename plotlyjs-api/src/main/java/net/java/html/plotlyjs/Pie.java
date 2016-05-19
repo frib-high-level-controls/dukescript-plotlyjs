@@ -42,7 +42,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pie<T extends Trace> extends Charts{
 
-    public Pie(Builder<?> builder) {
+    public Pie(Builder<?,T> builder) {
         super(builder);
     }
 //    public final Object labelssrc;

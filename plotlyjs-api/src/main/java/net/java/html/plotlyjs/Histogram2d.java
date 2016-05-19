@@ -48,7 +48,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram2d <T extends Trace> extends Charts {
 
-    public Histogram2d(Builder<?> builder) {
+    public Histogram2d(Builder<?,T> builder) {
         super(builder);
     }
     

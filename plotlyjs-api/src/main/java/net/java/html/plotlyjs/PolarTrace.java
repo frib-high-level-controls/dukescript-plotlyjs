@@ -48,7 +48,7 @@ public class PolarTrace implements Trace {
     List<Number> r;
     List<Number> t;
     
-    PolarTrace(List<Number> r,List<Number> t){
+    public PolarTrace(List<Number> r,List<Number> t){
         this.r = r;
         this.t = t;
     }

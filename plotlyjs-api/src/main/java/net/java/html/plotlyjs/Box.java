@@ -43,7 +43,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Box<T extends Trace> extends Charts{
 
-    public Box(Builder<?> builder) {
+    public Box(Builder<?,T> builder) {
         super(builder);
     }
 //    public static final class Mean{

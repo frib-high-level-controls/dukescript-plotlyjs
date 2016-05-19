@@ -42,7 +42,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Bar<T extends Trace> extends Charts{
 
-    public Bar(Builder<?> builder) {
+    public Bar(Builder<?,T> builder) {
         super(builder);
     }
 //    /*
