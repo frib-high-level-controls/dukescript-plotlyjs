@@ -41,8 +41,7 @@ public class Scatter<T extends Trace> extends Charts{
     
     
         private final String type;
-        private final List x;
-        private final List y;
+        private final T trace;
         private final String mode;
         private final String textposition;
         private final Stream stream;
@@ -77,10 +76,10 @@ public class Scatter<T extends Trace> extends Charts{
         private final List<Number> r;
 
 
-    public static abstract class BaseBuilder<T extends BaseBuilder<T>> extends Charts.Builder<T> {
+    public static abstract class BaseBuilder<T extends BaseBuilder<T,S>,S extends Trace> extends Charts.Builder<T,S> {
 
         private String type;
-        private Trace trace;
+        private S trace;
         private List x;
         private List y;
         private String mode;
@@ -124,21 +123,18 @@ public class Scatter<T extends Trace> extends Charts{
             return self();
         }
         
-        public T data(final CartesianTrace value){
-            this.x(value.x);
-            this.y(value.y);
-            this.r = null;
-            this.t = null;
+        public T data(final S value){
+            if(value instanceof CartesianTrace){
+            this.x = ((CartesianTrace)value).x;
+            this.y = ((CartesianTrace)value).y;
+            }
+            else if(value instanceof PolarTrace){
+            this.r = ((PolarTrace)value).r;
+            this.t = ((PolarTrace)value).t;
+            }
             return self();
         }
         
-        public T data(final PolarTrace value){
-            this.r = value.r;
-            this.t = value.t;
-            this.x = null;
-            this.y = null;
-            return self();
-        }
         
         private T x(final List value) {
             this.x = value;
@@ -315,7 +311,7 @@ public class Scatter<T extends Trace> extends Charts{
         }
     }
 
-    private static class Builder2 extends BaseBuilder<Builder2>{
+    private static class Builder2<T, S extends Trace> extends BaseBuilder<Builder2<T,S>,S>{
 
         @Override
         protected Builder2 self() {
@@ -324,11 +320,11 @@ public class Scatter<T extends Trace> extends Charts{
         
     }
 
-    public static BaseBuilder<?> builder(){
+    public static BaseBuilder<?,Trace> builder(){
         return new Builder2();
     }
     
-    private Scatter(BaseBuilder<?> builder) {
+    private Scatter(BaseBuilder<?,T> builder) {
         super(builder);
         this.type = builder.type;
         this.mode = builder.mode;
@@ -363,8 +359,7 @@ public class Scatter<T extends Trace> extends Charts{
         this.name = builder.name;
         this.connectgaps = builder.connectgaps;
         this.r = builder.r;
-        this.x = builder.x;
-        this.y = builder.y;
+        this.trace = builder.trace;
     }
    
 }

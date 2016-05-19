@@ -43,7 +43,7 @@ import java.util.Map;
 @JsonInclude(Include.NON_NULL)
 public class Contour<T extends Trace> extends Charts{
 
-    public Contour(Builder<?> builder) {
+    public Contour(Builder<?,T> builder) {
         super(builder);
     }
 //    private final Number zmax;

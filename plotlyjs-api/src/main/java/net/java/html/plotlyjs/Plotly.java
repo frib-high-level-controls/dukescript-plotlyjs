@@ -297,7 +297,7 @@ public final class Plotly <T extends Charts>{
     }
     
     /**Add trace(s) to the chart.
-     @param traces an Array of {@link Chart} traces containing the trace parameters
+     @param traces an Array of {@link Charts} traces containing the trace parameters
      *@throws PlotlyException
     */
     public void addTraces(T... traces) throws PlotlyException{

@@ -39,7 +39,7 @@ package net.java.html.plotlyjs;
  */
 public class Charts implements Chart {
     
-    protected static abstract class Builder<T extends Builder<T>>{
+    protected static abstract class Builder<T extends Builder<T, S>, S extends Trace>{
         protected abstract T self();
         
         public Charts build(){
@@ -47,12 +47,13 @@ public class Charts implements Chart {
         }
         
     }
-    private static class Builder2 extends Builder<Builder2>{
+    private static class Builder2<T extends Trace> extends Builder<Builder2<T>, T>{
         @Override
         protected Builder2 self(){
             return this;
         }
+        
     }
     
-    protected Charts(Builder<?> builder){} 
+    protected Charts(Builder<?,?> builder){} 
 }
