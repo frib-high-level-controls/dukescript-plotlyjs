@@ -43,7 +43,10 @@ import java.util.List;
  *
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
+public class CartesianTrace implements Trace{
+    
+    List x;
+    List y;
     
     public CartesianTrace(List x, List y){
         this.x = x;

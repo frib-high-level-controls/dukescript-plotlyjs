@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 /*
@@ -37,9 +32,27 @@ package net.java.html.plotlyjs;
  */
 
 
+
 /**
  *
  * @author daykin
  */
-public interface Trace{
+public class Charts implements Chart {
+    
+    protected static abstract class Builder<T extends Builder<T>>{
+        protected abstract T self();
+        
+        public Charts build(){
+            return new Charts(this);
+        }
+        
+    }
+    private static class Builder2 extends Builder<Builder2>{
+        @Override
+        protected Builder2 self(){
+            return this;
+        }
+    }
+    
+    protected Charts(Builder<?> builder){} 
 }

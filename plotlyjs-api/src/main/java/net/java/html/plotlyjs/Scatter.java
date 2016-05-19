@@ -36,44 +36,51 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Scatter<T extends Value> extends Chart{
-    
-    private final String mode;
-    private final String textposition;
-    private final Stream stream;
-    private final String text;
-    private final String hoverinfo;
-    private final String xsrc;
-    private final Object visible;
-    private final ScatterMarker marker;
-    private final Number y0;
-    private final String tsrc;
-    private final Line line;
-    private final String fill;
-    private final Boolean showlegend;
-    private final ErrorBar error_x;
-    private final ErrorBar error_y;
-    private final String textsrc;
-    private final String rsrc;
-    private final Axis xaxis;
-    private final Axis yaxis;
-    private final String ysrc;
-    private final List<Number> t;
-    private final Number opacity;
-    private final Font textfont;
-    private final String legendgroup;
-    private final String textpositionsrc;
-    private final String fillcolor;
-    private final Number dx;
-    private final Number dy;
-    private final Number x0;
-    private final String name;
-    private final Boolean connectgaps;
-    private final List<Number> r;
+public class Scatter<T extends Trace> extends Charts{
 
-    public static class Builder {
+    
+    
+        private final String type;
+        private final List x;
+        private final List y;
+        private final String mode;
+        private final String textposition;
+        private final Stream stream;
+        private final String text;
+        private final String hoverinfo;
+        private final String xsrc;
+        private final Object visible;
+        private final ScatterMarker marker;
+        private final Number y0;
+        private final String tsrc;
+        private final Line line;
+        private final String fill;
+        private final Boolean showlegend;
+        private final ErrorBar error_x;
+        private final ErrorBar error_y;
+        private final String textsrc;
+        private final String rsrc;
+        private final Axis xaxis;
+        private final Axis yaxis;
+        private final String ysrc;
+        private final List<Number> t;
+        private final Number opacity;
+        private final Font textfont;
+        private final String legendgroup;
+        private final String textpositionsrc;
+        private final String fillcolor;
+        private final Number dx;
+        private final Number dy;
+        private final Number x0;
+        private final String name;
+        private final Boolean connectgaps;
+        private final List<Number> r;
+
+
+    public static abstract class BaseBuilder<T extends BaseBuilder<T>> extends Charts.Builder<T> {
 
         private String type;
+        private Trace trace;
         private List x;
         private List y;
         private String mode;
@@ -109,188 +116,198 @@ public class Scatter<T extends Value> extends Chart{
         private Boolean connectgaps;
         private List<Number> r;
 
-        private Builder() {
+        private BaseBuilder() {
         }
 
-        public Builder type(final String value) {
+        public T type(final String value) {
             this.type = value;
-            return this;
+            return self();
         }
         
-        public Builder data(final Value value){
-            this.x = value.x;
-            this.y = value.y;
-            return this;
+        public T data(final CartesianTrace value){
+            this.x(value.x);
+            this.y(value.y);
+            this.r = null;
+            this.t = null;
+            return self();
         }
         
-        public Builder x(final List value) {
+        public T data(final PolarTrace value){
+            this.r = value.r;
+            this.t = value.t;
+            this.x = null;
+            this.y = null;
+            return self();
+        }
+        
+        private T x(final List value) {
             this.x = value;
-            return this;
+            return self();
         }
 
-        public Builder y(final List value) {
+        private T y(final List value) {
             this.y = value;
-            return this;
+            return self();
         }
 
-        public Builder mode(final String value) {
+        public T mode(final String value) {
             this.mode = value;
-            return this;
+            return self();
         }
 
-        public Builder textposition(final String value) {
+        public T textposition(final String value) {
             this.textposition = value;
-            return this;
+            return self();
         }
 
-        public Builder stream(final Stream value) {
+        public T stream(final Stream value) {
             this.stream = value;
-            return this;
+            return self();
         }
 
-        public Builder text(final String value) {
+        public T text(final String value) {
             this.text = value;
-            return this;
+            return self();
         }
 
-        public Builder hoverinfo(final String value) {
+        public T hoverinfo(final String value) {
             this.hoverinfo = value;
-            return this;
+            return self();
         }
 
-        public Builder xsrc(final String value) {
+        public T xsrc(final String value) {
             this.xsrc = value;
-            return this;
+            return self();
         }
 
-        public Builder visible(final Object value) {
+        public T visible(final Object value) {
             this.visible = value;
-            return this;
+            return self();
         }
 
-        public Builder marker(final ScatterMarker value) {
+        public T marker(final ScatterMarker value) {
             this.marker = value;
-            return this;
+            return self();
         }
 
-        public Builder y0(final Number value) {
+        public T y0(final Number value) {
             this.y0 = value;
-            return this;
+            return self();
         }
 
-        public Builder tsrc(final String value) {
+        public T tsrc(final String value) {
             this.tsrc = value;
-            return this;
+            return self();
         }
 
-        public Builder line(final Line value) {
+        public T line(final Line value) {
             this.line = value;
-            return this;
+            return self();
         }
 
-        public Builder fill(final String value) {
+        public T fill(final String value) {
             this.fill = value;
-            return this;
+            return self();
         }
 
-        public Builder showlegend(final Boolean value) {
+        public T showlegend(final Boolean value) {
             this.showlegend = value;
-            return this;
+            return self();
         }
 
-        public Builder error_x(final ErrorBar value) {
+        public T error_x(final ErrorBar value) {
             this.error_x = value;
-            return this;
+            return self();
         }
 
-        public Builder error_y(final ErrorBar value) {
+        public T error_y(final ErrorBar value) {
             this.error_y = value;
-            return this;
+            return self();
         }
 
-        public Builder textsrc(final String value) {
+        public T textsrc(final String value) {
             this.textsrc = value;
-            return this;
+            return self();
         }
 
-        public Builder rsrc(final String value) {
+        public T rsrc(final String value) {
             this.rsrc = value;
-            return this;
+            return self();
         }
 
-        public Builder xaxis(final Axis value) {
+        public T xaxis(final Axis value) {
             this.xaxis = value;
-            return this;
+            return self();
         }
 
-        public Builder yaxis(final Axis value) {
+        public T yaxis(final Axis value) {
             this.yaxis = value;
-            return this;
+            return self();
         }
 
-        public Builder ysrc(final String value) {
+        public T ysrc(final String value) {
             this.ysrc = value;
-            return this;
+            return self();
         }
 
-        public Builder t(final List<Number> value) {
+        private T t(final List<Number> value) {
             this.t = value;
-            return this;
+            return self();
         }
 
-        public Builder opacity(final Number value) {
+        public T opacity(final Number value) {
             this.opacity = value;
-            return this;
+            return self();
         }
 
-        public Builder textfont(final Font value) {
+        public T textfont(final Font value) {
             this.textfont = value;
-            return this;
+            return self();
         }
 
-        public Builder legendgroup(final String value) {
+        public T legendgroup(final String value) {
             this.legendgroup = value;
-            return this;
+            return self();
         }
 
-        public Builder textpositionsrc(final String value) {
+        public T textpositionsrc(final String value) {
             this.textpositionsrc = value;
-            return this;
+            return self();
         }
 
-        public Builder fillcolor(final String value) {
+        public T fillcolor(final String value) {
             this.fillcolor = value;
-            return this;
+            return self();
         }
 
-        public Builder dx(final Number value) {
+        public T dx(final Number value) {
             this.dx = value;
-            return this;
+            return self();
         }
 
-        public Builder dy(final Number value) {
+        public T dy(final Number value) {
             this.dy = value;
-            return this;
+            return self();
         }
 
-        public Builder x0(final Number value) {
+        public T x0(final Number value) {
             this.x0 = value;
-            return this;
+            return self();
         }
 
-        public Builder name(final String value) {
+        public T name(final String value) {
             this.name = value;
-            return this;
+            return self();
         }
 
-        public Builder connectgaps(final Boolean value) {
+        public T connectgaps(final Boolean value) {
             this.connectgaps = value;
-            return this;
+            return self();
         }
 
-        public Builder r(final List<Number> value) {
+        private T r(final List<Number> value) {
             this.r = value;
-            return this;
+            return self();
         }
 
         public Scatter build() {
@@ -298,14 +315,22 @@ public class Scatter<T extends Value> extends Chart{
         }
     }
 
-    public static Scatter.Builder builder() {
-        return new Scatter.Builder();
+    private static class Builder2 extends BaseBuilder<Builder2>{
+
+        @Override
+        protected Builder2 self() {
+            return this;
+        }
+        
     }
 
-    private Scatter(Builder builder) {
+    public static BaseBuilder<?> builder(){
+        return new Builder2();
+    }
+    
+    private Scatter(BaseBuilder<?> builder) {
+        super(builder);
         this.type = builder.type;
-        this.x = builder.x;
-        this.y = builder.y;
         this.mode = builder.mode;
         this.textposition = builder.textposition;
         this.stream = builder.stream;
@@ -338,6 +363,8 @@ public class Scatter<T extends Value> extends Chart{
         this.name = builder.name;
         this.connectgaps = builder.connectgaps;
         this.r = builder.r;
+        this.x = builder.x;
+        this.y = builder.y;
     }
    
 }

@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PlotlyData <T extends Chart> {
+public class PlotlyData <T extends Charts> {
 
     private List<T> traces = new ArrayList<>();
     
