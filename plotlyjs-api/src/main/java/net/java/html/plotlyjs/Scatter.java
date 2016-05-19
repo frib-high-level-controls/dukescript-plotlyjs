@@ -43,6 +43,8 @@ public class Scatter<T extends Trace> extends Charts{
         private final String type;
         private final T trace;
         private final String mode;
+        private final List x;
+        private final List y;
         private final String textposition;
         private final Stream stream;
         private final String text;
@@ -125,13 +127,15 @@ public class Scatter<T extends Trace> extends Charts{
         
         public T data(final S value){
             if(value instanceof CartesianTrace){
-            this.x = ((CartesianTrace)value).x;
-            this.y = ((CartesianTrace)value).y;
+                this.x = ((CartesianTrace)value).x;
+                this.y = ((CartesianTrace)value).y;
             }
             else if(value instanceof PolarTrace){
-            this.r = ((PolarTrace)value).r;
-            this.t = ((PolarTrace)value).t;
+                this.r = ((PolarTrace)value).r;
+                this.t = ((PolarTrace)value).t;
             }
+            else{throw new UnsupportedOperationException("Supported trace types"
+                    + "for scatter are cartesian and polar.");}
             return self();
         }
         
@@ -328,6 +332,8 @@ public class Scatter<T extends Trace> extends Charts{
         super(builder);
         this.type = builder.type;
         this.mode = builder.mode;
+        this.x = builder.x;
+        this.y = builder.y;
         this.textposition = builder.textposition;
         this.stream = builder.stream;
         this.text = builder.text;

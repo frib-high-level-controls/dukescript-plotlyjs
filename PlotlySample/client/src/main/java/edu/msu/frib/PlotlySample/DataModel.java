@@ -107,12 +107,13 @@ final class DataModel {
         }
         
         CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);
-        PolarTrace scatterTrace1 = new PolarTrace(scatter0x, scatter0y);
         net.java.html.plotlyjs.PlotlyData<Scatter<CartesianTrace>> scatterData = 
                 new net.java.html.plotlyjs.PlotlyData<Scatter<CartesianTrace>>(Scatter.builder()
                         .data(scatterTrace0).build());
-        Scatter<PolarTrace> polar = Scatter.builder().data(scatterTrace1).build();
-        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());
+        
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(scatter0x.size()));
+        Plotly scatter = Plotly.newPlot("scatter", scatterData, new Layout.Builder().title("Scatter with Click Event").width(480).height(400).build());        
         //scatterData.addTraces(polar);
         ExampleListener exList = new ExampleListener(scatter);
         scatter.addClickListener(exList);
