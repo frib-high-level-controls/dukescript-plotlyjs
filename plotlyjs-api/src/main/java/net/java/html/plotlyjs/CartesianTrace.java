@@ -45,10 +45,10 @@ import java.util.List;
  */
 public class CartesianTrace implements Trace{
     
-    List x;
-    List y;
+    List<?> x;
+    List<?> y;
     
-    public CartesianTrace(List x, List y){
+    public CartesianTrace(List<?> x, List<?> y){
         this.x = x;
         this.y = y;
     }
@@ -57,12 +57,12 @@ public class CartesianTrace implements Trace{
         
     }
 
-    public CartesianTrace x(List value) {
+    public CartesianTrace x(List<?> value) {
         this.x = value;
         return this;
     }
 
-    public CartesianTrace y(List value) {
+    public CartesianTrace y(List<?> value) {
         this.y = value;
         return this;
     }

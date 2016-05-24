@@ -52,7 +52,7 @@ public class Scatter3dMarker extends Marker {
         private Boolean autocolorscale;
         private Number cmax;
         private Number cmin;
-        private Map<Integer,String> colorscale;
+        private Map<Number,String> colorscale;
         private String color;
         private Boolean reversescale;
         private Boolean cauto;
@@ -86,7 +86,7 @@ public class Scatter3dMarker extends Marker {
             return this;
         }
 
-        public Builder colorscale(final Map<Integer,String> value) {
+        public Builder colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }

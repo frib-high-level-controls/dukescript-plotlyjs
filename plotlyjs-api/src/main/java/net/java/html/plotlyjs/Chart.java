@@ -37,6 +37,7 @@ package net.java.html.plotlyjs;
  * @author daykin
  */
 public interface Chart {
+    
     public static final class Orientations{
         public static final String VERTICAL = "v";
         public static final String HORIZONTAL = "h";

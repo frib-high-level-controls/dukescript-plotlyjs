@@ -36,12 +36,14 @@ package net.java.html.plotlyjs;
 import java.util.List;
 
 /**
- *
+ * Wraps CartesianTrace for convenience and readability when dealing with Time Series.
  * @author daykin
  */
-public class TimeTrace extends Value implements Trace{
-    public TimeTrace(List<java.util.Date> x, List<Number> y){
-        this.x = x;
+public class TimeTrace extends CartesianTrace implements Trace{
+    final List<?> t;
+    public TimeTrace(List<java.util.Date> t, List<Number> y){
+        this.t = t;
+        this.x = t;
         this.y = y;
     }
 }

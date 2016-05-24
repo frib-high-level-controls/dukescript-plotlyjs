@@ -43,9 +43,6 @@ import java.util.List;
 @JsonInclude(Include.NON_NULL)
 public class Scatter3d<T extends Trace> extends Charts{
 
-    public Scatter3d(Builder<?,T> builder) {
-        super(builder);
-    }
 //    public final String textposition;
 //    public final Projection projection;
 //    public final Stream stream;

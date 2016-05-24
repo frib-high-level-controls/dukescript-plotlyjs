@@ -36,16 +36,16 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author daykin
  */
-public class XYZTrace extends Value implements Trace{
-    ArrayList z = new ArrayList<>();
-    public XYZTrace(ArrayList x, ArrayList y, ArrayList z){
-        this.x = x;
+public class XYZTrace extends CartesianTrace implements Trace{
+    List<?> z;
+    public XYZTrace(List<?> x, List<?> y, List<?> z){
+        super(x,y);
+        this.z = z;
     }
 }

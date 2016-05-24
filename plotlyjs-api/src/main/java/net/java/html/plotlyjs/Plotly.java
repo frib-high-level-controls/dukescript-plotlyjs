@@ -55,10 +55,10 @@ public final class Plotly <T extends Charts>{
     private final PlotlyData<T> data;
     private final Layout layout;
     private final Config config;
-    private ArrayList<ChartListener> clickListeners = new ArrayList<>();
-    private ArrayList<ChartListener> hoverListeners = new ArrayList<>();
-    private ArrayList<ChartListener> zoomListeners = new ArrayList<>();
-    private ArrayList<ChartListener> unhoverListeners = new ArrayList<>();
+    private final ArrayList<ChartListener> clickListeners = new ArrayList<>();
+    private final ArrayList<ChartListener> hoverListeners = new ArrayList<>();
+    private final ArrayList<ChartListener> zoomListeners = new ArrayList<>();
+    private final ArrayList<ChartListener> unhoverListeners = new ArrayList<>();
     private Boolean clickListenersEnabled = false;
     private Boolean hoverListenersEnabled = false;
     private Boolean zoomListenersEnabled = false;
@@ -79,10 +79,9 @@ public final class Plotly <T extends Charts>{
         this.data = data;
         this.layout = layout;
         this.config = config;
-        
     }
     
-    public static Plotly<?>newPlot(String id, PlotlyData<?> data, Layout layout, Config config)throws PlotlyException{
+    public static<CHART extends Charts> Plotly<CHART>newPlot(String id, PlotlyData<CHART> data, Layout layout, Config config)throws PlotlyException{
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
@@ -100,7 +99,7 @@ public final class Plotly <T extends Charts>{
         }
     }
     
-    public static Plotly<?> newPlot(String id, PlotlyData<?> data, Layout layout) throws PlotlyException {
+    public static <CHART extends Charts> Plotly<CHART> newPlot(String id, PlotlyData<CHART> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             String strdata = Plotly.mapper.writeValueAsString(data.getTraces());
@@ -113,7 +112,7 @@ public final class Plotly <T extends Charts>{
             String strconfig = Plotly.mapper.writeValueAsString(defaultConfig);
             jsNewPlot(id,strdata,strlayout,strconfig);
             
-            Plotly plt =  new Plotly<>(id, data, layout, defaultConfig);
+            Plotly<CHART> plt =  new Plotly<>(id, data, layout, defaultConfig);
             
             plt.addKeyListeners();
             return plt;
@@ -300,6 +299,7 @@ public final class Plotly <T extends Charts>{
      @param traces an Array of {@link Charts} traces containing the trace parameters
      *@throws PlotlyException
     */
+    @SuppressWarnings("unchecked")
     public void addTraces(T... traces) throws PlotlyException{
         try{
             this.data.addTraces(traces);
@@ -400,8 +400,8 @@ public final class Plotly <T extends Charts>{
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
             "var layout = JSON.parse(strlayout);\n" +
-            "var elementId = document.getElementById(strElementId);\n" +
-            "Plotly.newPlot(elementId, data, layout, {showLink: false, displaylogo: false, modeBarButtonsToRemove: ['sendDataToCloud']});\n" +
+            "var elementId = document.getElementById(strElementId);\n"+
+            "Plotly.newPlot(elementId, data, layout, {showLink: false, displaylogo: false, modeBarButtonsToRemove: ['sendDataToCloud']});\n"+
             "return document.getElementById(strElementId);"
     )
     native static Object jsNewPlot(String strElementId, String strdata, String strlayout);
@@ -420,8 +420,9 @@ public final class Plotly <T extends Charts>{
     @JavaScriptBody(args = {"strElementId"}, body = ""
             + "var plot = document.getElementById(strElementId);"
             + "return plot;")
-    private native static JSObject jsGetPlot(String strElementId);
+    private native static Object jsGetPlot(String strElementId);
     
+  
     @JavaScriptBody(args = {}, body = ""
             + "$return($._data($(document).get(0), 'events').length>0)")
     private native static boolean docKeyListenersEnabled();
@@ -440,7 +441,7 @@ public final class Plotly <T extends Charts>{
             + "instance.@net.java.html.plotlyjs.Plotly::keyEvent(ZZ)(shift,ctrl);"
             + " }"
             + ");")
-    private native static void jsAddKeyListeners(Plotly instance);
+    private native static void jsAddKeyListeners(Plotly<?> instance);
     
     @JavaScriptBody(args = {}, javacall = true, body = ""
             + "var ctrl = false;"
@@ -454,28 +455,28 @@ public final class Plotly <T extends Charts>{
             + "plot.on('plotly_click', function(plot){"
             + "instance.@net.java.html.plotlyjs.Plotly::notifyClickListeners(Lnetscape/javascript/JSObject;)(plot);"
             + "});")
-    private native static void jsEnableClickEvents(String strElementId, Plotly instance);
+    private native static void jsEnableClickEvents(String strElementId, Plotly<?> instance);
     
     @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
             "var plot = document.getElementById(strElementId);"
             + "plot.on('plotly_hover', function(plot){"
             + "instance.@net.java.html.plotlyjs.Plotly::notifyHoverListeners(Lnetscape/javascript/JSObject;)(plot);"
             + "});")
-    private native static void jsEnableHoverEvents(String strElementId, Plotly instance);
+    private native static void jsEnableHoverEvents(String strElementId, Plotly<?> instance);
     
     @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
             "var plot = document.getElementById(strElementId);"
             +"plot.on('plotly_unhover', function(plot){"
             + "instance.@net.java.html.plotlyjs.Plotly::notifyUnhoverListeners(Lnetscape/javascript/JSObject;)(plot);"
             + "});")
-    public static native void jsEnableUnHoverEvents(String strElementId, Plotly instance);
+    public static native void jsEnableUnHoverEvents(String strElementId, Plotly<?> instance);
             
     @JavaScriptBody(args = {"strElementId", "instance"}, javacall = true, body = ""+
             "var plot = document.getElementById(strElementId);"
             + "plot.on('plotly_relayout', function(eventdata){"
             + "instance.@net.java.html.plotlyjs.Plotly::notifyZoomListeners(Lnetscape/javascript/JSObject;)(eventdata);"
             + "});")
-    private native static void jsEnableZoomEvents(String strElementId, Plotly instance);
+    private native static void jsEnableZoomEvents(String strElementId, Plotly<?> instance);
     
     @Override
     public String toString(){

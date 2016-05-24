@@ -32,28 +32,33 @@ package net.java.html.plotlyjs;
  */
 
 
-
 /**
  *
  * @author daykin
  */
-public class Charts implements Chart {
-    
-    protected static abstract class Builder<T extends Builder<T, S>, S extends Trace>{
-        protected abstract T self();
-        
-        public Charts build(){
-            return new Charts(this);
-        }
-        
-    }
-    private static class Builder2<T extends Trace> extends Builder<Builder2<T>, T>{
-        @Override
-        protected Builder2 self(){
-            return this;
-        }
-        
-    }
-    
-    protected Charts(Builder<?,?> builder){} 
+
+public abstract class Charts implements Chart {
+
+//    protected static abstract class AbstractChartsBuilder<T extends AbstractChartsBuilder<T>> {
+//        protected abstract T self();
+//
+//        protected Charts build() {
+//            return new Charts(this);
+//        }
+//    }
+//
+//    private static class GenericChartsBuilder extends AbstractChartsBuilder<GenericChartsBuilder> {
+//        @Override
+//        protected GenericChartsBuilder self() {
+//            return this;
+//        }
+//    }
+//
+//    protected AbstractChartsBuilder<?> builder() throws PlotlyException{
+//        return new GenericChartsBuilder();
+//    }
+//
+//    protected Charts(AbstractChartsBuilder<?> builder) {
+//       
+//    }
 }

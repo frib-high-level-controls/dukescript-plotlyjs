@@ -90,54 +90,54 @@ public class ChartsTest implements Runnable {
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
 
-    @Test
-    public void basicLineChart() throws Exception {
-        run(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                
-                List<Number> x = new ArrayList<>();
-                for (int i=0; i<10; i++){
-                    x.add(i);
-                }
-                List<Number> y = new ArrayList<>();
-                for (int i=0; i<10; i++){
-                    y.add(i);
-                }
-                CartesianTrace trace = new CartesianTrace(x,y);
-                Scatter sctr = Scatter.builder().data(trace).build();
-                PlotlyData data = new PlotlyData(sctr);
-                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
-                
-                return null;
-            }
-        });
-
-    }
-    
-        @Test
-    public void flippedAxes() throws Exception {
-        run(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                
-                List<Number> x = new ArrayList<>();
-                for (int i=0; i<10; i++){
-                    x.add(i);
-                }
-                List<Number> y = new ArrayList<>();
-                for (int i=0; i<10; i++){
-                    y.add(i);
-                }
-                Scatter sctr = Scatter.builder().data(new CartesianTrace(x,y)).build();
-                PlotlyData data = new PlotlyData(sctr);
-                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
-                
-                return null;
-            }
-        });
-
-    }
+//    @Test
+//    public void basicLineChart() throws Exception {
+//        run(new Callable<Void>() {
+//            @Override
+//            public Void call() throws Exception {
+//                
+//                List<Number> x = new ArrayList<>();
+//                for (int i=0; i<10; i++){
+//                    x.add(i);
+//                }
+//                List<Number> y = new ArrayList<>();
+//                for (int i=0; i<10; i++){
+//                    y.add(i);
+//                }
+//                CartesianTrace trace = new CartesianTrace(x,y);
+//                Scatter sctr = Scatter.builder().data(trace).build();
+//                PlotlyData data = new PlotlyData(sctr);
+//                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
+//                
+//                return null;
+//            }
+//        });
+//
+//    }
+//    
+//        @Test
+//    public void flippedAxes() throws Exception {
+//        run(new Callable<Void>() {
+//            @Override
+//            public Void call() throws Exception {
+//                
+//                List<Number> x = new ArrayList<>();
+//                for (int i=0; i<10; i++){
+//                    x.add(i);
+//                }
+//                List<Number> y = new ArrayList<>();
+//                for (int i=0; i<10; i++){
+//                    y.add(i);
+//                }
+//                Scatter sctr = Scatter.builder().data(new CartesianTrace(x,y)).build();
+//                PlotlyData data = new PlotlyData(sctr);
+//                chart = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build());
+//                
+//                return null;
+//            }
+//        });
+//
+//    }
 
 //    @Test
 //    public void basicHistogram2d() throws Exception {

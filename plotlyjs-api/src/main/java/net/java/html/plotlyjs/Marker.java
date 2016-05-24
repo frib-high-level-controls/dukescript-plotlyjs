@@ -193,7 +193,7 @@ public abstract class Marker {
     Boolean autocolorscale;
     Number cmax;
     Number cmin;
-    Map<Integer,String> colorscale;
+    Map<Number,String> colorscale;
     String color;
     Boolean reversescale;
     Boolean cauto;
