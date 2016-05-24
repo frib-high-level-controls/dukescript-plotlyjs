@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 /*
@@ -37,34 +32,33 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public class CartesianTrace implements Trace{
-    
-    List<?> x;
-    List<?> y;
-    
-    public CartesianTrace(List<?> x, List<?> y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    public CartesianTrace(){
-        
-    }
 
-    public CartesianTrace x(List<?> value) {
-        this.x = value;
-        return this;
-    }
+public abstract class Charts implements Chart {
 
-    public CartesianTrace y(List<?> value) {
-        this.y = value;
-        return this;
-    }
-    
+//    protected static abstract class AbstractChartsBuilder<T extends AbstractChartsBuilder<T>> {
+//        protected abstract T self();
+//
+//        protected Charts build() {
+//            return new Charts(this);
+//        }
+//    }
+//
+//    private static class GenericChartsBuilder extends AbstractChartsBuilder<GenericChartsBuilder> {
+//        @Override
+//        protected GenericChartsBuilder self() {
+//            return this;
+//        }
+//    }
+//
+//    protected AbstractChartsBuilder<?> builder() throws PlotlyException{
+//        return new GenericChartsBuilder();
+//    }
+//
+//    protected Charts(AbstractChartsBuilder<?> builder) {
+//       
+//    }
 }

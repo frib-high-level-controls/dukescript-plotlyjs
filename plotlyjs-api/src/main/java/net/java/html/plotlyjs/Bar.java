@@ -40,17 +40,14 @@ import java.util.List;
  * @author daykin
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Bar extends Chart{
-    /*
-        Y magnitude direction-horizontal or vertical
-    */
+public class Bar<TRACE_T extends CartesianTrace> extends Charts{
+    private final String type;
+    private final List<?> x;
+    private final List<?> y;    
+    private final TRACE_T trace;
     private final String orientation;
     private final Stream stream;
     private final String text;
-    /*
-        On hover, what info to show; if
-        Unspecified, the chart will show all data at that point.
-    */
     private final String hoverinfo;
     private final Object xsrc;
     private final Object visible;
@@ -72,11 +69,12 @@ public class Bar extends Chart{
     private final Number x0;
     private final String name;
 
-    public static class Builder {
+    public static class Builder<TRACE_2 extends CartesianTrace> {
 
         private final String type = "bar";
-        private List x;
-        private List y;
+        private List<?> x;
+        private List<?> y;
+        private TRACE_2 trace;
         private String orientation = Chart.Orientations.VERTICAL;
         private Stream stream;
         private String text;
@@ -103,144 +101,154 @@ public class Bar extends Chart{
 
         private Builder() {
         }
-
-
-        public Builder x(final List value) {
+        
+        public static<TRACE_3 extends CartesianTrace> Builder<TRACE_3> start(){
+            return new Builder<>();
+        }
+        
+        public Builder<TRACE_2> trace(final TRACE_2 trace){
+            this.x = trace.x;
+            this.y = trace.y;
+            return this;
+        }
+        
+        private Builder<TRACE_2> x(final List<?> value) {
             this.x = value;
             return this;
         }
 
-        public Builder y(final List value) {
+        private Builder<TRACE_2> y(final List<?> value) {
             this.y = value;
             return this;
         }
 
-        public Builder orientation(final String value) {
+        public Builder<TRACE_2> orientation(final String value) {
             this.orientation = value;
             return this;
         }
 
-        public Builder stream(final Stream value) {
+        public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
-        public Builder text(final String value) {
+        public Builder<TRACE_2> text(final String value) {
             this.text = value;
             return this;
         }
 
-        public Builder hoverinfo(final String value) {
+        public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
-        public Builder xsrc(final Object value) {
+        public Builder<TRACE_2> xsrc(final Object value) {
             this.xsrc = value;
             return this;
         }
 
-        public Builder visible(final Object value) {
+        public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
-        public Builder marker(final BarMarker value) {
+        public Builder<TRACE_2> marker(final BarMarker value) {
             this.marker = value;
             return this;
         }
 
-        public Builder y0(final Number value) {
+        public Builder<TRACE_2> y0(final Number value) {
             this.y0 = value;
             return this;
         }
 
-        public Builder tsrc(final Object value) {
+        public Builder<TRACE_2> tsrc(final Object value) {
             this.tsrc = value;
             return this;
         }
 
-        public Builder showlegend(final Boolean value) {
+        public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
-        public Builder error_x(final ErrorBar value) {
+        public Builder<TRACE_2> error_x(final ErrorBar value) {
             this.error_x = value;
             return this;
         }
 
-        public Builder error_y(final ErrorBar value) {
+        public Builder<TRACE_2> error_y(final ErrorBar value) {
             this.error_y = value;
             return this;
         }
 
-        public Builder rsrc(final Object value) {
+        public Builder<TRACE_2> rsrc(final Object value) {
             this.rsrc = value;
             return this;
         }
 
-        public Builder xaxis(final Axis value) {
+        public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
-        public Builder yaxis(final Axis value) {
+        public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
-        public Builder ysrc(final Object value) {
+        public Builder<TRACE_2> ysrc(final Object value) {
             this.ysrc = value;
             return this;
         }
 
-        public Builder opacity(final Number value) {
+        public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
-        public Builder legendgroup(final String value) {
+        public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
-        public Builder textsrc(final Object value) {
+        public Builder<TRACE_2> textsrc(final Object value) {
             this.textsrc = value;
             return this;
         }
 
-        public Builder dx(final Number value) {
+        public Builder<TRACE_2> dx(final Number value) {
             this.dx = value;
             return this;
         }
 
-        public Builder dy(final Number value) {
+        public Builder<TRACE_2> dy(final Number value) {
             this.dy = value;
             return this;
         }
 
-        public Builder x0(final Number value) {
+        public Builder<TRACE_2> x0(final Number value) {
             this.x0 = value;
             return this;
         }
 
-        public Builder name(final String value) {
+        public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
-        public Bar build() {
-            return new net.java.html.plotlyjs.Bar(this);
+        public Bar<TRACE_2> build() {
+            return new net.java.html.plotlyjs.Bar<>(this);
         }
     }
 
-    public static Bar.Builder builder() {
-        return new Bar.Builder();
+    public static <TRACE extends CartesianTrace> Bar.Builder<TRACE> builder() {
+        return Builder.start();
     }
 
-    private Bar(Builder builder) {
-        this.type = builder.type;
+    private Bar(Builder<TRACE_T> builder) {
+        this.type = "bar";
+        this.trace = builder.trace;
         this.x = builder.x;
         this.y = builder.y;
         this.orientation = builder.orientation;

@@ -41,5 +41,5 @@ package net.java.html.plotlyjs;
  *
  * @author daykin
  */
-public interface Trace {
+public interface Trace{
 }

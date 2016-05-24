@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.java.html.plotlyjs;
 
 /*
@@ -37,16 +32,11 @@ package net.java.html.plotlyjs;
  */
 
 
-import java.util.List;
-
 /**
  *
  * @author daykin
  */
-public abstract class Chart {
-    String type;
-    List x;
-    List y;
+public interface Chart {
     
     public static final class Orientations{
         public static final String VERTICAL = "v";
@@ -113,5 +103,4 @@ public abstract class Chart {
         public static final String BEST = "best";
         public static final Boolean FALSE = false;
     }
-    
 }

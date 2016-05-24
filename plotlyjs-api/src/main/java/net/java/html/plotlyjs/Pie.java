@@ -40,24 +40,26 @@ package net.java.html.plotlyjs;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Pie extends Chart{
-    public final Object labelssrc;
+public class Pie<TRACE_T extends PieTrace> extends Charts{
+
+    public final String type;
+    public final Object labelssrc;    
     public final String textposition;
     public final Domain domain;
     public final Stream stream;
-    public final List text;
-    public final List labels;
+    public final List<?> text;
+    public final List<?> labels;
     public final String direction;
     public final Object textsrc;
     public final Object visible;
     public final Object pullsrc;
     public final PieMarker marker;
-    public final String textinfo; //enum for this
+    public final String textinfo;
     public final Number rotation;
     public final Boolean showlegend;
     public final Font outsidetextfont;
     public final Object valuessrc;
-    public final List values;
+    public final List<?> values;
     public final Number opacity;
     public final Font textfont;
     public final String legendgroup;
@@ -72,17 +74,13 @@ public class Pie extends Chart{
     public final Font insidetextfont;
     public final String scalegroup;
 
-    public static class Builder {
-
-        private static final String type = "pie";
-        private List x;
-        private List y;
+    public static class Builder<TRACE_2 extends PieTrace> {
         private Object labelssrc;
         private String textposition;
         private Domain domain;
         private Stream stream;
-        private List text;
-        private List labels;
+        private List<?> text;
+        private List<?> labels;
         private String direction;
         private Object textsrc;
         private Object visible;
@@ -93,7 +91,7 @@ public class Pie extends Chart{
         private Boolean showlegend;
         private Font outsidetextfont;
         private Object valuessrc;
-        private List values;
+        private List<?> values;
         private Number opacity;
         private Font textfont;
         private String legendgroup;
@@ -110,180 +108,172 @@ public class Pie extends Chart{
 
         private Builder() {
         }
-
-
-        public Builder x(final List value) {
-            this.x = value;
-            return this;
+        
+        private static <TRACE_3 extends PieTrace> Builder<TRACE_3> start(){
+            return new Builder<>();
         }
 
-        public Builder y(final List value) {
-            this.y = value;
-            return this;
-        }
-
-        public Builder labelssrc(final Object value) {
+        public Builder<TRACE_2> labelssrc(final Object value) {
             this.labelssrc = value;
             return this;
         }
 
-        public Builder textposition(final String value) {
+        public Builder<TRACE_2> textposition(final String value) {
             this.textposition = value;
             return this;
         }
 
-        public Builder domain(final Domain value) {
+        public Builder<TRACE_2> domain(final Domain value) {
             this.domain = value;
             return this;
         }
 
-        public Builder stream(final Stream value) {
+        public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
-        public Builder text(final List value) {
+        public Builder<TRACE_2> text(final List<?> value) {
             this.text = value;
             return this;
         }
 
-        public Builder labels(final List value) {
+        public Builder<TRACE_2> labels(final List<?> value) {
             this.labels = value;
             return this;
         }
         
-        public Builder values(final List values){
+        public Builder<TRACE_2> values(final List<?> values){
             this.values = values;
             return this;
         }
         
-        public Builder direction(final String value) {
+        public Builder<TRACE_2> direction(final String value) {
             this.direction = value;
             return this;
         }
 
-        public Builder textsrc(final Object value) {
+        public Builder<TRACE_2> textsrc(final Object value) {
             this.textsrc = value;
             return this;
         }
 
-        public Builder visible(final Object value) {
+        public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
-        public Builder pullsrc(final Object value) {
+        public Builder<TRACE_2> pullsrc(final Object value) {
             this.pullsrc = value;
             return this;
         }
 
-        public Builder marker(final PieMarker value) {
+        public Builder<TRACE_2> marker(final PieMarker value) {
             this.marker = value;
             return this;
         }
 
-        public Builder textinfo(final String value) {
+        public Builder<TRACE_2> textinfo(final String value) {
             this.textinfo = value;
             return this;
         }
 
-        public Builder rotation(final Number value) {
+        public Builder<TRACE_2> rotation(final Number value) {
             this.rotation = value;
             return this;
         }
 
-        public Builder showlegend(final Boolean value) {
+        public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
-        public Builder outsidetextfont(final Font value) {
+        public Builder<TRACE_2> outsidetextfont(final Font value) {
             this.outsidetextfont = value;
             return this;
         }
 
-        public Builder valuessrc(final Object value) {
+        public Builder<TRACE_2> valuessrc(final Object value) {
             this.valuessrc = value;
             return this;
         }
 
-        public Builder opacity(final Number value) {
+        public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
-        public Builder textfont(final Font value) {
+        public Builder<TRACE_2> textfont(final Font value) {
             this.textfont = value;
             return this;
         }
 
-        public Builder legendgroup(final String value) {
+        public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
-        public Builder label0(final Number value) {
+        public Builder<TRACE_2> label0(final Number value) {
             this.label0 = value;
             return this;
         }
 
-        public Builder textpositionsrc(final Object value) {
+        public Builder<TRACE_2> textpositionsrc(final Object value) {
             this.textpositionsrc = value;
             return this;
         }
 
-        public Builder sort(final Boolean value) {
+        public Builder<TRACE_2> sort(final Boolean value) {
             this.sort = value;
             return this;
         }
 
-        public Builder hoverinfo(final String value) {
+        public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
-        public Builder dlabel(final Number value) {
+        public Builder<TRACE_2> dlabel(final Number value) {
             this.dlabel = value;
             return this;
         }
 
-        public Builder hole(final Number value) {
+        public Builder<TRACE_2> hole(final Number value) {
             this.hole = value;
             return this;
         }
 
-        public Builder pull(final Number value) {
+        public Builder<TRACE_2> pull(final Number value) {
             this.pull = value;
             return this;
         }
 
-        public Builder name(final String value) {
+        public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
-        public Builder insidetextfont(final Font value) {
+        public Builder<TRACE_2> insidetextfont(final Font value) {
             this.insidetextfont = value;
             return this;
         }
 
-        public Builder scalegroup(final String value) {
+        public Builder<TRACE_2> scalegroup(final String value) {
             this.scalegroup = value;
             return this;
         }
 
-        public Pie build() {
-            return new net.java.html.plotlyjs.Pie(this);
+        public Pie<TRACE_2> build() {
+            return new net.java.html.plotlyjs.Pie<>(this);
         }
     }
 
-    public static Pie.Builder builder() {
-        return new Pie.Builder();
+    public static <TRACE_3 extends PieTrace> Pie.Builder<TRACE_3> builder() {
+        return new Pie.Builder<>();
     }
 
-    private Pie(Builder builder) {
-        this.x = builder.x;
-        this.y = builder.y;
+    private Pie(Builder<TRACE_T> builder) {
+        this.type = "pie";        
         this.labelssrc = builder.labelssrc;
         this.textposition = builder.textposition;
         this.domain = builder.domain;
@@ -298,8 +288,7 @@ public class Pie extends Chart{
         this.textinfo = builder.textinfo;
         this.rotation = builder.rotation;
         this.showlegend = builder.showlegend;
-        this.outsidetextfont = builder.outsidetextfont;
-        this.type = builder.type;
+        this.outsidetextfont = builder.outsidetextfont;        
         this.valuessrc = builder.valuessrc;
         this.values = builder.values;
         this.opacity = builder.opacity;

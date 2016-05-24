@@ -36,32 +36,41 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PlotlyData <T extends Chart> {
+@SuppressWarnings("unchecked")
+public class PlotlyData <T extends Charts> {
 
-    private List<T> traces = new ArrayList<>();
+    private final List<T> traces = new ArrayList<>();
     
     @SafeVarargs
     public PlotlyData(T... traces){
         this.traces.addAll(Arrays.asList(traces));  
     }
     
-    public void addTraces(T... traces){
-        this.traces.addAll(Arrays.asList(traces));
+    @SafeVarargs
+    final void addTraces(T... traces){
+        for(T tr:traces){
+            if(tr.getClass().equals(this.traces.get(0).getClass())){
+                this.traces.add(tr);
+            }
+            else{
+                System.err.println("Warning: tried to add traces of an incorrect type. Ignoring.");
+            }
+        }     
     }
     
-    public void deleteTraces(int... traces){
+    void deleteTraces(int... traces){
         for(int trace: traces){
             this.traces.remove(trace);
         }
     }
 
-    public void moveTraces(int... traces){
+    void moveTraces(int... traces){
         for(int trace: traces){
             this.traces.add(this.traces.remove(trace));
         }
     }
     
-    public void moveTraces(int[] from, int[] to)throws PlotlyException{
+    void moveTraces(int[] from, int[] to)throws PlotlyException{
         if(from.length!=to.length){
             throw new PlotlyException("arrays must be the same size.");
         }
@@ -72,17 +81,17 @@ public class PlotlyData <T extends Chart> {
         }
     }
     
-    public void updateTrace(int index, T trace){
+    void updateTrace(int index, T trace){
         this.traces.set(index, trace);
     }
     
-    public void updateTraces(int[] indices, T[] traces){
+    void updateTraces(int[] indices, T[] traces){
         for(int i = 0; i<indices.length;i++){
             this.traces.set(i, traces[i]);
         }
     }
     
-    public List<T> getTraces(){
+    List<T> getTraces(){
         return this.traces;
     }
 
