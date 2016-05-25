@@ -57,7 +57,6 @@ public class Box<TRACE_T extends CartesianTrace> extends Charts{
     private final String type;
     private final List<?> x;
     private final List<?> y;
-    private final TRACE_T trace;
     private final Number jitter;
     private final String orientation;
     private final Stream stream;
@@ -84,7 +83,6 @@ public class Box<TRACE_T extends CartesianTrace> extends Charts{
     public static class Builder<TRACE_2 extends CartesianTrace>{
         
         private final String type = "box";
-        private TRACE_2 trace;
         private List<?> x;
         private List<?> y;
         private Number jitter;
@@ -118,7 +116,6 @@ public class Box<TRACE_T extends CartesianTrace> extends Charts{
         }
 
         public Builder<TRACE_2> trace(final TRACE_2 value){
-            this.trace = value;
             return this.x(value.x).y(value.y);
         }
         
@@ -129,12 +126,6 @@ public class Box<TRACE_T extends CartesianTrace> extends Charts{
 
         private Builder<TRACE_2> y(final List<?> value) {
             this.y = value;
-            return this;
-        }
-        
-        public Builder<TRACE_2> data(final Value value){
-            this.x = value.x;
-            this.y = value.y;
             return this;
         }
 
@@ -259,7 +250,6 @@ public class Box<TRACE_T extends CartesianTrace> extends Charts{
 
     private Box(Builder<TRACE_T> builder) {
         this.type = "box";
-        this.trace = builder.trace;
         this.x = builder.x;
         this.y = builder.y;
         this.jitter = builder.jitter;

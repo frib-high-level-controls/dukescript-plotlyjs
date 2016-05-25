@@ -43,8 +43,7 @@ import java.util.List;
 public class Bar<TRACE_T extends CartesianTrace> extends Charts{
     private final String type;
     private final List<?> x;
-    private final List<?> y;    
-    private final TRACE_T trace;
+    private final List<?> y;
     private final String orientation;
     private final Stream stream;
     private final String text;
@@ -74,7 +73,6 @@ public class Bar<TRACE_T extends CartesianTrace> extends Charts{
         private final String type = "bar";
         private List<?> x;
         private List<?> y;
-        private TRACE_2 trace;
         private String orientation = Chart.Orientations.VERTICAL;
         private Stream stream;
         private String text;
@@ -248,7 +246,6 @@ public class Bar<TRACE_T extends CartesianTrace> extends Charts{
 
     private Bar(Builder<TRACE_T> builder) {
         this.type = "bar";
-        this.trace = builder.trace;
         this.x = builder.x;
         this.y = builder.y;
         this.orientation = builder.orientation;

@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -250,36 +249,15 @@ public final class Plotly <T extends Charts>{
     private Boolean hasZoomListenersEnabled(){
         return this.hoverListenersEnabled;
     }
-
-    /**Restyle the trace array
-     * @param data a <code>PlotlyData</code> object containing the restyle parameters
-     * @param indices the indices in the trace array to apply the new style
-     * @throws PlotlyException
-    */ 
-    public void restyle(JsonNode data, int... indices)throws PlotlyException{
-        try{
-            String update = Plotly.mapper.writeValueAsString(data);
-            jsRestyle(id,update,indices);
-        }
-        catch(JsonProcessingException e){
-            throw new PlotlyException(e);
-        }
-    }
     
-    public void restyle(String data, int... indices)throws PlotlyException{
+    @SuppressWarnings("static-access")
+    public void restyle(T chart, int index)throws PlotlyException{
         try{
-            jsRestyle(id,data,indices);
+            this.data.<T>updateTrace(index, chart);
+            jsRestyle(id,mapper.writeValueAsString(data),index);
+            this.redraw();
         }
-        catch(Exception e){
-            throw new PlotlyException(e);
-        }
-    }
-    
-    public void restyle(PlotlyData<T> data, int... indices)throws PlotlyException{
-        try{
-            jsRestyle(id,mapper.writeValueAsString(data),indices);
-        }
-        catch(Exception e){
+        catch(JsonProcessingException | PlotlyException e){
             throw new PlotlyException(e);
         }
     }
@@ -418,11 +396,10 @@ public final class Plotly <T extends Charts>{
     native static Object jsNewPlot(String strElementId, String strdata, String strlayout, String strconfig);
    
     @JavaScriptBody(args = {"strElementId"}, body = ""
-            + "var plot = document.getElementById(strElementId);"
-            + "return plot;")
+            + "var plotdiv = document.getElementById(strElementId);"
+            + "return plotdiv;")
     private native static Object jsGetPlot(String strElementId);
-    
-  
+ 
     @JavaScriptBody(args = {}, body = ""
             + "$return($._data($(document).get(0), 'events').length>0)")
     private native static boolean docKeyListenersEnabled();

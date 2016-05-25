@@ -1,8 +1,5 @@
 package edu.msu.frib.PlotlySample;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.java.html.json.Model;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,10 +17,13 @@ import netscape.javascript.JSObject;
     @Property(name = "y", type = double.class),
 })
 final class DataModel {
+    
     private static Point ui;
     /**
      * Called when the page is ready.
      */
+   static class DoubleModel {
+   }
     
     static void onPageLoad() throws Exception {
         ui = new Point(0,0);
@@ -283,6 +283,7 @@ final class DataModel {
             add(15.625);
             add(20.0);
         }};
+        
         ArrayList<Double> cz2 = new ArrayList<Double>(){{
             add(5.625);
             add(6.25);
