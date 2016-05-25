@@ -42,7 +42,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Map;
 @JsonInclude(Include.NON_NULL)
 public class Contour<TRACE_T extends CartesianTrace> extends Charts{
-    private final TRACE_T trace;
     private final String type;
     private final Number zmax;
     private final String xtype;//enum this?
@@ -84,7 +83,6 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
 
     public static class Builder<TRACE_2 extends CartesianTrace> {
         private static final String type = "contour";
-        private TRACE_2 trace;
         private Number zmax;
         private String xtype;
         private Stream stream;
@@ -335,7 +333,6 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
 
     private Contour(Builder<TRACE_T> builder) {
         this.type = "contour";
-        this.trace = builder.trace;
         this.zmax = builder.zmax;
         this.xtype = builder.xtype;
         this.stream = builder.stream;

@@ -56,6 +56,7 @@ import org.testng.annotations.Test;
 
 
 public class ChartsTest implements Runnable {
+    @SuppressWarnings("unchecked")
     private Plotly chart;
     private Fn.Presenter presenter;
     private boolean animationComplete;
@@ -393,15 +394,13 @@ public class ChartsTest implements Runnable {
             PlotlyData<Scatter<CartesianTrace>> data = new PlotlyData<>(sctr);
             chart = Plotly.<Scatter<CartesianTrace>>newPlot("chart", data, new Layout.Builder().title("chart").build());
             Scatter<CartesianTrace> replacement = Scatter.<CartesianTrace>builder().trace(trace)
-                    .marker(new ScatterMarker.Builder().opacity(0.7).build())
+                    .marker(ScatterMarker.builder().opacity(0.7).build())
                     .build();
-            PlotlyData<Scatter<CartesianTrace>> replData = new PlotlyData<>(replacement);
-            chart.restyle(replData,0);
+            chart.restyle(replacement,0);
             chart.redraw();
             JSObject plotdata = (JSObject)chart.getPlot();
             double newOpacity = (Double)plotdata.eval("this.data[0].marker.opacity");
-            assertEquals(newOpacity, 0.7); //make sure we have the right redraw data
-            
+            assertEquals(newOpacity, 0.7); //make sure we have the right redraw data            
             return null;
         });
     }
@@ -424,13 +423,10 @@ public class ChartsTest implements Runnable {
             ScatterMarker restyle = ScatterMarker.builder().opacity(0.5).build();
             Scatter<CartesianTrace> replacement = Scatter.<CartesianTrace>builder().trace(trace)
                     .marker(restyle)
-                    .build();
-            PlotlyData<Scatter<CartesianTrace>> replData = new PlotlyData<>(replacement);
-            chart.restyle(replData, 0);
-            String strUpdate = mapper.writeValueAsString(restyle);
-            chart.restyle(strUpdate,0);
+                    .build();            
+            chart.restyle(replacement, 0);
             JSObject plotdata = (JSObject)chart.getPlot();
-            double newOpacity = (Double)plotdata.eval("this.data[0].opacity");
+            double newOpacity = (Double)plotdata.eval("this.data[0].marker.opacity");
             assertEquals(newOpacity, 0.5); //make sure we have the right restyle data
             
             return null;

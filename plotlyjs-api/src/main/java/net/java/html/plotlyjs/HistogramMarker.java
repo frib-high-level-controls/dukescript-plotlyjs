@@ -60,6 +60,8 @@ public class HistogramMarker extends Marker{
         private Line line;
         private String colorsrc;
         private Boolean showscale;
+        private Number opacity;
+        private String opacitySrc;
 
         private Builder() {
         }
@@ -118,7 +120,11 @@ public class HistogramMarker extends Marker{
             this.showscale = value;
             return this;
         }
-
+        
+        public Builder opacity(final Number value) {
+            this.opacity = value;
+            return this;
+        }
         public HistogramMarker build() {
             return new net.java.html.plotlyjs.HistogramMarker(this);
         }
