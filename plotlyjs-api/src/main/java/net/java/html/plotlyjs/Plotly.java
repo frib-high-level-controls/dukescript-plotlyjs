@@ -299,7 +299,7 @@ public final class Plotly <T extends Charts>{
      @param traces an Array of {@link Charts} traces containing the trace parameters
      *@throws PlotlyException
     */
-    @SuppressWarnings("unchecked")
+   
     public void addTraces(T... traces) throws PlotlyException{
         try{
             this.data.addTraces(traces);
