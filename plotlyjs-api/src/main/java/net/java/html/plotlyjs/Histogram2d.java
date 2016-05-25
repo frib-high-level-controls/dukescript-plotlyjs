@@ -48,7 +48,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
     private final String type;
-    private final TRACE_T trace;
     private final List <?> x;
     private final List <?> y;
     private final Number zmax;
@@ -59,7 +58,7 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
     private final String hoverinfo;
     private final String xsrc;
     private final Object visible;
-    private final Histogram2dMarker Marker;
+    private final Histogram2dMarker marker;
     private final ColorBar colorbar;
     private final Boolean showlegend;
     private final AxisBin ybins;
@@ -83,7 +82,6 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
     private final List<?> z;
 
     public static class Builder<TRACE2 extends CartesianTrace> {
-        private TRACE2 trace;
         private List<?> x;
         private List<?> y;
         private Number zmax;
@@ -94,7 +92,7 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
         private String hoverinfo;
         private String xsrc;
         private Object visible;
-        private Histogram2dMarker Marker;
+        private Histogram2dMarker marker;
         private ColorBar colorbar;
         private Boolean showlegend;
         private AxisBin ybins;
@@ -184,7 +182,7 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
         }
 
         public Builder<TRACE2> Marker(final Histogram2dMarker value) {
-            this.Marker = value;
+            this.marker = value;
             return this;
         }
 
@@ -306,7 +304,6 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
         this.type = "histogram2d";
         this.x = builder.x;
         this.y = builder.y;
-        this.trace = builder.trace;
         this.zmax = builder.zmax;
         this.stream = builder.stream;
         this.zsrc = builder.zsrc;
@@ -315,7 +312,7 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
         this.hoverinfo = builder.hoverinfo;
         this.xsrc = builder.xsrc;
         this.visible = builder.visible;
-        this.Marker = builder.Marker;
+        this.marker = builder.marker;
         this.colorbar = builder.colorbar;
         this.showlegend = builder.showlegend;
         this.ybins = builder.ybins;

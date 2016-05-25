@@ -39,7 +39,6 @@ import java.util.List;
 public class Scatter<TRACE extends Trace> extends Charts{
     private final List<?> x;
     private final List<?> y;
-    private final TRACE trace;
     private final String mode;
     private final String textposition;
     private final Stream stream;
@@ -76,7 +75,6 @@ public class Scatter<TRACE extends Trace> extends Charts{
     public static class Builder<TRACE_2 extends Trace> {
         private List<?> x;
         private List<?> y;
-        private TRACE_2 trace;
         private String mode;
         private String textposition;
         private Stream stream;
@@ -117,7 +115,6 @@ public class Scatter<TRACE extends Trace> extends Charts{
         }
         
         public Builder<TRACE_2> trace(final TRACE_2 tr){
-            this.trace = tr;
             if (tr instanceof PolarTrace){
                this.r = ((PolarTrace)tr).r;
                this.t = ((PolarTrace)tr).t;
@@ -164,7 +161,7 @@ public class Scatter<TRACE extends Trace> extends Charts{
             return this;
         }
 
-        public Builder<TRACE_2> marker(final ScatterMarker value) {
+        public Builder<TRACE_2> marker(ScatterMarker value) {
             this.marker = value;
             return this;
         }
@@ -299,7 +296,6 @@ public class Scatter<TRACE extends Trace> extends Charts{
     }
     
     private Scatter(Builder<TRACE> builder){
-        this.trace = builder.trace;
         this.x = builder.x;
         this.y = builder.y;
         this.mode = builder.mode;

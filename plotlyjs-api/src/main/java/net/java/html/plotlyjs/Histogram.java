@@ -44,7 +44,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
     private final String type;
-    private final TRACE_T trace;
     private final List<?> x;
     private final List<?> y;
     private final String orientation;
@@ -75,7 +74,6 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
         private String type = "histogram";
         private List<?> x;
         private List<?> y;
-        private TRACE_2 trace;
         private String orientation;
         private Stream stream;
         private String text;
@@ -104,12 +102,6 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
         
         private static <TRACE_3 extends CartesianTrace> Builder<TRACE_3> start(){
             return new Builder<>();
-        }
-        
-        public Builder<TRACE_2> trace(final Value value){
-            this.x = value.x;
-            this.y = value.y;
-            return this;
         }
         
         public Builder<TRACE_2> orientation(final String value) {
@@ -238,7 +230,6 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
 
     private Histogram(Builder<TRACE_T> builder) {
         this.type = builder.type;
-        this.trace = builder.trace;
         this.x = builder.x;
         this.y = builder.y;
         this.orientation = builder.orientation;
