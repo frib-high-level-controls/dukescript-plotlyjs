@@ -35,13 +35,10 @@ package net.java.html.plotlyjs;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- *
+ * coloring, start, end line toggle, and size for contour plots
  * @author daykin
  */
 
-/*
-    coloring, start, end line toggle, and size for contour plots
-*/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Contours {
     private final String coloring;
@@ -50,6 +47,7 @@ public class Contours {
     private final Number start;
     private final Number size;
 
+    
     public static class Builder {
 
         private String coloring;
@@ -61,36 +59,43 @@ public class Contours {
         private Builder() {
         }
 
+        
         public Builder coloring(final String value) {
             this.coloring = value;
             return this;
         }
 
+        
         public Builder end(final Number value) {
             this.end = value;
             return this;
         }
 
+        
         public Builder showlines(final Boolean value) {
             this.showlines = value;
             return this;
         }
 
+        
         public Builder start(final Number value) {
             this.start = value;
             return this;
         }
 
+        
         public Builder size(final Number value) {
             this.size = value;
             return this;
         }
 
+        
         public Contours build() {
             return new net.java.html.plotlyjs.Contours(this);
         }
     }
 
+    
     public static Contours.Builder builder() {
         return new Contours.Builder();
     }

@@ -33,13 +33,20 @@ package net.java.html.plotlyjs;
 
 
 /**
- *
+ * Bean-type wrapper builder for Plotly's Contour plot.
+ * For more information see https://plot.ly/javascript/reference/#contour
  * @author daykin
  */
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Map;
+
+/**
+ * @author daykin
+ * @param <TRACE_T> Extends CartesianTrace; for this particular type, 
+ * XYZTrace is probably desired.
+ */
 @JsonInclude(Include.NON_NULL)
 public class Contour<TRACE_T extends CartesianTrace> extends Charts{
     private final String type;
@@ -81,6 +88,10 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
     private final List<?> y;
     private final List<?> z;
 
+    /**
+     *
+     * @param <TRACE_2>
+     */
     public static class Builder<TRACE_2 extends CartesianTrace> {
         private static final String type = "contour";
         private Number zmax;
@@ -124,10 +135,20 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
         private Builder() {
         }
 
+        /**
+         *
+         * @param <TRACE_3>
+         * @return
+         */
         public static <TRACE_3 extends CartesianTrace> Builder<TRACE_3> start(){
             return new Builder<>();
         }
         
+        /**
+         *
+         * @param trace
+         * @return
+         */
         public Builder<TRACE_2> trace(final TRACE_2 trace){
             this.x = trace.x;
             this.y = trace.y;
@@ -137,171 +158,341 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
             return this;
         }
         
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> zmax(final Number value) {
             this.zmax = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> xtype(final String value) {
             this.xtype = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> zsrc(final Object value) {
             this.zsrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> text(final List<?> value) {
             this.text = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> zmin(final Number value) {
             this.zmin = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> xsrc(final Object value) {
             this.xsrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> y0(final Number value) {
             this.y0 = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> line(final Line value) {
             this.line = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> colorbar(final ColorBar value) {
             this.colorbar = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> ncontours(final Integer value) {
             this.ncontours = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> ytype(final String value) {
             this.ytype = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> contours(final Contours value) {
             this.contours = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> ysrc(final Object value) {
             this.ysrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> autocontour(final Boolean value) {
             this.autocontour = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> transpose(final Boolean value) {
             this.transpose = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> textsrc(final Object value) {
             this.textsrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> dx(final Number value) {
             this.dx = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> dy(final Number value) {
             this.dy = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> showscale(final Boolean value) {
             this.showscale = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> x0(final Object value) {
             this.x0 = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> zauto(final Boolean value) {
             this.zauto = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> connectgaps(final Boolean value) {
             this.connectgaps = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder<TRACE_2> reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
@@ -322,11 +513,20 @@ public class Contour<TRACE_T extends CartesianTrace> extends Charts{
             return this;
         }
 
+        /**
+         *
+         * @return
+         */
         public Contour<TRACE_2> build() {
             return new net.java.html.plotlyjs.Contour<>(this);
         }
     }
 
+    /**
+     *
+     * @param <TRACE>
+     * @return
+     */
     public static <TRACE extends CartesianTrace>Contour.Builder<TRACE> builder() {
         return Builder.start();
     }

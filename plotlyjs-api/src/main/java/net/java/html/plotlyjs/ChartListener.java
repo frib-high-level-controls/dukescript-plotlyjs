@@ -32,15 +32,20 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-/**
- *
- * @author daykin
- */
 import java.util.EventListener;
+/** Interface for handling chart events.
+* Users wishing to utilize Plotly's event handling 
+* should implement this interface in their ViewModel and add it to their Plotly 
+* instance using the given methods, {@link Plotly#addClickListener(ChartListener)}.
+* @author daykin
+*/
 public interface ChartListener extends EventListener {
+
     public void plotly_click(ClickEvent ev);
+
     public void plotly_hover(HoverEvent ev);
+
     public void plotly_zoom(ZoomEvent ev);
+
     public void plotly_unhover(UnhoverEvent ev);
 }

@@ -34,15 +34,14 @@ import netscape.javascript.JSObject;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 public class ZoomEvent extends ChartEvent {
 
+    
     public ZoomEvent(Plotly source, Object shift, Object ctrl, JSObject info) {
         super(source, shift, ctrl, info);
     }
+    
     
     public String getLabel(){
         return ((Plotly)source).getId();

@@ -41,9 +41,10 @@ import java.util.List;
 
 
 /**
- *
+ * Bean-type wrapper builder for Plotly's Contour plot.
+ * For more information see https://plot.ly/javascript/reference/#histogram2d
  * @author daykin
- * @param <TRACE_T> a type of Trace
+ * @param <TRACE_T>
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
@@ -81,6 +82,9 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
     private final Boolean reversescale;
     private final List<?> z;
 
+    /**
+     * @param <TRACE2>
+     */
     public static class Builder<TRACE2 extends CartesianTrace> {
         private List<?> x;
         private List<?> y;
@@ -122,6 +126,7 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
             return new Builder<>();
         }
         
+        
         public Builder<TRACE2> trace(final TRACE2 value){
             this.x = value.x;
             this.y = value.y;
@@ -131,171 +136,209 @@ public class Histogram2d <TRACE_T extends CartesianTrace> extends Charts {
             return this;
         }
         
+        
         public Builder<TRACE2> x(final List<?> value) {
             this.x = value;
             return this;
         }
 
+        
         public Builder<TRACE2> y(final List<?> value) {
             this.y = value;
             return this;
         }
 
+        
         public Builder<TRACE2> zmax(final Number value) {
             this.zmax = value;
             return this;
         }
 
+        
         public Builder<TRACE2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
+        
         public Builder<TRACE2> zsrc(final String value) {
             this.zsrc = value;
             return this;
         }
 
+        
         public Builder<TRACE2> ysrc(final String value) {
             this.ysrc = value;
             return this;
         }
 
+        
         public Builder<TRACE2> zmin(final Number value) {
             this.zmin = value;
             return this;
         }
 
+        
         public Builder<TRACE2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
+        
         public Builder<TRACE2> xsrc(final String value) {
             this.xsrc = value;
             return this;
         }
 
+        
         public Builder<TRACE2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
+        
         public Builder<TRACE2> Marker(final Histogram2dMarker value) {
             this.marker = value;
             return this;
         }
 
+        
         public Builder<TRACE2> colorbar(final ColorBar value) {
             this.colorbar = value;
             return this;
         }
 
+        
         public Builder<TRACE2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
+        
         public Builder<TRACE2> ybins(final AxisBin value) {
             this.ybins = value;
             return this;
         }
 
+        
         public Builder<TRACE2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE2> zsmooth(final Object value) {
             this.zsmooth = value;
             return this;
         }
 
+        
         public Builder<TRACE2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
+        
         public Builder<TRACE2> autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        
         public Builder<TRACE2> nbinsx(final Integer value) {
             this.nbinsx = value;
             return this;
         }
 
+        
         public Builder<TRACE2> nbinsy(final Integer value) {
             this.nbinsy = value;
             return this;
         }
 
+        
         public Builder<TRACE2> histfunc(final String value) {
             this.histfunc = value;
             return this;
         }
 
+        
         public Builder<TRACE2> xbins(final AxisBin value) {
             this.xbins = value;
             return this;
         }
 
+        
         public Builder<TRACE2> showscale(final Boolean value) {
             this.showscale = value;
             return this;
         }
 
+        
         public Builder<TRACE2> zauto(final Boolean value) {
             this.zauto = value;
             return this;
         }
 
+        
         public Builder<TRACE2> autobiny(final Boolean value) {
             this.autobiny = value;
             return this;
         }
 
+        
         public Builder<TRACE2> autobinx(final Boolean value) {
             this.autobinx = value;
             return this;
         }
 
+        
         public Builder<TRACE2> name(final String value) {
             this.name = value;
             return this;
         }
 
+        
         public Builder<TRACE2> colorscale(final String[] value) {
             this.colorscale = value;
             return this;
         }
 
+        
         public Builder<TRACE2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE2> histnorm(final String value) {
             this.histnorm = value;
             return this;
         }
 
+        
         public Builder<TRACE2> reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
         }
 
+        
         public Builder<TRACE2> z(final List<?> value) {
             this.z = value;
             return this;
         }
 
+        
         public Histogram2d<TRACE2> build() {
             return new net.java.html.plotlyjs.Histogram2d<>(this);
         }
     }
 
+    /**
+     *
+     * @param <TRACE>
+     * @return a Builder for setting properties.
+     */
     public static <TRACE extends CartesianTrace> Histogram2d.Builder<TRACE> builder() {
         return Histogram2d.Builder.start();
     }

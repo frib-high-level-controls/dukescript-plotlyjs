@@ -32,21 +32,22 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-/**
- *
- * @author daykin
- */
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
+
+/**
+ * Domain object for certain distribution-based charts.
+ * @author daykin
+ */
 @JsonInclude(Include.NON_NULL)
 public class Domain {
-    public final List x;
-    public final List y;
+
+    public final List<?> x;
+
+    public final List<?> y;
     
-    Domain(List x, List y){
+    Domain(List<?> x, List<?> y){
         this.x = x;
         this.y = y;
     }

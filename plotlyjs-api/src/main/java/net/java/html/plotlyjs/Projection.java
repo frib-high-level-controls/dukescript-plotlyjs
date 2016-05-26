@@ -34,16 +34,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Projection {
     private final ProjectionAxis x;
     private final ProjectionAxis y;
     private final ProjectionAxis z;
 
+    
     public static class Builder {
 
         private ProjectionAxis x;
@@ -53,26 +51,31 @@ public class Projection {
         private Builder() {
         }
 
+        
         public Builder x(final ProjectionAxis value) {
             this.x = value;
             return this;
         }
 
+        
         public Builder y(final ProjectionAxis value) {
             this.y = value;
             return this;
         }
 
+        
         public Builder z(final ProjectionAxis value) {
             this.z = value;
             return this;
         }
 
+        
         public Projection build() {
             return new net.java.html.plotlyjs.Projection(this);
         }
     }
 
+    
     public static Projection.Builder builder() {
         return new Projection.Builder();
     }

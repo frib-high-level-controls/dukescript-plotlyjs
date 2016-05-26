@@ -38,7 +38,8 @@ package net.java.html.plotlyjs;
 
 
 /**
- *
+ * Interface for any type of data to be plotted. Note that unlike layouts and the
+ * charts themselves, {@code Trace}s are <em>not</em> Builders.
  * @author daykin
  */
 public interface Trace{

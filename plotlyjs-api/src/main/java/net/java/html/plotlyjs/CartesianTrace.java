@@ -40,7 +40,7 @@ package net.java.html.plotlyjs;
 import java.util.List;
 
 /**
- *
+ * Trace type for any plot requiring an x and y axis.
  * @author daykin
  */
 public class CartesianTrace implements Trace{
@@ -48,20 +48,36 @@ public class CartesianTrace implements Trace{
     List<?> x;
     List<?> y;
     
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public CartesianTrace(List<?> x, List<?> y){
         this.x = x;
         this.y = y;
     }
     
+
     public CartesianTrace(){
         
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public CartesianTrace x(List<?> value) {
         this.x = value;
         return this;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public CartesianTrace y(List<?> value) {
         this.y = value;
         return this;

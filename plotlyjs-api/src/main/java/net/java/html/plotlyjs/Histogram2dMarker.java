@@ -36,17 +36,11 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-import java.util.Map;
-
-/**
- *
- * @author daykin
- */
 public class Histogram2dMarker{
     private final String color;
     private final String colorsrc;
 
+    
     public static class Builder {
 
         private String color;
@@ -55,22 +49,26 @@ public class Histogram2dMarker{
         private Builder() {
         }
 
+        
         public Builder color(final String value) {
             this.color = value;
             return this;
         }
 
+        
         public Builder colorsrc(final String value) {
             this.colorsrc = value;
             return this;
         }
 
+        
         public Histogram2dMarker build() {
             return new net.java.html.plotlyjs.Histogram2dMarker(this);
         }
 
     }
 
+    
     public static Histogram2dMarker.Builder builder() {
         return new Histogram2dMarker.Builder();
     }

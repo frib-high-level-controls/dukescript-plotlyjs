@@ -41,6 +41,11 @@ import java.util.List;
  */
 public class TimeTrace extends CartesianTrace implements Trace{
     final List<?> t;
+
+    /**
+     * @param t
+     * @param y
+     */
     public TimeTrace(List<java.util.Date> t, List<Number> y){
         this.t = t;
         this.x = t;

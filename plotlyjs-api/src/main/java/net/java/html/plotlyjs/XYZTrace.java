@@ -38,12 +38,11 @@ package net.java.html.plotlyjs;
 
 import java.util.List;
 
-/**
- *
- * @author daykin
- */
+
 public class XYZTrace extends CartesianTrace implements Trace{
     List<?> z;
+
+    
     public XYZTrace(List<?> x, List<?> y, List<?> z){
         super(x,y);
         this.z = z;

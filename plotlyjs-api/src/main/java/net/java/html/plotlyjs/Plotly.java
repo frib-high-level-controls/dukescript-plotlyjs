@@ -40,9 +40,48 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import java.util.List;
+
 import net.java.html.js.JavaScriptBody;
 import net.java.html.js.JavaScriptResource;
 import netscape.javascript.JSObject;
+
+/**
+ * 
+ * <h3>Plotly for Dukescript</h3> A
+ * <a href="https://dukescript.com/">Dukescript</a>-based Java wrapper for <a href="https://plot.ly/javascript/">Plotly.js</a>.
+ * <h4>Typical Usage</h4> In order to construct a basic chart, the prototype is generally as follows: <br>
+ * <ol>
+ * <li> in your view, include Plotly.js and create a container for your plot as outlined <a href="https://plot.ly/javascript/getting-started/">here.</a>
+ * <li>Put the data to be plotted in a {@link java.util.List}.</li>
+ * <li>Construct one or more {@link Trace}s  with the specified data.</li>
+ * <li>Build one or more {@link Chart}s with the trace type as the parameter.</li>
+ * <li>Construct a {@link PlotlyData} object with the <code>Chart< &lt;some Trace&gt; ></code> as the type parameter. </li>
+ * <li>Call {@link Plotly#newPlot(String,PlotlyData,Layout)}, or {@link Plotly#newPlot(String,PlotlyData,Layout,Config)} for advanced options</li>
+ * <li>Enjoy the magic of Plotly.</li>
+ * </ol>
+ * <h3>Example</h3>
+ * <code>
+ * 	&#47;&#47;constructing a simple sine graph in a div called "myScatter" with 480x400px dimensions...<br>
+ *  &#09; List<Number> scatter0x = new ArrayList<>();<br>
+ *   &#09;List<Number> scatter0y = new ArrayList<>();<br>
+ *   &#09;for(double t = 0;t<4*Math.PI;t+=0.1){<br>
+ *    &#09;&#09;    scatter0x.add(t);<br>
+ *   &#09;&#09;    scatter0y.add(Math.sin(t));<br>
+ *   &#09;}<br>
+ *   &#09;CartesianTrace scatterTrace0 = new CartesianTrace(scatter0x,scatter0y);<br>
+ *   &#09;Scatter<CartesianTrace> scatter0 = Scatter.<CartesianTrace>builder().trace(scatterTrace0).build();<br>
+ *   &#09;PlotlyData<Scatter<CartesianTrace>> scatterData = new PlotlyData<>(scatter0);<br>
+ *   &#09;Plotly<Scatter<CartesianTrace>> scatter = Plotly.
+ *   &#09;&#09;       newPlot("myScatter", scatterData, new Layout.Builder()<br>
+ *   &#09;&#09;               .title("Scatter with Click Event")<br>
+ *   &#09;&#09;               .width(480)<br>
+ *   &#09;&#09;               .height(400)<br>
+ *   &#09;&#09;               .build());<br>
+ * </code>
+ * 
+ * @author daykin &lt;daykin at frib msu edu&gt; </span>
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JavaScriptResource("plotly.min.js")
 @SuppressWarnings("unused")
@@ -80,6 +119,16 @@ public final class Plotly <T extends Charts>{
         this.config = config;
     }
     
+    /**
+     *
+     * @param <CHART> a type of Chart, i.e. any type which extends {@link Charts}.
+     * @param id the the DOM element id in your view which will contain your plot.
+     * @param data a {@link PlotlyData} object representing
+     * @param layout A {@link Layout} object. 
+     * @param config Advanced Plotly configuration options in a {@link Config} object. the average Joe will probably not need this.  
+     * @return a {@link Plotly} object representing this plot.
+     * @throws PlotlyException
+     */
     public static<CHART extends Charts> Plotly<CHART>newPlot(String id, PlotlyData<CHART> data, Layout layout, Config config)throws PlotlyException{
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
@@ -98,6 +147,15 @@ public final class Plotly <T extends Charts>{
         }
     }
     
+    /**
+    *
+    * @param <CHART> a type of Chart, i.e. any type which extends {@link Charts}.
+    * @param id the the DOM element id in your view which will contain your plot.
+    * @param data a {@link PlotlyData} object representing
+    * @param layout A {@link Layout} object. 
+    * @return
+    * @throws PlotlyException
+    */
     public static <CHART extends Charts> Plotly<CHART> newPlot(String id, PlotlyData<CHART> data, Layout layout) throws PlotlyException {
         try {
             Plotly.mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
@@ -125,6 +183,10 @@ public final class Plotly <T extends Charts>{
         jsAddKeyListeners(this);
     }
     
+    /**
+     * Add a click listener implementing {@link ChartListener}. 
+     * @param l The listener to add.
+     */
     public void addClickListener(ChartListener l){
         this.clickListeners.add(l);
         if(!(this.hasClickListenersEnabled())){
@@ -133,11 +195,16 @@ public final class Plotly <T extends Charts>{
         }
     }
     
-    public void keyEvent(boolean shift, boolean ctrl){
+
+    protected void keyEvent(boolean shift, boolean ctrl){
         this.shift = shift;
         this.ctrl = ctrl;
     }
     
+    /**
+     * Add a hover listener implementing {@link ChartListener}. 
+     * @param l The listener to add.
+     */
     public void addHoverListener(ChartListener l){
         this.hoverListeners.add(l);
         if(!(hasHoverListenersEnabled())){
@@ -146,6 +213,10 @@ public final class Plotly <T extends Charts>{
         }
     }
     
+    /**
+     * Add an unhover listener implementing {@link ChartListener}. 
+     * @param l The listener to add.
+     */
     public void addUnhoverListener(ChartListener l){
         this.unhoverListeners.add(l);
         if(!(this.hasHoverListenersEnabled())){
@@ -154,6 +225,10 @@ public final class Plotly <T extends Charts>{
         }
     }
     
+    /**
+     * Add a zoom listener implementing {@link ChartListener}. 
+     * @param l The listener to add.
+     */
     public void addZoomListener(ChartListener l){
         this.zoomListeners.add(l);
         if(!(this.hasZoomListenersEnabled())){
@@ -162,76 +237,62 @@ public final class Plotly <T extends Charts>{
         }
     }
 
+    /**
+     * Remove a click listener. 
+     * @param l The listener to remove.
+     */
     public void removeClickListener(ChartListener l){
         this.clickListeners.remove(l);
     }
     
+    /**
+     * Remove a hover listener. 
+     * @param l The listener to remove.
+     */
     public void removeHoverListener(ChartListener l){
         this.hoverListeners.remove(l);
     }
     
+    /**
+     * Remove a zoom listener. 
+     * @param l The listener to remove.
+     */
     public void removeZoomListener(ChartListener l){
         this.zoomListeners.remove(l);
     }
     
+    /**
+     * Remove an unhover listener. 
+     * @param l The listener to remove.
+     */
     public void removeUnhoverListener(ChartListener l){
         this.unhoverListeners.remove(l);
     }
     
-    public void removeClickListener(int index) throws PlotlyException{
-        try{
-            this.clickListeners.remove(index);
-        }
-        catch(NullPointerException e){
-            throw new PlotlyException("click listener index out of range.",e);
-        }
-    }
-    
-    public void removeHoverListener(int index) throws PlotlyException{
-        try{
-            this.hoverListeners.remove(index);
-        }
-        catch(NullPointerException e){
-            throw new PlotlyException("hover listener index out of range.",e);
-        }
-    }
-    
-    public void removeZoomListener(int index) throws PlotlyException{
-        try{
-            this.zoomListeners.remove(index);
-        }
-        catch(NullPointerException e){
-            throw new PlotlyException("zoom listener index out of range.",e);
-        }
-    }
-    
-    public void removeUnhoverListener(int index){
-        this.unhoverListeners.remove(index);
-    }
-    
-    
-    public void notifyClickListeners(JSObject obj){
+
+    private void notifyClickListeners(JSObject obj){
         ClickEvent event = new ClickEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: clickListeners){
             l.plotly_click(event);
         }
     }
     
-    public void notifyHoverListeners(JSObject obj){
+    private void notifyHoverListeners(JSObject obj){
         HoverEvent event = new HoverEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: hoverListeners){
             l.plotly_hover(event);
         }
     }
     
-    public void notifyUnhoverListeners(JSObject obj){
+    private void notifyUnhoverListeners(JSObject obj){
         UnhoverEvent event = new UnhoverEvent (this, this.shift,this.ctrl, obj);
         for (ChartListener l: unhoverListeners){
             l.plotly_unhover(event);
         }
     }
     
-    public void notifyZoomListeners(JSObject obj){
+
+    private void notifyZoomListeners(JSObject obj){
         ZoomEvent event = new ZoomEvent (this, this.shift, this.ctrl, obj);
         for(ChartListener l: zoomListeners){
             l.plotly_zoom(event);
@@ -250,6 +311,12 @@ public final class Plotly <T extends Charts>{
         return this.hoverListenersEnabled;
     }
     
+    /**
+     * Restyle a trace in the plot.
+     * @param A chart of the type defined in this object.
+     * @param index the index to update.
+     * @throws PlotlyException
+     */
     @SuppressWarnings("static-access")
     public void restyle(T chart, int index)throws PlotlyException{
         try{
@@ -262,7 +329,7 @@ public final class Plotly <T extends Charts>{
         }
     }
     
-    /**Update just the chart layout more nicely than redraw.
+    /**Update the layout of the plot.
      @param layout a <code>Layout</code> object containing the layout parameters
      * @throws net.java.html.plotlyjs.PlotlyException
     */
@@ -312,6 +379,10 @@ public final class Plotly <T extends Charts>{
         jsMoveTraces(id, from, to);
     }
     
+    /**
+     *
+     * @throws PlotlyException
+     */
     public void redraw() throws PlotlyException{
         try{
         jsRedraw(id,Plotly.mapper.writeValueAsString(data.getTraces()));
@@ -321,10 +392,18 @@ public final class Plotly <T extends Charts>{
         }
      }
     
+    /**
+     *
+     * @return a {@link netscape.javascript.JSObject} representing the plot's entire DOM element.
+     */
     public Object getPlot(){
         return jsGetPlot(id);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getId(){
         return id;
     }
@@ -354,7 +433,7 @@ public final class Plotly <T extends Charts>{
     @JavaScriptBody(args = {"elementId", "indices"}, body = ""
             + "Plotly.moveTraces(document.getElementById(elementId), indices);")
     private static native void jsMoveTraces(String elementId, int... indices);
-    
+   
     @JavaScriptBody(args = {"elementId"}, body = ""
             + "return(document.getElementById(elementId)!=undefined);"
             )
@@ -365,15 +444,11 @@ public final class Plotly <T extends Charts>{
             + "Plotly.moveTraces(document.getElementById(elementId),from, to);")
     private static native void jsMoveTraces(String elementId, int[] from, int[] to);
     
-    /**Redraw the chart element.
-    @param elementId the associated DOM element
-    */
     @JavaScriptBody(args = {"elementId", "strdata"}, body = ""
             +"var graphDiv = document.getElementById(elementId);"
             +"graphDiv.data = JSON.parse(strdata);"
             +"Plotly.redraw(graphDiv);")
     private static native void jsRedraw(String elementId, String strdata);
-    
     
     @JavaScriptBody(args = { "strElementId", "strdata", "strlayout" }, body =
             "var data = JSON.parse(strdata);\n" +
@@ -455,6 +530,9 @@ public final class Plotly <T extends Charts>{
             + "});")
     private native static void jsEnableZoomEvents(String strElementId, Plotly<?> instance);
     
+    /**
+     * Output a human-readable model of the plot, with each component(data, layout,config) represented as a JSON string. 
+     */
     @Override
     public String toString(){
         try {

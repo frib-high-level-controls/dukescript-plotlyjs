@@ -35,10 +35,7 @@ package net.java.html.plotlyjs;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
-/**
- *
- * @author daykin
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Scatter3dMarker extends Marker {
     private final Number sizeref;
@@ -47,6 +44,7 @@ public class Scatter3dMarker extends Marker {
     private final Number sizemin;
     private final Number size;
 
+    
     public static class Builder {
 
         private Boolean autocolorscale;
@@ -71,101 +69,121 @@ public class Scatter3dMarker extends Marker {
         private Builder() {
         }
 
+        
         public Builder autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        
         public Builder cmax(final Number value) {
             this.cmax = value;
             return this;
         }
 
+        
         public Builder cmin(final Number value) {
             this.cmin = value;
             return this;
         }
 
+        
         public Builder colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }
 
+        
         public Builder color(final String value) {
             this.color = value;
             return this;
         }
 
+        
         public Builder reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
         }
 
+        
         public Builder cauto(final Boolean value) {
             this.cauto = value;
             return this;
         }
 
+        
         public Builder colorbar(final ColorBar value) {
             this.colorbar = value;
             return this;
         }
 
+        
         public Builder line(final Line value) {
             this.line = value;
             return this;
         }
 
+        
         public Builder colorsrc(final String value) {
             this.colorsrc = value;
             return this;
         }
 
+        
         public Builder showscale(final Boolean value) {
             this.showscale = value;
             return this;
         }
 
+        
         public Builder opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        
         public Builder opacitySrc(final String value) {
             this.opacitySrc = value;
             return this;
         }
 
+        
         public Builder sizeref(final Number value) {
             this.sizeref = value;
             return this;
         }
 
+        
         public Builder symbol(final String value) {
             this.symbol = value;
             return this;
         }
 
+        
         public Builder symbolsrc(final String value) {
             this.symbolsrc = value;
             return this;
         }
 
+        
         public Builder sizemin(final Number value) {
             this.sizemin = value;
             return this;
         }
 
+        
         public Builder size(final Number value) {
             this.size = value;
             return this;
         }
 
+        
         public Scatter3dMarker build() {
             return new net.java.html.plotlyjs.Scatter3dMarker(this);
         }
     }
 
+    
     public static Scatter3dMarker.Builder builder() {
         return new Scatter3dMarker.Builder();
     }

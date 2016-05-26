@@ -39,36 +39,39 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Stream {
     private String token;
     private Integer maxpoints;
+    
     
     public Stream(String token){
         this.token = token;
         this.maxpoints = 50;
     }
     
+    
     public Stream(String token, Integer maxpoints){
         this.token=token;
         this.maxpoints = maxpoints;
     }
     
+    
     public void setToken(String token){
         this.token = token;
     }
+    
     
     public void setMaxPoints(Integer maxpoints){
         this.maxpoints = maxpoints;
     }
     
+    
     public String getToken(){
         return this.token;
     }
+    
     
     public Integer getMaxPoints(){
         return this.maxpoints;

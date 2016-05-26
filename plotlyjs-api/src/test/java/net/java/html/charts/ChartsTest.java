@@ -53,8 +53,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-
+/**
+ *
+ * @author daykin
+ */
 public class ChartsTest implements Runnable {
     @SuppressWarnings("unchecked")
     private Plotly chart;
@@ -63,6 +65,10 @@ public class ChartsTest implements Runnable {
     ObjectMapper mapper = new ObjectMapper();
     Random randGen = new Random();
 
+    /**
+     *
+     * @throws InterruptedException
+     */
     @BeforeMethod
     public void initializePresenter() throws InterruptedException {
         animationComplete = false;
@@ -78,11 +84,18 @@ public class ChartsTest implements Runnable {
         assertNotNull(presenter, "We have the presenter");
     }
     
+    /**
+     *
+     */
     @BeforeMethod
     public void configureMapper(){
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void basicLineChart() throws Exception {
         run(() -> {
@@ -104,7 +117,11 @@ public class ChartsTest implements Runnable {
 
     }
     
-        @Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
     public void flippedAxes() throws Exception {
         run(() -> {
             List<Number> x = new ArrayList<>();
@@ -124,6 +141,10 @@ public class ChartsTest implements Runnable {
 
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void basicHistogram2d() throws Exception {
         run(() -> {
@@ -146,7 +167,12 @@ public class ChartsTest implements Runnable {
     
     
     //Basic heatmap using random numbers
-    @Test
+
+    /**
+     *
+     * @throws Exception
+     */
+        @Test
     public void basicHeatmap() throws Exception {
         run(() -> {
             List<ArrayList<Double>> zheat = new ArrayList<>();
@@ -168,6 +194,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void barTest() throws Exception {
         run(() -> {
@@ -199,6 +229,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void boxTest() throws Exception {
         run(() -> {
@@ -216,7 +250,7 @@ public class ChartsTest implements Runnable {
                     .name("kale")
                     .marker(BoxMarker.builder().color("3D9970").build())
                     .boxmean(false)
-                    .orientation(Chart.Orientations.HORIZONTAL)
+                    .orientation(Charts.Orientations.HORIZONTAL)
                     .build();
             
             Box<CartesianTrace> trace2 = Box.builder()
@@ -224,7 +258,7 @@ public class ChartsTest implements Runnable {
                     .name("radishes")
                     .marker(BoxMarker.builder().color("#FF4136").build())
                     .boxmean(false)
-                    .orientation(Chart.Orientations.HORIZONTAL)
+                    .orientation(Charts.Orientations.HORIZONTAL)
                     .build();
             
             Box<CartesianTrace> trace3 = Box.builder()
@@ -232,7 +266,7 @@ public class ChartsTest implements Runnable {
                     .name("carrots")
                     .marker(BoxMarker.builder().color("#FF851B").build())
                     .boxmean(false)
-                    .orientation(Chart.Orientations.HORIZONTAL)
+                    .orientation(Charts.Orientations.HORIZONTAL)
                     .build();
             
             net.java.html.plotlyjs.PlotlyData<Box<CartesianTrace>> boxdata = new net.java.html.plotlyjs.PlotlyData<>(trace1,trace2,trace3);
@@ -251,6 +285,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void basicTimeSeries() throws Exception {
         run(() -> {
@@ -274,6 +312,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void contourTest()throws Exception{
         run(() -> {
@@ -327,7 +369,12 @@ public class ChartsTest implements Runnable {
     }
     
     //Make sure nonsense data types are ignored and don't cause runtime errors
-    @Test
+
+    /**
+     *
+     * @throws Exception
+     */
+        @Test
     public void wrongTypeTest()throws Exception{
         run(() -> {
             List <List<?>> contourZ = new ArrayList<>();
@@ -378,6 +425,10 @@ public class ChartsTest implements Runnable {
         });
     }    
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void redrawTest()throws Exception{
         run(() -> {
@@ -405,6 +456,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void restyleTest()throws Exception{
         run(() -> {
@@ -433,6 +488,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void relayoutTest()throws Exception{
         run(() -> {
@@ -457,6 +516,10 @@ public class ChartsTest implements Runnable {
         });
     }
    
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void addTracesTest()throws Exception{
         run(() -> {
@@ -486,6 +549,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void moveTracesTest()throws Exception{
         run(() -> {
@@ -516,6 +583,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void deleteTracesTest()throws Exception{
         run(() -> {
@@ -545,7 +616,10 @@ public class ChartsTest implements Runnable {
         });
     }
     
-    
+    /**
+     *
+     * @throws Exception
+     */
     @AfterMethod
     public void cleanUpTheGraph() throws Exception {
         if (chart != null) {

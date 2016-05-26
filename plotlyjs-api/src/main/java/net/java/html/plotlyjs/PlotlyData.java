@@ -36,10 +36,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * @author daykin
+ * @param <T>
+ */
 @SuppressWarnings("unchecked")
 public class PlotlyData <T extends Charts> {
 
     private final List<T> traces = new ArrayList<>();
+    
     
     @SafeVarargs
     public PlotlyData(T... traces){

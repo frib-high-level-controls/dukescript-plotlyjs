@@ -42,8 +42,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Bean-type wrapper builder for Plotly's Contour plot.
+ * For more information see https://plot.ly/javascript/reference/#heatmap
  * @author daykin
+ * @param <TRACE> a CartesianTrace or subclass
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Heatmap<TRACE extends CartesianTrace> extends Charts{
@@ -83,7 +85,10 @@ public class Heatmap<TRACE extends CartesianTrace> extends Charts{
     private final Axis yaxis;
     private final Boolean reversescale;
     
-
+    /**
+     *
+     * @param <TRACE_2>
+     */
     public static class Builder <TRACE_2 extends CartesianTrace> {
         
         private List<?> x;
@@ -128,6 +133,7 @@ public class Heatmap<TRACE extends CartesianTrace> extends Charts{
             return new Builder<>();
         }
         
+        
         public Builder<TRACE_2> trace(final TRACE_2 value){
             this.x = value.x;
             this.y = value.y;
@@ -147,156 +153,187 @@ public class Heatmap<TRACE extends CartesianTrace> extends Charts{
             return this;
         }
 
+        
         public Builder<TRACE_2> zmax(final Number value) {
             this.zmax = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> xtype(final String value) {
             this.xtype = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> zsrc(final String value) {
             this.zsrc = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> text(final List<?> value) {
             this.text = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> zmin(final Number value) {
             this.zmin = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> xsrc(final String value) {
             this.xsrc = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> y0(final Number value) {
             this.y0 = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> colorbar(final ColorBar value) {
             this.colorbar = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> ytype(final String value) {
             this.ytype = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> ysrc(final String value) {
             this.ysrc = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> zsmooth(final Object value) {
             this.zsmooth = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> transpose(final Boolean value) {
             this.transpose = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> textsrc(final String value) {
             this.textsrc = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> dx(final Number value) {
             this.dx = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> dy(final Number value) {
             this.dy = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> showscale(final Boolean value) {
             this.showscale = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> x0(final Number value) {
             this.x0 = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> zauto(final Boolean value) {
             this.zauto = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> connectgaps(final Boolean value) {
             this.connectgaps = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
@@ -307,11 +344,17 @@ public class Heatmap<TRACE extends CartesianTrace> extends Charts{
             return this;
         }
 
+        
         public Heatmap<TRACE_2> build() {
             return new net.java.html.plotlyjs.Heatmap<>(this);
         }
     }
 
+    /**
+     *
+     * @param <TRACE>
+     * @return
+     */
     public static<TRACE extends CartesianTrace> Heatmap.Builder<TRACE> builder() {
         return Builder.start();
     }

@@ -43,25 +43,48 @@ import net.java.html.plotlyjs.UnhoverEvent;
 import net.java.html.plotlyjs.ZoomEvent;
 import netscape.javascript.JSObject;
 
+/**
+ *
+ * @author daykin
+ */
 public class ListenersTest {
     
+    /**
+     *
+     */
     public static class L implements ChartListener{
         
+        /**
+         *
+         * @param ev
+         */
         @Override
         public void plotly_click(ClickEvent ev) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
+        /**
+         *
+         * @param ev
+         */
         @Override
         public void plotly_hover(HoverEvent ev) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
+        /**
+         *
+         * @param ev
+         */
         @Override
         public void plotly_zoom(ZoomEvent ev) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
+        /**
+         *
+         * @param ev
+         */
         @Override
         public void plotly_unhover(UnhoverEvent ev) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -75,6 +98,10 @@ public class ListenersTest {
     private L unhover;
     private Plotly plot;
 
+    /**
+     *
+     * @throws PlotlyException
+     */
     public ListenersTest() throws PlotlyException {
         List<Number> x = new CopyOnWriteArrayList<>();
 //                for (int i=0; i<10; i++){
@@ -90,6 +117,9 @@ public class ListenersTest {
 //                plot = Plotly.newPlot("chart", data, new Layout.Builder().title("chart").build()); 
     }
 
+    /**
+     *
+     */
     @BeforeMethod
     public void addFewItems() {
 //        plot.addClickListener(click);
@@ -98,6 +128,9 @@ public class ListenersTest {
 //        plot.addUnhoverListener(unhover);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveLast() {
 //        current = Listeners.remove(current, l3);
@@ -107,6 +140,9 @@ public class ListenersTest {
 //        assertEquals(arr.get(1), l2);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveSecond() {
 //        current = Listeners.remove(current, l2);
@@ -116,6 +152,9 @@ public class ListenersTest {
 //        assertEquals(arr.get(1), l3);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveFirst() {
 //        current = Listeners.remove(current, l1);
@@ -125,6 +164,9 @@ public class ListenersTest {
 //        assertEquals(arr.get(1), l3, "l3: " + arr);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveTwo() {
 //        current = Listeners.remove(current, l1);
@@ -134,6 +176,9 @@ public class ListenersTest {
 //        assertEquals(arr.get(0), l3);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveSecondTwo() {
 //        current = Listeners.remove(current, l2);
@@ -143,6 +188,9 @@ public class ListenersTest {
 //        assertEquals(arr.get(0), l1);
     }
 
+    /**
+     *
+     */
     @Test
     public void testRemoveFirstLast() {
 //        current = Listeners.remove(current, l1);
@@ -157,6 +205,9 @@ public class ListenersTest {
 //        plot.removeClickListener(12345);
 //    }
     
+    /**
+     *
+     */
     @Test
     public void testRemoveAll() {
 //        current = Listeners.remove(current, l1);

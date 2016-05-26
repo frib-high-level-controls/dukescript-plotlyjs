@@ -36,10 +36,11 @@ import java.util.List;
 
 
 /**
- *
+ * Bean-type wrapper builder for Plotly's Contour plot.
+ * For more information see https://plot.ly/javascript/reference/#histogram
  * @author daykin
- * @param <TRACE_T> an implementation of {@link Trace}
- * 
+ * @param <TRACE_T> Extends CartesianTrace. The average user is probably looking
+ * for DistributionTrace.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
@@ -69,6 +70,10 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
     private final AxisBin xbins;
     private final AxisBin ybins;
 
+    /**
+     *
+     * @param <TRACE_2>
+     */
     public static class Builder<TRACE_2 extends CartesianTrace> {
 
         private String type = "histogram";
@@ -104,10 +109,12 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
             return new Builder<>();
         }
         
+        
         public Builder<TRACE_2> orientation(final String value) {
             this.orientation = value;
             return this;
         }
+        
         
         public Builder<TRACE_2> trace(final TRACE_2 value){
             this.x = value.x;
@@ -115,115 +122,143 @@ public class Histogram<TRACE_T extends CartesianTrace> extends Charts{
             return this;
         }
 
+        
         public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> text(final String value) {
             this.text = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> nbinsx(final Integer value) {
             this.nbinsx = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> nbinsy(final Integer value) {
             this.nbinsy = value;
             return this;
         }
+
+        
         public Builder<TRACE_2> histfunc(final String value) {
             this.histfunc = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> autobiny(final Boolean value) {
             this.autobiny = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> autobinx(final Boolean value) {
             this.autobinx = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> histnorm(final String value) {
             this.histnorm = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> marker(final HistogramMarker value) {
             this.marker = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> error_x(final ErrorBar value) {
             this.error_x = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> error_y(final ErrorBar value) {
             this.error_y = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> xbins(final AxisBin value) {
             this.xbins = value;
             return this;
         }
 
+        
         public Builder<TRACE_2> ybins(final AxisBin value) {
             this.ybins = value;
             return this;
         }
 
+        
         public Histogram<TRACE_2> build() {
             return new net.java.html.plotlyjs.Histogram<>(this);
         }
     }
 
+    /**
+     *
+     * @param <TRACE>
+     * @return
+     */
     public static <TRACE extends CartesianTrace> Histogram.Builder<TRACE> builder() {
         return Histogram.Builder.start();
     }

@@ -1,5 +1,4 @@
 package net.java.html.plotlyjs;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan
@@ -31,17 +30,16 @@ package net.java.html.plotlyjs;
  * THE SOFTWARE.
  * #L%
  */
-
-
-/**
- *
- * @author daykin
- */
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+/**
+ * Bean-type wrapper builder for Plotly's Contour plot.
+ * For more information see https://plot.ly/javascript/reference/#pie
+ * @author daykin
+ * @param <TRACE_T> a PieTrace
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pie<TRACE_T extends PieTrace> extends Charts{
-
     public final String type;
     public final Object labelssrc;    
     public final String textposition;
@@ -73,7 +71,10 @@ public class Pie<TRACE_T extends PieTrace> extends Charts{
     public final String name;
     public final Font insidetextfont;
     public final String scalegroup;
-
+    /**
+     *
+     * @param <TRACE_2>
+     */
     public static class Builder<TRACE_2 extends PieTrace> {
         private Object labelssrc;
         private String textposition;
@@ -105,173 +106,143 @@ public class Pie<TRACE_T extends PieTrace> extends Charts{
         private String name;
         private Font insidetextfont;
         private String scalegroup;
-
         private Builder() {
         }
-        
         private static <TRACE_3 extends PieTrace> Builder<TRACE_3> start(){
             return new Builder<>();
         }
-
         public Builder<TRACE_2> labelssrc(final Object value) {
             this.labelssrc = value;
             return this;
         }
-
         public Builder<TRACE_2> textposition(final String value) {
             this.textposition = value;
             return this;
         }
-
         public Builder<TRACE_2> domain(final Domain value) {
             this.domain = value;
             return this;
         }
-
         public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
-
         public Builder<TRACE_2> text(final List<?> value) {
             this.text = value;
             return this;
         }
-
         public Builder<TRACE_2> labels(final List<?> value) {
             this.labels = value;
             return this;
         }
-        
         public Builder<TRACE_2> values(final List<?> values){
             this.values = values;
             return this;
         }
-        
         public Builder<TRACE_2> direction(final String value) {
             this.direction = value;
             return this;
         }
-
         public Builder<TRACE_2> textsrc(final Object value) {
             this.textsrc = value;
             return this;
         }
-
         public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
-
         public Builder<TRACE_2> pullsrc(final Object value) {
             this.pullsrc = value;
             return this;
         }
-
         public Builder<TRACE_2> marker(final PieMarker value) {
             this.marker = value;
             return this;
         }
-
         public Builder<TRACE_2> textinfo(final String value) {
             this.textinfo = value;
             return this;
         }
-
         public Builder<TRACE_2> rotation(final Number value) {
             this.rotation = value;
             return this;
         }
-
         public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
-
         public Builder<TRACE_2> outsidetextfont(final Font value) {
             this.outsidetextfont = value;
             return this;
         }
-
         public Builder<TRACE_2> valuessrc(final Object value) {
             this.valuessrc = value;
             return this;
         }
-
         public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
-
         public Builder<TRACE_2> textfont(final Font value) {
             this.textfont = value;
             return this;
         }
-
         public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
-
         public Builder<TRACE_2> label0(final Number value) {
             this.label0 = value;
             return this;
         }
-
         public Builder<TRACE_2> textpositionsrc(final Object value) {
             this.textpositionsrc = value;
             return this;
         }
-
         public Builder<TRACE_2> sort(final Boolean value) {
             this.sort = value;
             return this;
         }
-
         public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
-
         public Builder<TRACE_2> dlabel(final Number value) {
             this.dlabel = value;
             return this;
         }
-
         public Builder<TRACE_2> hole(final Number value) {
             this.hole = value;
             return this;
         }
-
         public Builder<TRACE_2> pull(final Number value) {
             this.pull = value;
             return this;
         }
-
         public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
-
         public Builder<TRACE_2> insidetextfont(final Font value) {
             this.insidetextfont = value;
             return this;
         }
-
         public Builder<TRACE_2> scalegroup(final String value) {
             this.scalegroup = value;
             return this;
         }
-
         public Pie<TRACE_2> build() {
             return new net.java.html.plotlyjs.Pie<>(this);
         }
     }
-
+    /**
+     *
+     * @param <TRACE_3>
+     * @return
+     */
     public static <TRACE_3 extends PieTrace> Pie.Builder<TRACE_3> builder() {
         return new Pie.Builder<>();
     }
-
     private Pie(Builder<TRACE_T> builder) {
         this.type = "pie";        
         this.labelssrc = builder.labelssrc;
@@ -305,15 +276,4 @@ public class Pie<TRACE_T extends PieTrace> extends Charts{
         this.insidetextfont = builder.insidetextfont;
         this.scalegroup = builder.scalegroup;
     }
-
 }
-
-
-
-
-
-
-
-
-
-

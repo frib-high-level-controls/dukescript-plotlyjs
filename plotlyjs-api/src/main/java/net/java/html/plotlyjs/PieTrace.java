@@ -34,13 +34,15 @@ package net.java.html.plotlyjs;
 
 import java.util.List;
 
-/**
- *
- * @author daykin
- */
+
 public class PieTrace implements Trace{
+
+    
     public final List<?> values;
+
+    
     public final List<?> labels;
+    
     
     public PieTrace(List<?> values, List<?> labels){
         this.values = values;

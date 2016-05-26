@@ -39,24 +39,24 @@ package net.java.html.plotlyjs;
 
 import java.util.List;
 
-/**
- *
- * @author daykin
- */
+
 public class PolarTrace implements Trace {
     
     List<Number> r;
     List<Number> t;
+    
     
     public PolarTrace(List<Number> r,List<Number> t){
         this.r = r;
         this.t = t;
     }
 
+    
     public void setR(List<Number> r) {
         this.r = r;
     }
 
+    
     public void setT(List<Number> t) {
         this.t = t;
     }

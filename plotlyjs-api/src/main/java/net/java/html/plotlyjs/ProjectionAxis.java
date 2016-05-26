@@ -34,12 +34,10 @@ package net.java.html.plotlyjs;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 
 @JsonInclude(Include.NON_NULL)
 public class ProjectionAxis {
@@ -47,6 +45,7 @@ public class ProjectionAxis {
     private final Number scale;
     private final Boolean show;
 
+    
     public static class Builder {
 
         private Number Opacity;
@@ -56,26 +55,31 @@ public class ProjectionAxis {
         private Builder() {
         }
 
+        
         public Builder Opacity(final Number value) {
             this.Opacity = value;
             return this;
         }
 
+        
         public Builder scale(final Number value) {
             this.scale = value;
             return this;
         }
 
+        
         public Builder show(final Boolean value) {
             this.show = value;
             return this;
         }
 
+        
         public ProjectionAxis build() {
             return new net.java.html.plotlyjs.ProjectionAxis(this);
         }
     }
 
+    
     public static ProjectionAxis.Builder builder() {
         return new ProjectionAxis.Builder();
     }

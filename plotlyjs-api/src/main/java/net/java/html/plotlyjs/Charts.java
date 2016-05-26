@@ -1,5 +1,4 @@
 package net.java.html.plotlyjs;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -31,34 +30,66 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
 /**
- *
+ * Abstract class representing any type of chart. contains helpful constants to aid in configuring charts.
  * @author daykin
  */
-
-public abstract class Charts implements Chart {
-
-//    protected static abstract class AbstractChartsBuilder<T extends AbstractChartsBuilder<T>> {
-//        protected abstract T self();
-//
-//        protected Charts build() {
-//            return new Charts(this);
-//        }
-//    }
-//
-//    private static class GenericChartsBuilder extends AbstractChartsBuilder<GenericChartsBuilder> {
-//        @Override
-//        protected GenericChartsBuilder self() {
-//            return this;
-//        }
-//    }
-//
-//    protected AbstractChartsBuilder<?> builder() throws PlotlyException{
-//        return new GenericChartsBuilder();
-//    }
-//
-//    protected Charts(AbstractChartsBuilder<?> builder) {
-//       
-//    }
+public abstract class Charts{
+    public static final class Orientations{
+        public static final String VERTICAL = "v";
+        public static final String HORIZONTAL = "h";
+    }
+    public static final class TextPositions{
+        public static final String TOP_LEFT = "top left";
+        public static final String TOP_CENTER = "top center";
+        public static final String TOP_RIGHT = "top right";
+        public static final String MIDDLE_LEFT = "middle left";
+        public static final String MIDDLE_CENTER = "middle center";
+        public static final String MIDDLE_RIGHT = "middle right";
+        public static final String BOTTOM_LEFT = "bottom left";
+        public static final String BOTTOM_CENTER = "bottom center";
+        public static final String BOTTOM_RIGHT = "bottom right";
+    }
+    public static final class FillModes{
+        public static final String NONE = "none";
+        public static final String TOZEROY = "tozeroy";
+        public static final String TOZEROX = "tozerox";
+        public static final String TONEXTY = "tonexty";
+        public static final String TONEXTX = "tonextx";
+    }
+    public static final class HistFunc{
+        public static final String COUNT = "count";
+        public static final String SUM = "sum";
+        public static final String AVG = "avg";
+        public static final String MIN = "min";
+        public static final String MAX = "max";
+    }
+    public static final class HistNorm{
+        public static final String PERCENT = "percent";
+        public static final String PROBABILITY = "probability";
+        public static final String DENSITY = "density";
+        public static final String PROBABILITY_DENSITY = "probability density";
+    }  
+    public static final class HoverFlags{
+        public static final String X = "x";
+        public static final String Y = "y";
+        public static final String Z = "Z";
+        public static final String TEXT = "text";
+        public static final String NAME = "name";
+        public static final String ALL = "all";
+        public static final String XY = "x+y";
+        public static final String XZ = "x+z";
+        public static final String XYZ = "x+y+z";
+        public static final String YZ = "y+z";
+    }
+    public static final class Visibility{
+        public static final Boolean TRUE = true;
+        public static final Boolean FALSE = false;
+        public static final String LEGENDONLY = "legendonly";
+    }
+    public static final class ZSmooth{
+        public static final String FAST = "fast";
+        public static final String BEST = "best";
+        public static final Boolean FALSE = false;
+    }
 }

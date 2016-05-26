@@ -41,12 +41,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
- *
+ * advanced Plotly behavior options.
  * @author daykin
  */
 @JsonInclude(Include.NON_NULL)
 public class Config {
-        // no interactivity; for export or image generation
+    // no interactivity; for export or image generation
     private final Boolean staticPlot;
 
     // we can edit titles; move annotations; etc
@@ -108,6 +108,7 @@ public class Config {
     // URL to topojson files used in geo charts
     private final String topojsonURL;
 
+    
     public static class Builder {
 
         private Boolean staticPlot;
@@ -130,109 +131,131 @@ public class Config {
         private Number plotGlPixelRatio;
         private String topojsonURL;
 
+        
         public Builder() {
         }
 
+        
         public Builder staticPlot(final Boolean value) {
             this.staticPlot = value;
             return this;
         }
 
+        
         public Builder editable(final Boolean value) {
             this.editable = value;
             return this;
         }
 
+        
         public Builder autosizable(final Boolean value) {
             this.autosizable = value;
             return this;
         }
 
+        
         public Builder fillFrame(final Boolean value) {
             this.fillFrame = value;
             return this;
         }
 
+        
         public Builder frameMargins(final Number value) {
             this.frameMargins = value;
             return this;
         }
 
+        
         public Builder scrollZoom(final Boolean value) {
             this.scrollZoom = value;
             return this;
         }
 
+        
         public Builder doubleClick(final String value) {
             this.doubleClick = value;
             return this;
         }
 
+        
         public Builder showTips(final Boolean value) {
             this.showTips = value;
             return this;
         }
 
+        
         public Builder showLink(final Boolean value) {
             this.showLink = value;
             return this;
         }
 
+        
         public Builder sendData(final Boolean value) {
             this.sendData = value;
             return this;
         }
 
+        
         public Builder linkText(final String value) {
             this.linkText = value;
             return this;
         }
 
+        
         public Builder showSources(final Boolean value) {
             this.showSources = value;
             return this;
         }
 
+        
         public Builder displayModeBar(final String value) {
             this.displayModeBar = value;
             return this;
         }
 
+        
         public Builder modeBarButtonsToRemove(final String[] value) {
             this.modeBarButtonsToRemove = value;
             return this;
         }
 
+        
         public Builder modeBarButtonsToAdd(final String[] value) {
             this.modeBarButtonsToAdd = value;
             return this;
         }
 
+        
         public Builder modeBarButtons(final Boolean value) {
             this.modeBarButtons = value;
             return this;
         }
 
+        
         public Builder displaylogo(final Boolean value) {
             this.displaylogo = value;
             return this;
         }
 
+        
         public Builder plotGlPixelRatio(final Number value) {
             this.plotGlPixelRatio = value;
             return this;
         }
 
+        
         public Builder topojsonURL(final String value) {
             this.topojsonURL = value;
             return this;
         }
 
+        
         public Config build() {
             return new net.java.html.plotlyjs.Config(this);
         }
     }
 
+    
     public static Config.Builder builder() {
         return new Config.Builder();
     }
