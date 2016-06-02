@@ -33,13 +33,11 @@ package net.java.html.plotlyjs;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 public class UnhoverEvent extends ChartEvent{
 
-    public UnhoverEvent(Plotly source, Object shift, Object ctrl, Object info) {
+    
+    public UnhoverEvent(Plotly<?> source, Object shift, Object ctrl, Object info) {
         super(source, shift, ctrl, info);
     }
     

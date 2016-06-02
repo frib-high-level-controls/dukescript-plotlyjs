@@ -40,10 +40,7 @@ package net.java.html.plotlyjs;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
-/**
- *
- * @author daykin
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ScatterMarker extends Marker{
     private final String sizesrc;
@@ -54,12 +51,13 @@ public class ScatterMarker extends Marker{
     private final String sizemode;
     private final Number sizemin;
 
+    
     public static class Builder {
 
         private Boolean autocolorscale;
         private Number cmax;
         private Number cmin;
-        private Map<Integer,String> colorscale;
+        private Map<Number,String> colorscale;
         private String color;
         private Boolean reversescale;
         private Boolean cauto;
@@ -77,114 +75,137 @@ public class ScatterMarker extends Marker{
         private String sizemode;
         private Number sizemin;
 
+        
         public Builder() {
         }
 
+        
         public Builder autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        
         public Builder cmax(final Number value) {
             this.cmax = value;
             return this;
         }
 
+        
         public Builder cmin(final Number value) {
             this.cmin = value;
             return this;
         }
 
-        public Builder colorscale(final Map<Integer,String> value) {
+        
+        public Builder colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }
 
+        
         public Builder color(final String value) {
             this.color = value;
             return this;
         }
 
+        
         public Builder reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
         }
 
+        
         public Builder cauto(final Boolean value) {
             this.cauto = value;
             return this;
         }
 
+        
         public Builder colorbar(final ColorBar value) {
             this.colorbar = value;
             return this;
         }
 
+        
         public Builder line(final Line value) {
             this.line = value;
             return this;
         }
 
+        
         public Builder colorsrc(final String value) {
             this.colorsrc = value;
             return this;
         }
 
+        
         public Builder showscale(final Boolean value) {
             this.showscale = value;
             return this;
         }
 
+        
         public Builder opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        
         public Builder opacitySrc(final String value) {
             this.opacitySrc = value;
             return this;
         }
 
+        
         public Builder sizesrc(final String value) {
             this.sizesrc = value;
             return this;
         }
 
+        
         public Builder size(final Number value) {
             this.size = value;
             return this;
         }
 
+        
         public Builder sizeref(final Number value) {
             this.sizeref = value;
             return this;
         }
 
+        
         public Builder symbol(final String value) {
             this.symbol = value;
             return this;
         }
 
+        
         public Builder symbolsrc(final String value) {
             this.symbolsrc = value;
             return this;
         }
 
+        
         public Builder sizemode(final String value) {
             this.sizemode = value;
             return this;
         }
 
+        
         public Builder sizemin(final Number value) {
             this.sizemin = value;
             return this;
         }
 
+        
         public ScatterMarker build() {
             return new net.java.html.plotlyjs.ScatterMarker(this);
         }
     }
 
+    
     public static ScatterMarker.Builder builder() {
         return new ScatterMarker.Builder();
     }

@@ -6,6 +6,7 @@
 package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 
 /*
  * #%L
@@ -40,7 +41,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 /**
- *
+ * Builder for an Error Bar Bean.
+ * see https://plot.ly/javascript/reference/#bar-error_x for information on properties.
  * @author daykin
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -55,18 +57,20 @@ public class ErrorBar {
     private final Boolean visible;
     private final Integer traceref;
     private final Integer valueminus;
-    private final PlotlyData arrayminus;
-    private final PlotlyData array;
+    private final List<?> arrayminus;
+    private final List<?> array;
     private final String type;
     private final String color;
     
+    
     public static final class RuleTypes{
-        public static final String PERCENT = "percent";
+        public static final String PERCENT = "percent";      
         public static final String CONSTANT = "constant";
         public static final String SQRT = "sqrt";
         public static final String DATA = "data";
     }
 
+    
     public static class Builder {
 
         private Boolean copy_ystyle;
@@ -79,19 +83,21 @@ public class ErrorBar {
         private Boolean visible;
         private Integer traceref;
         private Integer valueminus = 10;
-        private PlotlyData arrayminus;
-        private PlotlyData array;
+        private List<?> arrayminus;
+        private List<?> array;
         private String type;
         private String color;
 
         private Builder() {
         }
 
+        
         public Builder copy_ystyle(final Boolean value) {
             this.copy_ystyle = value;
             return this;
         }
 
+        
         public Builder tracerefminus(final Integer value) {
             if(value>=0){
                this.tracerefminus = value;
@@ -99,6 +105,7 @@ public class ErrorBar {
             return this;
         }
 
+        
         public Builder width(final Integer value) {
             if(value>=0){
             this.width = value;
@@ -106,11 +113,13 @@ public class ErrorBar {
             return this;
         }
 
+        
         public Builder copy_zstyle(final Boolean value) {
             this.copy_zstyle = value;
             return this;
         }
 
+        
         public Builder value(final Integer value) {
             if(value>=0){
             this.value = value;
@@ -118,6 +127,7 @@ public class ErrorBar {
             return this;
         }
 
+        
         public Builder thickness(final Integer value) {
             if(value>=0){
             this.thickness = value;
@@ -125,16 +135,19 @@ public class ErrorBar {
             return this;
         }
 
+        
         public Builder symmetric(final Boolean value) {
             this.symmetric = value;
             return this;
         }
 
+        
         public Builder visible(final Boolean value) {
             this.visible = value;
             return this;
         }
 
+        
         public Builder traceref(final Integer value) {
             if(value>=0){
             this.traceref = value;
@@ -142,36 +155,43 @@ public class ErrorBar {
             return this;
         }
 
+        
         public Builder valueminus(final Integer value) {
             this.valueminus = value;
             return this;
         }
 
-        public Builder arrayminus(final PlotlyData value) {
+        
+        public Builder arrayminus(final List<?> value) {
             this.arrayminus = value;
             return this;
         }
 
-        public Builder array(final PlotlyData value) {
+        
+        public Builder array(final List<?> value) {
             this.array = value;
             return this;
         }
 
+        
         public Builder type(final String value) {
             this.type = value;
             return this;
         }
 
+        
         public Builder color(final String value) {
             this.color = value;
             return this;
         }
 
+        
         public ErrorBar build() {
             return new net.java.html.plotlyjs.ErrorBar(this);
         }
     }
 
+    
     public static ErrorBar.Builder builder() {
         return new ErrorBar.Builder();
     }

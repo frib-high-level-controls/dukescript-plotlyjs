@@ -39,9 +39,25 @@ package net.java.html.plotlyjs;
 
 import java.util.EventObject;
 
+/**
+ *
+ * @author daykin
+ */
 public abstract class ChartEvent extends EventObject {
+
+    /**
+     *
+     */
     public final Boolean ctrl;
+
+    /**
+     *
+     */
     public final Boolean shift;
+
+    /**
+     *
+     */
     public final Object info;
     
     ChartEvent(Plotly source, Object shift, Object ctrl, Object info){

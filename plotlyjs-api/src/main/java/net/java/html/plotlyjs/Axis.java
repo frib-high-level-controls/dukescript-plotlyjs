@@ -1,6 +1,5 @@
 
 package net.java.html.plotlyjs;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -31,15 +30,9 @@ package net.java.html.plotlyjs;
  * THE SOFTWARE.
  * #L%
  */
-
-
-
-
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
-
 /**
  * Class representing an axis for use with {@link Layout}s. 
  * Use {@link Axis.Builder} to construct an axis,
@@ -92,7 +85,6 @@ public class Axis {
         private final List<Number>range;
         private final String anchor;
         private final String exponentformat;
-    
     /*
         Number of exponents to show
     */    
@@ -102,7 +94,6 @@ public class Axis {
         public static final String LAST = "last";
         public static final String NONE = "none";
     }
-    
     /*
         Enumerate options for mirroring to other side of chart
     */
@@ -113,7 +104,6 @@ public class Axis {
         public static final String ALL = "all";
         public static final String ALLTICKS = "allticks";
     }
-    
     /*
         Very easy way to set the range of an axis
     */
@@ -122,7 +112,6 @@ public class Axis {
         public static final Boolean FALSE = false;
         public static final String REVERSED = "reversed";
     }
-    
     /*
         Enumerate whether ticks are automatic, linear, or set according to a
         Respective array(in turn)
@@ -132,7 +121,6 @@ public class Axis {
         public static final String LINEAR = "linear";
         public static final String ARRAY = "array";
     }
-    
     /*
         Get whether or not ticks are to be drawn, and if so, where relative to axis lines
     */
@@ -141,7 +129,6 @@ public class Axis {
         public static final String INSIDE = "inside";
         public static final String NONE = "";
     }
-    
     /*
         Out to extrema of input data, force extend to zero, or force
         Non-negative
@@ -150,9 +137,7 @@ public class Axis {
         public static final String NORMAL = "normal";
         public static final String TOZERO = "tozero";
         public static final String NONNEGATIVE = "nonnegative";
-        
     }
-    
     /*
         No type specified/dash -> infer scale from data, or force linear/log/date/category scaling  
     */
@@ -163,7 +148,6 @@ public class Axis {
         public static final String DATE = "date";
         public static final String CATEGORY = "category";
     }
-    
     /*
         All sides as defined in js documentation; used for borders, positioning, etc.
     */
@@ -173,7 +157,6 @@ public class Axis {
         public static final String LEFT = "left";
         public static final String RIGHT = "right";   
     }
-    
     static final class ExponentFormats {
         public static final String NONE = "none";
         public static final String LOWER_E = "e";
@@ -182,9 +165,7 @@ public class Axis {
         public static final String SI = "SI";
         public static final String B = "B";
     }
-
     public static class Builder {
-
         private String showexponent;
         private Boolean showticklabels;
         private Boolean autotick;
@@ -228,234 +209,187 @@ public class Axis {
         private List<Number> range;
         private String anchor;
         private String exponentformat;
-
         public Builder() {
         }
-
         public Builder showexponent(final String value) {
             this.showexponent = value;
             return this;
         }
-
         public Builder showticklabels(final Boolean value) {
             this.showticklabels = value;
             return this;
         }
-
         public Builder autotick(final Boolean value) {
             this.autotick = value;
             return this;
         }
-
         public Builder showticksuffix(final String value) {
             this.showticksuffix = value;
             return this;
         }
-
         public Builder titlefont(final Font value) {
             this.titlefont = value;
             return this;
         }
-
         public Builder linecolor(final String value) {
             this.linecolor = value;
             return this;
         }
-
         public Builder mirror(final Object value) {
             this.mirror = value;
             return this;
         }
-
         public Builder nticks(final Integer value) {
             this.nticks = value;
             return this;
         }
-
         public Builder linewidth(final Number value) {
             this.linewidth = value;
             return this;
         }
-
         public Builder autorange(final Object value) {
             this.autorange = value;
             return this;
         }
-
         public Builder tickprefix(final String value) {
             this.tickprefix = value;
             return this;
         }
-
         public Builder position(final Number value) {
             this.position = value;
             return this;
         }
-
         public Builder tickformat(final String value) {
             this.tickformat = value;
             return this;
         }
-
         public Builder tickmode(final String value) {
             this.tickmode = value;
             return this;
         }
-
         public Builder title(final String value) {
             this.title = value;
             return this;
         }
-
         public Builder ticks(final String value) {
             this.ticks = value;
             return this;
         }
-
         public Builder overlaying(final String value) {
             this.overlaying = value;
             return this;
         }
-
         public Builder rangemode(final String value) {
             this.rangemode = value;
             return this;
         }
-
         public Builder showtickprefix(final String value) {
             this.showtickprefix = value;
             return this;
         }
-
         public Builder zeroline(final Boolean value) {
             this.zeroline = value;
             return this;
         }
-
         public Builder domain(final List<Number> value) {
             this.domain = value;
             return this;
         }
-
         public Builder gridcolor(final String value) {
             this.gridcolor = value;
             return this;
         }
-
         public Builder type(final String value) {
             this.type = value;
             return this;
         }
-
         public Builder zerolinewidth(final Number value) {
             this.zerolinewidth = value;
             return this;
         }
-
         public Builder ticklen(final Number value) {
             this.ticklen = value;
             return this;
         }
-
         public Builder hoverformat(final String value) {
             this.hoverformat = value;
             return this;
         }
-
         public Builder ticksuffix(final String value) {
             this.ticksuffix = value;
             return this;
         }
-
         public Builder fixedrange(final Boolean value) {
             this.fixedrange = value;
             return this;
         }
-
         public Builder showline(final Boolean value) {
             this.showline = value;
             return this;
         }
-
         public Builder ticktext(final List<String> value) {
             this.ticktext = value;
             return this;
         }
-
         public Builder showgrid(final Boolean value) {
             this.showgrid = value;
             return this;
         }
-
         public Builder tickvals(final List value) {
             this.tickvals = value;
             return this;
         }
-
         public Builder tickfont(final Font value) {
             this.tickfont = value;
             return this;
         }
-
         public Builder tickwidth(final Number value) {
             this.tickwidth = value;
             return this;
         }
-
         public Builder tick0(final Number value) {
             this.tick0 = value;
             return this;
         }
-
         public Builder tickangle(final Number value) {
             this.tickangle = value;
             return this;
         }
-
         public Builder gridwidth(final Number value) {
             this.gridwidth = value;
             return this;
         }
-
         public Builder dtick(final Number value) {
             this.dtick = value;
             return this;
         }
-
         public Builder side(final String value) {
             this.side = value;
             return this;
         }
-
         public Builder zerolinecolor(final String value) {
             this.zerolinecolor = value;
             return this;
         }
-
         public Builder range(final List<Number> value) {
             this.range = value;
             return this;
         }
-
         public Builder anchor(final String value) {
             this.anchor = value;
             return this;
         }
-
         public Builder exponentformat(final String value) {
             this.exponentformat = value;
             return this;
         }
-
         public Axis build() {
             return new net.java.html.plotlyjs.Axis(this);
         }
     }
-
     public static Axis.Builder builder() {
         return new Axis.Builder();
     }
-
     private Axis(Builder builder) {
         this.showexponent = builder.showexponent;
         this.showticklabels = builder.showticklabels;
@@ -501,6 +435,4 @@ public class Axis {
         this.anchor = builder.anchor;
         this.exponentformat = builder.exponentformat;
     }
-    
-
 }

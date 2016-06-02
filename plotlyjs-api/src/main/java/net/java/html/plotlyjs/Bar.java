@@ -36,21 +36,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 /**
- *
+ * Bean-like representation of a Plotly
+ * <a href="https://plot.ly/javascript/bar-charts/" title="Bar">Bar chart</a>.
+ * <br>
+ * 
+ * 
+ * <p>
+ * @param <TRACE_T>A CartesianTrace or subclass, i.e.
+ * one containing an x and/or y list.<br />
+ * 
+ * 
  * @author daykin
+ *         </p>
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Bar extends Chart{
-    /*
-        Y magnitude direction-horizontal or vertical
-    */
+public class Bar<TRACE_T extends CartesianTrace> extends Charts{
+    private final String type;
+    private final List<?> x;
+    private final List<?> y;
     private final String orientation;
     private final Stream stream;
     private final String text;
-    /*
-        On hover, what info to show; if
-        Unspecified, the chart will show all data at that point.
-    */
     private final String hoverinfo;
     private final Object xsrc;
     private final Object visible;
@@ -72,21 +78,26 @@ public class Bar extends Chart{
     private final Number x0;
     private final String name;
 
-    public static class Builder {
+    /**
+     * Builder for creating a Bar chart.
+     * see <a href = "https://plot.ly/javascript/reference/#bar">the Plotly doc entry</a> for more information on each field.
+     * @param <TRACE_2> A CartesianTrace or subclass 
+     */
+    public static class Builder<TRACE_2 extends CartesianTrace> {
 
         private final String type = "bar";
-        private List x;
-        private List y;
-        private String orientation = Chart.Orientations.VERTICAL;
+        private List<?> x;
+        private List<?> y;
+        private String orientation;
         private Stream stream;
         private String text;
-        private String hoverinfo = Chart.HoverFlags.ALL;
+        private String hoverinfo;
         private Object xsrc;
-        private Object visible = true;
+        private Object visible;
         private BarMarker marker;
         private Number y0;
         private Object tsrc;
-        private Boolean showlegend = true;
+        private Boolean showlegend;
         private ErrorBar error_x;
         private ErrorBar error_y;
         private Object rsrc;
@@ -103,144 +114,281 @@ public class Bar extends Chart{
 
         private Builder() {
         }
-
-
-        public Builder x(final List value) {
+        
+        private static<TRACE_3 extends CartesianTrace> Builder<TRACE_3> start(){
+            return new Builder<>();
+        }
+        
+        /**
+         * Set x and y data using a Trace with x and y coordinates.
+         * @param trace
+         * @return A <code>Builder</code> with type <code>TRACE_2</code> 
+         */
+        public Builder<TRACE_2> trace(final TRACE_2 trace){
+            this.x = trace.x;
+            this.y = trace.y;
+            return this;
+        }
+        
+        private Builder<TRACE_2> x(final List<?> value) {
             this.x = value;
             return this;
         }
 
-        public Builder y(final List value) {
+        private Builder<TRACE_2> y(final List<?> value) {
             this.y = value;
             return this;
         }
 
-        public Builder orientation(final String value) {
+        /**
+         * set the orientation, "v" or "h". also enumerated as <code>Chart.VERTICAL</code> or <code>Chart.HORIZONTAL</code>.
+         * @param value the orientation setting.
+         * @return a Builder with this value set.
+         */
+        public Builder<TRACE_2> orientation(final String value) {
             this.orientation = value;
             return this;
         }
 
-        public Builder stream(final Stream value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
 
-        public Builder text(final String value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> text(final String value) {
             this.text = value;
             return this;
         }
 
-        public Builder hoverinfo(final String value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
 
-        public Builder xsrc(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> xsrc(final Object value) {
             this.xsrc = value;
             return this;
         }
 
-        public Builder visible(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
 
-        public Builder marker(final BarMarker value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> marker(final BarMarker value) {
             this.marker = value;
             return this;
         }
 
-        public Builder y0(final Number value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */ 
+        public Builder<TRACE_2> y0(final Number value) {
             this.y0 = value;
             return this;
         }
 
-        public Builder tsrc(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> tsrc(final Object value) {
             this.tsrc = value;
             return this;
         }
 
-        public Builder showlegend(final Boolean value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
 
-        public Builder error_x(final ErrorBar value) {
+        /**
+         *
+         * @param value
+         * @returna <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> error_x(final ErrorBar value) {
             this.error_x = value;
             return this;
         }
 
-        public Builder error_y(final ErrorBar value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> error_y(final ErrorBar value) {
             this.error_y = value;
             return this;
         }
 
-        public Builder rsrc(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> rsrc(final Object value) {
             this.rsrc = value;
             return this;
         }
 
-        public Builder xaxis(final Axis value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
-        public Builder yaxis(final Axis value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
-        public Builder ysrc(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> ysrc(final Object value) {
             this.ysrc = value;
             return this;
         }
 
-        public Builder opacity(final Number value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
-        public Builder legendgroup(final String value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
 
-        public Builder textsrc(final Object value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> textsrc(final Object value) {
             this.textsrc = value;
             return this;
         }
 
-        public Builder dx(final Number value) {
+        /**
+         *
+         * @param value
+         * @returna <code>Builder</code> with this value set. 
+         */
+        public Builder<TRACE_2> dx(final Number value) {
             this.dx = value;
             return this;
         }
 
-        public Builder dy(final Number value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> dy(final Number value) {
             this.dy = value;
             return this;
         }
 
-        public Builder x0(final Number value) {
+        /**
+         *
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> x0(final Number value) {
             this.x0 = value;
             return this;
         }
 
-        public Builder name(final String value) {
+        /**
+         * 
+         * @param value
+         * @return a <code>Builder</code> with this value set.
+         */
+        public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
 
-        public Bar build() {
-            return new net.java.html.plotlyjs.Bar(this);
+        /**
+         *
+         * @return a <code>Bar</code> with the specified fields set.
+         */
+        public Bar<TRACE_2> build() {
+            return new net.java.html.plotlyjs.Bar<>(this);
         }
     }
 
-    public static Bar.Builder builder() {
-        return new Bar.Builder();
+    /**
+     * @param <TRACE> a type of x-y trace.
+     * @return
+     */
+    public static <TRACE extends CartesianTrace> Bar.Builder<TRACE> builder() {
+        return Builder.start();
     }
 
-    private Bar(Builder builder) {
-        this.type = builder.type;
+    private Bar(Builder<TRACE_T> builder) {
+        this.type = "bar";
         this.x = builder.x;
         this.y = builder.y;
         this.orientation = builder.orientation;

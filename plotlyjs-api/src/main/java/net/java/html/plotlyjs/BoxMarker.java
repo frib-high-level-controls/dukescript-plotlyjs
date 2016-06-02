@@ -35,9 +35,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * #L%
  */
 
-
 /**
- *
+ * Bean-type wrapper builder for Plotly's Box Marker.
+ * For more information see https://plot.ly/javascript/reference/#box-marker
  * @author daykin
  */
 
@@ -51,6 +51,9 @@ public class BoxMarker{
     private final String color;
     private final Number size;
 
+    /**
+     *
+     */
     public static class Builder {
 
         private Number opacity;
@@ -63,41 +66,79 @@ public class BoxMarker{
         private Builder() {
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder opacity(final Number value) {
             this.opacity = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder outliercolor(final String value) {
             this.outliercolor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder symbol(final String value) {
             this.symbol = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder line(final Line value) {
             this.line = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder size(final Number value) {
             this.size = value;
             return this;
         }
         
+        /**
+         *
+         * @param color
+         * @return
+         */
         public Builder color(final String color){
             this.color = color;
             return this;
         }
 
+        /**
+         *
+         * @return
+         */
         public BoxMarker build() {
             return new net.java.html.plotlyjs.BoxMarker(this);
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static BoxMarker.Builder builder() {
         return new BoxMarker.Builder();
     }

@@ -33,10 +33,7 @@ package net.java.html.plotlyjs;
 
 
 
-/**
- *
- * @author daykin
- */
+
 public class Margin {
     @SuppressWarnings("unused")
     private int b;
@@ -56,51 +53,62 @@ public class Margin {
         autoexpand = builder.autoexpand;
     }
     
-
+    
     public int getB() {
         return b;
     }
 
+    
     public void setB(int b) {
         this.b = b;
     }
 
+    
     public int getL() {
         return l;
     }
 
+    
     public void setL(int l) {
         this.l = l;
     }
 
+    
     public int getR() {
         return r;
     }
 
+    
     public void setR(int r) {
         this.r = r;
     }
 
+    
     public int getPad() {
         return pad;
     }
 
+    
     public void setPad(int pad) {
         this.pad = pad;
     }
 
+    
     public int getT() {
         return t;
     }
 
+    
     public void setT(int t) {
         this.t = t;
     }
 
+    
     public boolean isAutoexpand() {
         return autoexpand;
     }
 
+    
     public void setAutoexpand(boolean autoexpand) {
         this.autoexpand = autoexpand;
     }
@@ -109,6 +117,7 @@ public class Margin {
     public String toString() {
         return "Margin{" + "b=" + b + ", l=" + l + ", r=" + r + ", pad=" + pad + ", t=" + t + ", autoexpand=" + autoexpand + '}';
     }
+    
     
     public static class Builder{
 
@@ -119,38 +128,46 @@ public class Margin {
             int t = 100;
             boolean autoexpand = true;
        
+        
         public Builder(){}
+        
         
         public Builder b(int b){
             this.b = b;
             return this;
         }
 
+        
         public Builder l(int l){
             this.l = l;
             return this;
         }
 
+        
         public Builder r(int r){
             this.r = r;
             return this;
         }
 
+        
         public Builder pad(int pad){
             this.pad = pad;
             return this;
         }
 
+        
         public Builder t(int t){
             this.t = t;
             return this;
         }
 
+        
         public Builder autoexpand(boolean autoexpand){
             this.autoexpand = autoexpand;
             return this;
         }
 
+        
         public Margin build(){
             return new Margin(this);
         }

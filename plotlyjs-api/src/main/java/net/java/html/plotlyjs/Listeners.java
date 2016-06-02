@@ -32,27 +32,28 @@ package net.java.html.plotlyjs;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 public class Listeners implements ChartListener {
 
+    
     @Override
     public void plotly_click(ClickEvent event) {
         assert false;
     }
 
+    
     @Override
     public void plotly_hover(HoverEvent event) {
         assert false;
     }
 
+    
     @Override
     public void plotly_zoom(ZoomEvent event) {
         assert false;
     }
 
+    
     @Override
     public void plotly_unhover(UnhoverEvent ev) {
         assert false;

@@ -1,5 +1,4 @@
 package net.java.html.plotlyjs;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan
@@ -31,29 +30,31 @@ package net.java.html.plotlyjs;
  * THE SOFTWARE.
  * #L%
  */
-
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-
 /**
- *
+ * Bean-type wrapper builder for Plotly's Box plot.
+ * For more information see https://plot.ly/javascript/reference/#box
  * @author daykin
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Box extends Chart{
-    public static final class Mean{
+public class Box<TRACE_T extends CartesianTrace> extends Charts{
+    
+    public static final class Mean{        
         public static final Boolean TRUE = true;
         public static final Boolean FALSE = false;
         public static final String SD = "sd";
     }
-    public static final class Boxpoints{
-        public static final String ALL = "all";
-	public static final String OUTLIERS = "outliers";
-	public static final String SUSPECTEDOUTLIERS = "suspectedoutliers";
-	public static final Boolean FALSE = false;
-    }
     
+    public static final class Boxpoints{        
+        public static final String ALL = "all";
+        public static final String OUTLIERS = "outliers";        
+        public static final String SUSPECTEDOUTLIERS = "suspectedoutliers";        
+        public static final Boolean FALSE = false;
+    }
+    private final String type;
+    private final List<?> x;
+    private final List<?> y;
     private final Number jitter;
     private final String orientation;
     private final Stream stream;
@@ -76,12 +77,15 @@ public class Box extends Chart{
     private final String name;
     private final Axis yaxis;
     private final Object boxpoints;
-
-    public static class Builder {
-
+    /**
+     *
+     * @param <TRACE_2>
+     */
+    public static class Builder<TRACE_2 extends CartesianTrace>{
+        
         private final String type = "box";
-        private List x;
-        private List y;
+        private List<?> x;
+        private List<?> y;
         private Number jitter;
         private String orientation;
         private Stream stream;
@@ -104,147 +108,145 @@ public class Box extends Chart{
         private String name;
         private Axis yaxis;
         private Object boxpoints;
-
         private Builder() {
         }
-
-        public Builder x(final List value) {
+        
+        private static <TRACE_3 extends CartesianTrace>Builder<TRACE_3> start(){
+            return new Builder<>();
+        }
+        
+        public Builder<TRACE_2> trace(final TRACE_2 value){
+            return this.x(value.x).y(value.y);
+        }
+        
+        private Builder<TRACE_2> x(final List<?> value) {
             this.x = value;
             return this;
         }
-
-        public Builder y(final List value) {
+        private Builder<TRACE_2> y(final List<?> value) {
             this.y = value;
             return this;
         }
         
-        public Builder data(final Value value){
-            this.x = value.x;
-            this.y = value.y;
-            return this;
-        }
-
-        public Builder jitter(final Number value) {
+        public Builder<TRACE_2> jitter(final Number value) {
             this.jitter = value;
             return this;
         }
-
-        public Builder orientation(final String value) {
+        
+        public Builder<TRACE_2> orientation(final String value) {
             this.orientation = value;
             return this;
         }
-
-        public Builder stream(final Stream value) {
+        
+        public Builder<TRACE_2> stream(final Stream value) {
             this.stream = value;
             return this;
         }
-
-        public Builder ysrc(final Object value) {
+        
+        public Builder<TRACE_2> ysrc(final Object value) {
             this.ysrc = value;
             return this;
         }
-
-        public Builder xsrc(final Object value) {
+        
+        public Builder<TRACE_2> xsrc(final Object value) {
             this.xsrc = value;
             return this;
         }
-
-        public Builder visible(final Object value) {
+        
+        public Builder<TRACE_2> visible(final Object value) {
             this.visible = value;
             return this;
         }
-
-        public Builder marker(final BoxMarker value) {
+        
+        public Builder<TRACE_2> marker(final BoxMarker value) {
             this.marker = value;
             return this;
         }
-
-        public Builder y0(final Number value) {
+        
+        public Builder<TRACE_2> y0(final Number value) {
             this.y0 = value;
             return this;
         }
-
-        public Builder pointpos(final Number value) {
+        
+        public Builder<TRACE_2> pointpos(final Number value) {
             this.pointpos = value;
             return this;
         }
-
-        public Builder line(final Line value) {
+        
+        public Builder<TRACE_2> line(final Line value) {
             this.line = value;
             return this;
         }
-
-        public Builder showlegend(final Boolean value) {
+        
+        public Builder<TRACE_2> showlegend(final Boolean value) {
             this.showlegend = value;
             return this;
         }
-
-        public Builder boxmean(final Object value) {
+        
+        public Builder<TRACE_2> boxmean(final Object value) {
             this.boxmean = value;
             return this;
         }
-
-        public Builder xaxis(final Axis value) {
+        
+        public Builder<TRACE_2> xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
-
-        public Builder opacity(final Number value) {
+        
+        public Builder<TRACE_2> opacity(final Number value) {
             this.opacity = value;
             return this;
         }
-
-        public Builder legendgroup(final String value) {
+        
+        public Builder<TRACE_2> legendgroup(final String value) {
             this.legendgroup = value;
             return this;
         }
-
-        public Builder fillcolor(final String value) {
+        
+        public Builder<TRACE_2> fillcolor(final String value) {
             this.fillcolor = value;
             return this;
         }
-
-        public Builder hoverinfo(final String value) {
+        
+        public Builder<TRACE_2> hoverinfo(final String value) {
             this.hoverinfo = value;
             return this;
         }
-
-        public Builder x0(final Number value) {
+        
+        public Builder<TRACE_2> x0(final Number value) {
             this.x0 = value;
             return this;
         }
-
-        public Builder whiskerwidth(final Number value) {
+        
+        public Builder<TRACE_2> whiskerwidth(final Number value) {
             this.whiskerwidth = value;
             return this;
         }
-
-        public Builder name(final String value) {
+        
+        public Builder<TRACE_2> name(final String value) {
             this.name = value;
             return this;
         }
-
-        public Builder yaxis(final Axis value) {
+        
+        public Builder<TRACE_2> yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
-
-        public Builder boxpoints(final Object value) {
+        
+        public Builder<TRACE_2> boxpoints(final Object value) {
             this.boxpoints = value;
             return this;
         }
-
-        public Box build() {
-            return new net.java.html.plotlyjs.Box(this);
+        public Box<TRACE_2> build() {
+            return new net.java.html.plotlyjs.Box<>(this);
         }
     }
-
-    public static Box.Builder builder() {
-        return new Box.Builder();
+    
+    public static <TRACE extends CartesianTrace> Box.Builder<TRACE> builder() {
+        return Builder.start();
     }
-
-    private Box(Builder builder) {
-        this.type = builder.type;
+    private Box(Builder<TRACE_T> builder) {
+        this.type = "box";
         this.x = builder.x;
         this.y = builder.y;
         this.jitter = builder.jitter;

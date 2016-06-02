@@ -37,7 +37,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Map;
 
 /**
- *
+ * Builder which defines aesthetic properties of a {@link Bar} trace.
+ * For information on these fields, see https://plot.ly/javascript/reference/#bar-marker
  * @author daykin
  */
 @JsonInclude(Include.NON_NULL)
@@ -48,13 +49,9 @@ public class BarMarker extends Marker{
         private Boolean autocolorscale;
         private Number cmax;
         private Number cmin;
-        private Map<Integer,String> colorscale;
+        private Map<Number,String> colorscale;
         private String color;
         private Boolean reversescale;
-        /*
-            Unspecified marker.color will cause this to not have any effect.
-            Plot will be colored according to computed color domain
-        */
         private Boolean cauto;
         private ColorBar colorbar;
         private Line line;
@@ -64,6 +61,7 @@ public class BarMarker extends Marker{
 
         private Builder() {
         }
+
 
         public Builder autocolorscale(final Boolean value) {
             this.autocolorscale = value;
@@ -75,15 +73,18 @@ public class BarMarker extends Marker{
             return this;
         }
 
+
         public Builder cmin(final Number value) {
             this.cmin = value;
             return this;
         }
 
-        public Builder colorscale(final Map<Integer,String> value) {
+
+        public Builder colorscale(final Map<Number,String> value) {
             this.colorscale = value;
             return this;
         }
+
 
         public Builder color(final String value) {
             this.color = value;
@@ -115,6 +116,7 @@ public class BarMarker extends Marker{
             return this;
         }
 
+
         public Builder showscale(final Boolean value) {
             this.showscale = value;
             return this;
@@ -124,7 +126,6 @@ public class BarMarker extends Marker{
             this.opacity = value;
             return this;
         }
-
 
         public BarMarker build() {
             return new net.java.html.plotlyjs.BarMarker(this);

@@ -31,36 +31,22 @@ package net.java.html.plotlyjs;
  * #L%
  */
 
-
-
-
-
-
 public class PlotlyException extends Exception {
 
-    /**
-     * 
-     */
+    
     private static final long serialVersionUID = -324502853664523404L;
 
-    /**
-     * @param message
-     * @param cause
-     */
+    
     public PlotlyException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    /**
-     * @param message
-     */
+    
     public PlotlyException(String message) {
         super(message);
     }
 
-    /**
-     * @param cause
-     */
+    
     public PlotlyException(Throwable cause) {
         super(cause);
     }

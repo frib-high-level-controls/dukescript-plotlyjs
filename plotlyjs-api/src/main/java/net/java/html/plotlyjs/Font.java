@@ -34,15 +34,13 @@ package net.java.html.plotlyjs;
 
 
 
-/**
- *
- * @author daykin
- */
+
 public class Font {
       
     private final String color;
     private final String family;
     private final int size;
+    
     
     public Font(FontBuilder builder){
         color = builder.color;
@@ -56,27 +54,33 @@ public class Font {
         return "Font{" + "color=" + color + ", family=" + family + ", size=" + size + '}';
     }
     
+    
     public static class FontBuilder{
         String color = "#444";
         String family = "\"Open Sans\", verdana, arial, sans-serif" ;
         int size = 12;
         
+        
         public FontBuilder(){}
+        
         
         public FontBuilder color(String color){
             this.color = color;
             return this;
         }
     
+        
         public FontBuilder family(String family){
             this.family = family;
             return this;
         }
     
+        
         public FontBuilder size(int size){
             this.size = size;
             return this;
         }
+        
         
         public Font build(){
         return new Font(this);
