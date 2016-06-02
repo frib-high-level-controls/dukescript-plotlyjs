@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
-
 @JsonInclude(Include.NON_NULL)
 public class Layout {
     
@@ -53,6 +52,7 @@ public class Layout {
     private final String boxmode;
     private final Object hovermode;
 
+    
     public static class Builder {
 
         private String title;
@@ -66,64 +66,77 @@ public class Layout {
         private String boxmode;
         private Object hovermode;
 
+        
         public Builder() {
         }
 
+        
         public Builder title(final String value) {
             this.title = value;
             return this;
         }
 
+        
         public Builder margin(final Margin value) {
             this.margin = value;
             return this;
         }
 
+        
         public Builder width(final Integer value) {
             this.width = value;
             return this;
         }
 
+        
         public Builder height(final Integer value) {
             this.height = value;
             return this;
         }
 
+        
         public Builder font(final Font value) {
             this.font = value;
             return this;
         }
 
+        
         public Builder xaxis(final Axis value) {
             this.xaxis = value;
             return this;
         }
 
+        
         public Builder yaxis(final Axis value) {
             this.yaxis = value;
             return this;
         }
 
+        
         public Builder barmode(final String value) {
             this.barmode = value;
             return this;
         }
+        
         
         public Builder boxmode(final String boxmode){
             this.boxmode = boxmode;
             return this;
         }
         
+        
         public Builder hovermode(final Object hovermode){
             this.hovermode = (hovermode instanceof java.lang.String || hovermode instanceof java.lang.Boolean)?hovermode:false;
             return this;
         }
+        
         
         public Layout build() {
             return new net.java.html.plotlyjs.Layout(this);
         }
     }
 
+    
     public static Layout.Builder builder() {
         return new Layout.Builder();
     }

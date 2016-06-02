@@ -35,12 +35,11 @@ package net.java.html.plotlyjs;
 import net.java.html.js.JavaScriptBody;
 import net.java.html.js.JavaScriptResource;
 
-/**
- *
- * @author daykin
- */
+
 @JavaScriptResource("jquery-1.12.0.min.js")
 public class JQuery {
+
+    
     @JavaScriptBody(args = {}, body = "")
     public static native void init();
 }

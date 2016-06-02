@@ -40,26 +40,45 @@ package net.java.html.plotlyjs;
 import java.util.List;
 
 /**
- *
+ * Trace type for any plot requiring an x and y axis.
  * @author daykin
  */
-public class CartesianTrace extends Value implements Trace{
+public class CartesianTrace implements Trace{
     
-    public CartesianTrace(List x, List y){
+    List<?> x;
+    List<?> y;
+    
+    /**
+     *
+     * @param x
+     * @param y
+     */
+    public CartesianTrace(List<?> x, List<?> y){
         this.x = x;
         this.y = y;
     }
     
+
     public CartesianTrace(){
         
     }
 
-    public CartesianTrace x(List value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public CartesianTrace x(List<?> value) {
         this.x = value;
         return this;
     }
 
-    public CartesianTrace y(List value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public CartesianTrace y(List<?> value) {
         this.y = value;
         return this;
     }

@@ -14,8 +14,8 @@
             <id>berryma4</id>
             <name>Eric Berryman</name>
             <email>eric.berryman@gmail.com</email>
-            <organization></organization>
-            <organizationUrl></organizationUrl>
+            <organization/>
+            <organizationUrl/>
             <roles>
                 <role>Project-Administrator</role>
                 <role>Developer</role>
@@ -36,7 +36,7 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <net.java.html.version>1.2.3</net.java.html.version>
+        <net.java.html.version>1.3</net.java.html.version>
         <bck2brwsr.version>0.16</bck2brwsr.version>
         <license>COPYING</license>
     </properties>
@@ -58,8 +58,8 @@
     
     <modules>
         <module>plotlyjs-api</module>
-        <module>PlotlySample</module>
-    </modules>
+    <module>PlotlySample</module>
+  </modules>
     
     <distributionManagement>
         <snapshotRepository>

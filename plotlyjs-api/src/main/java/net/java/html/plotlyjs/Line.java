@@ -39,19 +39,29 @@ package net.java.html.plotlyjs;
 
 import java.util.Map;
 
-/**
- *
- * @author daykin
- */
+
 public class Line {
     
+    
     public static final class Shapes{
+
+        
         public static final String LINEAR = "linear";
-	public static final String SPLINE = "spline";
-	public static final String HV = "hv";
-	public static final String VH = "vh";
-	public static final String HVH = "hvh";
-	public static final String VHV = "vhv";
+
+        
+        public static final String SPLINE = "spline";
+
+        
+        public static final String HV = "hv";
+
+        
+        public static final String VH = "vh";
+
+        
+        public static final String HVH = "hvh";
+
+        
+        public static final String VHV = "vhv";
     }
     
     private final String colorsrc;
@@ -68,6 +78,7 @@ public class Line {
     private final String widthsrc;
     private final Number cmax;
 
+    
     public static class Builder {
 
         private String colorsrc;
@@ -87,76 +98,91 @@ public class Line {
         private Builder() {
         }
 
+        
         public Builder colorsrc(final String value) {
             this.colorsrc = value;
             return this;
         }
 
+        
         public Builder autocolorscale(final Boolean value) {
             this.autocolorscale = value;
             return this;
         }
 
+        
         public Builder cmin(final Number value) {
             this.cmin = value;
             return this;
         }
 
+        
         public Builder colorscale(final Map<Integer,String> value) {
             this.colorscale = value;
             return this;
         }
 
+        
         public Builder color(final String value) {
             this.color = value;
             return this;
         }
 
+        
         public Builder smoothing(final Number value) {
             this.smoothing = value;
             return this;
         }
 
+        
         public Builder dash(final String value) {
             this.dash = value;
             return this;
         }
 
+        
         public Builder shape(final String value) {
             this.shape = value;
             return this;
         }
 
+        
         public Builder reversescale(final Boolean value) {
             this.reversescale = value;
             return this;
         }
 
+        
         public Builder width(final Integer value) {
             this.width = value;
             return this;
         }
 
+        
         public Builder cauto(final Boolean value) {
             this.cauto = value;
             return this;
         }
 
+        
         public Builder widthsrc(final String value) {
             this.widthsrc = value;
             return this;
         }
 
+        
         public Builder cmax(final Number value) {
             this.cmax = value;
             return this;
         }
 
+        
         public Line build() {
             return new net.java.html.plotlyjs.Line(this);
         }
     }
 
+    
     public static Line.Builder builder() {
         return new Line.Builder();
     }

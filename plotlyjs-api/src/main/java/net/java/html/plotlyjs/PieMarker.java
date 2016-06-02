@@ -33,47 +33,58 @@ package net.java.html.plotlyjs;
  */
 
 
-/**
- *
- * @author daykin
- */
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PieMarker {
-    public final List colors;
+
+    
+    public final List<?> colors;
+
+    
     public final Line line;
+
+    
     public final Object colorssrc;
 
+    
     public static class Builder {
 
-        private List colors;
+        private List<?> colors;
         private Line line;
         private Object colorssrc;
 
         private Builder() {
         }
 
-        public Builder colors(final List value) {
+        
+        public Builder colors(final List<?> value) {
             this.colors = value;
             return this;
         }
 
+        
         public Builder line(final Line value) {
             this.line = value;
             return this;
         }
 
+        
         public Builder colorssrc(final Object value) {
             this.colorssrc = value;
             return this;
         }
 
+        
         public PieMarker build() {
             return new net.java.html.plotlyjs.PieMarker(this);
         }
     }
 
+    
     public static PieMarker.Builder builder() {
         return new PieMarker.Builder();
     }

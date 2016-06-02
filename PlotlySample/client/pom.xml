@@ -42,8 +42,8 @@
               <artifactId>maven-compiler-plugin</artifactId>
               <version>2.3.2</version>
               <configuration>
-                  <source>1.7</source>
-                  <target>1.7</target>
+                  <source>1.8</source>
+                  <target>1.8</target>
               </configuration>
           </plugin>
           <plugin>
@@ -55,7 +55,7 @@
                       <manifest>
                           <mainClass>${project.mainclass}</mainClass>
                           <addClasspath>true</addClasspath>
-                          <classpathPrefix>lib/</classpathPrefix>
+                          <classpathPrefix>/</classpathPrefix>
                           <useUniqueVersions>false</useUniqueVersions>
                       </manifest>
                   </archive>

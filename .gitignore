@@ -5,3 +5,13 @@
 /sample/client-netbeans/target/
 /sample/client-android/target/
 /sample/client-ios/target/
+**/*.log
+*.log
+/PlotlySample/client/target/
+/PlotlySample/client-web/target/
+/PlotlySample-old/client-web/target/
+/PlotlySample-old/client/target/
+/PlotlySample-old - Copy/client/target/
+/PlotlySample/js/target/
+/PlotlySample/client-web/lib
+/PlotlySample/client-web/pom.xml-test

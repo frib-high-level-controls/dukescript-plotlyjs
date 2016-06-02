@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package net.java.html.plotlyjs;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 /*
  * #%L
  * This software is Copyright by the Board of Trustees of Michigan State University.
@@ -38,58 +36,68 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * THE SOFTWARE.
  * #L%
  */
-
-
 /**
- *
+ * Generates binning settings for distribution based plots such as
+ * {@link Histogram}. Consists of a start, end and size. If this is not set, Plotly will automatically infer the binning settings.
  * @author daykin
  */
 @JsonInclude(Include.NON_NULL)
-/*
-    Give custom ranges for histogram ranges, will be interpolated if unspecified
-*/
 public class AxisBin {
    private final Number start;
    private final Number end;
    private final Number size;
-
+   
     public static class Builder {
-
         private Number start;
         private Number end;
         private Number size;
-
         private Builder() {
         }
-
+        /**
+         * Set the start value for binning.
+         * @param value the minimum bin, i.e. values in the distribution with this value or less.
+         * @return a builder with the start value set.
+         */
         public Builder start(final Number value) {
             this.start = value;
             return this;
         }
-
+        /**
+         *Set the maximum value for binning.
+         * @param value the maximum bin, i.e. values in the distribution with this value or greater.
+         * @return a builder with the 
+         */
         public Builder end(final Number value) {
             this.end = value;
             return this;
         }
-
+        /**
+         * Set the step of values that the bin encapsulates. 
+         * @param value
+         * @return
+         */
         public Builder size(final Number value) {
             this.size = value;
             return this;
         }
-
+        /**
+         * Build an AxisBin Bean with the specified values.
+         * @return an AxisBin Object. 
+         */
         public AxisBin build() {
             return new net.java.html.plotlyjs.AxisBin(this);
         }
     }
-
+    /**
+     * Begin an <code>AxisBin</code> builder.
+     * @return a <code>Builder</code> object.
+     */
     public static AxisBin.Builder builder() {
         return new AxisBin.Builder();
     }
-
     private AxisBin(Builder builder) {
         this.start = builder.start;
         this.end = builder.end;
         this.size = builder.size;
     }
-   
 }

@@ -41,11 +41,22 @@ import netscape.javascript.JSObject;
  */
 public final class ClickEvent extends ChartEvent{
 
+    /**
+     *
+     * @param source
+     * @param shift
+     * @param ctrl
+     * @param info
+     */
     public ClickEvent(Plotly source, Object shift, Object ctrl, Object info) {
         super(source, shift, ctrl, info);
         //other click related stuff
     }
     
+    /**
+     *
+     * @return
+     */
     public String getLabel(){
         return ((Plotly)source).getId();
     }

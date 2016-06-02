@@ -45,43 +45,149 @@ import java.util.List;
  */
 public class ColorBar {
     
+    /**
+     *
+     */
     public static final class Positions{
+
+        /**
+         *
+         */
         public static final String RIGHT = "right";
+
+        /**
+         *
+         */
         public static final String TOP = "top";
+
+        /**
+         *
+         */
         public static final String MIDDLE = "middle";
+
+        /**
+         *
+         */
         public static final String CENTER = "center";
+
+        /**
+         *
+         */
         public static final String BOTTOM = "bottom";
     }
     
+    /**
+     *
+     */
     public static final class TickSettings{
+
+        /**
+         *
+         */
         public static final String ALL = "all";
+
+        /**
+         *
+         */
         public static final String FIRST = "first";
+
+        /**
+         *
+         */
         public static final String LAST = "last";
+
+        /**
+         *
+         */
         public static final String NONE = "none";
     }
     
+    /**
+     *
+     */
     public static final class LenModes{
+
+        /**
+         *
+         */
         public static final String FRACTION = "fraction";
+
+        /**
+         *
+         */
         public static final String PIXELS = "pixels";
     }
     
+    /**
+     *
+     */
     public static final class Ticks{
+
+        /**
+         *
+         */
         public static final String OUTSIDE = "outside";
-	public static final String INSIDE = "inside";
+
+        /**
+         *
+         */
+        public static final String INSIDE = "inside";
+
+        /**
+         *
+         */
         public static final String NONE = "";
     }
     
+    /**
+     *
+     */
     public static final class ExponentModes{
+
+        /**
+         *
+         */
         public static final String NONE = "none";
-	public static final String E_LOWER = "e";
-	public static final String E_UPPER = "E";
-	public static final String POWER = "power";
-	public static final String SI = "SI";
-	public static final String B = "B";
+
+        /**
+         *
+         */
+        public static final String E_LOWER = "e";
+
+        /**
+         *
+         */
+        public static final String E_UPPER = "E";
+
+        /**
+         *
+         */
+        public static final String POWER = "power";
+
+        /**
+         *
+         */
+        public static final String SI = "SI";
+
+        /**
+         *
+         */
+        public static final String B = "B";
     }
     
+    /**
+     *
+     */
     public static final class ThicknessModes{
+
+        /**
+         *
+         */
         public static final String FRACTION = "fraction";
+
+        /**
+         *
+         */
         public static final String PIXELS = "pixels";
     }
     
@@ -125,6 +231,9 @@ public class ColorBar {
     private Double x;
     private String thicknessmode;
 
+    /**
+     *
+     */
     public static class Builder {
 
         private String yanchor;
@@ -170,206 +279,409 @@ public class ColorBar {
         private Builder() {
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder yanchor(final String value) {
             this.yanchor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder showexponent(final String value) {
             this.showexponent = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder showticklabels(final Boolean value) {
             this.showticklabels = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder lenmode(final String value) {
             this.lenmode = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder showticksuffix(final String value) {
             this.showticksuffix = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder titlefont(final Font value) {
             this.titlefont = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder borderwidth(final Integer value) {
             this.borderwidth = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickvalssrc(final String value) {
             this.tickvalssrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder nticks(final Integer value) {
             this.nticks = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder titleside(final String value) {
             this.titleside = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder outlinecolor(final String value) {
             this.outlinecolor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickprefix(final String value) {
             this.tickprefix = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickformat(final String value) {
             this.tickformat = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickmode(final String value) {
             this.tickmode = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder title(final String value) {
             this.title = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ticks(final String value) {
             this.ticks = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder thickness(final Integer value) {
             this.thickness = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder bgcolor(final String value) {
             this.bgcolor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder outlinewidth(final Integer value) {
             this.outlinewidth = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ticktextsrc(final String value) {
             this.ticktextsrc = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder bordercolor(final String value) {
             this.bordercolor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder xanchor(final String value) {
             this.xanchor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ticklen(final Integer value) {
             this.ticklen = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder len(final Integer value) {
             this.len = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ticksuffix(final String value) {
             this.ticksuffix = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickcolor(final String value) {
             this.tickcolor = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ticktext(final List value) {
             this.ticktext = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder xpad(final Integer value) {
             this.xpad = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickvals(final List value) {
             this.tickvals = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickfont(final Font value) {
             this.tickfont = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickwidth(final Integer value) {
             this.tickwidth = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tick0(final Number value) {
             this.tick0 = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder tickangle(final Integer value) {
             this.tickangle = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder dtick(final Integer value) {
             this.dtick = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder ypad(final Integer value) {
             this.ypad = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder exponentformat(final String value) {
             this.exponentformat = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder y(final Double value) {
             this.y = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder x(final Double value) {
             this.x = value;
             return this;
         }
 
+        /**
+         *
+         * @param value
+         * @return
+         */
         public Builder thicknessmode(final String value) {
             this.thicknessmode = value;
             return this;
         }
 
+        /**
+         *
+         * @return
+         */
         public ColorBar build() {
             return new net.java.html.plotlyjs.ColorBar(this);
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static ColorBar.Builder builder() {
         return new ColorBar.Builder();
     }
