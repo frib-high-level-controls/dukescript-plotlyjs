@@ -270,21 +270,21 @@ public final class Plotly <T extends Charts>{
     }
     
 
-    private void notifyClickListeners(JSObject obj){
+    public void notifyClickListeners(JSObject obj){
         ClickEvent event = new ClickEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: clickListeners){
             l.plotly_click(event);
         }
     }
     
-    private void notifyHoverListeners(JSObject obj){
+    public void notifyHoverListeners(JSObject obj){
         HoverEvent event = new HoverEvent(this,this.shift,this.ctrl,obj);
         for (ChartListener l: hoverListeners){
             l.plotly_hover(event);
         }
     }
     
-    private void notifyUnhoverListeners(JSObject obj){
+    public void notifyUnhoverListeners(JSObject obj){
         UnhoverEvent event = new UnhoverEvent (this, this.shift,this.ctrl, obj);
         for (ChartListener l: unhoverListeners){
             l.plotly_unhover(event);
@@ -292,7 +292,7 @@ public final class Plotly <T extends Charts>{
     }
     
 
-    private void notifyZoomListeners(JSObject obj){
+    public void notifyZoomListeners(JSObject obj){
         ZoomEvent event = new ZoomEvent (this, this.shift, this.ctrl, obj);
         for(ChartListener l: zoomListeners){
             l.plotly_zoom(event);
