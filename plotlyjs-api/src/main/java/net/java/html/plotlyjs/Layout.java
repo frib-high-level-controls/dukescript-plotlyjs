@@ -35,6 +35,7 @@ package net.java.html.plotlyjs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.List;
 
 
 @JsonInclude(Include.NON_NULL)
@@ -51,6 +52,8 @@ public class Layout {
     private final String barmode;    
     private final String boxmode;
     private final Object hovermode;
+    private final List<Shape> shapes;
+    private final List<Annotation> annotations;
 
     
     public static class Builder {
@@ -65,6 +68,8 @@ public class Layout {
         private String barmode;
         private String boxmode;
         private Object hovermode;
+        private List<Shape> shapes;
+        private List<Annotation> annotations;
 
         
         public Builder() {
@@ -130,6 +135,15 @@ public class Layout {
             return this;
         }
         
+        public Builder shapes(final List<Shape> shapes){
+            this.shapes = shapes;
+            return this;
+        }
+        
+        public Builder annotations(final List<Annotation> annotations){
+            this.annotations = annotations;
+            return this;
+        }
         
         public Layout build() {
             return new net.java.html.plotlyjs.Layout(this);
@@ -152,6 +166,8 @@ public class Layout {
         this.boxmode = builder.boxmode;
         this.barmode = builder.barmode;
         this.hovermode = builder.hovermode;
+        this.shapes = builder.shapes;
+        this.annotations = builder.annotations;
     }
     
     
